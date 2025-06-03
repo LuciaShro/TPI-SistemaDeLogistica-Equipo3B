@@ -102,6 +102,7 @@
     <Content Include="Content\Inicio.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Navbar.css" />
+    <Content Include="Content\Perfil.css" />
     <Content Include="Content\SideBar.css" />
     <Content Include="Inicio.aspx" />
     <Content Include="Login.aspx" />
@@ -129,6 +130,7 @@
     <Content Include="Imagenes\Default.png" />
     <Content Include="Imagenes\Login.png" />
     <Content Include="Imagenes\Registro.png" />
+    <Content Include="Perfil.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -217,6 +219,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Perfil.aspx.cs">
+      <DependentUpon>Perfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Perfil.aspx.designer.cs">
+      <DependentUpon>Perfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">
