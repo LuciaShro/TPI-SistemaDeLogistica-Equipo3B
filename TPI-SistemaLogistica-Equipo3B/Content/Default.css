@@ -1,0 +1,236 @@
+﻿:root {
+    --primary-color: #7B3E9C; /* Purple from the button */
+    --secondary-color: #6C757D; /* Grey for text */
+    --light-grey: #F8F9FA; /* Light background for some elements */
+    --text-dark: #343A40; /* Dark text */
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Or your preferred font */
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--white);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%; /* Adjust padding as needed */
+    background-color: var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-dark);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+    .nav-link:hover {
+        color: var(--primary-color);
+    }
+
+.btn {
+    padding: 0.8rem 1.8rem;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+    .btn-primary:hover {
+        background-color: #5D2F7E; /* Slightly darker purple */
+    }
+
+.btn-secondary {
+    background-color: var(--primary-color); /* Same as primary for this design */
+    color: var(--white);
+    padding: 1rem 2.5rem; /* Larger for hero section */
+}
+
+    .btn-secondary:hover {
+        background-color: #5D2F7E;
+    }
+
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    flex-direction: row; /* Desktop layout */
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 5%; /* Adjust padding as needed */
+    min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+    overflow: hidden; /* To handle image positioning */
+    background-color: var(--white);
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+    margin-right: 3rem; /* Space between content and image */
+    text-align: left;
+}
+
+    .hero-content h1 {
+        font-size: 3.5rem; /* Large heading */
+        font-weight: bold;
+        color: var(--text-dark);
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        color: var(--secondary-color);
+        margin-bottom: 2.5rem;
+    }
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem; /* Space between button and link */
+}
+
+.link-text {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+    .link-text:hover {
+        color: var(--primary-color);
+    }
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 700px; /* Adjust max-width as per your image size */
+    position: relative; /* For potential absolute positioning of elements within the image */
+}
+
+.delivery-illustration {
+    max-width: 100%; /* Ensure image scales within its container */
+    height: auto;
+    display: block; /* Removes extra space below image */
+}
+
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero-section {
+        flex-direction: column; /* Stack vertically on smaller screens */
+        padding: 3rem 5%;
+    }
+
+    .hero-content {
+        margin-right: 0;
+        margin-bottom: 3rem; /* Space between content and image */
+        text-align: center; /* Center text on smaller screens */
+        max-width: 100%; /* Allow content to take full width */
+    }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+        }
+
+    .hero-actions {
+        justify-content: center; /* Center buttons on smaller screens */
+    }
+
+    .hero-image {
+        max-width: 80%; /* Adjust image size for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 5%;
+    }
+
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+
+    .navbar-nav {
+        gap: 0.8rem;
+    }
+
+    .nav-link, .btn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .btn-secondary {
+        padding: 0.8rem 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-nav {
+        /* Consider a hamburger menu for very small screens if you have more nav items */
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-end;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .btn-secondary {
+        width: 80%; /* Make button wider */
+    }
+}
