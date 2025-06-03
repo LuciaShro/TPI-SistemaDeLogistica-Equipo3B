@@ -18,13 +18,13 @@
                 <h4>FlashShip</h4>
                 <ul class="menu">
                     <li>
-                        <a href="#" class="nav-link"> <i class="bi bi-box me-2"></i>Productos</a>
+                        <a href="Inicio.aspx" class="nav-link"> <i class="bi bi-box me-2"></i>Inicio</a>
                     </li>
                     <li>
                         <a href="#" class="nav-link"> <i class="bi bi-person-badge me-2"></i>Transportistas</a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link"> <i class="bi bi-cart"></i> Ordenes</a>
+                        <a href="Ordenes.aspx" class="nav-link"> <i class="bi bi-cart"></i> Ordenes</a>
                     </li>
                     <li>
                         <a href="#" class="nav-link"> <i class="bi bi-truck"></i> Envios</a>

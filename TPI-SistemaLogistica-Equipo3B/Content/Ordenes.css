@@ -1,0 +1,149 @@
+﻿.ordenes-container {
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+.ordenes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-añadir {
+    background-color: #a855f7; /* color violeta */
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-añadir:hover {
+    background-color: #9854CB;
+}
+
+.ordenes-tabs {
+    margin-top: 20px;
+    display: flex;
+    gap: 16px;
+}
+
+.tab {
+    color: #555;
+    text-decoration: none;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    font-weight: 500;
+}
+
+.tab.active {
+    color: #6366f1; /* azul violeta */
+    border-bottom: 2px solid #6366f1;
+}
+
+.ordenes-search {
+    margin-top: 20px;
+    position: relative;
+    max-width: 400px;
+}
+
+.ordenes-search input {
+    width: 100%;
+    padding: 10px 40px 10px 32px;
+    border: 2px solid #9854CB;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+    font-size: 16px;
+}
+
+.orden-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #eee;
+    transition: background 0.3s;
+}
+
+    .orden-item:hover {
+        background: #f9f9f9;
+    }
+
+.orden-fecha {
+    background: #f1f1f1;
+    border-radius: 12px;
+    text-align: center;
+    padding: 4px 10px;
+    width: 60px;
+}
+
+.mes {
+    display: block;
+    font-size: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+.dia {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.orden-info {
+    flex-grow: 1;
+    margin-left: 16px;
+}
+
+.orden-codigo {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.orden-total {
+    color: #666;
+    font-size: 13px;
+}
+
+.orden-estado {
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Etiquetas de estado */
+.entregado {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.reprogramado {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.en\ transito {
+    background-color: #cffafe;
+    color: #0369a1;
+}
+
+.cancelado {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.pendiente {
+    background-color: #fef9c3;
+    color: #854d0e;
+}
