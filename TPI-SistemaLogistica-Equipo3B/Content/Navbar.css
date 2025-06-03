@@ -1,0 +1,12 @@
+﻿nav.navbar.bg-dark {
+    background-color: #9854CB !important; /* El color que quieras */
+}
+
+.container a {
+    color: white;
+}
+
+.container a:hover {
+    color: yellow;
+}
+

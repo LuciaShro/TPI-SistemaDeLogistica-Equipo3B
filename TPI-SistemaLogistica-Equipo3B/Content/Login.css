@@ -1,139 +1,86 @@
-﻿:root {
-    --primary-color: #7B3E9C; /* Purple from the button */
-    --secondary-color: #6C757D; /* Grey for text */
-    --light-grey: #F8F9FA; /* Light background for some elements */
-    --text-dark: #343A40; /* Dark text */
-    --white: #FFFFFF;
-    --border-color: #CED4DA; /* Light border for inputs */
-    --bg-light-purple: #F3F0F7; /* Fondo para Login.aspx (definido aquí para que esté disponible globalmente) */
-}
-
-* {
+﻿body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f9f9f9;
 }
 
-html, body {
-    width: 100%;
-    height: 100%; /* Asegura que el body ocupe toda la altura visible */
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: var(--text-dark);
-    background-color: var(--white); /* Fondo predeterminado del body (blanco). Login.css lo sobrescribirá. */
-    min-height: 100vh; /* Para que el body siempre ocupe al menos la altura de la ventana */
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Navbar (fondo de ancho completo) */
-.navbar {
-    background-color: var(--text-dark); /* Color oscuro como en la imagen */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+.login-container {
     display: flex;
-    justify-content: center; /* Centra el 'navbar-content-wrapper' */
-    align-items: center;
-    padding: 0; /* No padding aquí, el wrapper interno lo maneja */
-    height: 80px; /* Altura fija para el navbar */
-}
-
-/* Contenido del Navbar (centrado y limitado) */
-.navbar-content-wrapper {
-    display: flex;
+    height: 100vh;
     justify-content: space-between;
     align-items: center;
-    width: 100%; /* Ocupa el 100% de su padre (.navbar) */
-    max-width: 1200px; /* <--- ANCHO MÁXIMO PARA EL CONTENIDO DEL NAVBAR (AJUSTAR SEGÚN IMAGEN) */
-    padding: 0 2rem; /* Padding lateral interno del contenido del navbar */
+    padding: 0 50px;
 }
 
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--white); /* Color del texto "FlashShip" */
-}
-
-.navbar-nav {
+.login-form {
+    max-width: 400px;
+    width: 100%;
     display: flex;
-    gap: 1.5rem;
-    align-items: center;
-}
-
-.nav-link {
-    color: var(--white); /* Color de los enlaces del navbar */
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    transition: color 0.3s ease;
-}
-
-    .nav-link:hover {
-        color: var(--primary-color);
-    }
-
-/* Botones base */
-.btn {
-    padding: 0.8rem 1.8rem;
-    border-radius: 5px;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    border: none;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: var(--white);
-}
-
-    .btn-primary:hover {
-        background-color: #5D2F7E;
-    }
-
-.btn-secondary { /* Usado en Default.aspx */
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 1rem 2.5rem;
-}
-
-    .btn-secondary:hover {
-        background-color: #5D2F7E;
-    }
-
-/* Contenedor general del contenido de las páginas (Hero, Login, etc.) */
-.page-content-wrapper {
-    width: 100%; /* Ocupa el 100% del body */
-    max-width: 1200px; /* <--- ANCHO MÁXIMO PARA EL CONTENIDO CENTRAL (AJUSTAR SEGÚN IMAGEN) */
-    margin: 0 auto; /* Centra el contenido en la página */
-    padding: 2rem 0; /* Padding superior/inferior general para el contenido */
-    min-height: calc(100vh - 80px - 4rem); /* Altura mínima: VH - navbar height - posible footer height */
-    display: flex; /* Permite centrar el contenido verticalmente si es más corto */
     flex-direction: column;
-    align-items: center; /* Centra el contenido si es más pequeño que el wrapper */
-    justify-content: center; /* Centra verticalmente */
+    gap: 15px;
 }
 
-/* Hero Section (Default.aspx específico) */
-.hero-section {
+h1 {
+    color: #a24ddd;
+    font-size: 32px;
+}
+
+.input-text {
+    padding: 10px;
+    border: 2px solid #a24ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+}
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    cursor: pointer;
+}
+
+.options {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%; /* Ocupa el 100% de .page-content-wrapper */
-    padding: 4rem 0; /* Padding interno del hero section */
-    background-color: var(--white); /* Fondo específico del hero */
-    /* Otros estilos de hero-section */
+    justify-content: space-between;
+    font-size: 13px;
+    color: #666;
 }
 
-/* ... Mantén tus media queries de Default.css aquí, ajustándolos si es necesario para el navbar-content-wrapper y page-content-wrapper ... */
+.login-button {
+    background-color: #a24ddd;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.separator {
+    text-align: center;
+    font-size: 13px;
+    color: #999;
+    margin: 10px 0;
+}
+
+.register-link {
+    text-align: center;
+    font-size: 13px;
+    color: #333;
+}
+
+    .register-link a {
+        color: #a24ddd;
+        text-decoration: none;
+    }
+
+.login-image img {
+    max-width: 700px;
+    width: 100%;
+}

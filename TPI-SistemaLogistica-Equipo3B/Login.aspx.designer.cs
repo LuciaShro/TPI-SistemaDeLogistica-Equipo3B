@@ -11,7 +11,7 @@ namespace TPI_SistemaLogistica_Equipo3B
 {
 
 
-    public partial class Contact
+    public partial class Login
     {
 
         /// <summary>

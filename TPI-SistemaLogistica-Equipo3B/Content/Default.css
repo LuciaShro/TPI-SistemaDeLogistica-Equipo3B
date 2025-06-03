@@ -1,8 +1,8 @@
 ﻿:root {
-    --primary-color: #7B3E9C; /* Purple from the button */
-    --secondary-color: #6C757D; /* Grey for text */
-    --light-grey: #F8F9FA; /* Light background for some elements */
-    --text-dark: #343A40; /* Dark text */
+    --primary-color: #7B3E9C; 
+    --secondary-color: #6C757D; 
+    --light-grey: #F8F9FA; 
+    --text-dark: #343A40; 
     --white: #FFFFFF;
 }
 
@@ -13,7 +13,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif; /* Or your preferred font */
+    font-family: 'Arial', sans-serif; 
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--white);
@@ -24,12 +24,11 @@ a {
     color: inherit;
 }
 
-/* Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 5%; /* Adjust padding as needed */
+    padding: 1.5rem 5%; 
     background-color: var(--white);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     position: sticky;
@@ -76,13 +75,13 @@ a {
 }
 
     .btn-primary:hover {
-        background-color: #5D2F7E; /* Slightly darker purple */
+        background-color: #5D2F7E;
     }
 
 .btn-secondary {
-    background-color: var(--primary-color); /* Same as primary for this design */
+    background-color: var(--primary-color); 
     color: var(--white);
-    padding: 1rem 2.5rem; /* Larger for hero section */
+    padding: 1rem 2.5rem; 
 }
 
     .btn-secondary:hover {
@@ -90,27 +89,26 @@ a {
     }
 
 
-/* Hero Section */
 .hero-section {
     display: flex;
-    flex-direction: row; /* Desktop layout */
+    flex-direction: row; 
     align-items: center;
     justify-content: center;
-    padding: 4rem 5%; /* Adjust padding as needed */
-    min-height: calc(100vh - 80px); /* Adjust based on navbar height */
-    overflow: hidden; /* To handle image positioning */
+    padding: 4rem 5%; 
+    min-height: calc(100vh - 80px); 
+    overflow: hidden; 
     background-color: var(--white);
 }
 
 .hero-content {
     flex: 1;
     max-width: 600px;
-    margin-right: 3rem; /* Space between content and image */
+    margin-right: 3rem;
     text-align: left;
 }
 
     .hero-content h1 {
-        font-size: 3.5rem; /* Large heading */
+        font-size: 3.5rem; 
         font-weight: bold;
         color: var(--text-dark);
         margin-bottom: 1.5rem;
@@ -126,7 +124,7 @@ a {
 .hero-actions {
     display: flex;
     align-items: center;
-    gap: 2rem; /* Space between button and link */
+    gap: 2rem; 
 }
 
 .link-text {
@@ -144,29 +142,29 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 700px; /* Adjust max-width as per your image size */
-    position: relative; /* For potential absolute positioning of elements within the image */
+    max-width: 800px; 
+    height: 600px;
+    position: relative; 
 }
 
 .delivery-illustration {
-    max-width: 100%; /* Ensure image scales within its container */
+    max-width: 100%; 
     height: auto;
-    display: block; /* Removes extra space below image */
+    display: block; 
 }
 
 
-/* Responsive Design */
 @media (max-width: 992px) {
     .hero-section {
-        flex-direction: column; /* Stack vertically on smaller screens */
+        flex-direction: column;
         padding: 3rem 5%;
     }
 
     .hero-content {
         margin-right: 0;
-        margin-bottom: 3rem; /* Space between content and image */
-        text-align: center; /* Center text on smaller screens */
-        max-width: 100%; /* Allow content to take full width */
+        margin-bottom: 3rem; 
+        text-align: center; 
+        max-width: 100%; 
     }
 
         .hero-content h1 {
@@ -178,11 +176,11 @@ a {
         }
 
     .hero-actions {
-        justify-content: center; /* Center buttons on smaller screens */
+        justify-content: center; 
     }
 
     .hero-image {
-        max-width: 80%; /* Adjust image size for smaller screens */
+        max-width: 80%; 
     }
 }
 
@@ -219,7 +217,6 @@ a {
 
 @media (max-width: 576px) {
     .navbar-nav {
-        /* Consider a hamburger menu for very small screens if you have more nav items */
         flex-direction: column;
         gap: 0.5rem;
         align-items: flex-end;
@@ -231,6 +228,6 @@ a {
     }
 
     .btn-secondary {
-        width: 80%; /* Make button wider */
+        width: 80%; 
     }
 }

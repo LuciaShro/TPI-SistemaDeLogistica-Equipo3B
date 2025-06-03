@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace TPI_SistemaLogistica_Equipo3B
 {
-    public partial class Contact : Page
+    public partial class Login : Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

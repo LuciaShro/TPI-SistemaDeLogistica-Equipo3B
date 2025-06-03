@@ -14,7 +14,8 @@
 
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="stylesheet" href="<%= ResolveUrl("~/Content/Default.css") %>" />
+  
+    <link href="<%= ResolveUrl("~/Content/Navbar.css") %>" rel="stylesheet" type="text/css" />
 
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
 </head>
