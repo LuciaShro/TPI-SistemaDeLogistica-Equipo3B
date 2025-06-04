@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35913.81 d17.13
+VisualStudioVersion = 17.13.35913.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPI-SistemaLogistica-Equipo3B", "TPI-SistemaLogistica-Equipo3B\TPI-SistemaLogistica-Equipo3B.csproj", "{5B179AFF-94A8-4C38-AED9-FD81E600FF63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio", "Dominio\Dominio.csproj", "{DAE2459C-8524-4820-97F4-0722C3959198}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestion", "Gestion\Gestion.csproj", "{D226BFED-DECB-4878-B47F-3373E7EEDB50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{5B179AFF-94A8-4C38-AED9-FD81E600FF63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B179AFF-94A8-4C38-AED9-FD81E600FF63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B179AFF-94A8-4C38-AED9-FD81E600FF63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAE2459C-8524-4820-97F4-0722C3959198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAE2459C-8524-4820-97F4-0722C3959198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAE2459C-8524-4820-97F4-0722C3959198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAE2459C-8524-4820-97F4-0722C3959198}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D226BFED-DECB-4878-B47F-3373E7EEDB50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D226BFED-DECB-4878-B47F-3373E7EEDB50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D226BFED-DECB-4878-B47F-3373E7EEDB50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D226BFED-DECB-4878-B47F-3373E7EEDB50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
