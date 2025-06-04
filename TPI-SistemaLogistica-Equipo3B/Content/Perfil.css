@@ -19,3 +19,30 @@ h1 {
     width:150px;
     height:150px;
 }
+
+.btn-purple {
+    background-color: #9b59b6;
+    color: white;
+}
+
+.btn-purple:hover {
+    background-color: #8e44ad;
+}
+
+.foto-perfil-contenedor {
+    text-align: center;
+    align-items: center;
+}
+
+.editar-foto {
+    display: inline-block;
+    color: #a24ddd;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.editar-foto:hover {
+    color: #8e44ad;
+    text-decoration: underline;
+}

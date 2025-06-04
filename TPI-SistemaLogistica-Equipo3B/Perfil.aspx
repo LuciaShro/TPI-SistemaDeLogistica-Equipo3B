@@ -8,12 +8,13 @@
     <h1>Perfil</h1>
     <hr />
     <div class="card p-5 w-50 mx-auto">
+    <div class="foto-perfil-contenedor">
     <img src="https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg" class="foto-perfil" alt="FotoPerfil">
+    <label for="inputFoto" class="editar-foto-link"><i class="bi bi-pencil-square"></i> Cambiar foto </label>
+    </div>
     <form>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Nombre y apellido</label>
-
-
     <input type="name" class="form-control" id="exampleInputName" placeholder="Nombre completo">
   </div>
         <div class="mb-3">
@@ -30,8 +31,8 @@
   <option value="2">Transportista</option>
   <option value="3">Cliente</option>
 </select>
-    </div>
-  <button type="submit" class="btn btn-primary">Modificar</button>
+    </div>  
 </form>
+  <asp:Button ID="btnModificarPerfil" runat="server" Text="Modificar" CssClass="btn-purple w-100" />
 </div>
 </asp:Content>
