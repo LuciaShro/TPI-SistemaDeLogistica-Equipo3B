@@ -1,61 +1,60 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.Register" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.Register" %>
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Registro | FlashShip</title>
-    
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<asp:Content ID="HeadContent" ContentPlaceHolderID="HeadContent" runat="server">
+    <link rel="stylesheet" type="text/css" href="Content/Register.css" />
+</asp:Content>
 
-    
-    <link href="Content/Register.css" rel="stylesheet" />
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div class="container">
-            <div class="form-container">
-                <div class="text-center form-title">Regístrate</div>
+<asp:Content ID="MainContent" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <!-- formulario -->
+            <div class="col-md-6">
+                <div class="form-container mx-auto">
+                    <h2 class="form-title">Regístrate</h2>
 
-                <div class="mb-3">
-                    <label class="form-label">Nombre de usuario</label>
-                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" placeholder="example@gmail.com" />
-                </div>
+                    <div class="mb-3">
+                        <label for="txtUsername" class="form-label">Nombre de usuario</label>
+                        <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" Placeholder="example@gmail.com"></asp:TextBox>
+                    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">E-mail</label>
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="example@gmail.com" TextMode="Email" />
-                </div>
+                    <div class="mb-3">
+                        <label for="txtEmail" class="form-label">E-mail</label>
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Placeholder="example@gmail.com"></asp:TextBox>
+                    </div>
 
-                <div class="mb-3 form-group">
-                    <label class="form-label">Contraseña</label>
-                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" />
-                </div>
+                    <div class="mb-3">
+                        <label for="txtPassword" class="form-label">Contraseña</label>
+                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" Placeholder="@#*%"></asp:TextBox>
+                    </div>
 
-                <div class="mb-3 form-group">
-                    <label class="form-label">Confirmar contraseña</label>
-                    <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password" />
-                </div>
+                    <div class="mb-3">
+                        <label for="txtConfirmPassword" class="form-label">Confirmar contraseña</label>
+                        <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" CssClass="form-control" Placeholder="@#*%"></asp:TextBox>
+                    </div>
 
-                <asp:Button ID="btnRegister" runat="server" Text="COMENZAR" CssClass="btn btn-purple w-100 mb-3" />
+                    <asp:Button ID="btnRegister" runat="server" Text="COMENZAR" CssClass="btn btn-purple w-100" />
 
-                <div class="text-center">o continúa con</div>
-                <div class="text-center mt-2 social-btns">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" alt="Facebook" />
-                </div>
+                    <div class="text-center mt-3">
+                        <small>o continua con</small>
+                        <div class="social-btns mt-2">
+                            <img src="Imagenes/Google.png" alt="Google" />
+                            <img src="Imagenes/Github.png" alt="GitHub" />
+                            <img src="Imagenes/Facebook.png" alt="Facebook" />
+                        </div>
+                    </div>
 
-                <div class="text-center mt-3">
-                    ¿Ya estás registrado?
-                    <a href="Login.aspx" class="link-login">Inicia sesión</a>
+                    <div class="text-center mt-3">
+                        <small>¿Ya estás registrado? <a href="Login.aspx" class="link-login">Inicia Sesión</a></small>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
 
-   
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+            <!-- imagen -->
+            <div class="col-md-6 d-none d-md-block text-center">
+                <img src="Imagenes/Registro.png" alt="Registro" class="img-fluid" style="max-height: 500px;" />
+            </div>
+        </div>
+    </div>
+</asp:Content>
+
 
