@@ -8,5 +8,14 @@ namespace Gestion
 {
     public class GestionCliente
     {
+        public void agregarCliente () { }
+
+        public void modificarCliente () { }
+
+        public void eliminarCliente() { }
+
+        public void buscarCliente () { }
+
+        public void listarClientes() { }
     }
 }

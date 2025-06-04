@@ -10,6 +10,8 @@ namespace Dominio
     {
         public string Telefono {  get; set; }
 
+        public string FechaAlta {  get; set; }
+
         public Usuario Usuario { get; set; }
     }
 }

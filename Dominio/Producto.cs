@@ -27,5 +27,6 @@ namespace Dominio
         public Marca NombreMarca { get; set; }
 
         public Categoria NombreCategoria {  get; set; }
+
     }
 }

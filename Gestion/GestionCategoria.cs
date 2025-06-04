@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace Gestion
 {
-    internal class GestionCategoria
+    public class GestionCategoria
     {
+        public void AgregarCategoria () { }
+        public void ModificarCategoria () { }
+
+        public void EliminarCategoria () { }
+
+        public void ListarCategorias() { }
+
+        public bool buscarCategoria () { return true; }
     }
 }

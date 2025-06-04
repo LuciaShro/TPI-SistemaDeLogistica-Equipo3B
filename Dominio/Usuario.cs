@@ -17,6 +17,8 @@ namespace Dominio
 
         public string Clave {  get; set; }
 
-        public string FechaRegistro { get; set; }
+        public DateTime FechaRegistro { get; set; }
+
+        public string Rol {  get; set; }
     }
 }

@@ -9,6 +9,15 @@ namespace Gestion
 {
     public class GestionMarca
     {
+        public void agregarMarca () { }
+
+        public void modificarMarca () { }
+
+        public void eliminarMarca () { }
+
+        public void listarMarcas () { }
+
+        public bool buscarMarca () { return false; }
         
     }
 }

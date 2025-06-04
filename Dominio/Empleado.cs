@@ -10,6 +10,10 @@ namespace Dominio
     {
         public int Legajo {  get; set; }
 
+        public TimeSpan HoraInicio {  get; set; }
+
+        public TimeSpan HoraFin {  get; set; }
+
         public Usuario usuario { get; set; }
     }
 }

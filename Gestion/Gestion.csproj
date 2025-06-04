@@ -44,6 +44,7 @@
     <Compile Include="GestionCategoria.cs" />
     <Compile Include="GestionCliente.cs" />
     <Compile Include="GestionMarca.cs" />
+    <Compile Include="GestionOrdenesEnvio.cs" />
     <Compile Include="GestionProducto.cs" />
     <Compile Include="GestionVehiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
