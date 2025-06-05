@@ -10,6 +10,8 @@ namespace Dominio
     {
         public int idOrdenEnvio {  get; set; }
 
+        public Persona persona { get; set; }
+
         public Cliente cliente { get; set; }
 
         public Transportista transportistaAsignado { get; set; }

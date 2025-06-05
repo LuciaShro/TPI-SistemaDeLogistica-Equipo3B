@@ -22,7 +22,7 @@ namespace Dominio
 
         public float Alto {  get; set; }
 
-        public float Profundidad { get; set; }
+        public float Largo { get; set; }
 
         public Marca NombreMarca { get; set; }
 
