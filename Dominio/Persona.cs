@@ -18,5 +18,8 @@ namespace Dominio
 
         public Direccion Direccion { get; set; }
 
+        public string Email { get; set; }
+
+        public string Telefono { get; set; }
     }
 }

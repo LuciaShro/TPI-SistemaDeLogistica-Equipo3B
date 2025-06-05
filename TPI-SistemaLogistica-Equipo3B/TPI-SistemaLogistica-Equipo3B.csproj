@@ -114,6 +114,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\CargarOrden.css" />
+    <Content Include="Content\Factura.css" />
     <Content Include="Content\Inicio.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Envios.css" />
@@ -121,8 +122,10 @@
     <Content Include="Content\Perfil.css" />
     <Content Include="Content\Ordenes.css" />
     <Content Include="Content\Register.css" />
+    <Content Include="Content\ResumenFacturas.css" />
     <Content Include="Content\SideBar.css" />
     <Content Include="Content\VerOrden.css" />
+    <Content Include="Factura.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Content\Default.css" />
@@ -137,6 +140,7 @@
     <Content Include="Perfil.aspx" />
     <Content Include="Ordenes.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="ResumenFacturas.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -209,6 +213,13 @@
     <Compile Include="CargarOrden.aspx.designer.cs">
       <DependentUpon>CargarOrden.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Factura.aspx.cs">
+      <DependentUpon>Factura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factura.aspx.designer.cs">
+      <DependentUpon>Factura.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -261,6 +272,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ResumenFacturas.aspx.cs">
+      <DependentUpon>ResumenFacturas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResumenFacturas.aspx.designer.cs">
+      <DependentUpon>ResumenFacturas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -47,6 +47,7 @@
     <Compile Include="Direccion.cs" />
     <Compile Include="Empleado.cs" />
     <Compile Include="Estado.cs" />
+    <Compile Include="Factura.cs" />
     <Compile Include="OrdenesEnvio.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Producto.cs" />
