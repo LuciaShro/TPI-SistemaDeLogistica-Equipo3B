@@ -8,7 +8,6 @@ namespace Dominio
 {
     public class Cliente: Persona
     {
-        public string Telefono {  get; set; }
 
         public string FechaAlta {  get; set; }
 

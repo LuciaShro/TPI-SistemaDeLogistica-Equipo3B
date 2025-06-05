@@ -1,0 +1,112 @@
+﻿.facturas-container {
+    padding: 30px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-nuevo {
+    background-color: #9b59b6;
+    color: #fff;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.factura-total-card {
+    display: flex;
+    align-items: center;
+    background: #f8f9fb;
+    padding: 20px;
+    border-radius: 16px;
+    margin: 20px 0;
+    gap: 15px;
+}
+
+.circle-avatar {
+    background-color: #dedede;
+    color: #444;
+    font-weight: bold;
+    font-size: 18px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.factura-list {
+    background: #fff;
+    border-radius: 16px;
+    padding: 10px 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.03);
+    margin-bottom: 25px;
+}
+
+    .factura-list.empty {
+        padding: 20px;
+        text-align: center;
+        color: #aaa;
+    }
+
+.factura-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 12px 20px;
+}
+
+    .factura-item:last-child {
+        border-bottom: none;
+    }
+
+.factura-info {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+    .factura-info > div {
+        min-width: 80px;
+        text-align: center;
+    }
+
+.small {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.estado {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+    .estado.entregado {
+        background-color: #e6f6f3;
+        color: #1BC5BD;
+    }
+
+    .estado.pendiente {
+        background-color: #fff4e5;
+        color: #FFA500;
+    }
+
+.arrow {
+    font-size: 1.5rem;
+    color: #ccc;
+}

@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace Gestion
 {
-    internal class GestionUsuario
+    public class GestionUsuario
     {
+        public void agregarUsuario () { }
+
+        public void modificarUsuario () { }
+
+        public void modificarContraseña () { }
+
+        public void eliminarUsuario () { }
+
+        public bool buscarUsuario (int id) { return false; }
+
+        public void listarUsuarios () { }
     }
 }
