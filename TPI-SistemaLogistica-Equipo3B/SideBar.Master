@@ -27,10 +27,7 @@
                         <a href="Ordenes.aspx" class="nav-link"> <i class="bi bi-cart"></i> Ordenes</a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link"> <i class="bi bi-truck"></i> Envios</a>
-                    </li>
-                    <li>
-                         <a href="#" class="nav-link"> <i class="bi bi-geo-alt me-2"></i>Rutas</a>
+                        <a href="Envios.aspx" class="nav-link"> <i class="bi bi-truck"></i> Envios</a>
                     </li>
                     <li>
                         <a href="#" class="nav-link"> <i class="bi bi-bar-chart me-2"></i>Reportes</a>
