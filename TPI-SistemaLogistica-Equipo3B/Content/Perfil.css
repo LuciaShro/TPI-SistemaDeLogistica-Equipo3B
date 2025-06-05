@@ -23,6 +23,11 @@ h1 {
 .btn-purple {
     background-color: #9b59b6;
     color: white;
+    padding: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .btn-purple:hover {

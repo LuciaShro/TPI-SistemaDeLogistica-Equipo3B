@@ -35,4 +35,8 @@
 </form>
   <asp:Button ID="btnModificarPerfil" runat="server" Text="Modificar" CssClass="btn-purple w-100" />
 </div>
+    <div class="card p-5 w-50 mx-auto mt-3">
+        <p>Eliminar cuenta y todos sus datos. Esta opcion es irreversible.</p>
+        <button type="button" class="btn btn-outline-danger">Eliminar cuenta</button>
+        </div>
 </asp:Content>

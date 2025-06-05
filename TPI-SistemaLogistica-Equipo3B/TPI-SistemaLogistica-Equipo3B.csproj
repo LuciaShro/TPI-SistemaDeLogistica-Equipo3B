@@ -121,6 +121,7 @@
     <Content Include="Content\Ordenes.css" />
     <Content Include="Content\Register.css" />
     <Content Include="Content\SideBar.css" />
+    <Content Include="Content\Transportistas.css" />
     <Content Include="Content\VerOrden.css" />
     <Content Include="Inicio.aspx" />
     <Content Include="Login.aspx" />
@@ -191,6 +192,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="Transportistas.aspx" />
     <Content Include="VerOrden.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -273,6 +275,13 @@
     </Compile>
     <Compile Include="SideBar.Master.designer.cs">
       <DependentUpon>SideBar.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Transportistas.aspx.cs">
+      <DependentUpon>Transportistas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transportistas.aspx.designer.cs">
+      <DependentUpon>Transportistas.aspx</DependentUpon>
     </Compile>
     <Compile Include="VerOrden.aspx.cs">
       <DependentUpon>VerOrden.aspx</DependentUpon>
