@@ -12,10 +12,12 @@ namespace Gestion
 
         public void modificarOrdenEnvio() { }
 
-        public void eliminarOrdenEnvio() { }
+        public void eliminarOrdenEnvio(int id) { }
 
         public void listarOrdenesEnvio() { }
 
         public bool buscarOrdenEnvio() { return false; }
+
+        public void CalcularCantidadEnviada () { }
     }
 }
