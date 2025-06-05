@@ -33,7 +33,7 @@
                         <a href="#" class="nav-link"> <i class="bi bi-bar-chart me-2"></i>Reportes</a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link"><i class="bi bi-receipt me-2"></i>Facturas</a>
+                        <a href="ResumenFacturas.aspx" class="nav-link"><i class="bi bi-receipt me-2"></i>Facturas</a>
                     </li>
                 </ul>
                 <ul class="sesion">
