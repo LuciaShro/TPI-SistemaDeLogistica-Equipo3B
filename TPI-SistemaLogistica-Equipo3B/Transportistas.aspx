@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Transportistas" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.Inicio" %>
+﻿<%@ Page Title="Transportistas" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" CodeBehind="Transportistas.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.Transportistas" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="Content/Transportistas.css" />
@@ -7,7 +7,7 @@
 <asp:Content ID="MainContent" ContentPlaceHolderID="InicioContent" runat="server">
     <div class="transportistas-header">
     <h1>Transportistas</h1>
-    <asp:Button ID="btnAñadirTransportista" runat="server" Text="＋ Añadir" CssClass="btn-añadirTransportista"/>
+    <asp:Button ID="btnAñadirTransportista" runat="server" Text="＋ Añadir" CssClass="btn-añadirTransportista" OnClick="btnAñadirTransportista_Click"/>
     </button>
         </div>
 
@@ -50,13 +50,13 @@
             </div>
             <div class="col">
             <div class="perfil">
-            <img src="https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg" class="foto-perfil" alt="FotoPerfil">Lionel Messi</div>
+            <img src="https://preview.redd.it/is-there-a-sniper-default-pfp-that-someone-made-v0-78az45pd9f6c1.jpg?width=396&format=pjpg&auto=webp&s=5be4618605b25e0546d72dff52a7b897c3d4e1d4" class="foto-perfil" alt="FotoPerfil">Nombre Usuario</div>
             </div>
             <div class="col">Activo</div>
             <div class="col">Pacheco</div>
             <div class="col">1</div>
             <div class="col">Horario</div>
-            <div class="col">Editar<i class="bi bi-pencil-square"></i></div>
+            <div class="col"><a href="AdminTransportistas.aspx">Detalle<i class="bi bi-pencil-square"></i></a></div>
         </div>
         <div class="row">
             <div class="col">    <div class="form-check">
@@ -66,13 +66,13 @@
         </div></div>
             <div class="col">
             <div class="perfil">
-            <img src="https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg" class="foto-perfil" alt="FotoPerfil">Lionel Messi</div>
+            <img src="https://preview.redd.it/is-there-a-sniper-default-pfp-that-someone-made-v0-78az45pd9f6c1.jpg?width=396&format=pjpg&auto=webp&s=5be4618605b25e0546d72dff52a7b897c3d4e1d4" class="foto-perfil" alt="FotoPerfil">Nombre Usuario</div>
             </div>
             <div class="col">Activo</div>
             <div class="col">Pacheco</div>
             <div class="col">2</div>
             <div class="col">Horario</div>
-            <div class="col">Editar<i class="bi bi-pencil-square"></i></div>
+            <div class="col"><a href="AdminTransportistas.aspx">Detalle<i class="bi bi-pencil-square"></i></a></div>
         </div>
         </div>
 

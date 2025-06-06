@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Inicio" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.Inicio" %>
+﻿<%@ Page Title="Perfil" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.Perfil" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="Content/Perfil.css" />
@@ -9,7 +9,7 @@
     <hr />
     <div class="card p-5 w-50 mx-auto">
     <div class="foto-perfil-contenedor">
-    <img src="https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg" class="foto-perfil" alt="FotoPerfil">
+    <img src="https://preview.redd.it/is-there-a-sniper-default-pfp-that-someone-made-v0-78az45pd9f6c1.jpg?width=396&format=pjpg&auto=webp&s=5be4618605b25e0546d72dff52a7b897c3d4e1d4" class="foto-perfil" alt="FotoPerfil">
     <label for="inputFoto" class="editar-foto-link"><i class="bi bi-pencil-square"></i> Cambiar foto </label>
     </div>
     <form>

@@ -96,3 +96,8 @@ h1 {
     height:80%;
     width:80%;
 }
+
+.col a {
+    text-decoration: none;
+    color: inherit;
+}

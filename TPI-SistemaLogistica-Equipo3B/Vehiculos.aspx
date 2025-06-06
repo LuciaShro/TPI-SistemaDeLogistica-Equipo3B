@@ -10,7 +10,7 @@
         <asp:Button runat="server" ID="btnTodos" Text="Todos" CssClass="tab active" />
         <asp:Button runat="server" ID="btnActivos" Text="Activos" CssClass="tab" />
         <asp:Button runat="server" ID="btnInactivos" Text="Inactivos" CssClass="tab"/>
-        <asp:Button runat="server" ID="btnAnadir" Text="+ Añadir" CssClass="add-button" />
+        <asp:Button runat="server" ID="btnAnadir" Text="+ Añadir" CssClass="add-button" OnClick="btnAñadirVehiculo_Click"/>
     </div>
 
     <asp:GridView ID="gvVehiculos" runat="server" AutoGenerateColumns="False" CssClass="vehiculos-table">

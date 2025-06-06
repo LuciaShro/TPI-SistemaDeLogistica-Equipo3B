@@ -1,21 +1,22 @@
-﻿<%@ Page Title="Transportistas" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.Inicio" %>
+﻿<%@ Page Title="Detalle transportista" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" CodeBehind="AdminTransportistas.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.Inicio" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <link rel="stylesheet" type="text/css" href="Content/Transportistas.css" />
+    <link rel="stylesheet" type="text/css" href="Content/AdminTransportistas.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="InicioContent" runat="server">
     <div class="transportistas-header">
-    <h1>Transportista</h1>
+    <h1>Detalle transportista</h1>
+    <a href="Transportistas.aspx"><i class="bi bi-arrow-left" ></i> Volver</a>
         </div>
         <div class="foto-perfil-contenedor pt-3 pb-3">
-    <img src="https://fcb-abj-pre.s3.amazonaws.com/img/jugadors/MESSI.jpg" class="foto-perfil" alt="FotoPerfil">
+    <img src="https://preview.redd.it/is-there-a-sniper-default-pfp-that-someone-made-v0-78az45pd9f6c1.jpg?width=396&format=pjpg&auto=webp&s=5be4618605b25e0546d72dff52a7b897c3d4e1d4" class="foto-perfil" alt="FotoPerfil">
     <h3>Nombre Usuario</h3>
     <label for="inputFoto" class="editar-foto-link"> User_ID: 1 </label>
     </div>
             <div class="card p-5 w-50 mx-auto">
   <div class="card-body pb-0">
-    <h5>Detalles</h5>
+    <h5>Detalles</h5> <a href="AgregarTransportista.aspx">Modificar<i class="bi bi-pencil-square"></i></a>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
@@ -36,7 +37,7 @@
     </li>
     <li class="list-group-item">
       <h6>Licencia</h6>
-      <p>B1</p>
+      <p>C3</p>
     </li>
     <li class="list-group-item">
       <h6>Estado</h6>
@@ -44,5 +45,10 @@
     </li>
   </ul>
 </div>
+
+    <div class="card p-5 w-50 mx-auto mt-3">
+    <p>Eliminar transportista. Esta opcion es irreversible.</p>
+    <button type="button" class="btn btn-outline-danger">Eliminar cuenta</button>
+    </div>
 
 </asp:Content>

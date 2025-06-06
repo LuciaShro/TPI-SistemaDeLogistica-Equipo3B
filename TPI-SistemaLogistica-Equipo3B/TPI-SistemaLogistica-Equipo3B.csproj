@@ -97,8 +97,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminTransportistas.aspx" />
+    <Content Include="AgregarTransportista.aspx" />
+    <Content Include="AgregarVehiculo.aspx" />
     <Content Include="CargarOrden.aspx" />
     <Content Include="Content\AdminTransportistas.css" />
+    <Content Include="Content\AgregarTransportista.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -216,6 +219,20 @@
     </Compile>
     <Compile Include="AdminTransportistas.aspx.designer.cs">
       <DependentUpon>AdminTransportistas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarTransportista.aspx.cs">
+      <DependentUpon>AgregarTransportista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarTransportista.aspx.designer.cs">
+      <DependentUpon>AgregarTransportista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgregarVehiculo.aspx.cs">
+      <DependentUpon>AgregarVehiculo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarVehiculo.aspx.designer.cs">
+      <DependentUpon>AgregarVehiculo.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

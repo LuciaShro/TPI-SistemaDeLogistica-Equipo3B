@@ -11,43 +11,43 @@ namespace TPI_SistemaLogistica_Equipo3B
 {
 
 
-    public partial class Site1
+    public partial class AgregarVehiculo
     {
 
         /// <summary>
-        /// HeadContent control.
+        /// txtPatente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
+        protected global::System.Web.UI.WebControls.TextBox txtPatente;
 
         /// <summary>
-        /// form1 control.
+        /// txtCapacidadCarga control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.TextBox txtCapacidadCarga;
 
         /// <summary>
-        /// btnCerrarSesion control.
+        /// txtEstado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCerrarSesion;
+        protected global::System.Web.UI.WebControls.TextBox txtEstado;
 
         /// <summary>
-        /// InicioContent control.
+        /// btnGuardar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder InicioContent;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
     }
 }

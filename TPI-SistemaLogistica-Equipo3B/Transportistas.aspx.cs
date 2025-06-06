@@ -13,5 +13,10 @@ namespace TPI_SistemaLogistica_Equipo3B
         {
 
         }
+
+        protected void btnAñadirTransportista_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AgregarTransportista.aspx");
+        }
     }
 }

@@ -46,9 +46,6 @@
                     <li>
                         <a href="/Perfil.aspx" class="nav-link"> <i class="bi bi-eye me-2"></i>Perfil</a>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link"> <i class="bi bi-gear me-2"></i>Settings</a>
-                    </li>
                 </ul>
                 </div>
             <div class="derechos">

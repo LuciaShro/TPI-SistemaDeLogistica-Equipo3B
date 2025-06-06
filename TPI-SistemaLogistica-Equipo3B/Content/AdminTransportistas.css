@@ -3,7 +3,6 @@
 h1 {
     font-family: 'Montserrat', Arial, sans-serif;
     font-weight: 900;
-    padding-bottom: 3rem;
     color: #9854CB;
 }
 
@@ -27,6 +26,7 @@ h1 {
 
 h5{
     font-weight: bold;
+    font-size: 1.5rem;
 }
 
 h6 {
@@ -35,6 +35,17 @@ h6 {
 
 p{
     color: #9a9797
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 
