@@ -35,15 +35,6 @@
                     <asp:Button ID="btnRegister" runat="server" Text="COMENZAR" CssClass="btn btn-purple w-100" />
 
                     <div class="text-center mt-3">
-                        <small>o continua con</small>
-                        <div class="social-btns mt-2">
-                            <img src="Imagenes/Google.png" alt="Google" />
-                            <img src="Imagenes/Github.png" alt="GitHub" />
-                            <img src="Imagenes/Facebook.png" alt="Facebook" />
-                        </div>
-                    </div>
-
-                    <div class="text-center mt-3">
                         <small>¿Ya estás registrado? <a href="Login.aspx" class="link-login">Inicia Sesión</a></small>
                     </div>
                 </div>
