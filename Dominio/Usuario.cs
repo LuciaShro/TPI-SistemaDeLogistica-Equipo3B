@@ -9,16 +9,26 @@ namespace Dominio
 {
     public class Usuario
     {
+        public enum TipoUsuario {
+            cliente = 1,
+            empleado = 2,
+            admin= 3,
+
+        }
         public int idUsuario {  get; set; }
 
-        public string NombreUsuario { get; set; }
+        public string User { get; set; }
 
-        public string Email {  get; set; }
+        public string Password {  get; set; }
 
-        public string Clave {  get; set; }
+        public TipoUsuario tipoUsuario {  get; set; }
 
-        public DateTime FechaRegistro { get; set; }
+        public Usuario (string username, string password, TipoUsuario tipousuario)
+        {
 
-        public string Rol {  get; set; }
+            User = username;
+            Password = password;
+            tipoUsuario = tipousuario;
+        }
     }
 }

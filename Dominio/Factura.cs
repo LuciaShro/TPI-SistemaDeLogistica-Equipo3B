@@ -18,7 +18,7 @@ namespace Dominio
 
         public string TipoFactura { get; set; }
 
-        public Direccion direccion { get; set; }
+        public Ruta idruta { get; set; }
 
         public float Total {  get; set; }
     }

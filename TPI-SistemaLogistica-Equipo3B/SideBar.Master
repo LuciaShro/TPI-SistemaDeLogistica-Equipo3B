@@ -39,7 +39,9 @@
                 <ul class="sesion">
                     <hr/>
                     <li>
-                        <a href="#" class="nav-link"> <i class="bi bi-share me-2"></i>Cerrar sesión</a>
+                        <asp:LinkButton ID="btnCerrarSesion" runat="server" CssClass="nav-link" OnClick="btnCerrarSesion_Click">
+                        <i class="bi bi-share me-2"></i>Cerrar sesión
+                        </asp:LinkButton>
                     </li>
                     <li>
                         <a href="/Perfil.aspx" class="nav-link"> <i class="bi bi-eye me-2"></i>Perfil</a>
