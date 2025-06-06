@@ -13,5 +13,7 @@ namespace Dominio
         public string Ciudad {  get; set; }
 
         public int CodigoPostal { get; set; }
+
+        public string Provincia { get; set; }
     }
 }

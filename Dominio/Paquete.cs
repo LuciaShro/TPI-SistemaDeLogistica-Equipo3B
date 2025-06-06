@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Producto
+    public class Paquete
     {
-        public int idProducto {  get; set; }
+        public int idPaquete {  get; set; }
 
         public string Nombre { get; set; }
 
@@ -23,8 +23,6 @@ namespace Dominio
         public float Alto {  get; set; }
 
         public float Largo { get; set; }
-
-        public Marca NombreMarca { get; set; }
 
         public Categoria NombreCategoria {  get; set; }
 

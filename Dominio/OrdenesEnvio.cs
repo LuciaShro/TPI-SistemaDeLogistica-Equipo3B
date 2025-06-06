@@ -10,8 +10,6 @@ namespace Dominio
     {
         public int idOrdenEnvio {  get; set; }
 
-        public Persona persona { get; set; }
-
         public Cliente cliente { get; set; }
 
         public Transportista transportistaAsignado { get; set; }
@@ -26,11 +24,10 @@ namespace Dominio
 
         public DateTime FechaDeLlegada { get; set; }
 
-        public Estado estado { get; set; }
+        public EstadoOrdenEnvio estado { get; set; }
 
         public int CantidadTotalEnviada {  get; set; }
 
-        public DetalleOrden detalleOrden {  get; set; }
 
     }
 }

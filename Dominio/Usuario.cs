@@ -21,6 +21,8 @@ namespace Dominio
 
         public string Password {  get; set; }
 
+        public string Email {  get; set; }
+
         public TipoUsuario tipoUsuario {  get; set; }
 
         public Usuario (string username, string password, TipoUsuario tipousuario)

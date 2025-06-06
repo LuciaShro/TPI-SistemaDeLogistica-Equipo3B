@@ -8,15 +8,16 @@ namespace Dominio
 {
     public class Factura
     {
+        public int idFactura {  get; set; }
         public int NumeroFactura {  get; set; }
 
         public OrdenesEnvio OrdenesEnvio { get; set; }
 
+        public DetalleOrden idDetalle {  get; set; }
+
         public DateTime FechaEmision { get; set; }
 
         public string MetodoPago { get; set; }
-
-        public string TipoFactura { get; set; }
 
         public Ruta idruta { get; set; }
 

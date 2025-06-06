@@ -8,10 +8,12 @@ namespace Dominio
 {
     public class DetalleOrden
     {
-        public Producto producto {  get; set; }
+        public Paquete paquete {  get; set; }
 
         public int Cantidad { get; set; }
 
+        public float Total { get; set; }
 
+        public OrdenesEnvio idOrden {  get; set; }
     }
 }

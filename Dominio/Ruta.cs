@@ -8,11 +8,11 @@ namespace Dominio
 {
     public class Ruta
     {
+
+        public int idRuta {  get; set; }
         public string PuntoPartida {  get; set; }
 
         public string PuntoDestino { get; set; }
-
-        public float DistanciaEnKM { get; set; }
 
         public int TiempoEstimadoMinutos { get; set; }
     }
