@@ -123,7 +123,9 @@
     <Content Include="Content\Inicio.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Envios.css" />
+    <Content Include="Content\MensajePago.css" />
     <Content Include="Content\Navbar.css" />
+    <Content Include="Content\PasarelaDePago.css" />
     <Content Include="Content\Perfil.css" />
     <Content Include="Content\Ordenes.css" />
     <Content Include="Content\Register.css" />
@@ -133,6 +135,7 @@
     <Content Include="Content\Vehiculos.css" />
     <Content Include="Content\VerOrden.css" />
     <Content Include="Factura.aspx" />
+    <Content Include="Imagenes\mercado-pago-logo.png" />
     <Content Include="Inicio.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Content\Default.css" />
@@ -144,6 +147,8 @@
     <Content Include="Imagenes\Login.png" />
     <Content Include="Imagenes\Registro.png" />
     <Content Include="Envios.aspx" />
+    <Content Include="MensajePago.aspx" />
+    <Content Include="PasarelaDePago.aspx" />
     <Content Include="Perfil.aspx" />
     <Content Include="Ordenes.aspx" />
     <Content Include="Register.aspx" />
@@ -280,6 +285,20 @@
     </Compile>
     <Compile Include="Envios.aspx.designer.cs">
       <DependentUpon>Envios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MensajePago.aspx.cs">
+      <DependentUpon>MensajePago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MensajePago.aspx.designer.cs">
+      <DependentUpon>MensajePago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PasarelaDePago.aspx.cs">
+      <DependentUpon>PasarelaDePago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PasarelaDePago.aspx.designer.cs">
+      <DependentUpon>PasarelaDePago.aspx</DependentUpon>
     </Compile>
     <Compile Include="Perfil.aspx.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>

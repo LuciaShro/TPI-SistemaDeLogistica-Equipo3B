@@ -1,0 +1,132 @@
+﻿.pago-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #1f1f1f;
+    text-align: left;
+}
+
+.opciones-pago {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.boton-pago {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    width: 160px;
+    height: 80px;
+    border: 2px solid #e0e0e0;
+    border-radius: 16px;
+    background-color: #f8f8f8;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.boton-pago:hover {
+    background-color: #efefef;
+}
+
+.boton-activo {
+    border-color: #a855f7;
+    background-color: #ffffff;
+    color: #7c3aed;
+    box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.3);
+}
+
+.img-boton {
+    height: 150px;
+    object-fit: contain;
+    filter: contrast(1.1);
+}
+
+.panel-transferencia {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 16px;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.panel-transferencia strong {
+    font-size: 17px;
+    display: block;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.panel-transferencia .whatsapp {
+    font-size: 16px;
+    color: #000;
+}
+
+.pago-resumen {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    font-size: 15px;
+}
+
+.pago-resumen h3 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.pago-resumen p {
+    margin: 10px 0;
+}
+
+.condiciones {
+    font-size: 13px;
+    color: #666;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+.condiciones a {
+    color: #9333ea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.condiciones a:hover {
+    text-decoration: underline;
+}
+
+.btn-pago {
+    margin-top: 20px;
+    background-color: #a855f7;
+    color: white;
+    font-weight: bold;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-pago:hover {
+    background-color: #9333ea;
+}
