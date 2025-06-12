@@ -12,9 +12,9 @@ namespace Dominio
 
         public string Nombre { get; set; }
 
-        public string Descripcion { get; set; }
+        public decimal ValorDeclarado { get; set; }
 
-        public int Stock { get; set; }
+        public int Cantidad { get; set; }
 
         public float Peso { get; set; }
 

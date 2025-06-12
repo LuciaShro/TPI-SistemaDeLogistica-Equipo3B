@@ -10,8 +10,13 @@
         <h2>Origen del Envío (¿Desde Dónde?)</h2>
 
         <div class="form-group">
-            <label for="txtNombreOrigen">Nombre y Apellido / Empresa:</label>
+            <label for="txtNombreOrigen">Nombre: </label>
             <asp:TextBox ID="txtNombreOrigen" runat="server" CssClass="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="txtApellidoOrigen">Apellido:</label>
+            <asp:TextBox ID="txtApellidoOrigen" runat="server" CssClass="form-control" />
         </div>
 
         <div class="form-group">
@@ -25,13 +30,13 @@
         </div>
 
         <div class="form-group">
-            <label for="txtDireccionOrigen">Calle:</label>
-            <asp:TextBox ID="txtDireccionOrigen" runat="server" CssClass="form-control" />
+            <label for="txtCalleOrigen">Calle:</label>
+            <asp:TextBox ID="txtCalleOrigen" runat="server" CssClass="form-control" />
         </div>
 
         <div class="form-group">
-            <label for="txtCalleOrigen">Número:</label>
-            <asp:TextBox ID="txtCalleOrigen" runat="server" CssClass="form-control" />
+            <label for="txtNumeroOrigen">Número:</label>
+            <asp:TextBox ID="txtNumeroOrigen" runat="server" CssClass="form-control" />
         </div>
 
         <div class="form-group">
@@ -40,8 +45,8 @@
         </div>
 
         <div class="form-group">
-            <label for="txtLocalidadOrigen">Ciudad / Localidad / Partido:</label>
-            <asp:TextBox ID="txtLocalidadOrigen" runat="server" CssClass="form-control" />
+            <label for="txtCiudadOrigen">Ciudad / Localidad / Partido:</label>
+            <asp:TextBox ID="txtCiudadOrigen" runat="server" CssClass="form-control" />
         </div>
 
         <div class="form-group">
@@ -66,8 +71,13 @@
         <h2>Destino del Envío (¿Hasta Dónde?)</h2>
 
         <div class="form-group">
-            <label for="txtNombreDestino">Nombre y Apellido:</label>
+            <label for="txtNombreDestino">Nombre:</label>
             <asp:TextBox ID="txtNombreDestino" runat="server" CssClass="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="txtApellidoDestino">Apellido:</label>
+            <asp:TextBox ID="txtApellidoDestino" runat="server" CssClass="form-control" />
         </div>
 
         <div class="form-group">
@@ -96,8 +106,8 @@
         </div>
 
         <div class="form-group">
-            <label for="txtLocalidadDestino">Ciudad / Localidad / Partido:</label>
-            <asp:TextBox ID="txtLocalidadDestino" runat="server" CssClass="form-control" />
+            <label for="txtCiudadDestino">Ciudad / Localidad / Partido:</label>
+            <asp:TextBox ID="txtCiudadDestino" runat="server" CssClass="form-control" />
         </div>
 
         <div class="form-group">
@@ -148,7 +158,7 @@
     </div>
 
     <div class="center-button">
-        <asp:Button ID="btnCotizar" runat="server" Text="COTIZAR ENVÍO" CssClass="btn-principal" />
+        <asp:Button ID="btnCotizar" runat="server" Text="COTIZAR ENVÍO" CssClass="btn-principal" OnClick="btnCotizar_Click" />
     </div>
 
     <!-- ORDER ITEMS -->
