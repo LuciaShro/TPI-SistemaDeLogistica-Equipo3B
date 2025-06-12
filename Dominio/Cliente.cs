@@ -12,7 +12,7 @@ namespace Dominio
 
         public string Apellido { get; set; }
 
-        public int CUIL { get; set; }
+        public long CUIL { get; set; }
 
         public bool Activo { get; set; }
 

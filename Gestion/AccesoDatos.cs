@@ -76,6 +76,14 @@ namespace Gestion
                 conexion.Close();
 
             }
-        
+
+            public object obtenerValor()
+            {
+            comando.Connection = conexion;
+            conexion.Open();
+            object valor = comando.ExecuteScalar(); 
+            return valor;
+            }
+
     }
 }

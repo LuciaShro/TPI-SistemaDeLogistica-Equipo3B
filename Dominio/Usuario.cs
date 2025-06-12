@@ -32,5 +32,10 @@ namespace Dominio
             Password = password;
             tipoUsuario = tipousuario;
         }
+
+        public Usuario()
+        {
+            tipoUsuario = TipoUsuario.cliente;
+        }
     }
 }
