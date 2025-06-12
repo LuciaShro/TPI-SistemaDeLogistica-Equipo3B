@@ -19,5 +19,6 @@ namespace Dominio
         public int NumeroCalle {  get; set; }
 
         public string Piso { get; set; }
+
     }
 }

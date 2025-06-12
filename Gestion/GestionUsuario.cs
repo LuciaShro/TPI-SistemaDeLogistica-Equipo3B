@@ -95,6 +95,67 @@ namespace Gestion
                 datos.cerrarConexion();
             }
         }
+
+        public Cliente LoginCliente (string username, string password) {
+
+            Usuario usuario = new Usuario(username, password);
+
+            if(Login(usuario)) { 
+                if(usuario.tipoUsuario == Usuario.TipoUsuario.cliente) {
+
+                    AccesoDatos datos = new AccesoDatos();
+
+                    try
+                    {
+                        datos.setearConsulta("select c.Nombre, c.Apellido, c.Cuil, c.Telefono, d.Calle, d.CodigoPostal, d.Ciudad, d.Numero, d.Piso, d.Provincia, u.Email from clientes c inner join direccion d on d.IDDireccion=c.IDDireccion inner join usuario u on u.IDUsuario = c.IDUsuario where c.IDUsuario=@IDUsuario");
+                        datos.setearParametro("@IDUsuario", usuario.idUsuario);
+
+                        datos.ejecutarLectura();
+
+                        if (datos.Lector.Read())
+                        {
+                            Cliente cliente = new Cliente();
+
+                            cliente.Nombre = datos.Lector["Nombre"].ToString();
+                            cliente.Apellido = datos.Lector["Apellido"].ToString();
+                            cliente.CUIL = Convert.ToInt64(datos.Lector["Cuil"]);
+                            cliente.Telefono = datos.Lector["Telefono"].ToString();
+
+                            cliente.Direccion = new Direccion
+                            {
+                                Calle = datos.Lector["Calle"].ToString(),
+                                NumeroCalle = Convert.ToInt32(datos.Lector["Numero"]),
+                                CodigoPostal = datos.Lector["CodigoPostal"].ToString(),
+                                Ciudad = datos.Lector["Ciudad"].ToString(),
+                                Provincia = datos.Lector["Provincia"].ToString(),
+                                Piso = datos.Lector["Piso"].ToString()
+                            };
+
+                            usuario.Email = datos.Lector["Email"].ToString();
+
+                            cliente.Usuario = usuario;
+
+                            return cliente;
+
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+                    finally {
+                        datos.cerrarConexion();
+                    }
+                
+                }
+
+                
+            }
+            return null;
+
+        }
         public void agregarUsuario () { }
 
         public void modificarUsuario () { }

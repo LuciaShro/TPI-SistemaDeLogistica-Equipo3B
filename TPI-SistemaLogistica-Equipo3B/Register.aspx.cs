@@ -63,7 +63,7 @@ namespace TPI_SistemaLogistica_Equipo3B
                 nuevo.CUIL = long.Parse(cuilTexto);
 
 
-                if (nuevo.Telefono.Count(char.IsDigit) < 8)
+                if (nuevo.Telefono.Count(char.IsDigit) < 7)
                 {
                     lblMensaje.Text = "El número de teléfono debe tener al menos 8 dígitos.";
                     return;
@@ -85,12 +85,12 @@ namespace TPI_SistemaLogistica_Equipo3B
 
 
 
-                if (!gestionCliente.cuilExistente(nuevo.CUIL) && !gestionUsuario.userExistente(nuevo.Usuario.User))
+               /* if (!gestionCliente.cuilExistente(nuevo.CUIL) && !gestionUsuario.userExistente(nuevo.Usuario.User))
                 {
                     gestionCliente.agregarCliente(nuevo);
-                }
-                else
-                {
+                } */
+               
+                
                     if (gestionCliente.cuilExistente(nuevo.CUIL))
                     {
                         lblMensaje.Text = "Ya se encuentra registrado un usuario con el CUIL indicado.";
@@ -102,9 +102,11 @@ namespace TPI_SistemaLogistica_Equipo3B
                         lblMensaje.Text = "Ya se encuentra registrada una persona con el Usuario indicado. Intenta con otro.";
                         return;
                     }
-                    
-                }
-               
+
+                    gestionCliente.agregarCliente(nuevo);
+                    lblMensaje.Text = "Registro exitoso.";
+
+
             }
             catch (Exception ex)
             {
