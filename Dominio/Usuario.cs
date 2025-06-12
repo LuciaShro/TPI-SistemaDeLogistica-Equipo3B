@@ -25,12 +25,11 @@ namespace Dominio
 
         public TipoUsuario tipoUsuario {  get; set; }
 
-        public Usuario (string username, string password, TipoUsuario tipousuario)
+        public Usuario (string username, string password)
         {
 
             User = username;
             Password = password;
-            tipoUsuario = tipousuario;
         }
 
         public Usuario()

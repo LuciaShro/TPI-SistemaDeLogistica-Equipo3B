@@ -85,7 +85,7 @@
                     </div>
 
                     <asp:Button ID="btnRegister" runat="server" Text="COMENZAR" CssClass="btn btn-purple w-100 mt-3" OnClick="btnRegister_Click" />
-
+                    <asp:Label ID="lblMensaje" runat="server" Text="" CssClass="text-danger mt-2 d-block"></asp:Label>
                     <div class="text-center mt-3">
                         <small>¿Ya estás registrado? <a href="Login.aspx" class="link-login">Inicia Sesión</a></small>
                     </div>

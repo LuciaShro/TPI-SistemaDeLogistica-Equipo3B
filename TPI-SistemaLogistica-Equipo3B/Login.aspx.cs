@@ -22,7 +22,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             GestionUsuario gestionUser = new GestionUsuario();
             try
             {
-                usuario = new Usuario(txtEmail.Text, txtPassword.Text, Usuario.TipoUsuario.admin);
+                usuario = new Usuario(txtEmail.Text, txtPassword.Text);
                 if (gestionUser.Login(usuario))
                 {
                     Session.Add("usuario", usuario);
