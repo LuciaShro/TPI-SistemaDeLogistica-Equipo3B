@@ -18,15 +18,16 @@ namespace TPI_SistemaLogistica_Equipo3B
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            Usuario usuario;
+            //Usuario usuario;
             GestionUsuario gestionUser = new GestionUsuario();
             try
             {
-                usuario = new Usuario(txtEmail.Text, txtPassword.Text, Usuario.TipoUsuario.admin);
-                if (gestionUser.Login(usuario))
+                Cliente clienteLogueado = gestionUser.LoginCliente(txtEmail.Text, txtPassword.Text);
+                //usuario = new Usuario(txtEmail.Text, txtPassword.Text);
+                if (clienteLogueado!=null)
                 {
-                    Session.Add("usuario", usuario);
-                    Response.Redirect("Inicio.aspx", false);
+                    Session["cliente"] = clienteLogueado;
+                    Response.Redirect("CargarOrden.aspx", false);
                 }
                 else
                 {

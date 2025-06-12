@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,35 @@ namespace Gestion
                 datos.cerrarConexion();
             }
         
+        }
+
+        public bool cuilExistente (long cuil)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select 1 from Clientes where Cuil=@Cuil");
+                datos.setearParametro("@Cuil", cuil);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método cuilExistente: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public void modificarCliente () { }

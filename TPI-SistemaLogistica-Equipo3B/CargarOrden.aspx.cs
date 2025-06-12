@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,28 @@ namespace TPI_SistemaLogistica_Equipo3B
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                if (Session["cliente"] != null)
+                {
+                    Cliente clienteLogueado = (Cliente)Session["cliente"];
+
+                    txtNombreOrigen.Text = clienteLogueado.Nombre;
+                    txtTelefonoOrigen.Text = clienteLogueado.Telefono;
+                    txtEmailOrigen.Text = clienteLogueado.Usuario.Email;
+                    txtDireccionOrigen.Text = clienteLogueado.Direccion.Calle;
+                    txtCalleOrigen.Text = clienteLogueado.Direccion.NumeroCalle.ToString();
+                    txtCPOrigen.Text = clienteLogueado.Direccion.CodigoPostal;
+                    txtLocalidadOrigen.Text = clienteLogueado.Direccion.Ciudad;
+                    txtProvinciaOrigen.Text = clienteLogueado.Direccion.Provincia;
+                    txtPisoOrigen.Text = clienteLogueado.Direccion.Piso;
+
+                }
+                else
+                {
+                    Response.Redirect("ErrorLogin.aspx");
+                }
+            }
 
         }
 
@@ -54,79 +77,6 @@ namespace TPI_SistemaLogistica_Equipo3B
             paquete.Alto = float.Parse(txtAlto.Text);
             paquete.Peso = float.Parse(txtPeso.Text);
             paquete.ValorDeclarado = decimal.Parse(txtValor.Text);
-
-            try
-            {
-                datos.setearConsulta("SELECT IDCliente, Cuil FROM Clientes WHERE Cuil = @Cuil");
-                datos.setearParametro("@Documento", cliente.Documento);
-                datos.ejecutarLectura();
-
-                if (datos.Lector.Read())
-                {
-                    //string encontrado = datos.Lector["Documento"].ToString();
-                    //cliente.ClienteId = (int)datos.Lector["Id"];
-                    //lblMensajeDNINuevo.Text = "";
-                    //lblMensajeDNIencontrado.Text = "El documento ya está registrado: " + encontrado;
-
-                    //dniText.Text = "";
-                    //nombre.Text = "";
-                    //apellido.Text = "";
-                    //email.Text = "";
-                    //direccion.Text = "";
-                    //ciudad.Text = "";
-                    //codigoPostal.Text = "";
-
-                    //lblMensajeDNINuevo.Text = "";
-
-
-                }
-                else
-                {
-                    //datos.cerrarConexion();
-                    //datos.limpiarParametros();
-
-                    //datos.setearConsulta("INSERT INTO Clientes (Documento, Nombre, Apellido, Email, Direccion, Ciudad, CP) " +
-                    //                     "VALUES (@Documento, @NombreCliente, @ApellidoCliente, @CorreoCliente, @Direccion, @Ciudad, @Cp)");
-
-                    //datos.setearParametro("@Documento", cliente.Documento);
-                    //datos.setearParametro("@NombreCliente", cliente.NombreCliente);
-                    //datos.setearParametro("@ApellidoCliente", cliente.ApellidoCliente);
-                    //datos.setearParametro("@CorreoCliente", cliente.CorreoCliente);
-                    //datos.setearParametro("@Direccion", cliente.Direccion);
-                    //datos.setearParametro("@Ciudad", cliente.Ciudad);
-                    //datos.setearParametro("@Cp", cliente.Cp);
-
-                    //datos.ejecutarAccion();
-                    //lblMensajeDNIencontrado.Text = "";
-                    //lblMensajeDNINuevo.Text = "Cliente registrado exitosamente.";
-                    //dniText.Text = "";
-                    //nombre.Text = "";
-                    //apellido.Text = "";
-                    //email.Text = "";
-                    //direccion.Text = "";
-                    //ciudad.Text = "";
-                    //codigoPostal.Text = "";
-
-                    //datos.cerrarConexion();
-                    //datos.limpiarParametros();
-
-                    //datos.setearConsulta("SELECT Id FROM Clientes WHERE Documento = @Documento");
-                    //datos.setearParametro("@Documento", cliente.Documento);
-                    //datos.ejecutarLectura();
-
-                    //if (datos.Lector.Read())
-                    //{
-                    //    cliente.ClienteId = (int)datos.Lector["Id"];
-                    //}
-
-                }
-
-            }
-            catch(Exception ex) 
-            {
-                Response.Write("Error: " + ex.Message);
-
-            }
         }
     }
 }

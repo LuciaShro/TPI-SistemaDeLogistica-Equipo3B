@@ -10,7 +10,6 @@ namespace Dominio
     {
         public string Calle { get; set; }
         public int Numero { get; set; }
-        public string Piso { get; set; }
         public string Ciudad {  get; set; }
 
         public string CodigoPostal { get; set; }
@@ -18,5 +17,8 @@ namespace Dominio
         public string Provincia { get; set; }
 
         public int NumeroCalle {  get; set; }
+
+        public string Piso { get; set; }
+
     }
 }
