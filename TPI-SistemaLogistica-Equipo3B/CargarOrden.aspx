@@ -179,7 +179,7 @@
     </div>
 
     <div class="center-button">
-        <asp:Button ID="btnCargar" runat="server" Text="CARGAR ORDEN" CssClass="btn-principal" />
+        <asp:Button ID="btnCargar" runat="server" Text="CARGAR ORDEN" CssClass="btn-principal" OnClick="btnCargar_Click" />
     </div>
 
 </asp:Content>
