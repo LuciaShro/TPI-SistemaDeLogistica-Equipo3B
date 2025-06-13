@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <asp:Repeater ID="rptOrdenes" runat="server">
+    <%--<asp:Repeater ID="rptOrdenes" runat="server">
         <ItemTemplate>
             <div class="orden-item">
                 <div class="orden-fecha">
@@ -42,5 +42,19 @@
                 </div>
             </div>
         </ItemTemplate>
-    </asp:Repeater>
+    </asp:Repeater>--%>
+
+    <asp:GridView runat="server" ID="dgvOrdenes"  CssClass="ordenes-grid" AutoGenerateColumns="false">
+        <Columns>
+        <asp:BoundField HeaderText="ID Orden" DataField="idOrdenEnvio"  />
+        <asp:BoundField HeaderText="Cliente" DataField="cliente.Nombre"  />
+        <asp:BoundField HeaderText="Transportista" DataField="transportistaAsignado.Nombre"  />
+        <asp:BoundField HeaderText="Estado" DataField="estado.DescripcionEstado" />
+        <asp:BoundField HeaderText="Fecha Creación" DataField="FechaCreacion" />
+        <asp:BoundField HeaderText="Fecha Envío" DataField="FechaEnvio" />
+        <asp:BoundField HeaderText="Fecha Estimada" DataField="FechaEstimadaLlegada" />
+        <asp:BoundField HeaderText="Fecha Llegada" DataField="FechaDeLlegada" />
+        <asp:BoundField HeaderText="Cantidad Enviada" DataField="CantidadTotalEnviada" />
+         </Columns>
+    </asp:GridView>
 </asp:Content>

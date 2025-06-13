@@ -149,6 +149,7 @@
     <Content Include="Imagenes\Registro.png" />
     <Content Include="Envios.aspx" />
     <Content Include="MensajePago.aspx" />
+    <Content Include="OrdenesAsignadas.aspx" />
     <Content Include="PasarelaDePago.aspx" />
     <Content Include="Perfil.aspx" />
     <Content Include="Ordenes.aspx" />
@@ -300,6 +301,13 @@
     </Compile>
     <Compile Include="MensajePago.aspx.designer.cs">
       <DependentUpon>MensajePago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="OrdenesAsignadas.aspx.cs">
+      <DependentUpon>OrdenesAsignadas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrdenesAsignadas.aspx.designer.cs">
+      <DependentUpon>OrdenesAsignadas.aspx</DependentUpon>
     </Compile>
     <Compile Include="PasarelaDePago.aspx.cs">
       <DependentUpon>PasarelaDePago.aspx</DependentUpon>
