@@ -11,25 +11,16 @@ namespace TPI_SistemaLogistica_Equipo3B
 {
 
 
-    public partial class Ordenes
+    public partial class OrdenesAsignadas
     {
 
         /// <summary>
-        /// btnAñadir control.
+        /// rptOrdenes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAñadir;
-
-        /// <summary>
-        /// dgvOrdenes control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvOrdenes;
+        protected global::System.Web.UI.WebControls.Repeater rptOrdenes;
     }
 }
