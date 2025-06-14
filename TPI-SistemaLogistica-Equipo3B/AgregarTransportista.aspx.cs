@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Gestion;
 
 namespace TPI_SistemaLogistica_Equipo3B
 {
@@ -12,6 +15,82 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnCargarFoto_Click(object sender, EventArgs e)
+        {
+            if (fileUploadFoto.HasFile)
+            {
+                string nombreArchivo = Path.GetFileName(fileUploadFoto.FileName);
+                string rutaCarpeta = Server.MapPath("~/Imagenes/Transportista/");
+                string rutaCompleta = Path.Combine(rutaCarpeta, nombreArchivo);
+
+              
+
+                fileUploadFoto.SaveAs(rutaCompleta);
+
+                imgPreview.ImageUrl = "~/Imagenes/Transportista/" + nombreArchivo;
+
+
+                Session["RutaImagen"] = imgPreview.ImageUrl;
+            }
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Transportista transportista = new Transportista();
+                GestionTransportista gestion = new GestionTransportista();
+                transportista.Vehiculo = new Vehiculo();
+                transportista.usuario = new Usuario();
+
+                transportista.Nombre = txtNombreTransportista.Text;
+                transportista.Apellido = txtApellidoTranportista.Text;
+                transportista.CuilTransportista = long.Parse(txtCuilTransportista.Text);
+                transportista.Telefono = txtTelefonoTransportista.Text;
+                transportista.Licencia = txtLicenciaTransportista.Text;
+                transportista.HoraInicio = TimeSpan.Parse(txtInicioJornadaLaboral.Text);
+                transportista.HoraFin = TimeSpan.Parse(txtFinJornadaLaboral.Text);
+                transportista.usuario.User = txtUsuarioTransportista.Text;
+                transportista.usuario.Password = txtContraseñaTransportista.Text;
+                transportista.usuario.Email = txtEmailTransportista.Text;
+                
+                if (Session["RutaImagen"] != null)
+                {
+                    transportista.Imagen = Session["RutaImagen"].ToString();
+                }
+                else
+                {
+                    transportista.Imagen = null;
+                }
+
+                if(string.IsNullOrWhiteSpace(transportista.Nombre) || string.IsNullOrWhiteSpace(transportista.Apellido) || string.IsNullOrWhiteSpace(transportista.Telefono) ||
+                 string.IsNullOrWhiteSpace(transportista.Licencia))
+                {
+                    lblMensajeEnPantalla.Text = "Los cambos deben estar todos completos";
+                    return;
+                }    
+
+                if (gestion.cuilExistente(transportista.CuilTransportista))
+                {
+                    lblMensajeEnPantalla.Text = "Ya se encuentra registrado un Transportista con el CUIL indicado.";
+                    return;
+                }
+
+                gestion.agregarTranportista(transportista);
+                lblMensajeEnPantalla.Text = "Registro exitoso";
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex);
+                throw;
+            }
+           
         }
     }
 }

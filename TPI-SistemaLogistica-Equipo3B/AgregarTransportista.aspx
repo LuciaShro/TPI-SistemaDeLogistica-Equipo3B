@@ -13,19 +13,29 @@
     <div class="card">
         <h2>Datos</h2>
 
+
         <div class="foto-perfil-contenedor">
-        <img src="https://preview.redd.it/is-there-a-sniper-default-pfp-that-someone-made-v0-78az45pd9f6c1.jpg?width=396&format=pjpg&auto=webp&s=5be4618605b25e0546d72dff52a7b897c3d4e1d4" class="foto-perfil" alt="FotoPerfil">
-        <label for="inputFoto" class="editar-foto-link"><i class="bi bi-pencil-square"></i> Agregar foto </label>
+        <asp:Image ID="imgPreview" runat="server" CssClass="foto-perfil" ImageUrl="https://via.placeholder.com/150" />
+
+        <asp:FileUpload ID="fileUploadFoto" runat="server" CssClass="form-control" />
+
+        <asp:Button ID="btnCargarFoto" runat="server" Text="CargarFoto" CssClass="btn btn-secondary" OnClick="btnCargarFoto_Click" />
         </div>
 
         <div class="form-group">
-            <label for="txtNombreTransportista">Nombre</label>
+            <label for="txtNombreTransportista">Nombre:</label>
             <asp:TextBox ID="txtNombreTransportista" runat="server" CssClass="form-control" />
         </div>
         <div class="form-group">
-        <label for="txtApellidoTranportista">Apellido</label>
+        <label for="txtApellidoTranportista">Apellido:</label>
         <asp:TextBox ID="txtApellidoTranportista" runat="server" CssClass="form-control" />
         </div>
+
+        <div class="form-group">
+        <label for="txtCuilTransportista">Cuil:</label>
+        <asp:TextBox ID="txtCuilTransportista" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>
+        
         <div class="form-group">
             <label for="txtTelefonoTransportista">Teléfono Celular:</label>
             <asp:TextBox ID="txtTelefonoTransportista" runat="server" CssClass="form-control" />
@@ -42,13 +52,38 @@
         </div>
 
         <div class="form-group">
-            <label for="txtEstadoTransportista">Estado:</label>
-            <asp:TextBox ID="txtEstadoTransportista" runat="server" CssClass="form-control" />
+            <label for="txtInicioJornadaLaboral">Horario Inicio Jornada laboral:</label>
+            <asp:TextBox ID="txtInicioJornadaLaboral" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
+
+        <div class="form-group">
+            <label for="txtFinJornadaLaboral">Horario Final Jornada Laboral:</label>
+            <asp:TextBox ID="txtFinJornadaLaboral" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>
+
+        <div class="form-group">
+            <label for="txtUsuarioTransportista">Usuario:</label>
+            <asp:TextBox ID="txtUsuarioTransportista" runat="server" CssClass="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="txtContraseñaTransportista">Contraseña:</label>
+            <asp:TextBox ID="txtContraseñaTransportista" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>
+
+        <!--
+        <div class="form-group">
+            <label for="txtListaVehiculosDisponibles">Vehiculos disponibles:</label>
+            <asp:DropDownList ID="ddlVehiculosDisponibles" runat="server" CssClass="form-control"></asp:DropDownList>
+        </div> -->
     </div>
 
     <div class="center-button">
-    <asp:Button ID="btnGuardar" runat="server" Text="Guardar datos" CssClass="btn-principal" />
+    <asp:Button ID="btnGuardar" runat="server" Text="Guardar datos" CssClass="btn-principal" OnClick="btnGuardar_Click" />
+    <asp:Label ID="lblMensajeEnPantalla" runat="server" Text="" CssClass="text-danger mt-2 d-block"></asp:Label>
 </div>
+
+
+   
 
 </asp:Content>
