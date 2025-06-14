@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Gestion;
 
 namespace TPI_SistemaLogistica_Equipo3B
 {
@@ -21,10 +24,10 @@ namespace TPI_SistemaLogistica_Equipo3B
                     txtNombreOrigen.Text = clienteLogueado.Nombre;
                     txtTelefonoOrigen.Text = clienteLogueado.Telefono;
                     txtEmailOrigen.Text = clienteLogueado.Usuario.Email;
-                    txtDireccionOrigen.Text = clienteLogueado.Direccion.Calle;
-                    txtCalleOrigen.Text = clienteLogueado.Direccion.NumeroCalle.ToString();
+                    txtCalleOrigen.Text = clienteLogueado.Direccion.Calle;
+                    txtNumeroOrigen.Text = clienteLogueado.Direccion.NumeroCalle.ToString();
                     txtCPOrigen.Text = clienteLogueado.Direccion.CodigoPostal;
-                    txtLocalidadOrigen.Text = clienteLogueado.Direccion.Ciudad;
+                    txtCiudadOrigen.Text = clienteLogueado.Direccion.Ciudad;
                     txtProvinciaOrigen.Text = clienteLogueado.Direccion.Provincia;
                     txtPisoOrigen.Text = clienteLogueado.Direccion.Piso;
 
@@ -33,8 +36,110 @@ namespace TPI_SistemaLogistica_Equipo3B
                 {
                     Response.Redirect("ErrorLogin.aspx");
                 }
+
+
+               gvItems.DataSource = new List<ItemOrden>(); // Inicial vacío
+        gvItems.DataBind();
             }
 
+        }
+
+        protected void btnCotizar_Click(object sender, EventArgs e)
+        {
+            Paquete paquete = new Paquete();
+            ItemOrden item = new ItemOrden();
+            //List<ItemOrden> listaItems = new List<ItemOrden>();
+
+            paquete.Largo = float.Parse(txtLargo.Text);
+            paquete.Ancho = float.Parse(txtAncho.Text);
+            paquete.Alto = float.Parse(txtAlto.Text);
+            paquete.Peso = float.Parse(txtPeso.Text);
+            paquete.ValorDeclarado = decimal.Parse(txtValor.Text);
+
+            float volumen = paquete.Largo * paquete.Ancho * paquete.Alto;
+            float pesoVolumetrico = volumen / 5000;
+
+            if (pesoVolumetrico >= 1 && pesoVolumetrico <= 4)
+                item.Precio = 2500;
+            else if (pesoVolumetrico <= 10)
+                item.Precio = 6000;
+            else if (pesoVolumetrico <= 15)
+                item.Precio = 21000;
+            else if (pesoVolumetrico <= 20)
+                item.Precio = 27000;
+            else if (pesoVolumetrico <= 25)
+                item.Precio = 37000;
+
+            if (paquete.Peso <= 10)
+            {
+                item.Categoria = "Chico";
+            }
+            else
+            {
+                if (paquete.Peso <= 20)
+                {
+                    item.Categoria = "Mediano";
+                }
+                else
+                {
+                    if (paquete.Peso <= 50)
+                    {
+                        item.Categoria = "Grande";
+                    }
+                }
+            }
+
+            item.Descripcion = "Producto";
+
+            // Obtener la lista anterior de ViewState o crear una nueva
+            List<ItemOrden> listaItems = ViewState["Items"] as List<ItemOrden> ?? new List<ItemOrden>();
+            listaItems.Add(item);
+
+            // Guardar en ViewState para persistencia
+            ViewState["Items"] = listaItems;
+
+            // Refrescar GridView
+            gvItems.DataSource = listaItems;
+            gvItems.DataBind();
+
+        }
+
+        protected void btnCargar_Click(object sender, EventArgs e)
+        {
+            OrdenesEnvio ordenesEnvio = new OrdenesEnvio();
+            Cliente cliente = new Cliente();
+            Destinatario destinatario = new Destinatario();
+            Paquete paquete = new Paquete();
+            AccesoDatos gestion = new AccesoDatos();
+
+            cliente.Nombre = txtNombreOrigen.Text;
+            cliente.Apellido = txtApellidoOrigen.Text;
+            cliente.Telefono = txtTelefonoOrigen.Text;
+            cliente.Direccion.Calle = txtCalleOrigen.Text;
+            cliente.Direccion.Numero = int.Parse(txtNumeroOrigen.Text);
+            cliente.Direccion.CodigoPostal = txtCPOrigen.Text;
+            cliente.Direccion.Ciudad = txtCiudadOrigen.Text;
+            cliente.Direccion.Provincia = txtProvinciaOrigen.Text;
+            cliente.Direccion.Piso = txtPisoOrigen.Text;
+            cliente.InfoAdicional = txtInfoOrigen.Text;
+
+
+            destinatario.Nombre = txtNombreDestino.Text;
+            destinatario.Apellido = txtApellidoDestino.Text;
+            destinatario.Telefono = txtTelefonoDestino.Text;
+            destinatario.Direccion.Calle = txtCalleDestino.Text;
+            destinatario.Direccion.Numero = int.Parse(txtNumeroDestino.Text);
+            destinatario.Direccion.CodigoPostal = txtCPDestino.Text;
+            destinatario.Direccion.Ciudad = txtCiudadDestino.Text;
+            destinatario.Direccion.Provincia = txtProvinciaDesino.Text;
+            destinatario.Direccion.Piso = txtPisoDestino.Text;
+            destinatario.InfoAdicional = txtInfoDestino.Text;
+
+            paquete.Largo = float.Parse(txtLargo.Text);
+            paquete.Ancho = float.Parse(txtAncho.Text);
+            paquete.Alto = float.Parse(txtAlto.Text);
+            paquete.Peso = float.Parse(txtPeso.Text);
+            paquete.ValorDeclarado = decimal.Parse(txtValor.Text);
         }
     }
 }

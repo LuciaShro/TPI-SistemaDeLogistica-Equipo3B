@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gestion
 {
-    internal class AccesoDatos
+    public class AccesoDatos
     {
         
             private SqlConnection conexion;

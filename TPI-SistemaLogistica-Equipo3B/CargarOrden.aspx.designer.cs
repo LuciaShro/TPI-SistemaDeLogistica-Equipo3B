@@ -24,6 +24,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtNombreOrigen;
 
         /// <summary>
+        /// txtApellidoOrigen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtApellidoOrigen;
+
+        /// <summary>
         /// txtTelefonoOrigen control.
         /// </summary>
         /// <remarks>
@@ -42,15 +51,6 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtEmailOrigen;
 
         /// <summary>
-        /// txtDireccionOrigen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDireccionOrigen;
-
-        /// <summary>
         /// txtCalleOrigen control.
         /// </summary>
         /// <remarks>
@@ -58,6 +58,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCalleOrigen;
+
+        /// <summary>
+        /// txtNumeroOrigen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNumeroOrigen;
 
         /// <summary>
         /// txtCPOrigen control.
@@ -69,13 +78,13 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtCPOrigen;
 
         /// <summary>
-        /// txtLocalidadOrigen control.
+        /// txtCiudadOrigen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLocalidadOrigen;
+        protected global::System.Web.UI.WebControls.TextBox txtCiudadOrigen;
 
         /// <summary>
         /// txtProvinciaOrigen control.
@@ -112,6 +121,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombreDestino;
+
+        /// <summary>
+        /// txtApellidoDestino control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtApellidoDestino;
 
         /// <summary>
         /// txtTelefonoDestino control.
@@ -159,13 +177,13 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtCPDestino;
 
         /// <summary>
-        /// txtLocalidadDestino control.
+        /// txtCiudadDestino control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLocalidadDestino;
+        protected global::System.Web.UI.WebControls.TextBox txtCiudadDestino;
 
         /// <summary>
         /// txtProvinciaDesino control.

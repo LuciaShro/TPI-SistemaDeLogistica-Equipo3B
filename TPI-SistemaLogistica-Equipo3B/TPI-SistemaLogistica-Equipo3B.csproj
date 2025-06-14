@@ -119,6 +119,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\CargarOrden.css" />
+    <Content Include="Content\ControlDePagos.css" />
     <Content Include="Content\Factura.css" />
     <Content Include="Content\Inicio.css" />
     <Content Include="Content\Login.css" />
