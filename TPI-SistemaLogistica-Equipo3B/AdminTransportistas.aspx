@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Detalle transportista" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" CodeBehind="AdminTransportistas.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.Inicio" %>
+﻿<%@ Page Title="Detalle transportista" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" CodeBehind="AdminTransportistas.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.AdminTransportistas" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="Content/AdminTransportistas.css" />
@@ -47,8 +47,7 @@
 </div>
 
     <div class="card p-5 w-50 mx-auto mt-3">
-    <p>Eliminar transportista. Esta opcion es irreversible.</p>
-    <button type="button" class="btn btn-outline-danger">Eliminar cuenta</button>
-    </div>
+    <asp:Button ID="btnDarBajaTransportista" runat="server" Text="Dar de baja" CssClass="btn  btn-outline-danger" OnClientClick="return confirm('Estas seguro que queres dar de baja este usuario? Esta accion es irreversible');" OnClick="btnDarBajaTransportista_Click"/>
+    </div> 
 
 </asp:Content>

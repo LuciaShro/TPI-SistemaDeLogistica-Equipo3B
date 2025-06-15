@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,20 +13,29 @@ namespace Gestion
         public void agregarTranportista (Transportista transportista) { 
             
             AccesoDatos datos = new AccesoDatos ();
+            SqlTransaction transaccion = null;
 
             try
             {
+                datos.abrirConexion();
+                transaccion = datos.Conexion.BeginTransaction();
+                datos.Comando.Connection = datos.Conexion;
+                datos.Comando.Transaction = transaccion;
+
+               
                 datos.setearConsulta("insert into Usuario (NombreUser, Contraseña, Email,TipoUsuario) OUTPUT INSERTED.IDUsuario values (@NombreUser, @Contraseña, @Email, 1)");
+                datos.Comando.Parameters.Clear();
                 datos.setearParametro("@NombreUser", transportista.usuario.User);
                 datos.setearParametro("@Contraseña", transportista.usuario.Password);
                 datos.setearParametro("@Email", transportista.usuario.Email);
                 int idUsuario = Convert.ToInt32(datos.obtenerValor());
-                datos.cerrarConexion();
+                
 
-                Transportista nuevo = new Transportista();
+               /* Transportista nuevo = new Transportista();*/
                 
 
                 datos.setearConsulta("insert into Transportista (IDVehiculo, IDUsuario, Nombre, Apellido, Cuil, Telefono, Licencia, Activo, EstadoDisponibilidad, HoraInicio, HoraFin, Imagen) values (@IDVehiculo, @IDUsuario, @Nombre, @Apellido, @Cuil, @Telefono, @Licencia, 1, 1, @HoraInicio, @HoraFin, @Imagen)");
+                datos.Comando.Parameters.Clear();
                 datos.setearParametro("@IDVehiculo", 1); // asigno un vehiculo ya que aun no esta creado el abm de vehiculos
                 datos.setearParametro("@IDUsuario", idUsuario);
                 datos.setearParametro("@Nombre", transportista.Nombre);
@@ -38,9 +48,12 @@ namespace Gestion
                 datos.setearParametro("@Imagen", transportista.Imagen);
 
                 datos.ejecutarAccion();
+                transaccion.Commit();
             }
             catch (Exception)
             {
+                if (transaccion != null)
+                    transaccion.Rollback();
 
                 throw;
             }
@@ -81,12 +94,126 @@ namespace Gestion
             }
         }
 
-        public void darBajaTransportista() { }
+        public void darBajaTransportista(int idTransportista) {
 
-        public void listarTranportistas() { }
+            AccesoDatos datos = new AccesoDatos();
+            SqlTransaction transaccion = null;
+
+           
+            try
+            {
+                datos.abrirConexion();
+                transaccion = datos.Conexion.BeginTransaction();
+                datos.Comando.Connection = datos.Conexion;
+                datos.Comando.Transaction = transaccion;
+
+                datos.setearConsulta("update Transportista set Activo = 0 where IDTransportista = @IDTransportista ");
+                datos.Comando.Parameters.Clear();
+                datos.setearParametro("@IDTransportista", idTransportista);
+               
+
+                datos.setearConsulta("update Usuario set Activo = 0 where IDUsuario = (select IDUsuario from Transportista where IDTransportista=@IDTransportista)");
+                datos.Comando.Parameters.Clear();
+                datos.setearParametro("@IDTransportista", idTransportista);
+
+                datos.ejecutarAccion();
+
+                transaccion.Commit();
+            }
+            catch (Exception ex)
+            {
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
+                throw new Exception("Error al dar de baja el transportista y el usuario: " + ex.Message, ex);
+            }
+
+            finally { 
+                datos.cerrarConexion(); 
+            }
+
+        
+        }
+
+        public List<Transportista> listarTranportistas() {
+            AccesoDatos datos = new AccesoDatos();
+            List<Transportista> lista = new List<Transportista>();
+
+            try
+            {
+                datos.abrirConexion();
+                datos.setearConsulta(" select Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin, Imagen from Transportista");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Transportista transportista = new Transportista();
+                    transportista.Nombre = datos.Lector["Nombre"].ToString();
+                    transportista.Apellido = datos.Lector["Apellido"].ToString();
+                    transportista.CuilTransportista = Convert.ToInt64(datos.Lector["Cuil"]);
+                    transportista.Telefono = datos.Lector["Telefono"].ToString();
+                    transportista.Licencia = datos.Lector["Licencia"].ToString();
+                    transportista.EstadoDisponibilidad = Convert.ToBoolean(datos.Lector["EstadoDisponibilidad"]);
+                    transportista.HoraInicio = TimeSpan.Parse(datos.Lector["HoraInicio"].ToString());
+                    transportista.HoraFin = TimeSpan.Parse(datos.Lector["HoraFin"].ToString());
+                    transportista.Imagen = datos.Lector["Imagen"].ToString();
+
+                    lista.Add(transportista);
+                }
+
+                return lista;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        
+        
+        }
 
         public bool buscarTransportista () { return false; }
 
-        public void transportistasDisponibles() { }
+        public List<Transportista> transportistasDisponibles() {
+            AccesoDatos datos = new AccesoDatos();
+            List<Transportista> listaTransportistasDisponibles = new List<Transportista>();
+
+            try
+            {
+                datos.abrirConexion();
+                datos.setearConsulta("select IDTransportista, Nombre, Apellido, Cuil from Transportista where EstadoDisponibilidad=1");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Transportista transportista = new Transportista();
+                    transportista.Nombre = datos.Lector["Nombre"].ToString();
+                    transportista.Apellido = datos.Lector["Apellido"].ToString();
+                    transportista.CuilTransportista = Convert.ToInt64(datos.Lector["Cuil"]);
+       
+
+                    listaTransportistasDisponibles.Add(transportista);
+                }
+
+                return listaTransportistasDisponibles;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        
+        
+        }
     }
 }

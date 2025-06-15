@@ -132,6 +132,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtContraseñaTransportista;
 
         /// <summary>
+        /// Control txtConfirmarContraseñaTransportista.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtConfirmarContraseñaTransportista;
+
+        /// <summary>
         /// Control ddlVehiculosDisponibles.
         /// </summary>
         /// <remarks>
