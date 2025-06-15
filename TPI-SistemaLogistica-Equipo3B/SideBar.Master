@@ -11,7 +11,7 @@
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
 </head>
 <body>
-    <form id="form1" runat="server" class="w-100">
+    <form id="form1" runat="server" class="w-100" enctype="multipart/form-data">
         <div>
            <div class="contenedor">
             <div class="sidebar">

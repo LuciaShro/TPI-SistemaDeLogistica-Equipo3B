@@ -12,7 +12,9 @@ namespace Dominio
 
         public string Apellido { get; set; }
 
-        public int Legajo { get; set; }
+        public int IdTransportista { get; set; }
+
+        public long CuilTransportista { get; set; }
 
         public string Telefono { get; set; }
 
@@ -28,6 +30,8 @@ namespace Dominio
 
         public Usuario usuario { get; set; }
         public Vehiculo Vehiculo { get; set; }
+
+        public string Imagen { get; set; }
 
 
     }
