@@ -20,6 +20,11 @@
         </div>
 
         <div class="form-group">
+            <label for="txtCUILOrigen">CUIL:</label>
+            <asp:TextBox ID="txtCUILOrigen" runat="server" CssClass="form-control" />
+        </div>
+
+        <div class="form-group">
             <label for="txtTelefonoOrigen">Teléfono Celular:</label>
             <asp:TextBox ID="txtTelefonoOrigen" runat="server" CssClass="form-control" />
         </div>
@@ -78,6 +83,11 @@
         <div class="form-group">
             <label for="txtApellidoDestino">Apellido:</label>
             <asp:TextBox ID="txtApellidoDestino" runat="server" CssClass="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label for="txtCUILDestino">CUIL:</label>
+            <asp:TextBox ID="txtCUILDestino" runat="server" CssClass="form-control" />
         </div>
 
         <div class="form-group">
@@ -152,6 +162,11 @@
         </div>
 
         <div class="form-group">
+            <label for="txtCantidad">Cantidad de productos:</label>
+            <asp:TextBox ID="txtCantidad" runat="server" CssClass="form-control" />
+        </div>
+
+        <div class="form-group">
             <label for="txtValor">Valor Declarado:</label>
             <asp:TextBox ID="txtValor" runat="server" CssClass="form-control" />
         </div>
@@ -180,6 +195,7 @@
 
     <div class="center-button">
         <asp:Button ID="btnCargar" runat="server" Text="CARGAR ORDEN" CssClass="btn-principal" OnClick="btnCargar_Click" />
+        <asp:Label ID="lblMensaje" runat="server" />
     </div>
 
 </asp:Content>

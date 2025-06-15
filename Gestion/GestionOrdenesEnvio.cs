@@ -12,13 +12,92 @@ namespace Gestion
 {
     public class GestionOrdenesEnvio
     {
-        public void agregarOrdenEnvio() { }
+        public void agregarOrdenEnvio(OrdenesEnvio ordenEnvio, DetalleOrden detalleOrden)
+        {
+
+            AccesoDatos gestionDatos = new AccesoDatos();
+            GestionCliente gestionCliente = new GestionCliente();
+            GestionDestinatario gestionDestinatario = new GestionDestinatario();
+            GestionDetalleOrden gestionDetalle = new GestionDetalleOrden();
+            GestionPaquete gestionPaquete = new GestionPaquete();
+
+            try
+            {
+
+                long cuilCliente = ordenEnvio.cliente.CUIL;
+                long cuilDestinatario = ordenEnvio.destinatario.CUIL;
+
+                int idCliente = gestionCliente.returnIDCliente(cuilCliente);
+                int idUsuario = gestionCliente.returnIDUsuario(cuilCliente);
+                int idDestinatario = gestionDestinatario.returnIDDestinatario(cuilDestinatario);
+
+
+
+                gestionDatos.setearConsulta("INSERT INTO Rutas (PuntoPartida, PuntoDestino) " +
+                                            " OUTPUT INSERTED.IDRuta VALUES (@PuntoPartida, @PuntoDestino)");
+
+                gestionDatos.setearParametro("@PuntoPartida", ordenEnvio.ruta.PuntoPartida);
+                gestionDatos.setearParametro("@PuntoDestino", ordenEnvio.ruta.PuntoDestino);
+
+                int idRuta = Convert.ToInt32(gestionDatos.obtenerValor());
+
+                gestionDatos.cerrarConexion();
+
+
+
+                gestionDatos.setearConsulta("INSERT INTO OrdenesEnvio (IDUsuario, IDCliente, IDTransportista, IDRuta, IDEstadoOrdenEnvio, IDDestinatario, FechaCreacion, FechaEnvio, FechaEstimadaLlegada, FechaLlegada) " +
+                                    "OUTPUT INSERTED.IDOrden " + "VALUES (@IDUsuario, @IDCliente, @IDTransportista, @IDRuta, @IDEstadoOrdenEnvio, @IDDestinatario, @FechaCreacion, @FechaEnvio, @FechaEstimadaLlegada, @FechaLlegada)");
+
+                gestionDatos.setearParametro("@IDUsuario", idCliente); 
+                gestionDatos.setearParametro("@IDCliente", idUsuario);
+                //gestionDatos.setearParametro("@IDTransportista", ordenEnvio.transportistaAsignado);
+                //gestionDatos.setearParametro("@IDEstadoOrdenEnvio", ordenEnvio.estado);
+                gestionDatos.setearParametro("@IDDestinatario", idDestinatario);
+                gestionDatos.setearParametro("@FechaCreacion", ordenEnvio.FechaCreacion);
+                gestionDatos.setearParametro("@FechaEnvio", ordenEnvio.FechaEnvio);
+                gestionDatos.setearParametro("@FechaEstimadaLlegada", ordenEnvio.FechaEstimadaLlegada);
+                gestionDatos.setearParametro("@FechaLlegada", ordenEnvio.FechaDeLlegada);
+
+                int idOrden = Convert.ToInt32(gestionDatos.obtenerValor());
+
+                gestionDatos.cerrarConexion();
+
+
+                int idPaquete = gestionPaquete.agregarPaquete(detalleOrden.paquete);
+
+                gestionDatos.setearConsulta("INSERT INTO DetalleOrdenesEnvio (IDOrden, IDPaquete, Total) " +
+                                              "VALUE (@IDOrden, @IDPaquete, @Total)");
+
+                gestionDatos.setearParametro("@IDOrden", idOrden);
+                gestionDatos.setearParametro("@IDPaquete", idPaquete);
+                gestionDatos.setearParametro("@Total", detalleOrden.Total);
+
+
+                gestionDatos.ejecutarAccion();
+
+                gestionDatos.cerrarConexion();
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+
+
+        }
 
         public void modificarOrdenEnvio() { }
 
         public void eliminarOrdenEnvio(int id) { }
 
-        public List<OrdenesEnvio> ListarOrdenes() { 
+        public List<OrdenesEnvio> ListarOrdenes()
+        {
 
             List<OrdenesEnvio> lista = new List<OrdenesEnvio>();
             AccesoDatos datos = new AccesoDatos();
@@ -51,7 +130,7 @@ namespace Gestion
                     aux.FechaEnvio = (DateTime)datos.Lector["FechaEnvio"];
                     aux.FechaEstimadaLlegada = (DateTime)datos.Lector["FechaEstimadaLlegada"];
                     aux.FechaDeLlegada = (DateTime)datos.Lector["FechaLlegada"];
-                    aux.CantidadTotalEnviada = (int)datos.Lector["CantidadPaquetes"];
+                    //aux.CantidadTotalEnviada = (int)datos.Lector["CantidadPaquetes"];
 
                     lista.Add(aux);
                 }
@@ -71,8 +150,8 @@ namespace Gestion
 
         public bool buscarOrdenEnvio() { return false; }
 
-        public void CalcularCantidadEnviada () { }
+        public void CalcularCantidadEnviada() { }
 
-        public float CotizarEnvio () { return 0f; }
+        public float CotizarEnvio() { return 0f; }
     }
 }

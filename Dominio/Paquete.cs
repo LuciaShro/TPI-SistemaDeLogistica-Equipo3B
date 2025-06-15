@@ -10,7 +10,7 @@ namespace Dominio
     {
         public int idPaquete {  get; set; }
 
-        public string Nombre { get; set; }
+        //public string Nombre { get; set; }
 
         public decimal ValorDeclarado { get; set; }
 
@@ -24,7 +24,7 @@ namespace Dominio
 
         public float Largo { get; set; }
 
-        public Categoria NombreCategoria {  get; set; }
+        public Categoria IDCategoria {  get; set; }
 
     }
 }

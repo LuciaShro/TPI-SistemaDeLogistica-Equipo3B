@@ -10,9 +10,9 @@ namespace Dominio
     {
         public Paquete paquete {  get; set; }
 
-        public int Cantidad { get; set; }
+        /*public int Cantidad { get; set; } */// Aca vendria a ser cantidad de paquetes? se envia un pq x destino o mas de uno?
 
-        public float Total { get; set; }
+        public decimal Total { get; set; }
 
         public OrdenesEnvio idOrden {  get; set; }
     }

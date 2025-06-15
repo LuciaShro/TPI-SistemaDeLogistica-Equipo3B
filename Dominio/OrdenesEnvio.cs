@@ -12,21 +12,23 @@ namespace Dominio
 
         public Cliente cliente { get; set; }
 
+        public Destinatario destinatario { get; set; }
+
         public Transportista transportistaAsignado { get; set; }
 
         public Ruta ruta { get; set; }
 
         public DateTime FechaCreacion { get; set; }
 
-        public DateTime FechaEnvio {  get; set; }
+        public DateTime FechaEnvio {  get; set; } //cuando se asigne a un transportista
 
-        public DateTime FechaEstimadaLlegada {  get; set; }
+        public DateTime FechaEstimadaLlegada {  get; set; } //REPETITIVO v
 
         public DateTime FechaDeLlegada { get; set; }
 
         public EstadoOrdenEnvio estado { get; set; }
 
-        public int CantidadTotalEnviada {  get; set; }
+        //public int CantidadTotalEnviada {  get; set; } //SE REPITE EN DETALLE
 
 
     }

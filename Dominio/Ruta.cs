@@ -14,6 +14,6 @@ namespace Dominio
 
         public string PuntoDestino { get; set; }
 
-        public int TiempoEstimadoMinutos { get; set; }
+        //public int TiempoEstimadoMinutos { get; set; }
     }
 }

@@ -86,6 +86,64 @@ namespace Gestion
             }
         }
 
+        public int returnIDCliente(long cuil)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT IDCliente, Cuil FROM Clientes where Cuil=@Cuil");
+                datos.setearParametro("@Cuil", cuil);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    return (int)datos.Lector["IDCliente"];
+                }
+
+                throw new Exception("Cliente no encontrado con ese CUIL.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método returnIDCliente: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public int returnIDUsuario(long cuil)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT IDUsuario, Cuil FROM Clientes where Cuil=@Cuil");
+                datos.setearParametro("@Cuil", cuil);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    return (int)datos.Lector["IDUsuario"];
+                }
+
+                throw new Exception("Cliente no encontrado con ese CUIL.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método returnIDCliente: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void modificarCliente () { }
 
         public void eliminarCliente() { }

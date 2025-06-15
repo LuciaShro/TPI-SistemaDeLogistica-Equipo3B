@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="GestionDetalleOrden.cs" />
     <Compile Include="GestionCategoria.cs" />
     <Compile Include="GestionCliente.cs" />
+    <Compile Include="GestionDestinatario.cs" />
     <Compile Include="GestionDireccion.cs" />
     <Compile Include="GestionEstado.cs" />
     <Compile Include="GestionFactura.cs" />
