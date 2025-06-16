@@ -85,6 +85,44 @@ namespace Gestion
 
         public void listarTranportistas() { }
 
+        public int transportistaDisponible()
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+            List<int> transportistasDisponibles = new List<int>();
+            Random rand = new Random();
+
+            try
+            {
+                gestionDatos.setearConsulta("select IDTransportista, EstadoDisponibilidad from Transportista where Activo = 1 AND EstadoDisponibilidad = 1");
+                gestionDatos.ejecutarLectura();
+
+                while (gestionDatos.Lector.Read())
+                {
+                    transportistasDisponibles.Add((int)gestionDatos.Lector["IDTransportista"]);
+                }
+
+                if (transportistasDisponibles.Count > 0)
+                {
+                    int indice = rand.Next(transportistasDisponibles.Count);
+                    return transportistasDisponibles[indice];
+                }
+                else
+                {
+                    throw new Exception("No hay transportistas disponibles.");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método cuilExistente: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
+
         public bool buscarTransportista () { return false; }
 
         public void transportistasDisponibles() { }

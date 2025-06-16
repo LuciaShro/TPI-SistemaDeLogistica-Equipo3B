@@ -24,7 +24,7 @@ namespace Dominio
 
         public float Largo { get; set; }
 
-        public Categoria IDCategoria {  get; set; }
+        public Categoria Categoria {  get; set; }
 
     }
 }

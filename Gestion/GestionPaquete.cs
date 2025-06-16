@@ -18,7 +18,7 @@ namespace Gestion
                 gestionDatos.setearConsulta("INSERT INTO Paquete (IDCategoria, Cantidad, valorDeclarado, Peso, Alto, Ancho, Largo) " +
                                             "OUTPUT INSERTED.IDPaquete "+ "VALUES (@IDCategoria, @Cantidad, @valorDeclarado, @Peso, @Alto, @Ancho, @Largo)");
 
-                gestionDatos.setearParametro("@IDCategoria", paquete.IDCategoria);
+                gestionDatos.setearParametro("@IDCategoria", paquete.Categoria.idCategoria);
                 gestionDatos.setearParametro("@Cantidad", paquete.Cantidad);
                 gestionDatos.setearParametro("@valorDeclarado", paquete.ValorDeclarado);
                 gestionDatos.setearParametro("@Peso", paquete.Peso);
@@ -28,7 +28,7 @@ namespace Gestion
 
                 int idPquete = Convert.ToInt32(gestionDatos.obtenerValor());
 
-                gestionDatos.ejecutarAccion();
+                //gestionDatos.ejecutarAccion();
 
                 gestionDatos.cerrarConexion();
 

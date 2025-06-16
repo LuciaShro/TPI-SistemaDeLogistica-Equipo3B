@@ -50,8 +50,9 @@ namespace Gestion
 
                 gestionDatos.setearParametro("@IDUsuario", idCliente); 
                 gestionDatos.setearParametro("@IDCliente", idUsuario);
-                //gestionDatos.setearParametro("@IDTransportista", ordenEnvio.transportistaAsignado);
-                //gestionDatos.setearParametro("@IDEstadoOrdenEnvio", ordenEnvio.estado);
+                gestionDatos.setearParametro("@IDTransportista", ordenEnvio.idTransportistaAsignado);
+                gestionDatos.setearParametro("@IDRuta", idRuta);
+                gestionDatos.setearParametro("@IDEstadoOrdenEnvio", ordenEnvio.estado.idEstado);
                 gestionDatos.setearParametro("@IDDestinatario", idDestinatario);
                 gestionDatos.setearParametro("@FechaCreacion", ordenEnvio.FechaCreacion);
                 gestionDatos.setearParametro("@FechaEnvio", ordenEnvio.FechaEnvio);
@@ -59,6 +60,8 @@ namespace Gestion
                 gestionDatos.setearParametro("@FechaLlegada", ordenEnvio.FechaDeLlegada);
 
                 int idOrden = Convert.ToInt32(gestionDatos.obtenerValor());
+                ordenEnvio.idOrdenEnvio = idOrden;
+                detalleOrden.Orden = ordenEnvio;
 
                 gestionDatos.cerrarConexion();
 
@@ -66,9 +69,9 @@ namespace Gestion
                 int idPaquete = gestionPaquete.agregarPaquete(detalleOrden.paquete);
 
                 gestionDatos.setearConsulta("INSERT INTO DetalleOrdenesEnvio (IDOrden, IDPaquete, Total) " +
-                                              "VALUE (@IDOrden, @IDPaquete, @Total)");
+                                              "VALUES (@IDOrden, @IDPaquete, @Total)");
 
-                gestionDatos.setearParametro("@IDOrden", idOrden);
+                gestionDatos.setearParametro("@IDOrden", detalleOrden.Orden.idOrdenEnvio);
                 gestionDatos.setearParametro("@IDPaquete", idPaquete);
                 gestionDatos.setearParametro("@Total", detalleOrden.Total);
 
@@ -118,9 +121,9 @@ namespace Gestion
                     aux.cliente = new Cliente();
                     aux.cliente.Nombre = datos.Lector["NombreCliente"].ToString();
                     aux.cliente.Apellido = datos.Lector["ApellidoCliente"].ToString();
-                    aux.transportistaAsignado = new Transportista();
-                    aux.transportistaAsignado.Nombre = datos.Lector["NombreTransportista"].ToString();
-                    aux.transportistaAsignado.Apellido = datos.Lector["ApellidoTransportista"].ToString();
+                    //aux.idTransportistaAsignado = new Transportista();
+                    //aux.idTransportistaAsignado.Nombre = datos.Lector["NombreTransportista"].ToString();
+                    //aux.idTransportistaAsignado.Apellido = datos.Lector["ApellidoTransportista"].ToString();
                     aux.ruta = new Ruta();
                     aux.ruta.PuntoPartida = datos.Lector["PuntoPartida"].ToString();
                     aux.ruta.PuntoDestino = datos.Lector["PuntoDestino"].ToString();

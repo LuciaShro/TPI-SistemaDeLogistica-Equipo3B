@@ -14,7 +14,7 @@ namespace Dominio
 
         public Destinatario destinatario { get; set; }
 
-        public Transportista transportistaAsignado { get; set; }
+        public int idTransportistaAsignado { get; set; }
 
         public Ruta ruta { get; set; }
 

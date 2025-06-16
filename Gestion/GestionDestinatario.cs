@@ -40,7 +40,6 @@ namespace Gestion
                 gestionDatos.setearParametro("@Nombre", destinatario.Nombre);
                 gestionDatos.setearParametro("@Apellido", destinatario.Apellido);
                 gestionDatos.setearParametro("@Email", destinatario.Email);
-                gestionDatos.setearParametro("@IDDireccion", destinatario);
                 gestionDatos.setearParametro("@Telefono", destinatario.Telefono);
 
                 gestionDatos.ejecutarAccion();

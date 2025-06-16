@@ -19,7 +19,7 @@ namespace Gestion
                 gestionDatos.setearConsulta("INSERT INTO DetalleOrdenesEnvio (IDOrden, IDPaquete, Total) " +
                                             "VALUE (@IDOrden, @IDPaquete, @Total)");
 
-                gestionDatos.setearParametro("@IDOrden", detalleOrden.idOrden);
+                gestionDatos.setearParametro("@IDOrden", detalleOrden.Orden);
                 gestionDatos.setearParametro("@IDPaquete", detalleOrden.paquete.idPaquete);
                 gestionDatos.setearParametro("@Total", detalleOrden.Total);
 

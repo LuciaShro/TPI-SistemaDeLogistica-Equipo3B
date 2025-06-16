@@ -49,6 +49,7 @@ namespace TPI_SistemaLogistica_Equipo3B
         {
             Paquete paquete = new Paquete();
             ItemOrden item = new ItemOrden();
+            paquete.Categoria = new Categoria();
 
             //List<ItemOrden> listaItems = new List<ItemOrden>();
 
@@ -63,7 +64,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             float pesoVolumetrico = volumen / 5000;
 
             if (pesoVolumetrico >= 1 && pesoVolumetrico <= 4)
-                item.Precio = 2500;
+                item.Precio = 2500; 
             else if (pesoVolumetrico <= 10)
                 item.Precio = 6000;
             else if (pesoVolumetrico <= 15)
@@ -76,18 +77,21 @@ namespace TPI_SistemaLogistica_Equipo3B
             if (paquete.Peso <= 10)
             {
                 item.Categoria = "Chico";
+                paquete.Categoria.idCategoria = 1;
             }
             else
             {
                 if (paquete.Peso <= 20)
                 {
                     item.Categoria = "Mediano";
+                    paquete.Categoria.idCategoria = 2;
                 }
                 else
                 {
                     if (paquete.Peso <= 50)
                     {
                         item.Categoria = "Grande";
+                        paquete.Categoria.idCategoria = 3;
                     }
                 }
             }
@@ -119,6 +123,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             //detalle.Cantidad = paquete.Cantidad;
 
             lblTotal.Text = total.ToString("N2");
+            
         }
 
         protected void btnCargar_Click(object sender, EventArgs e)
@@ -126,9 +131,16 @@ namespace TPI_SistemaLogistica_Equipo3B
             OrdenesEnvio ordenesEnvio = new OrdenesEnvio();
             DetalleOrden detalleOrden = new DetalleOrden();
             Cliente cliente = new Cliente();
+            cliente.Direccion = new Direccion();
             Destinatario destinatario = new Destinatario();
+            destinatario.Direccion = new Direccion();
             Paquete paquete = new Paquete();
+            paquete.Categoria = new Categoria();
             AccesoDatos gestionDatos = new AccesoDatos();
+            GestionDestinatario gestionDestinatario = new GestionDestinatario();
+            GestionTransportista gestionTransportista = new GestionTransportista();
+            GestionOrdenesEnvio gestionOrdenesEnvio = new GestionOrdenesEnvio();
+            GestionPaquete gestionPaquete = new GestionPaquete();
 
             cliente.Nombre = txtNombreOrigen.Text;
             cliente.Apellido = txtApellidoOrigen.Text;
@@ -141,7 +153,6 @@ namespace TPI_SistemaLogistica_Equipo3B
             cliente.Direccion.Provincia = txtProvinciaOrigen.Text;
             cliente.Direccion.Piso = txtPisoOrigen.Text;
             //cliente.InfoAdicional = txtInfoOrigen.Text;
-
 
             destinatario.Nombre = txtNombreDestino.Text;
             destinatario.Apellido = txtApellidoDestino.Text;
@@ -156,9 +167,25 @@ namespace TPI_SistemaLogistica_Equipo3B
             destinatario.Direccion.Piso = txtPisoDestino.Text;
             //destinatario.InfoAdicional = txtInfoDestino.Text;
 
+            paquete.Largo = float.Parse(txtLargo.Text);
+            paquete.Ancho = float.Parse(txtAncho.Text);
+            paquete.Alto = float.Parse(txtAlto.Text);
+            paquete.Peso = float.Parse(txtPeso.Text);
+            paquete.Cantidad = int.Parse(txtCantidad.Text);
+            paquete.ValorDeclarado = decimal.Parse(txtValor.Text);
+
+            paquete.Categoria.idCategoria = idCategoriaPaquete(paquete);
+
+            gestionDestinatario.agregarDestinatario(destinatario);
+
+            //Orden y detalle
+
             ordenesEnvio.cliente = cliente;
             ordenesEnvio.destinatario = destinatario;
-            //ordenesEnvio.transportistaAsignado;
+            ordenesEnvio.idTransportistaAsignado = gestionTransportista.transportistaDisponible();
+
+            ordenesEnvio.ruta = new Ruta();
+            ordenesEnvio.estado = new EstadoOrdenEnvio();
 
             //SETEAR RUTAS EN TABLA RUTAS
             ordenesEnvio.ruta.PuntoPartida = cliente.Direccion.Provincia + cliente.Direccion.Ciudad + cliente.Direccion.Calle + cliente.Direccion.Numero;
@@ -166,18 +193,69 @@ namespace TPI_SistemaLogistica_Equipo3B
 
             //SETEAR EN TABLA ORDEN
 
-            ordenesEnvio.FechaCreacion = DateTime.Now;
-            //ordenesEnvio.FechaEnvio; //COMENTADOS PORQUE FALTAN.
-            ordenesEnvio.FechaDeLlegada = ordenesEnvio.FechaCreacion.AddDays(4);
+            //ordenesEnvio.FechaCreacion = DateTime.Now;
+            //ordenesEnvio.FechaEnvio = ordenesEnvio.FechaCreacion.AddDays(2); ; //estos datos hay que revisarlos.
+            //ordenesEnvio.FechaEstimadaLlegada = ordenesEnvio.FechaCreacion.AddDays(4);
+            //ordenesEnvio.FechaDeLlegada = ordenesEnvio.FechaDeLlegada.AddDays(4);
+
+            ordenesEnvio.FechaCreacion = new DateTime(2025, 6, 15);
+            ordenesEnvio.FechaEnvio = new DateTime(2025, 6, 17);
+            ordenesEnvio.FechaEstimadaLlegada = new DateTime(2025, 6, 20);
+            ordenesEnvio.FechaDeLlegada = new DateTime(2025, 6, 20);
+
             ordenesEnvio.estado.idEstado = 1;
 
             //DETALLE ORDEN
 
             detalleOrden.paquete = paquete;
             detalleOrden.Total = decimal.Parse(lblTotal.Text);
-            //detalleOrden.idOrden 
+            
+            gestionOrdenesEnvio.agregarOrdenEnvio(ordenesEnvio, detalleOrden);
+        }
 
-     
+        protected int idCategoriaPaquete(Paquete paquete)
+        {
+            ItemOrden item = new ItemOrden();
+
+            float volumen = paquete.Largo * paquete.Ancho * paquete.Alto;
+            float pesoVolumetrico = volumen / 5000;
+
+            if (pesoVolumetrico >= 1 && pesoVolumetrico <= 4)
+                item.Precio = 2500;
+            else if (pesoVolumetrico <= 10)
+                item.Precio = 6000;
+            else if (pesoVolumetrico <= 15)
+                item.Precio = 21000;
+            else if (pesoVolumetrico <= 20)
+                item.Precio = 27000;
+            else if (pesoVolumetrico <= 25)
+                item.Precio = 37000;
+
+            if (paquete.Peso <= 10)
+            {
+                item.Categoria = "Chico";
+                paquete.Categoria.idCategoria = 1;
+            }
+            else
+            {
+                if (paquete.Peso <= 20)
+                {
+                    item.Categoria = "Mediano";
+                    paquete.Categoria.idCategoria = 2;
+                }
+                else
+                {
+                    if (paquete.Peso <= 50)
+                    {
+                        item.Categoria = "Grande";
+                        paquete.Categoria.idCategoria = 3;
+                    }
+                }
+            }
+
+            decimal total = item.Precio;
+
+            return paquete.Categoria.idCategoria;
         }
     }
 }
