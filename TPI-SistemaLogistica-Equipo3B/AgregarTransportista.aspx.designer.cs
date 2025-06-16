@@ -105,6 +105,24 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtInicioJornadaLaboral;
 
         /// <summary>
+        /// Control ddlInicioJornadaLaboral.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlInicioJornadaLaboral;
+
+        /// <summary>
+        /// Control ddlFinJornadaLaboral.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFinJornadaLaboral;
+
+        /// <summary>
         /// Control txtFinJornadaLaboral.
         /// </summary>
         /// <remarks>

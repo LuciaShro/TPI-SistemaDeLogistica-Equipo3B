@@ -9,7 +9,6 @@ namespace Dominio
     public class Vehiculo
     {
         public int idVehiculo {  get; set; }
-        public string Nombre { get; set; }
 
         public string Patente { get; set; }
 

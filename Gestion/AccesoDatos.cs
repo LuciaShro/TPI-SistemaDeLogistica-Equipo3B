@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -48,14 +49,17 @@ namespace Gestion
             public void ejecutarLectura()
             {
                 comando.Connection = conexion;
-                try
-                {
+            try
+            {
+                if (conexion.State != ConnectionState.Open)
                     conexion.Open();
-                    lector = comando.ExecuteReader(); //tabla 
-                }
-                catch (Exception ex)
-                {
-                }
+                lector = comando.ExecuteReader(); //tabla 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en ejecutarLectura: " + ex.Message);
+                throw;
+            }
 
             }
 

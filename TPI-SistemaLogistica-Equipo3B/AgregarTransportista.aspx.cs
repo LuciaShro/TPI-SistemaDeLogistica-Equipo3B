@@ -14,6 +14,25 @@ namespace TPI_SistemaLogistica_Equipo3B
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            GestionVehiculo vehiculo = new GestionVehiculo();
+            ddlVehiculosDisponibles.DataSource = vehiculo.listarVehiculosSinAsignar();
+           
+            ddlVehiculosDisponibles.DataTextField = "Patente"; // Mostrar esto al usuario
+            ddlVehiculosDisponibles.DataValueField = "IDVehiculo"; // Valor real del ítem
+            ddlVehiculosDisponibles.DataBind();
+            ddlVehiculosDisponibles.Items.Insert(0, new ListItem("-- Seleccionar vehículo --", ""));
+
+            // desplegable en jornada laboral inicio
+            ddlInicioJornadaLaboral.Items.Add("-- Seleccionar un horario --");
+            ddlInicioJornadaLaboral.Items.Add("8:00");
+            ddlInicioJornadaLaboral.Items.Add("14:00");
+
+            // desplegable en jornada laboral fin
+            ddlFinJornadaLaboral.Items.Add("-- Seleccionar un horario --");
+            ddlFinJornadaLaboral.Items.Add("14:00");
+            ddlFinJornadaLaboral.Items.Add("20:00");
+
+
 
         }
 

@@ -21,14 +21,11 @@
         <label for="txtCapacidadCarga">Capacidad de carga:</label>
         <asp:TextBox ID="txtCapacidadCarga" runat="server" CssClass="form-control" />
         </div>
-        <div class="form-group">
-            <label for="txtEstado">Estado:</label>
-            <asp:TextBox ID="txtEstado" runat="server" CssClass="form-control" />
-        </div>
 
     <div class="center-button">
-    <asp:Button ID="btnGuardar" runat="server" Text="Guardar datos" CssClass="btn-principal" />
+    <asp:Button ID="btnGuardar" runat="server" Text="Guardar datos" CssClass="btn-principal" OnClick="btnGuardar_Click" />
 </div>
+        <asp:Label ID="lblMensajePantalla" runat="server" Text="" CssClass="btn-principal"></asp:Label>
         </div>
 
 </asp:Content>
