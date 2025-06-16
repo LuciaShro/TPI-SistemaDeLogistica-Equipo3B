@@ -42,6 +42,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             {
                 Transportista transportista = new Transportista();
                 GestionTransportista gestion = new GestionTransportista();
+                GestionUsuario usuarioGestion = new GestionUsuario();
                 transportista.Vehiculo = new Vehiculo();
                 transportista.usuario = new Usuario();
 
@@ -66,15 +67,27 @@ namespace TPI_SistemaLogistica_Equipo3B
                 }
 
                 if(string.IsNullOrWhiteSpace(transportista.Nombre) || string.IsNullOrWhiteSpace(transportista.Apellido) || string.IsNullOrWhiteSpace(transportista.Telefono) ||
-                 string.IsNullOrWhiteSpace(transportista.Licencia))
+                 string.IsNullOrWhiteSpace(transportista.Licencia) || string.IsNullOrWhiteSpace(transportista.usuario.User) || string.IsNullOrEmpty(transportista.usuario.Password) || string.IsNullOrWhiteSpace(transportista.usuario.Email))
                 {
                     lblMensajeEnPantalla.Text = "Los cambos deben estar todos completos";
                     return;
-                }    
+                } 
+                
+                if(txtContraseñaTransportista.Text != txtConfirmarContraseñaTransportista.Text)
+                {
+                    lblMensajeEnPantalla.Text = "Las contraseñas no coinciden";
+                    return;
+                }
 
                 if (gestion.cuilExistente(transportista.CuilTransportista))
                 {
                     lblMensajeEnPantalla.Text = "Ya se encuentra registrado un Transportista con el CUIL indicado.";
+                    return;
+                }
+
+                if (usuarioGestion.userExistente(transportista.usuario.User))
+                {
+                    lblMensajeEnPantalla.Text = "Ya se encuentra registrado un Transportista con el usuario indicado. Intentar nuevamente";
                     return;
                 }
 

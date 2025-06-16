@@ -71,6 +71,11 @@
             <asp:TextBox ID="txtContraseñaTransportista" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
 
+        <div class="form-group">
+            <label for="txtConfirmarContraseñaTransportista">Confirmar Contraseña:</label>
+            <asp:TextBox ID="txtConfirmarContraseñaTransportista" runat="server" CssClass="form-control"></asp:TextBox>
+        </div>
+
         <!--
         <div class="form-group">
             <label for="txtListaVehiculosDisponibles">Vehiculos disponibles:</label>

@@ -21,6 +21,16 @@ namespace Gestion
                 }
             }
 
+            public SqlConnection Conexion
+            {
+            get { return conexion; }
+            }
+
+            public SqlCommand Comando
+            {
+            get { return comando; }
+            }
+
 
             public AccesoDatos()
             {
@@ -49,25 +59,56 @@ namespace Gestion
 
             }
 
-            public void ejecutarAccion()
-            {
-                comando.Connection = conexion;
+        /* public void ejecutarAccion()
+         {
+             comando.Connection = conexion;
 
-                try
-                {
+             try
+             {
+                 conexion.Open();
+                 comando.ExecuteNonQuery();
+             }
+             catch (Exception ex)
+             {
+                 throw ex;
+             }
+         }*/
+        public void ejecutarAccion()
+        {
+            comando.Connection = conexion;
+
+            try
+            {
+                if (conexion.State != System.Data.ConnectionState.Open)
                     conexion.Open();
-                    comando.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+
+                comando.ExecuteNonQuery();
             }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
 
             public void setearParametro(string nombre, object valor)
             {
                 comando.Parameters.AddWithValue(nombre, valor);
             }
+
+            public void abrirConexion()
+            {
+            if (conexion.State != System.Data.ConnectionState.Open)
+                conexion.Open();
+            }
+
+        
+            public SqlTransaction iniciarTransaccion()
+            {
+            return conexion.BeginTransaction();
+            }
+
 
             public void cerrarConexion()
             {
@@ -79,11 +120,9 @@ namespace Gestion
 
             public object obtenerValor()
             {
-            comando.Connection = conexion;
-            conexion.Open();
-            object valor = comando.ExecuteScalar(); 
-            return valor;
+            return Comando.ExecuteScalar();
             }
+
 
     }
 }
