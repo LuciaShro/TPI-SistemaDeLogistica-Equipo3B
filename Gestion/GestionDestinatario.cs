@@ -42,9 +42,7 @@ namespace Gestion
                 gestionDatos.setearParametro("@Email", destinatario.Email);
                 gestionDatos.setearParametro("@Telefono", destinatario.Telefono);
 
-                gestionDatos.ejecutarAccion();
-
-                gestionDatos.cerrarConexion();
+                gestionDatos.ejecutarAccion();   
 
 
             }
