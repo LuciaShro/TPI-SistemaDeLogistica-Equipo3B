@@ -53,12 +53,14 @@
 
         <div class="form-group">
             <label for="txtInicioJornadaLaboral">Horario Inicio Jornada laboral:</label>
-            <asp:TextBox ID="txtInicioJornadaLaboral" runat="server" CssClass="form-control"></asp:TextBox>
+          <!-- <asp:TextBox ID="txtInicioJornadaLaboral" runat="server" CssClass="form-control"></asp:TextBox> -->
+            <asp:DropDownList ID="ddlInicioJornadaLaboral" runat="server" CssClass="form-control"></asp:DropDownList>
         </div>
 
         <div class="form-group">
             <label for="txtFinJornadaLaboral">Horario Final Jornada Laboral:</label>
-            <asp:TextBox ID="txtFinJornadaLaboral" runat="server" CssClass="form-control"></asp:TextBox>
+            <asp:DropDownList ID="ddlFinJornadaLaboral" runat="server" CssClass="form-control"></asp:DropDownList>
+         <!--   <asp:TextBox ID="txtFinJornadaLaboral" runat="server" CssClass="form-control"></asp:TextBox>-->
         </div>
 
         <div class="form-group">
@@ -76,11 +78,11 @@
             <asp:TextBox ID="txtConfirmarContraseñaTransportista" runat="server" CssClass="form-control"></asp:TextBox>
         </div>
 
-        <!--
+        
         <div class="form-group">
             <label for="txtListaVehiculosDisponibles">Vehiculos disponibles:</label>
             <asp:DropDownList ID="ddlVehiculosDisponibles" runat="server" CssClass="form-control"></asp:DropDownList>
-        </div> -->
+        </div> 
     </div>
 
     <div class="center-button">
