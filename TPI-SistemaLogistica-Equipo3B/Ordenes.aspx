@@ -21,40 +21,22 @@
         </div>
 
         <div class="ordenes-search">
-            <input type="text" placeholder="Buscar..." />
+            <asp:TextBox runat="server" ID="filtro" AutoPostBack="true" placeholder="Buscar..." OnTextChanged="filtro_TextChanged" />
             <span class="search-icon">🔍</span>
         </div>
     </div>
 
-    <%--<asp:Repeater ID="rptOrdenes" runat="server">
-        <ItemTemplate>
-            <div class="orden-item">
-                <div class="orden-fecha">
-                    <span class="mes"><%# Eval("Mes") %></span>
-                    <span class="dia"><%# Eval("Dia") %></span>
-                </div>
-                <div class="orden-info">
-                    <div class="orden-codigo"><%# Eval("Codigo") %></div>
-                    <div class="orden-total">Total of <%# Eval("Total", "{0:C}") %></div>
-                </div>
-                <div class="orden-estado <%# Eval("Estado").ToString().ToLower() %>">
-                    <%# Eval("Estado") %>
-                </div>
-            </div>
-        </ItemTemplate>
-    </asp:Repeater>--%>
-
-    <asp:GridView runat="server" ID="dgvOrdenes"  CssClass="ordenes-grid" AutoGenerateColumns="false">
+    <asp:GridView runat="server" ID="dgvOrdenes" DataKeyNames="idOrdenEnvio" OnSelectedIndexChanged="dgvOrdenes_SelectedIndexChanged"  Class="ordenes-grid table-bordered text-center align-middle" AutoGenerateColumns="false">
         <Columns>
-        <asp:BoundField HeaderText="ID Orden" DataField="idOrdenEnvio"  />
-        <asp:BoundField HeaderText="Cliente" DataField="cliente.Nombre"  />
-        <asp:BoundField HeaderText="Transportista" DataField="transportistaAsignado.Nombre"  />
+        <asp:BoundField HeaderText="ID Orden" DataField="idOrdenEnvio" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
+        <asp:BoundField HeaderText="Cliente" DataField="cliente.Apellido"   />
+        <asp:BoundField HeaderText="Transportista" DataField="idTransportistaAsignado"  />
         <asp:BoundField HeaderText="Estado" DataField="estado.DescripcionEstado" />
         <asp:BoundField HeaderText="Fecha Creación" DataField="FechaCreacion" />
         <asp:BoundField HeaderText="Fecha Envío" DataField="FechaEnvio" />
         <asp:BoundField HeaderText="Fecha Estimada" DataField="FechaEstimadaLlegada" />
         <asp:BoundField HeaderText="Fecha Llegada" DataField="FechaDeLlegada" />
-        <asp:BoundField HeaderText="Cantidad Enviada" DataField="CantidadTotalEnviada" />
+            <asp:CommandField ShowSelectButton="true" SelectText="Detalles" HeaderText="Accion" />
          </Columns>
     </asp:GridView>
 </asp:Content>

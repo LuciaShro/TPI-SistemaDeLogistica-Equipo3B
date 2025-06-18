@@ -136,7 +136,6 @@
         </div>
     </div>
 
-
     <!-- PAQUETE -->
     <div class="card full">
         <h2>Datos del Paquete</h2>

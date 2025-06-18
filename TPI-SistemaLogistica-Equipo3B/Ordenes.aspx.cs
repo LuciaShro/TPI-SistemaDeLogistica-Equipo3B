@@ -21,7 +21,8 @@ namespace TPI_SistemaLogistica_Equipo3B
             //}
 
             GestionOrdenesEnvio ordenes = new GestionOrdenesEnvio();
-            dgvOrdenes.DataSource = ordenes.ListarOrdenes();    
+            Session.Add("listaOrdenes", ordenes.ListarOrdenes());
+            dgvOrdenes.DataSource = Session["listaOrdenes"];    
             dgvOrdenes.DataBind();
 
         }
@@ -29,6 +30,18 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected void btnAñadir_Click(object sender, EventArgs e)
         {
             Response.Redirect("CargarOrden.aspx");
+        }
+
+        protected void dgvOrdenes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var algo = dgvOrdenes.SelectedRow.Cells[0];
+            var id = dgvOrdenes.SelectedDataKey.Value.ToString();
+            Response.Redirect("DetalleDeOrden.aspx?="+ id);
+        }
+
+        protected void filtro_TextChanged(object sender, EventArgs e)
+        {
+            List<Ordenes> lista = (List<Ordenes>)Session["listaOrdenes"];
         }
     }
 }

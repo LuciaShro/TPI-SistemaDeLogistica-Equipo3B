@@ -135,6 +135,7 @@
     <Content Include="Content\Transportistas.css" />
     <Content Include="Content\Vehiculos.css" />
     <Content Include="Content\VerOrden.css" />
+    <Content Include="DetalleDeOrden.aspx" />
     <Content Include="ErrorLogin.aspx" />
     <Content Include="Factura.aspx" />
     <Content Include="Imagenes\mercado-pago-logo.png" />
@@ -250,6 +251,13 @@
     </Compile>
     <Compile Include="CargarOrden.aspx.designer.cs">
       <DependentUpon>CargarOrden.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleDeOrden.aspx.cs">
+      <DependentUpon>DetalleDeOrden.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleDeOrden.aspx.designer.cs">
+      <DependentUpon>DetalleDeOrden.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorLogin.aspx.cs">
       <DependentUpon>ErrorLogin.aspx</DependentUpon>

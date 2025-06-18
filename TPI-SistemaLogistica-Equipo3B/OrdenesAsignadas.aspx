@@ -25,19 +25,18 @@
 
     <asp:Repeater ID="rptOrdenes" runat="server">
         <ItemTemplate>
-            <div class="orden-item">
-                <div class="orden-fecha">
-                    <span class="mes"><%# Eval("Mes") %></span>
-                    <span class="dia"><%# Eval("Dia") %></span>
+            <div class="card mb-3" style="width: 50%;">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Orden#<%#Eval ("idOrdenEnvio")%></strong></h5>
+                    <p class="card-text">Destinatario: <%#Eval ("Destinatario")%></p>
+                    <p class="card-text">Salida: <%#Eval ("ruta.PuntoPartida")%></p>
+                    <p class="card-text">Destino: <%#Eval ("ruta.PuntoDestino")%></p>
+                    <p class="card-text">Fecha envio: <%#Eval ("FechaEnvio")%></p>
+                    <p class="card-text">Fecha estimada llegada: <%#Eval ("FechaEstimadaLlegada")%></p>
+                    <p class="card-text">Estado: <%#Eval ("estado.DescripcionEstado")%></p>
+                    <a href="DetalleDeOrden.aspx?id=<%#Eval ("idOrdenEnvio") %>" class="btn btn-primary">Ver detalle</a>
                 </div>
-                <div class="orden-info">
-                    <div class="orden-codigo"><%# Eval("Codigo") %></div>
-                    <div class="orden-total">Total of <%# Eval("Total", "{0:C}") %></div>
-                </div>
-                <div class="orden-estado <%# Eval("Estado").ToString().ToLower() %>">
-                    <%# Eval("Estado") %>
-                </div>
-            </div>
+</div>
         </ItemTemplate>
     </asp:Repeater>
 </asp:Content>
