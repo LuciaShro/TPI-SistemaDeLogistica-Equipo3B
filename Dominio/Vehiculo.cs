@@ -15,5 +15,7 @@ namespace Dominio
         public float CapacidadCarga { get; set; }
 
         public bool Disponible { get; set; }
+
+        public EstadoVehiculo estadoVehiculo {  set; get; }
     }
 }

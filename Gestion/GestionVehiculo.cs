@@ -72,7 +72,33 @@ namespace Gestion
             }
         }
 
-        public void modificarVehiculo() { }
+        public void modificarVehiculo(Vehiculo vehiculo) 
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("UPDATE Vehiculo SET Patente = @Patente, CapacidadDeCarga = @CapacidadDeCarga, Disponible = @Disponible, IDEstadoVehiculo = @IDEstadoVehiculo WHERE IDVehiculo = @IDVehiculo");
+
+                gestionDatos.setearParametro("@Patente", vehiculo.Patente);
+                gestionDatos.setearParametro("@CapacidadDeCarga", vehiculo.CapacidadCarga);
+                gestionDatos.setearParametro("@Disponible", vehiculo.Disponible);
+                gestionDatos.setearParametro("@IDEstadoVehiculo", vehiculo.estadoVehiculo.IDEstado);
+
+
+                gestionDatos.ejecutarAccion();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
 
         public void eliminarVehiculo() { }
 
@@ -115,6 +141,40 @@ namespace Gestion
         
         }
 
-        public bool buscarVehiculo() { return false; }
+        public Vehiculo buscarVehiculo(string Patente) 
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("SELECT Patente, CapacidadDeCarga, Disponible, IDEstadoVehiculo FROM Vehiculo WHERE Patente = @Patente");
+                gestionDatos.setearParametro("@Patente", Patente);
+                gestionDatos.ejecutarLectura();
+
+                while (gestionDatos.Lector.Read())
+                {
+                    Vehiculo v = new Vehiculo();
+                    v.IDVehiculo = (int)gestionDatos.Lector["IDVehiculo"];
+                    v.Patente = (string)gestionDatos.Lector["Patente"];
+                    v.CapacidadDeCarga = (int)gestionDatos.Lector["CapacidadDeCarga"];
+                    v.Disponible = (bool)gestionDatos.Lector["Disponible"];
+                    v.IDEstadoVehiculo = (int)gestionDatos.Lector["IDEstadoVehiculo"];
+
+                    return v;
+                }
+
+                throw new Exception("Vehiculo no encontrado con esa patente.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método buscarVehiculo: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
     }
 }
