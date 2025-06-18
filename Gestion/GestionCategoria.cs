@@ -116,12 +116,12 @@ namespace Gestion
                     return cat;
                 }
 
-                throw new Exception("Vehiculo no encontrado con esa patente.");
+                throw new Exception("Categoria no encontrada con ese Nombre.");
             }
             catch (Exception ex)
             {
 
-                throw new Exception("Error en método buscarVehiculo: " + ex.Message, ex);
+                throw new Exception("Error en método buscarCategoria: " + ex.Message, ex);
             }
 
             finally
