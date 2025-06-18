@@ -17,7 +17,7 @@ namespace Gestion
             try
             {
                 
-                datos.setearConsulta("insert into Usuario (NombreUser, Contraseña, Email,TipoUsuario) OUTPUT INSERTED.IDUsuario values (@NombreUser, @Contraseña, @Email, 1)");
+                datos.setearConsulta("insert into Usuario (NombreUser, Contraseña, Email,TipoUsuario, Activo) OUTPUT INSERTED.IDUsuario values (@NombreUser, @Contraseña, @Email, 1, 1)");
                 datos.setearParametro("@NombreUser", cliente.Usuario.User);
                 datos.setearParametro("@Contraseña", cliente.Usuario.Password);
                 datos.setearParametro("@Email", cliente.Usuario.Email);

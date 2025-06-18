@@ -38,6 +38,12 @@ namespace TPI_SistemaLogistica_Equipo3B
             {
                 vehiculo.Patente = txtPatente.Text;
                 vehiculo.CapacidadCarga = float.Parse(txtCapacidadCarga.Text); 
+
+                if(vehiculo.CapacidadCarga <= 0)
+                {
+                    lblMensajePantalla.Text = "La capacidad de carga debe ser un número mayor a 0";
+                    return;
+                }
             }
             catch (FormatException)
             {

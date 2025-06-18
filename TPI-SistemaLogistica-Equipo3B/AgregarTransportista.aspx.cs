@@ -14,23 +14,36 @@ namespace TPI_SistemaLogistica_Equipo3B
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GestionVehiculo vehiculo = new GestionVehiculo();
-            ddlVehiculosDisponibles.DataSource = vehiculo.listarVehiculosSinAsignar();
-           
-            ddlVehiculosDisponibles.DataTextField = "Patente"; // Mostrar esto al usuario
-            ddlVehiculosDisponibles.DataValueField = "IDVehiculo"; // Valor real del ítem
-            ddlVehiculosDisponibles.DataBind();
-            ddlVehiculosDisponibles.Items.Insert(0, new ListItem("-- Seleccionar vehículo --", ""));
+            if (!IsPostBack)
+            {
+                GestionVehiculo vehiculo = new GestionVehiculo();
+                ddlVehiculosDisponibles.DataSource = vehiculo.listarVehiculosSinAsignar();
+                ddlVehiculosDisponibles.DataTextField = "Patente"; // esto muestra al usuario
+                ddlVehiculosDisponibles.DataValueField = "idVehiculo"; // esto es lo que se guarda en la bdd
+                ddlVehiculosDisponibles.DataBind();
+                ddlVehiculosDisponibles.Items.Insert(0, new ListItem("-- Seleccionar vehículo --", ""));
 
-            // desplegable en jornada laboral inicio
-            ddlInicioJornadaLaboral.Items.Add("-- Seleccionar un horario --");
-            ddlInicioJornadaLaboral.Items.Add("8:00");
-            ddlInicioJornadaLaboral.Items.Add("14:00");
 
-            // desplegable en jornada laboral fin
-            ddlFinJornadaLaboral.Items.Add("-- Seleccionar un horario --");
-            ddlFinJornadaLaboral.Items.Add("14:00");
-            ddlFinJornadaLaboral.Items.Add("20:00");
+                // desplegable en jornada laboral inicio
+                ddlInicioJornadaLaboral.Items.Add("-- Seleccionar un horario --");
+                ddlInicioJornadaLaboral.Items.Add("8:00");
+                ddlInicioJornadaLaboral.Items.Add("14:00");
+
+                // desplegable en jornada laboral fin
+                ddlFinJornadaLaboral.Items.Add("-- Seleccionar un horario --");
+                ddlFinJornadaLaboral.Items.Add("14:00");
+                ddlFinJornadaLaboral.Items.Add("20:00");
+
+                // desplegable en licencia
+
+                ddlLicencia.Items.Add("C");
+                ddlLicencia.Items.Add("D1");
+                ddlLicencia.Items.Add("D2");
+                ddlLicencia.Items.Add("D3");
+                ddlLicencia.Items.Add("E1");
+                ddlLicencia.Items.Add("E2");
+
+            }
 
 
 
@@ -69,13 +82,14 @@ namespace TPI_SistemaLogistica_Equipo3B
                 transportista.Apellido = txtApellidoTranportista.Text;
                 transportista.CuilTransportista = long.Parse(txtCuilTransportista.Text);
                 transportista.Telefono = txtTelefonoTransportista.Text;
-                transportista.Licencia = txtLicenciaTransportista.Text;
-                transportista.HoraInicio = TimeSpan.Parse(txtInicioJornadaLaboral.Text);
-                transportista.HoraFin = TimeSpan.Parse(txtFinJornadaLaboral.Text);
+                transportista.Licencia = ddlLicencia.SelectedValue;
+                transportista.HoraInicio = TimeSpan.Parse(ddlInicioJornadaLaboral.SelectedValue);
+                transportista.HoraFin = TimeSpan.Parse(ddlFinJornadaLaboral.SelectedValue);
                 transportista.usuario.User = txtUsuarioTransportista.Text;
                 transportista.usuario.Password = txtContraseñaTransportista.Text;
                 transportista.usuario.Email = txtEmailTransportista.Text;
                 
+
                 if (Session["RutaImagen"] != null)
                 {
                     transportista.Imagen = Session["RutaImagen"].ToString();
@@ -90,11 +104,31 @@ namespace TPI_SistemaLogistica_Equipo3B
                 {
                     lblMensajeEnPantalla.Text = "Los cambos deben estar todos completos";
                     return;
-                } 
-                
-                if(txtContraseñaTransportista.Text != txtConfirmarContraseñaTransportista.Text)
+                }
+
+                if (string.IsNullOrEmpty(ddlInicioJornadaLaboral.SelectedValue) || string.IsNullOrEmpty(ddlFinJornadaLaboral.SelectedValue))
+                {
+                    lblMensajeEnPantalla.Text= "Debe seleccionar las horas de inicio y fin de jornada.";
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(ddlLicencia.SelectedValue))
+                {
+                    lblMensajeEnPantalla.Text = "Debe seleccionar una Licencia";
+                    return;
+                }
+
+                if (txtContraseñaTransportista.Text != txtConfirmarContraseñaTransportista.Text)
                 {
                     lblMensajeEnPantalla.Text = "Las contraseñas no coinciden";
+                    return;
+                }
+
+               
+
+                if (transportista.HoraInicio >= transportista.HoraFin)
+                {
+                    lblMensajeEnPantalla.Text = "La hora de inicio debe ser menor a la hora de fin de la jornada.";
                     return;
                 }
 
@@ -107,6 +141,16 @@ namespace TPI_SistemaLogistica_Equipo3B
                 if (usuarioGestion.userExistente(transportista.usuario.User))
                 {
                     lblMensajeEnPantalla.Text = "Ya se encuentra registrado un Transportista con el usuario indicado. Intentar nuevamente";
+                    return;
+                }
+
+                if (int.TryParse(ddlVehiculosDisponibles.SelectedValue, out int idVehiculoSeleccionado))
+                {
+                    transportista.Vehiculo.idVehiculo = idVehiculoSeleccionado;
+                }
+                else
+                {
+                    lblMensajeEnPantalla.Text = "Debe seleccionar un vehículo válido.";
                     return;
                 }
 

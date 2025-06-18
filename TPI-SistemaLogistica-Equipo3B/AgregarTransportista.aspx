@@ -48,7 +48,8 @@
 
         <div class="form-group">
             <label for="txtLicenciaTransportista">Licencia:</label>
-            <asp:TextBox ID="txtLicenciaTransportista" runat="server" CssClass="form-control" />
+         <!--   <asp:TextBox ID="txtLicenciaTransportista" runat="server" CssClass="form-control" /> -->
+            <asp:DropDownList ID="ddlLicencia" runat="server" CssClass="form-control"></asp:DropDownList>
         </div>
 
         <div class="form-group">

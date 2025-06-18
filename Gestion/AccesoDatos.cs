@@ -149,6 +149,26 @@ namespace Gestion
             }
             }
 
+            public object obtenerValorSinCerrarConexion()
+            {
+            comando.Connection = conexion;
+
+            try
+            {
+                if (conexion.State != ConnectionState.Open)
+                    conexion.Open();
+
+                return comando.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en obtenerValor: " + ex.Message);
+                throw;
+            }
+            
+            }
+
+
 
 
     }

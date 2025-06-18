@@ -96,6 +96,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtLicenciaTransportista;
 
         /// <summary>
+        /// Control ddlLicencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLicencia;
+
+        /// <summary>
         /// Control txtInicioJornadaLaboral.
         /// </summary>
         /// <remarks>
