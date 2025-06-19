@@ -116,7 +116,27 @@ namespace Gestion
             }
         }
 
-        public void eliminarDestinatario() { }
+        public void eliminarDestinatario(long cuil)
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.abrirConexion();
+                gestionDatos.setearConsulta("UPDATE Destinatarios SET Activo = 0 WHERE Cuil = @Cuil");
+                gestionDatos.setearParametro("@Cuil", cuil);
+                gestionDatos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
 
         public Destinatario buscarDestinatario(long Cuil)
         {

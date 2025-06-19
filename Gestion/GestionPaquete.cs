@@ -75,7 +75,7 @@ namespace Gestion
             }
         }
 
-        public void eliminarPaquete() { }
+        public void eliminarPaquete() { } ///NO TIENE SENTIDO
 
         public List<Paquete> listarPaquetes() 
         {

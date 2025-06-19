@@ -59,8 +59,26 @@ namespace Gestion
             }
         }
 
-        public void EliminarCategoria () 
+        public void EliminarCategoria (string nombre) 
         {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.abrirConexion();
+                gestionDatos.setearConsulta("UPDATE Categoria SET Activo = 0 WHERE Nombre = @Nombre");
+                gestionDatos.setearParametro("@Nombre", nombre);
+                gestionDatos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
         }
 
         public List<Categoria> ListarCategorias() 

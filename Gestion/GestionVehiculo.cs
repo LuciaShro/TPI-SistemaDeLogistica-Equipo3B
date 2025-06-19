@@ -100,7 +100,27 @@ namespace Gestion
             }
         }
 
-        public void eliminarVehiculo() { }
+        public void eliminarVehiculo(string Patente) 
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.abrirConexion();
+                gestionDatos.setearConsulta("UPDATE Vehiculo SET Activo = 0 WHERE Patente = @Patente");
+                gestionDatos.setearParametro("@Patente", Patente);
+                gestionDatos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
 
         public List<Vehiculo> listarVehiculosSinAsignar() {
             AccesoDatos datos = new AccesoDatos();
