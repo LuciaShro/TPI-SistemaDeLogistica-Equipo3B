@@ -17,11 +17,12 @@ namespace Gestion
             {
 
                 gestionDatos.setearConsulta("INSERT INTO DetalleOrdenesEnvio (IDOrden, IDPaquete, Total) " +
-                                            "VALUE (@IDOrden, @IDPaquete, @Total)");
+                                            "VALUE (@IDOrden, @IDPaquete, @Total, @Activo)");
 
                 gestionDatos.setearParametro("@IDOrden", detalleOrden.Orden);
                 gestionDatos.setearParametro("@IDPaquete", detalleOrden.paquete.idPaquete);
                 gestionDatos.setearParametro("@Total", detalleOrden.Total);
+                gestionDatos.setearParametro("@Activo", 1);
 
                 gestionDatos.cerrarConexion();
             }

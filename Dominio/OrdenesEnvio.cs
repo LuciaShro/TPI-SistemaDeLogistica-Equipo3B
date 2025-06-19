@@ -28,6 +28,8 @@ namespace Dominio
 
         public EstadoOrdenEnvio estado { get; set; }
 
+        public bool Activo { get; set; }
+
         //public int CantidadTotalEnviada {  get; set; } //SE REPITE EN DETALLE
 
 

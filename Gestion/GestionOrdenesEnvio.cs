@@ -46,8 +46,8 @@ namespace Gestion
 
 
 
-                gestionDatos.setearConsulta("INSERT INTO OrdenesEnvio (IDUsuario, IDCliente, IDTransportista, IDRuta, IDEstadoOrdenEnvio, IDDestinatario, FechaCreacion, FechaEnvio, FechaEstimadaLlegada, FechaLlegada) " +
-                                    "OUTPUT INSERTED.IDOrden " + "VALUES (@IDUsuario, @IDCliente, @IDTransportista, @IDRuta, @IDEstadoOrdenEnvio, @IDDestinatario, @FechaCreacion, @FechaEnvio, @FechaEstimadaLlegada, @FechaLlegada)");
+                gestionDatos.setearConsulta("INSERT INTO OrdenesEnvio (IDUsuario, IDCliente, IDTransportista, IDRuta, IDEstadoOrdenEnvio, IDDestinatario, FechaCreacion, FechaEnvio, FechaEstimadaLlegada, FechaLlegada, Activo) " +
+                                    "OUTPUT INSERTED.IDOrden " + "VALUES (@IDUsuario, @IDCliente, @IDTransportista, @IDRuta, @IDEstadoOrdenEnvio, @IDDestinatario, @FechaCreacion, @FechaEnvio, @FechaEstimadaLlegada, @FechaLlegada, @Activo)");
 
                 gestionDatos.setearParametro("@IDUsuario", idUsuario); 
                 gestionDatos.setearParametro("@IDCliente", idCliente);
@@ -59,6 +59,7 @@ namespace Gestion
                 gestionDatos.setearParametro("@FechaEnvio", ordenEnvio.FechaEnvio);
                 gestionDatos.setearParametro("@FechaEstimadaLlegada", ordenEnvio.FechaEstimadaLlegada);
                 gestionDatos.setearParametro("@FechaLlegada", ordenEnvio.FechaDeLlegada);
+                gestionDatos.setearParametro("@Activo", 1);
 
                 int idOrden = Convert.ToInt32(gestionDatos.obtenerValor());
                 ordenEnvio.idOrdenEnvio = idOrden;
@@ -69,8 +70,8 @@ namespace Gestion
 
                 int idPaquete = gestionPaquete.agregarPaquete(detalleOrden.paquete);
 
-                gestionDatos.setearConsulta("INSERT INTO DetalleOrdenesEnvio (IDOrden, IDPaquete, Total) " +
-                                              "VALUES (@IDOrden, @IDPaquete, @Total)");
+                gestionDatos.setearConsulta("INSERT INTO DetalleOrdenesEnvio (IDOrden, IDPaquete, Total, Activo) " +
+                                              "VALUES (@IDOrden, @IDPaquete, @Total, 1)");
 
                 gestionDatos.setearParametro("@IDOrden", detalleOrden.Orden.idOrdenEnvio);
                 gestionDatos.setearParametro("@IDPaquete", idPaquete);
