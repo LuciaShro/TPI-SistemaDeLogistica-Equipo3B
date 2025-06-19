@@ -147,7 +147,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             cliente.Telefono = txtTelefonoOrigen.Text;
             cliente.CUIL = long.Parse(txtCUILOrigen.Text);
             cliente.Direccion.Calle = txtCalleOrigen.Text;
-            cliente.Direccion.Numero = int.Parse(txtNumeroOrigen.Text);
+            cliente.Direccion.NumeroCalle = int.Parse(txtNumeroOrigen.Text);
             cliente.Direccion.CodigoPostal = txtCPOrigen.Text;
             cliente.Direccion.Ciudad = txtCiudadOrigen.Text;
             cliente.Direccion.Provincia = txtProvinciaOrigen.Text;
@@ -160,7 +160,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             destinatario.Email = txtEmailDestino.Text;
             destinatario.CUIL = long.Parse(txtCUILDestino.Text);
             destinatario.Direccion.Calle = txtCalleDestino.Text;
-            destinatario.Direccion.Numero = int.Parse(txtNumeroDestino.Text);
+            destinatario.Direccion.NumeroCalle = int.Parse(txtNumeroDestino.Text);
             destinatario.Direccion.CodigoPostal = txtCPDestino.Text;
             destinatario.Direccion.Ciudad = txtCiudadDestino.Text;
             destinatario.Direccion.Provincia = txtProvinciaDesino.Text;
@@ -188,8 +188,8 @@ namespace TPI_SistemaLogistica_Equipo3B
             ordenesEnvio.estado = new EstadoOrdenEnvio();
 
             //SETEAR RUTAS EN TABLA RUTAS
-            ordenesEnvio.ruta.PuntoPartida = cliente.Direccion.Provincia + cliente.Direccion.Ciudad + cliente.Direccion.Calle + cliente.Direccion.Numero;
-            ordenesEnvio.ruta.PuntoDestino = destinatario.Direccion.Provincia + destinatario.Direccion.Ciudad + destinatario.Direccion.Calle + destinatario.Direccion.Numero;
+            ordenesEnvio.ruta.PuntoPartida = cliente.Direccion.Provincia + cliente.Direccion.Ciudad + cliente.Direccion.Calle + cliente.Direccion.NumeroCalle;
+            ordenesEnvio.ruta.PuntoDestino = destinatario.Direccion.Provincia + destinatario.Direccion.Ciudad + destinatario.Direccion.Calle + destinatario.Direccion.NumeroCalle;
 
             //SETEAR EN TABLA ORDEN
 

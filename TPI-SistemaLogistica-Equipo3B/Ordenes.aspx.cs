@@ -36,12 +36,18 @@ namespace TPI_SistemaLogistica_Equipo3B
         {
             var algo = dgvOrdenes.SelectedRow.Cells[0];
             var id = dgvOrdenes.SelectedDataKey.Value.ToString();
-            Response.Redirect("DetalleDeOrden.aspx?="+ id);
+            Response.Redirect("DetalleDeOrden.aspx?OrdenId="+ id);
         }
 
         protected void filtro_TextChanged(object sender, EventArgs e)
         {
             List<Ordenes> lista = (List<Ordenes>)Session["listaOrdenes"];
+        }
+
+        protected void dgvOrdenes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvOrdenes.PageIndex= e.NewPageIndex;
+            dgvOrdenes.DataBind();
         }
     }
 }

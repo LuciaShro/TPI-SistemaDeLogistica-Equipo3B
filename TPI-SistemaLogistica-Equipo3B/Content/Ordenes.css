@@ -157,13 +157,15 @@
     background-color: #2c3e50;
     color: white;
     padding: 12px;
-    text-align: left;
+    text-align: center;
 }
 
-.ordenes-grid td {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-}
+    .ordenes-grid td {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+
 
 .ordenes-grid tr:hover {
     background-color: #f1f1f1;

@@ -23,7 +23,7 @@ namespace Gestion
                 gestionDatos.setearParametro("@CodigoPostal", destinatario.Direccion.CodigoPostal);
                 gestionDatos.setearParametro("@Provincia", destinatario.Direccion.Provincia);
                 gestionDatos.setearParametro("@Piso", destinatario.Direccion.Piso);
-                gestionDatos.setearParametro("@Numero", destinatario.Direccion.Numero);
+                gestionDatos.setearParametro("@Numero", destinatario.Direccion.NumeroCalle);
                 gestionDatos.setearParametro("@Ciudad", destinatario.Direccion.Ciudad);
 
                 int idDireccion = Convert.ToInt32(gestionDatos.obtenerValor());
