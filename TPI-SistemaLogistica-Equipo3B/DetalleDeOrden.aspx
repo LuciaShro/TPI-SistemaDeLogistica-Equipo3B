@@ -89,9 +89,9 @@
 
         <!-- PAQUETE -->
         <h4>Estado Envio</h4>
-           <div class="form-group">
-        <label>Estado:</label>
-        <asp:TextBox ID="TextEstadoEnvio" runat="server" CssClass="form-control" />
+           <div class="col">
+               <asp:DropDownList runat="server" ID="dllEstado" CssClass="form-select">
+               </asp:DropDownList>
            </div>
 
         <!-- ORDER ITEMS -->
@@ -112,5 +112,15 @@
 </div>
 
     </div>
+    <div class="card p-5 w-50 mx-auto mt-3">
+    <p>Modificar datos. Esta opción es irreversible.</p>
+    <asp:Button ID="btnModificar" runat="server" CssClass="btn btn-outline-primary" Text="Modificar orden" OnClick="btnModificar_Click" />
+</div>
+
+<div class="card p-5 w-50 mx-auto mt-3">
+    <p>Eliminar cuenta y todos sus datos. Esta opción es irreversible.</p>
+    <asp:Button ID="btnEliminar" runat="server" CssClass="btn btn-outline-danger" Text="Eliminar orden" OnClick="btnEliminar_Click" />
+</div>
+
 </asp:Content>
 
