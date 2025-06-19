@@ -42,7 +42,7 @@ namespace Gestion
                 gestionDatos.setearParametro("@Email", destinatario.Email);
                 gestionDatos.setearParametro("@Telefono", destinatario.Telefono);
 
-                gestionDatos.ejecutarAccion();   
+                gestionDatos.ejecutarAccion();
 
 
             }
@@ -87,13 +87,109 @@ namespace Gestion
             }
         }
 
-        public void modificarDestinatario() { }
+        public void modificarDestinatario(Destinatario destinatario)
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("UPDATE Destinatarios SET IDDirección = @IDDirección, Cuil = @Cuil, Nombre = @Nombre, Apellido = @Apellido, Telefono = @Telefono, Email = @Email WHERE Cuil = @Cuil");
+
+                gestionDatos.setearParametro("@IDDIreccion", destinatario.Direccion.idDireccion);
+                gestionDatos.setearParametro("@Cuil", destinatario.CUIL);
+                gestionDatos.setearParametro("@Nombre", destinatario.Nombre);
+                gestionDatos.setearParametro("@Apellido", destinatario.Apellido);
+                gestionDatos.setearParametro("@Telefono", destinatario.Telefono);
+                gestionDatos.setearParametro("@Email", destinatario.Email);
+
+                gestionDatos.ejecutarAccion();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
 
         public void eliminarDestinatario() { }
 
-        public void buscarDestinatario() { }
+        public Destinatario buscarDestinatario(long Cuil)
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
 
-        public void listarDestinatario() { }
+            try
+            {
+                gestionDatos.setearConsulta("SELECT IDDestinatario, Cuil, Nombre, Apellido, Telefono, Email FROM Destinatarios WHERE Cuil = @Cuil");
+                gestionDatos.setearParametro("@Cuil", Cuil);
+                gestionDatos.ejecutarLectura();
+
+                while (gestionDatos.Lector.Read())
+                {
+                    Destinatario destinatario = new Destinatario();
+                    destinatario.idDestinatario = (int)gestionDatos.Lector["IDDestinatario"];
+                    destinatario.CUIL = (long)gestionDatos.Lector["Cuil"];
+                    destinatario.Nombre = gestionDatos.Lector["Nombre"].ToString();
+                    destinatario.Apellido = gestionDatos.Lector["Apellido"].ToString();
+                    destinatario.Telefono = gestionDatos.Lector["Telefono"].ToString();
+                    destinatario.Email = gestionDatos.Lector["Email"].ToString();
+
+                    return destinatario;
+                }
+
+                throw new Exception("Destinatario no encontrado con esa Cuil.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método buscarDestinatario: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
+
+        public List<Destinatario> listarDestinatario() 
+        {
+            List<Destinatario> lista = new List<Destinatario>();
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("SELECT IDDestinatario, Cuil, Nombre, Apellido, Telefono, Email FROM Destinatarios");
+                gestionDatos.ejecutarLectura();
+
+                while (gestionDatos.Lector.Read())
+                {
+                    Destinatario destinatario = new Destinatario();
+                    destinatario.idDestinatario = (int)gestionDatos.Lector["IDDestinatario"];
+                    destinatario.CUIL = (long)gestionDatos.Lector["Cuil"];
+                    destinatario.Nombre = gestionDatos.Lector["Nombre"].ToString();
+                    destinatario.Apellido = gestionDatos.Lector["Apellido"].ToString();
+                    destinatario.Telefono = gestionDatos.Lector["Telefono"].ToString();
+                    destinatario.Email = gestionDatos.Lector["Email"].ToString();
+
+
+                    lista.Add(destinatario);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
 
     }
 }

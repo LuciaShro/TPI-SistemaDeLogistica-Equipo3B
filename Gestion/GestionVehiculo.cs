@@ -154,11 +154,11 @@ namespace Gestion
                 while (gestionDatos.Lector.Read())
                 {
                     Vehiculo v = new Vehiculo();
-                    v.IDVehiculo = (int)gestionDatos.Lector["IDVehiculo"];
+                    v.idVehiculo = (int)gestionDatos.Lector["IDVehiculo"];
                     v.Patente = (string)gestionDatos.Lector["Patente"];
-                    v.CapacidadDeCarga = (int)gestionDatos.Lector["CapacidadDeCarga"];
+                    v.CapacidadCarga = (int)gestionDatos.Lector["CapacidadDeCarga"];
                     v.Disponible = (bool)gestionDatos.Lector["Disponible"];
-                    v.IDEstadoVehiculo = (int)gestionDatos.Lector["IDEstadoVehiculo"];
+                    v.estadoVehiculo.IDEstado = (int)gestionDatos.Lector["IDEstadoVehiculo"];
 
                     return v;
                 }

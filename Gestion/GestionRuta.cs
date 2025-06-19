@@ -94,6 +94,6 @@ namespace Gestion
             }
         }
 
-        public void asignarRuta() { }
+        public void EliminarRuta() { }
     }
 }
