@@ -25,6 +25,8 @@ namespace Dominio
 
         public TipoUsuario tipoUsuario {  get; set; }
 
+        public bool Activo { get; set; }
+
         public Usuario (string username, string password)
         {
 

@@ -127,6 +127,12 @@ namespace Gestion
          return Comando.ExecuteScalar();
          } */
 
+            public void setearProcedimiento(string sp)
+            {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+            }
+
             public object obtenerValor()
             {
             comando.Connection = conexion; 
