@@ -156,16 +156,116 @@ namespace Gestion
             return null;
 
         }
-        public void agregarUsuario () { }
+        public void agregarUsuario (Usuario usuario) {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("storedAltaUsuario");
+                datos.setearParametro("@NombreUser", usuario.User);
+                datos.setearParametro("@Contraseña", usuario.Password);
+                datos.setearParametro("@Email", usuario.Email);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        
+        }
 
         public void modificarUsuario () { }
 
-        public void modificarContraseña () { }
+        public void modificarContraseña (Usuario usuario) {
+            AccesoDatos datos = new AccesoDatos();
+            
 
-        public void eliminarUsuario () { }
+            try
+            {
+                datos.setearConsulta("update Usuario set Contraseña = @Contraseña where IDUsuario = @IDUsuario");
+                datos.setearParametro("@IDUsuario", usuario.idUsuario);
+                datos.setearParametro("@Contraseña", usuario.Password);
+
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error al eliminar usuario", ex);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        
+        }
+
+        public void eliminarUsuario () {
+            AccesoDatos datos = new AccesoDatos();
+            Usuario usuario = new Usuario();
+
+            try
+            {
+                datos.setearConsulta("delete from Usuario where IDUsuario=@IDUsuario");
+                datos.setearParametro("@IDUsuario", usuario.idUsuario);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        
+        }
 
         public bool buscarUsuario (int id) { return false; }
 
-        public void listarUsuarios () { }
+        public List<Usuario> listarUsuarios () {
+            AccesoDatos datos = new AccesoDatos();
+            List<Usuario> lista = new List<Usuario>();
+
+            try
+            {
+                datos.setearConsulta("select NombreUser, Email, Activo from Usuario");
+                datos.ejecutarLectura();
+
+                
+
+                while (datos.Lector.Read())
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.User = datos.Lector["NombreUser"].ToString();
+                    usuario.Email = datos.Lector["Email"].ToString();
+                    usuario.Activo = Convert.ToBoolean(datos.Lector["Activo"]);
+                    lista.Add(new Usuario());
+                }
+
+                    return lista;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        
+        
+        }
     }
 }
