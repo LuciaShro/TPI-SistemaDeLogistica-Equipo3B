@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link href="Content/CargarOrden.css" rel="stylesheet" />
+    <script src="Content/CargarOrden.js" defer></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="InicioContent" runat="server">
     <h1>Cargar orden</h1>
@@ -64,10 +65,10 @@
             <asp:TextBox ID="txtPisoOrigen" runat="server" CssClass="form-control" />
         </div>
 
-        <div class="form-group">
+       <%-- <div class="form-group">
             <label for="txtInfoOrigen">Info Adicional:</label>
             <asp:TextBox ID="txtInfoOrigen" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control" />
-        </div>
+        </div>--%>
     </div>
 
 
@@ -130,10 +131,11 @@
             <asp:TextBox ID="txtPisoDestino" runat="server" CssClass="form-control" />
         </div>
 
-        <div class="form-group">
+        <%--<div class="form-group">
             <label for="txtInfoDestino">Info Adicional:</label>
             <asp:TextBox ID="txtInfoDestino" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control" />
-        </div>
+        </div>--%>
+
     </div>
 
     <!-- PAQUETE -->
@@ -170,9 +172,11 @@
             <asp:TextBox ID="txtValor" runat="server" CssClass="form-control" />
         </div>
     </div>
+    <asp:Label ID="lblMensajePaquete" runat="server" ForeColor="Red"></asp:Label>
+
 
     <div class="center-button">
-        <asp:Button ID="btnCotizar" runat="server" Text="COTIZAR ENVÍO" CssClass="btn-principal" OnClick="btnCotizar_Click" />
+        <asp:Button ID="btnCotizar" runat="server" Text="COTIZAR ENVÍO" CssClass="btn-principal" OnClientClick="return validarPaquete();" OnClick="btnCotizar_Click" />
     </div>
 
     <!-- ORDER ITEMS -->
@@ -193,8 +197,8 @@
     </div>
 
     <div class="center-button">
-        <asp:Button ID="btnCargar" runat="server" Text="CARGAR ORDEN" CssClass="btn-principal" OnClick="btnCargar_Click" />
-        <asp:Label ID="lblMensaje" runat="server" />
+        <asp:Button ID="btnCargar" runat="server" Text="CARGAR ORDEN" CssClass="btn-principal" OnClientClick="return validarDestinatario();" OnClick="btnCargar_Click" />
+        <asp:Label ID="lblMensajeDestinatario" runat="server" />
     </div>
 
 </asp:Content>

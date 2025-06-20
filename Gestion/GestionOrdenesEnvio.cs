@@ -213,8 +213,5 @@ namespace Gestion
 
         public bool buscarOrdenEnvio() { return false; }
 
-        public void CalcularCantidadEnviada() { }
-
-        public float CotizarEnvio() { return 0f; }
     }
 }
