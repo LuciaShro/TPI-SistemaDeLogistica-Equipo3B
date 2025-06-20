@@ -17,12 +17,12 @@
 
         <div class="form-group">
             <label for="txtApellidoOrigen">Apellido:</label>
-            <asp:TextBox ID="txtApellidoOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtApellidoOrigen" runat="server" CssClass="form-control"  ReadOnly="true" />
         </div>
 
         <div class="form-group">
             <label for="txtCUILOrigen">CUIL:</label>
-            <asp:TextBox ID="txtCUILOrigen" runat="server" CssClass="form-control"   />
+            <asp:TextBox ID="txtCUILOrigen" runat="server" CssClass="form-control"  ReadOnly="true"  />
         </div>
 
         <div class="form-group">
