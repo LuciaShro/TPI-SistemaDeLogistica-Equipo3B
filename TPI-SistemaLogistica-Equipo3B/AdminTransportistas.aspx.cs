@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
+using Gestion;
 
 namespace TPI_SistemaLogistica_Equipo3B
 {
@@ -16,7 +18,18 @@ namespace TPI_SistemaLogistica_Equipo3B
 
         protected void btnDarBajaTransportista_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Transportista transportista = new Transportista();
+                GestionTransportista gestionTransportista = new GestionTransportista();
 
+                
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex);
+            }
         }
     }
 }

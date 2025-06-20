@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+<<<<<<< HEAD
+using Dominio;
+=======
+>>>>>>> 1ea686079d71ef126950945915d8ae0cb7d8178d
 using Gestion;
 
 namespace TPI_SistemaLogistica_Equipo3B
@@ -26,6 +30,22 @@ namespace TPI_SistemaLogistica_Equipo3B
             Response.Redirect("AgregarTransportista.aspx");
         }
 
+<<<<<<< HEAD
+        protected void btnTodos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnActivo_Click(object sender, EventArgs e)
+        {
+            GestionTransportista gestionTransportista = new GestionTransportista();
+            
+        }
+
+        protected void btnInactivo_Click(object sender, EventArgs e)
+        {
+
+=======
         protected void dgvTransportistas_SelectedIndexChanged(object sender, EventArgs e)
         {
             var algo = dgvTransportistas.SelectedRow.Cells[0];
@@ -38,6 +58,7 @@ namespace TPI_SistemaLogistica_Equipo3B
         {
             dgvTransportistas.PageIndex = e.NewPageIndex;
             dgvTransportistas.DataBind();
+>>>>>>> 1ea686079d71ef126950945915d8ae0cb7d8178d
         }
     }
 }
