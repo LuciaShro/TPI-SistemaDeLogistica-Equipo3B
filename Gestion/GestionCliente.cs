@@ -189,7 +189,52 @@ namespace Gestion
             }
         }
 
-        public void modificarCliente () { }
+        //public void modificarCliente (Cliente cliente, Direccion direccion) 
+        //{
+        //    AccesoDatos gestionDatos = new AccesoDatos();
+
+        //    try
+        //    {
+        //        gestionDatos.setearConsulta("UPDATE Usuario SET Email = @Email WHERE IDUsuario = @IDUsuario");
+
+        //        gestionDatos.setearParametro("@Email", cliente.Usuario.Email);
+        //        int idUsuario = Convert.ToInt32(gestionDatos.obtenerValor());
+        //        gestionDatos.cerrarConexion();
+
+
+        //        gestionDatos.setearConsulta("UPDATE Direccion SET Calle = @Calle, CodigoPostal = @CodigoPostal, Provincia = @Provincia, Ciudad = @Ciudad, Numero = @Numero, Piso = @Piso WHERE IDDireccion = @IDDireccion");
+
+        //        gestionDatos.setearParametro("@Calle", cliente.Direccion.Calle);
+        //        gestionDatos.setearParametro("@CodigoPostal", cliente.Direccion.CodigoPostal);
+        //        gestionDatos.setearParametro("@Provincia", cliente.Direccion.Provincia );
+        //        gestionDatos.setearParametro("@Ciudad", cliente.Direccion.Ciudad);
+        //        gestionDatos.setearParametro("@Numero", cliente.Direccion.NumeroCalle);
+        //        gestionDatos.setearParametro("@Piso", cliente.Direccion.Piso);
+        //        int idDireccion = Convert.ToInt32(gestionDatos.obtenerValor());
+        //        gestionDatos.cerrarConexion();
+
+
+        //        gestionDatos.setearConsulta("UPDATE Destinatarios SET IDDirección = @IDDirección, Cuil = @Cuil, Nombre = @Nombre, Apellido = @Apellido, Telefono = @Telefono, Email = @Email WHERE Cuil = @Cuil");
+
+        //        gestionDatos.setearParametro("@IDDIreccion", idDireccion);
+        //        gestionDatos.setearParametro("@Cuil", cliente.CUIL);
+        //        gestionDatos.setearParametro("@Nombre", cliente.Nombre);
+        //        gestionDatos.setearParametro("@Apellido", cliente.Apellido);
+        //        gestionDatos.setearParametro("@Telefono", cliente.Telefono);
+
+        //        gestionDatos.ejecutarAccion();
+
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        throw;
+        //    }
+        //    finally
+        //    {
+        //        gestionDatos.cerrarConexion();
+        //    }
+        //}
 
         public void eliminacionFisicaCliente(int idCliente) {
             AccesoDatos datos = new AccesoDatos ();

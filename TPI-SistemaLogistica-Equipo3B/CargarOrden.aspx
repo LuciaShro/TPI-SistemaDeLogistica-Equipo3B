@@ -12,7 +12,7 @@
 
         <div class="form-group">
             <label for="txtNombreOrigen">Nombre: </label>
-            <asp:TextBox ID="txtNombreOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtNombreOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
         <div class="form-group">
@@ -22,47 +22,47 @@
 
         <div class="form-group">
             <label for="txtCUILOrigen">CUIL:</label>
-            <asp:TextBox ID="txtCUILOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtCUILOrigen" runat="server" CssClass="form-control"   />
         </div>
 
         <div class="form-group">
             <label for="txtTelefonoOrigen">Teléfono Celular:</label>
-            <asp:TextBox ID="txtTelefonoOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtTelefonoOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
         <div class="form-group">
             <label for="txtEmailOrigen">Email:</label>
-            <asp:TextBox ID="txtEmailOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtEmailOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
         <div class="form-group">
             <label for="txtCalleOrigen">Calle:</label>
-            <asp:TextBox ID="txtCalleOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtCalleOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
         <div class="form-group">
             <label for="txtNumeroOrigen">Número:</label>
-            <asp:TextBox ID="txtNumeroOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtNumeroOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
         <div class="form-group">
             <label for="txtCPOrigen">Código Postal:</label>
-            <asp:TextBox ID="txtCPOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtCPOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
         <div class="form-group">
             <label for="txtCiudadOrigen">Ciudad / Localidad / Partido:</label>
-            <asp:TextBox ID="txtCiudadOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtCiudadOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
         <div class="form-group">
             <label for="txtProvinciaOrigen">Provincia:</label>
-            <asp:TextBox ID="txtProvinciaOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtProvinciaOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
         <div class="form-group">
             <label for="txtPisoOrigen">Piso / Depto / Manzana / Lote:</label>
-            <asp:TextBox ID="txtPisoOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtPisoOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
        <%-- <div class="form-group">
