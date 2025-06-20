@@ -13,6 +13,18 @@
         <label>Transportista asignado:</label>
         <asp:TextBox ID="TxtTransportista" runat="server" CssClass="form-control" enabled="false"/>
         </div>
+        <div class="form-group">
+<label>Transportista:</label>
+<asp:TextBox ID="txtNombreTransportista" runat="server" CssClass="form-control" enabled="false"/>
+</div>
+                   <div class="col">
+               <asp:DropDownList runat="server" ID="dllTransportista" CssClass="form-select">
+               </asp:DropDownList>
+           </div>
+        <div class="form-group">
+<label>Vehiculo asignado:</label>
+<asp:TextBox ID="txtVehiculo" runat="server" CssClass="form-control" enabled="false"/>
+</div>
         <!-- DESTINO -->
         <h4>Ruta</h4>
         <div class="form-group">
@@ -93,29 +105,16 @@
             <asp:TextBox ID="txtValor" runat="server" CssClass="form-control" enabled="false"/>
         </div>
 
-        <!-- PAQUETE -->
         <h4>Estado Envio</h4>
            <div class="col">
                <asp:DropDownList runat="server" ID="dllEstado" CssClass="form-select">
                </asp:DropDownList>
            </div>
-
-        <!-- ORDER ITEMS -->
-<div class="card full">
-    <h2>Items de la Orden</h2>
-    <asp:GridView ID="gvItems" runat="server" AutoGenerateColumns="false" CssClass="order-table">
-        <Columns>
-            <asp:BoundField HeaderText="DESCRIPCIÓN" DataField="Descripcion" />
-            <asp:BoundField HeaderText="CATEGORÍA" DataField="Categoria" />
-            <asp:BoundField HeaderText="PRECIO" DataField="Precio" DataFormatString="{0:C}" />
-        </Columns>
-    </asp:GridView>
-</div>
-
-<div class="total">
-    <strong>TOTAL:</strong>
-    <asp:Label ID="lblTotal" runat="server" CssClass="total-valor" />
-</div>
+        <h4>Estado Vehiculo</h4>
+   <div class="col">
+       <asp:DropDownList runat="server" ID="dllEstadoVehiculo" CssClass="form-select">
+       </asp:DropDownList>
+   </div>
 
     </div>
     <div class="card p-5 w-50 mx-auto mt-3">

@@ -98,7 +98,20 @@ namespace Gestion
         }
 
         public void modificarOrdenEnvio() {
-            
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update OrdenesEnvio set Activo=0 where IDOrden = @idOrden;" +
+                    "update DetalleOrdenesEnvio set Activo=0 where IDOrden = @idOrden;");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex) {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public void eliminarOrdenEnvio(int id) {
@@ -131,11 +144,13 @@ namespace Gestion
             try
             {
                 datos.setearConsulta("SELECT OE.IDOrden, C.Nombre AS NombreCliente, C.Apellido AS ApellidoCliente, T.IDTransportista AS IDTransportista, T.Nombre AS NombreTransportista," +
-                    " T.Apellido AS ApellidoTransportista, R.PuntoPartida, R.PuntoDestino, EO.Descripcion AS EstadoOrden, D.Nombre AS NombreDestinatario," +
+                    " T.Apellido AS ApellidoTransportista,V.Patente AS PatenteVehiculo, R.PuntoPartida, R.PuntoDestino,EO.IDEstadoOrdenEnvio, EO.Descripcion AS EstadoOrden, D.Nombre AS NombreDestinatario," +
                     " D.Apellido AS ApellidoDestinatario, D.Cuil AS CuilDestinatario, D.Email AS EmailDestinatario, D.Telefono AS TelefonoDestinatario, C.Cuil AS CuilCliente, " +
-                    "C.Telefono AS TelefonoCliente, OE.FechaCreacion, OE.FechaEnvio, OE.FechaEstimadaLlegada, OE.FechaLlegada, U.Email AS EmailCliente, " +
+                    "C.Telefono AS TelefonoCliente, OE.FechaCreacion, OE.FechaEnvio, OE.FechaEstimadaLlegada, OE.FechaLlegada, U.Email AS EmailCliente, EV.IDEstadoVehiculo, EV.Descripcion AS DescripcionEstadoVehiculo, " +
                     "Pq.Largo, Pq.Alto, Pq.Ancho, Pq.Peso, Pq.valorDeclarado FROM OrdenesEnvio OE INNER JOIN Usuario U ON OE.IDUsuario = U.IDUsuario " +
                     "INNER JOIN Clientes C ON OE.IDCliente = C.IDCliente INNER JOIN Transportista T ON OE.IDTransportista = T.IDTransportista " +
+                    "INNER JOIN Vehiculo V ON T.IDVehiculo = V.IDVehiculo " +
+                    "INNER JOIN EstadoVehiculo EV ON V.IDEstadoVehiculo = EV.IDEstadoVehiculo " +
                     "INNER JOIN Rutas R ON OE.IDRuta = R.IDRuta INNER JOIN EstadoOrdenesEnvio EO ON OE.IDEstadoOrdenEnvio = EO.IDEstadoOrdenEnvio " +
                     "INNER JOIN Destinatarios D ON OE.IDDestinatario = D.IDDestinatario INNER JOIN DetalleOrdenesEnvio DO ON DO.IDOrden = OE.IDOrden " +
                     "INNER JOIN Paquete Pq ON Pq.IDPaquete = DO.IDPaquete ");
@@ -165,12 +180,18 @@ namespace Gestion
                     aux.cliente.Usuario.Email= datos.Lector["EmailCliente"].ToString();
                     aux.cliente.Telefono = datos.Lector["TelefonoCliente"].ToString();
 
+                    aux.transportista = new Transportista();
                     aux.idTransportistaAsignado = (int)datos.Lector["IDTransportista"];
-                    transportista = gestionTransportista.returnTransportista(aux.idTransportistaAsignado);
-                    transportista.Nombre = datos.Lector["NombreTransportista"].ToString();
-                    transportista.Apellido = datos.Lector["ApellidoTransportista"].ToString();
-                    
-                    
+                    aux.transportista.Nombre = datos.Lector["NombreTransportista"].ToString();
+                    aux.transportista.Apellido = datos.Lector["ApellidoTransportista"].ToString();
+                    aux.transportista.Vehiculo = new Vehiculo();
+                    aux.transportista.Vehiculo.Patente = datos.Lector["PatenteVehiculo"].ToString();
+
+                    aux.transportista.Vehiculo.estadoVehiculo = new EstadoVehiculo();
+                    aux.transportista.Vehiculo.estadoVehiculo.IDEstado = (int)datos.Lector["IDEstadoVehiculo"];
+                    aux.transportista.Vehiculo.estadoVehiculo.descripcioEstado = datos.Lector["DescripcionEstadoVehiculo"].ToString();
+
+
                     aux.destinatario = new Destinatario();
                     aux.destinatario.Nombre = datos.Lector["NombreDestinatario"].ToString();
                     aux.destinatario.Apellido = datos.Lector["ApellidoDestinatario"].ToString();
@@ -188,12 +209,18 @@ namespace Gestion
                     aux.FechaEstimadaLlegada = (DateTime)datos.Lector["FechaEstimadaLlegada"];
                     aux.FechaDeLlegada = (DateTime)datos.Lector["FechaLlegada"];
 
-                    //detalle.paquete = new Paquete();
-                    //detalle.paquete.ValorDeclarado = (decimal)datos.Lector["ValorDeclarado"];
-                    //detalle.paquete.Largo = (float)datos.Lector["Largo"];
-                    //detalle.paquete.Ancho = (float)datos.Lector["Ancho"];
-                    //detalle.paquete.Alto = (float)datos.Lector["Alto"];
-                    //detalle.paquete.Peso = (float)datos.Lector["Peso"];
+
+                    aux.paquete = new Paquete();
+                    aux.paquete.ValorDeclarado = Convert.ToDecimal(datos.Lector["valorDeclarado"]);
+                    aux.paquete.Largo = Convert.ToSingle(datos.Lector["Largo"]);
+                    aux.paquete.Ancho = Convert.ToSingle(datos.Lector["Ancho"]);
+                    aux.paquete.Alto = Convert.ToSingle(datos.Lector["Alto"]);
+                    aux.paquete.Peso = Convert.ToSingle(datos.Lector["Peso"]);
+
+                    aux.estado = new EstadoOrdenEnvio();
+                    aux.estado.idEstado = (int)datos.Lector["IDEstadoOrdenEnvio"];
+                    aux.estado.DescripcionEstado = datos.Lector["EstadoOrden"].ToString();
+
 
                     lista.Add(aux);
                 }
