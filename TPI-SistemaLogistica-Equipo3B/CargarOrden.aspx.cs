@@ -47,6 +47,37 @@ namespace TPI_SistemaLogistica_Equipo3B
 
         protected void btnCotizar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtLargo.Text) ||
+                string.IsNullOrWhiteSpace(txtAncho.Text) ||
+                string.IsNullOrWhiteSpace(txtAlto.Text) ||
+                string.IsNullOrWhiteSpace(txtPeso.Text) ||
+                string.IsNullOrWhiteSpace(txtCantidad.Text) ||
+                string.IsNullOrWhiteSpace(txtValor.Text))
+            {
+                lblMensajePaquete.Text = "Todos los campos son obligatorios.";
+                return;
+            }
+
+            if (!float.TryParse(txtLargo.Text, out float largo) ||
+                !float.TryParse(txtAncho.Text, out float ancho) ||
+                !float.TryParse(txtAlto.Text, out float alto) ||
+                !float.TryParse(txtPeso.Text, out float peso) ||
+                !int.TryParse(txtCantidad.Text, out int cantidad) ||
+                !decimal.TryParse(txtValor.Text, out decimal valorDeclarado))
+            {
+                lblMensajePaquete.Text = "Por favor, ingresá valores numéricos válidos.";
+                return;
+            }
+
+            if (largo <= 0 || ancho <= 0 || alto <= 0 || peso <= 0 || cantidad <= 0 || valorDeclarado < 0)
+            {
+                lblMensajePaquete.Text = "Los valores deben ser positivos.";
+                return;
+            }
+
+
+            lblMensajePaquete.Text = "";
+
             Paquete paquete = new Paquete();
             ItemOrden item = new ItemOrden();
             paquete.Categoria = new Categoria();
@@ -64,7 +95,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             float pesoVolumetrico = volumen / 5000;
 
             if (pesoVolumetrico >= 1 && pesoVolumetrico <= 4)
-                item.Precio = 2500; 
+                item.Precio = 2500;
             else if (pesoVolumetrico <= 10)
                 item.Precio = 6000;
             else if (pesoVolumetrico <= 15)
@@ -123,7 +154,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             //detalle.Cantidad = paquete.Cantidad;
 
             lblTotal.Text = total.ToString("N2");
-            
+
         }
 
         protected void btnCargar_Click(object sender, EventArgs e)
@@ -154,6 +185,9 @@ namespace TPI_SistemaLogistica_Equipo3B
             cliente.Direccion.Piso = txtPisoOrigen.Text;
             //cliente.InfoAdicional = txtInfoOrigen.Text;
 
+            if (!validarDestinatario())
+                return;
+
             destinatario.Nombre = txtNombreDestino.Text;
             destinatario.Apellido = txtApellidoDestino.Text;
             destinatario.Telefono = txtTelefonoDestino.Text;
@@ -166,6 +200,9 @@ namespace TPI_SistemaLogistica_Equipo3B
             destinatario.Direccion.Provincia = txtProvinciaDesino.Text;
             destinatario.Direccion.Piso = txtPisoDestino.Text;
             //destinatario.InfoAdicional = txtInfoDestino.Text;
+
+            if (!validarPaquete())
+                return;
 
             paquete.Largo = float.Parse(txtLargo.Text);
             paquete.Ancho = float.Parse(txtAncho.Text);
@@ -209,7 +246,7 @@ namespace TPI_SistemaLogistica_Equipo3B
 
             detalleOrden.paquete = paquete;
             detalleOrden.Total = decimal.Parse(lblTotal.Text);
-            
+
             gestionOrdenesEnvio.agregarOrdenEnvio(ordenesEnvio, detalleOrden);
         }
 
@@ -257,5 +294,88 @@ namespace TPI_SistemaLogistica_Equipo3B
 
             return paquete.Categoria.idCategoria;
         }
+
+        protected bool validarPaquete()
+        {
+            if (string.IsNullOrWhiteSpace(txtLargo.Text) ||
+                string.IsNullOrWhiteSpace(txtAncho.Text) ||
+                string.IsNullOrWhiteSpace(txtAlto.Text) ||
+                string.IsNullOrWhiteSpace(txtPeso.Text) ||
+                string.IsNullOrWhiteSpace(txtCantidad.Text) ||
+                string.IsNullOrWhiteSpace(txtValor.Text))
+            {
+                lblMensajePaquete.Text = "Todos los campos son obligatorios.";
+                return false;
+            }
+
+            if (!float.TryParse(txtLargo.Text, out float largo) ||
+                !float.TryParse(txtAncho.Text, out float ancho) ||
+                !float.TryParse(txtAlto.Text, out float alto) ||
+                !float.TryParse(txtPeso.Text, out float peso) ||
+                !int.TryParse(txtCantidad.Text, out int cantidad) ||
+                !decimal.TryParse(txtValor.Text, out decimal valorDeclarado))
+            {
+                lblMensajePaquete.Text = "Por favor, ingresá valores numéricos válidos.";
+                return false;
+            }
+
+            if (largo <= 0 || ancho <= 0 || alto <= 0 || peso <= 0 || cantidad <= 0 || valorDeclarado < 0)
+            {
+                lblMensajePaquete.Text = "Los valores deben ser positivos.";
+                return false;
+            }
+
+            lblMensajePaquete.Text = "";
+
+            return true;
+        }
+
+        protected bool validarDestinatario()
+        {
+            if (string.IsNullOrWhiteSpace(txtNombreDestino.Text) ||
+                string.IsNullOrWhiteSpace(txtApellidoDestino.Text) ||
+                string.IsNullOrWhiteSpace(txtTelefonoDestino.Text) ||
+                string.IsNullOrWhiteSpace(txtEmailDestino.Text) ||
+                string.IsNullOrWhiteSpace(txtCUILDestino.Text) ||
+                string.IsNullOrWhiteSpace(txtCalleDestino.Text) ||
+                string.IsNullOrWhiteSpace(txtNumeroDestino.Text) ||
+                string.IsNullOrWhiteSpace(txtCPDestino.Text) ||
+                string.IsNullOrWhiteSpace(txtCiudadDestino.Text) ||
+                string.IsNullOrWhiteSpace(txtProvinciaDesino.Text))
+            {
+                lblMensajeDestinatario.Text = "Todos los campos son obligatorios.";
+                return false;
+            }
+
+            if (!long.TryParse(txtCUILDestino.Text, out long cuil) || cuil <= 0)
+            {
+                lblMensajeDestinatario.Text = "El CUIL debe ser un número válido y mayor a cero.";
+                return false;
+            }
+
+            if (!int.TryParse(txtNumeroDestino.Text, out int numeroCalle) || numeroCalle <= 0)
+            {
+                lblMensajeDestinatario.Text = "El número de calle debe ser un número positivo.";
+                return false;
+            }
+
+            if (!txtEmailDestino.Text.Contains("@") || !txtEmailDestino.Text.Contains("."))
+            {
+                lblMensajeDestinatario.Text = "Ingrese un correo electrónico válido.";
+                return false;
+            }
+
+            if (txtTelefonoDestino.Text.Length < 6)
+            {
+                lblMensajeDestinatario.Text = "Ingrese un teléfono válido.";
+                return false;
+            }
+
+            lblMensajeDestinatario.Text = "";
+
+            return true;
+        }
+
+
     }
 }

@@ -185,7 +185,7 @@ namespace Gestion
             try
             {
                 datos.abrirConexion();
-                datos.setearConsulta(" select Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin, Imagen from Transportista");
+                datos.setearConsulta("select Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin, Imagen from Transportista");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -294,6 +294,76 @@ namespace Gestion
             }
         
         
+        }
+
+        public List<Transportista> transportistasActivos ()
+        {
+            AccesoDatos datos = new AccesoDatos ();
+            List<Transportista> lista = new List<Transportista>();
+
+            try
+            {
+
+                datos.abrirConexion();
+                datos.setearConsulta("select Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin from Transportista where Activo=1");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Transportista transportista = new Transportista();
+                    transportista.Nombre = datos.Lector["Nombre"].ToString();
+                    transportista.Apellido = datos.Lector["Apellido"].ToString();
+                    transportista.CuilTransportista = Convert.ToInt64(datos.Lector["Cuil"]);
+                    transportista.Telefono = datos.Lector["Telefono"].ToString();
+                    transportista.Licencia = datos.Lector["Licencia"].ToString();
+                    transportista.EstadoDisponibilidad = Convert.ToBoolean(datos.Lector["EstadoDisponibilidad"]);
+                    transportista.HoraInicio = TimeSpan.Parse(datos.Lector["HoraInicio"].ToString());
+                    transportista.HoraFin = TimeSpan.Parse(datos.Lector["HoraFin"].ToString());
+
+                    lista.Add(transportista);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en mostrar Transportistas Activos: " + ex.Message, ex);
+            }
+        }
+
+        public List<Transportista> transportistasInactivos()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Transportista> lista = new List<Transportista>();
+
+            try
+            {
+
+                datos.abrirConexion();
+                datos.setearConsulta("select Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin from Transportista where Activo=0");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Transportista transportista = new Transportista();
+                    transportista.Nombre = datos.Lector["Nombre"].ToString();
+                    transportista.Apellido = datos.Lector["Apellido"].ToString();
+                    transportista.CuilTransportista = Convert.ToInt64(datos.Lector["Cuil"]);
+                    transportista.Telefono = datos.Lector["Telefono"].ToString();
+                    transportista.Licencia = datos.Lector["Licencia"].ToString();
+                    transportista.EstadoDisponibilidad = Convert.ToBoolean(datos.Lector["EstadoDisponibilidad"]);
+                    transportista.HoraInicio = TimeSpan.Parse(datos.Lector["HoraInicio"].ToString());
+                    transportista.HoraFin = TimeSpan.Parse(datos.Lector["HoraFin"].ToString());
+
+                    lista.Add(transportista);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en mostrar Transportistas Inactivos: " + ex.Message, ex);
+            }
         }
     }
 }
