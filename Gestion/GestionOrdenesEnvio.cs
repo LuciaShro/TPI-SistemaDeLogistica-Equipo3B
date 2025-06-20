@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Net.Configuration;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
@@ -97,13 +98,22 @@ namespace Gestion
 
         }
 
-        public void modificarOrdenEnvio() {
+        public void modificarOrdenEnvio(OrdenesEnvio orden) {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update OrdenesEnvio set Activo=0 where IDOrden = @idOrden;" +
-                    "update DetalleOrdenesEnvio set Activo=0 where IDOrden = @idOrden;");
+                datos.setearConsulta("UPDATE OrdenesEnvio SET IDTransportista = @IDTransportista, IDEstadoOrdenEnvio = @IDEstadoOrdenEnvio WHERE IDOrden = @IDOrden");
+                datos.setearParametro("@IDTransportista", orden.idTransportistaAsignado);
+                datos.setearParametro("@IDEstadoOrdenEnvio", orden.estado.idEstado);
+                datos.setearParametro("@IDOrden", orden.idOrdenEnvio);
                 datos.ejecutarAccion();
+
+
+                datos.setearConsulta("UPDATE Vehiculo SET IDEstadoVehiculo = @IDEstadoVehiculo WHERE IDVehiculo = (SELECT IDVehiculo FROM Transportista WHERE IDTransportista = @IDTransportista)");
+                datos.setearParametro("@IDEstadoVehiculo", orden.transportista.Vehiculo.estadoVehiculo.IDEstado);
+                datos.setearParametro("@IDTransportista", orden.idTransportistaAsignado);
+                datos.ejecutarAccion();
+
             }
             catch (Exception ex) {
                 throw ex;
@@ -173,7 +183,7 @@ namespace Gestion
 
                     aux.idOrdenEnvio = (int)datos.Lector["IDOrden"];
                     aux.cliente = new Cliente();
-                    aux.cliente.Nombre = datos.Lector["NombreCliente"].ToString();
+                    aux.cliente.Nombre = datos.Lector["NombreCliente"].ToString() +" "+ datos.Lector["ApellidoCliente"].ToString();
                     aux.cliente.Apellido = datos.Lector["ApellidoCliente"].ToString();
                     aux.cliente.CUIL = Convert.ToInt64(datos.Lector["CuilCliente"]);
                     aux.cliente.Usuario = new Usuario();
@@ -182,7 +192,8 @@ namespace Gestion
 
                     aux.transportista = new Transportista();
                     aux.idTransportistaAsignado = (int)datos.Lector["IDTransportista"];
-                    aux.transportista.Nombre = datos.Lector["NombreTransportista"].ToString();
+                    aux.transportista.IdTransportista = (int)datos.Lector["IDTransportista"];
+                    aux.transportista.Nombre = datos.Lector["NombreTransportista"].ToString()+ " " + datos.Lector["ApellidoTransportista"].ToString();
                     aux.transportista.Apellido = datos.Lector["ApellidoTransportista"].ToString();
                     aux.transportista.Vehiculo = new Vehiculo();
                     aux.transportista.Vehiculo.Patente = datos.Lector["PatenteVehiculo"].ToString();
