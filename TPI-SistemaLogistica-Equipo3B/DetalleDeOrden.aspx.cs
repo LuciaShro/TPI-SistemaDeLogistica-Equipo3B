@@ -24,6 +24,9 @@ namespace TPI_SistemaLogistica_Equipo3B
                     GestionOrdenesEnvio ordenes = new GestionOrdenesEnvio();
                     OrdenesEnvio seleccionado = (ordenes.ListarOrdenes(id))[0];
 
+                    TxtTransportista.Text = seleccionado.idTransportistaAsignado.ToString();
+
+                    txtIdOrden.Text = seleccionado.idOrdenEnvio.ToString();
 
                     TxtPuntoPartida.Text = seleccionado.ruta.PuntoPartida;
                     TxtPuntoDestino.Text = seleccionado.ruta.PuntoDestino;
@@ -39,7 +42,6 @@ namespace TPI_SistemaLogistica_Equipo3B
                     txtEmailDestino.Text = seleccionado.destinatario.Email;
                     txtTelefonoDestino.Text = seleccionado.destinatario.Telefono;
                     txtCUILDestino.Text = seleccionado.destinatario.CUIL.ToString();
-
 
 
                     GestionEstado estados = new GestionEstado();
@@ -75,7 +77,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             try
             {
                 GestionOrdenesEnvio orden = new GestionOrdenesEnvio();
-                orden.eliminarOrdenEnvio(int.Parse(id));
+                orden.eliminarOrdenEnvio(int.Parse(txtIdOrden.Text));
                 Response.Redirect("Ordenes.aspx");
             }
             catch(Exception ex) {

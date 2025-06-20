@@ -97,7 +97,9 @@ namespace Gestion
 
         }
 
-        public void modificarOrdenEnvio() { }
+        public void modificarOrdenEnvio() {
+            
+        }
 
         public void eliminarOrdenEnvio(int id) {
             
@@ -105,7 +107,10 @@ namespace Gestion
 
             try
             {
-                datos.setearConsulta("")
+                datos.setearConsulta("update OrdenesEnvio set Activo=0 where IDOrden = @idOrden;" +
+                    "update DetalleOrdenesEnvio set Activo=0 where IDOrden = @idOrden;");
+                datos.setearParametro("idOrden", id);
+                datos.ejecutarAccion();
             }
             catch (Exception ex) {
                 throw ex;
@@ -136,9 +141,13 @@ namespace Gestion
                     "INNER JOIN Paquete Pq ON Pq.IDPaquete = DO.IDPaquete ");
                 if (idOrden != "")
                 {
-                    datos.Comando.CommandText += " WHERE OE.IDOrden = " + idOrden;
+                    datos.Comando.CommandText += " WHERE OE.IDOrden = " + idOrden + " AND OE.Activo=1";
                 }
-                datos.ejecutarLectura();
+                else
+                {
+                    datos.Comando.CommandText += " WHERE OE.Activo=1";
+                }
+                    datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {

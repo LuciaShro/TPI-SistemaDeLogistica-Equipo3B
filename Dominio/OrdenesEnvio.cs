@@ -33,6 +33,8 @@ namespace Dominio
         public string Nombre { get; set; }  
         public string Apellido { get; set; }
 
+        public List<DetalleOrden> detalles { get; set; }
+
         //public int CantidadTotalEnviada {  get; set; } //SE REPITE EN DETALLE
 
 

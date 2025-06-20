@@ -5,86 +5,92 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="InicioContent" runat="server">
     <div class="card full">
-       <h2><strong>Orden</strong></h2>
+       <h2><strong>Orden #<asp:Label ID="txtIdOrden" runat="server" /></strong></h2>
 
+        <!-- DESTINO -->
+        <h4>Transportista</h4>
+        <div class="form-group">
+        <label>Transportista asignado:</label>
+        <asp:TextBox ID="TxtTransportista" runat="server" CssClass="form-control" enabled="false"/>
+        </div>
         <!-- DESTINO -->
         <h4>Ruta</h4>
         <div class="form-group">
         <label>Punto Partida:</label>
-        <asp:TextBox ID="TxtPuntoPartida" runat="server" CssClass="form-control" />
+        <asp:TextBox ID="TxtPuntoPartida" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
         <label>Punto Destino:</label>
-        <asp:TextBox ID="TxtPuntoDestino" runat="server" CssClass="form-control" />
+        <asp:TextBox ID="TxtPuntoDestino" runat="server" CssClass="form-control" enabled="false"/>
         </div>
 
         
         <h4>Datos del Cliente</h4>
         <div class="form-group">
             <label>Nombre:</label>
-            <asp:TextBox ID="txtNombreOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtNombreOrigen" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>Apellido:</label>
-            <asp:TextBox ID="txtApellidoOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtApellidoOrigen" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>CUIL:</label>
-            <asp:TextBox ID="txtCUILOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtCUILOrigen" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>Email:</label>
-            <asp:TextBox ID="txtEmailOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtEmailOrigen" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>Teléfono:</label>
-            <asp:TextBox ID="txtTelefonoOrigen" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtTelefonoOrigen" runat="server" CssClass="form-control" enabled="false"/>
         </div>
 
         <!-- DESTINO -->
         <h4>Destinatario</h4>
         <div class="form-group">
             <label>Nombre:</label>
-            <asp:TextBox ID="txtNombreDestino" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtNombreDestino" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>Apellido:</label>
-            <asp:TextBox ID="txtApellidoDestino" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtApellidoDestino" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>CUIL:</label>
-            <asp:TextBox ID="txtCUILDestino" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtCUILDestino" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>Email:</label>
-            <asp:TextBox ID="txtEmailDestino" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtEmailDestino" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>Teléfono:</label>
-            <asp:TextBox ID="txtTelefonoDestino" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtTelefonoDestino" runat="server" CssClass="form-control" enabled="false"/>
         </div>
 
         <!-- PAQUETE -->
         <h4>Paquete</h4>
         <div class="form-group">
             <label>Largo:</label>
-            <asp:TextBox ID="txtLargo" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtLargo" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>Ancho:</label>
-            <asp:TextBox ID="txtAncho" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtAncho" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>Alto:</label>
-            <asp:TextBox ID="txtAlto" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtAlto" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>Peso Estimado:</label>
-            <asp:TextBox ID="txtPeso" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtPeso" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>Valor Declarado:</label>
-            <asp:TextBox ID="txtValor" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtValor" runat="server" CssClass="form-control" enabled="false"/>
         </div>
 
         <!-- PAQUETE -->
