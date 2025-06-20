@@ -45,10 +45,12 @@ namespace TPI_SistemaLogistica_Equipo3B
 
         protected void btnInactivo_Click(object sender, EventArgs e)
         {
+
             GestionTransportista gestionTransportista = new GestionTransportista();
             var lista = gestionTransportista.transportistasInactivos(); 
             dgvTransportistas.DataSource = lista;
             dgvTransportistas.DataBind();
+
         }
 
         protected void dgvTransportistas_SelectedIndexChanged(object sender, EventArgs e)

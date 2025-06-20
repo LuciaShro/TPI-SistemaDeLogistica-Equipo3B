@@ -114,15 +114,6 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtPisoOrigen;
 
         /// <summary>
-        /// txtInfoOrigen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInfoOrigen;
-
-        /// <summary>
         /// txtNombreDestino control.
         /// </summary>
         /// <remarks>
@@ -222,15 +213,6 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtPisoDestino;
 
         /// <summary>
-        /// txtInfoDestino control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInfoDestino;
-
-        /// <summary>
         /// txtLargo control.
         /// </summary>
         /// <remarks>
@@ -285,6 +267,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtValor;
 
         /// <summary>
+        /// lblMensajePaquete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensajePaquete;
+
+        /// <summary>
         /// btnCotizar control.
         /// </summary>
         /// <remarks>
@@ -321,12 +312,12 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.Button btnCargar;
 
         /// <summary>
-        /// lblMensaje control.
+        /// lblMensajeDestinatario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        protected global::System.Web.UI.WebControls.Label lblMensajeDestinatario;
     }
 }

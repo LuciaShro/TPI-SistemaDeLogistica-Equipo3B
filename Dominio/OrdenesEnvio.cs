@@ -35,6 +35,10 @@ namespace Dominio
 
         public List<DetalleOrden> detalles { get; set; }
 
+        public Transportista transportista { get; set; }
+
+        public Paquete paquete { get; set; }
+
         //public int CantidadTotalEnviada {  get; set; } //SE REPITE EN DETALLE
 
 

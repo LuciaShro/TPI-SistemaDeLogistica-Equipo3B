@@ -17,48 +17,67 @@ namespace TPI_SistemaLogistica_Equipo3B
             try
             {
 
-
-                string id = Request.QueryString["OrdenId"] != null ? Request.QueryString["OrdenId"].ToString() : "";
-                if (id != null)
+                if (!IsPostBack)
                 {
-                    GestionOrdenesEnvio ordenes = new GestionOrdenesEnvio();
-                    OrdenesEnvio seleccionado = (ordenes.ListarOrdenes(id))[0];
+                    string id = Request.QueryString["OrdenId"] != null ? Request.QueryString["OrdenId"].ToString() : "";
+                    if (id != null)
+                    {
+                        GestionOrdenesEnvio ordenes = new GestionOrdenesEnvio();
+                        OrdenesEnvio seleccionado = (ordenes.ListarOrdenes(id))[0];
 
-                    TxtTransportista.Text = seleccionado.idTransportistaAsignado.ToString();
+                        GestionTransportista transportista = new GestionTransportista();
+                        dllTransportista.DataSource = transportista.listarTranportistas();
+                        dllTransportista.DataTextField = "Apellido";
+                        dllTransportista.DataValueField = "IDTransportista";
+                        dllTransportista.DataBind();
 
-                    txtIdOrden.Text = seleccionado.idOrdenEnvio.ToString();
+                        dllTransportista.SelectedValue = seleccionado.transportista.IdTransportista.ToString();
 
-                    TxtPuntoPartida.Text = seleccionado.ruta.PuntoPartida;
-                    TxtPuntoDestino.Text = seleccionado.ruta.PuntoDestino;
+                        TxtTransportista.Text = seleccionado.idTransportistaAsignado.ToString();
+                        txtNombreTransportista.Text = seleccionado.transportista.Nombre + " " + seleccionado.transportista.Apellido;
+                        GestionVehiculo gestionVehiculo = new GestionVehiculo();
+                        txtVehiculo.Text = seleccionado.transportista.Vehiculo.Patente;
 
-                    txtNombreOrigen.Text = seleccionado.cliente.Nombre;
-                    txtApellidoOrigen.Text = seleccionado.cliente.Apellido;
-                    txtCUILOrigen.Text = seleccionado.cliente.CUIL.ToString();
-                    txtEmailOrigen.Text = seleccionado.cliente.Usuario.Email;
-                    txtTelefonoOrigen.Text = seleccionado.cliente.Telefono;
+                        txtIdOrden.Text = seleccionado.idOrdenEnvio.ToString();
 
-                    txtNombreDestino.Text = seleccionado.destinatario.Nombre;
-                    txtApellidoDestino.Text = seleccionado.destinatario.Apellido;
-                    txtEmailDestino.Text = seleccionado.destinatario.Email;
-                    txtTelefonoDestino.Text = seleccionado.destinatario.Telefono;
-                    txtCUILDestino.Text = seleccionado.destinatario.CUIL.ToString();
+                        TxtPuntoPartida.Text = seleccionado.ruta.PuntoPartida;
+                        TxtPuntoDestino.Text = seleccionado.ruta.PuntoDestino;
+
+                        txtNombreOrigen.Text = seleccionado.cliente.Nombre;
+                        txtApellidoOrigen.Text = seleccionado.cliente.Apellido;
+                        txtCUILOrigen.Text = seleccionado.cliente.CUIL.ToString();
+                        txtEmailOrigen.Text = seleccionado.cliente.Usuario.Email;
+                        txtTelefonoOrigen.Text = seleccionado.cliente.Telefono;
+
+                        txtNombreDestino.Text = seleccionado.destinatario.Nombre;
+                        txtApellidoDestino.Text = seleccionado.destinatario.Apellido;
+                        txtEmailDestino.Text = seleccionado.destinatario.Email;
+                        txtTelefonoDestino.Text = seleccionado.destinatario.Telefono;
+                        txtCUILDestino.Text = seleccionado.destinatario.CUIL.ToString();
+
+                        txtLargo.Text = seleccionado.paquete.Alto.ToString();
+                        txtAlto.Text = seleccionado.paquete.Alto.ToString();
+                        txtAncho.Text = seleccionado.paquete.Ancho.ToString();
+                        txtPeso.Text = seleccionado.paquete.Peso.ToString();
+                        txtValor.Text = seleccionado.paquete.ValorDeclarado.ToString();
 
 
-                    GestionEstado estados = new GestionEstado();
-                    dllEstado.DataSource = estados.listarEstado();
-                    dllEstado.DataTextField = "DescripcionEstado";
-                    dllEstado.DataValueField = "idEstado";
-                    dllEstado.DataBind();
+                        GestionEstado estados = new GestionEstado();
+                        dllEstado.DataSource = estados.listarEstado();
+                        dllEstado.DataTextField = "DescripcionEstado";
+                        dllEstado.DataValueField = "idEstado";
+                        dllEstado.DataBind();
 
-                    dllEstado.SelectedValue = seleccionado.estado.idEstado.ToString();
+                        dllEstado.SelectedValue = seleccionado.estado.idEstado.ToString();
 
-                    //dllEstado.SelectedIndex= dllEstado.Items.IndexOf(
-                    //    dllEstado.Items.FindByValue(id) );
-                }
+                        GestionEstadoVehiculo estadosVehiculo = new GestionEstadoVehiculo();
+                        dllEstadoVehiculo.DataSource = estadosVehiculo.listarEstadoVehiculo();
+                        dllEstadoVehiculo.DataTextField = "descripcioEstado";
+                        dllEstadoVehiculo.DataValueField = "IDEstado";
+                        dllEstadoVehiculo.DataBind();
 
-                if (Request.QueryString["OrdenId"] != null)
-                {
-
+                        dllEstadoVehiculo.SelectedValue = seleccionado.transportista.Vehiculo.estadoVehiculo.IDEstado.ToString();
+                    }
                 }
             }
             catch (Exception ex) {
