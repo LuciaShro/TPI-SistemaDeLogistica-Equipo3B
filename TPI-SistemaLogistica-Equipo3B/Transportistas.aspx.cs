@@ -4,7 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+<<<<<<< HEAD
 using Dominio;
+=======
+>>>>>>> 1ea686079d71ef126950945915d8ae0cb7d8178d
 using Gestion;
 
 namespace TPI_SistemaLogistica_Equipo3B
@@ -13,7 +16,13 @@ namespace TPI_SistemaLogistica_Equipo3B
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                GestionTransportista transportista = new GestionTransportista();
+                Session.Add("listaTransportistas", transportista.listarTranportistas());
+                dgvTransportistas.DataSource = Session["listaTransportistas"];
+                dgvTransportistas.DataBind();
+            }
         }
 
         protected void btnAñadirTransportista_Click(object sender, EventArgs e)
@@ -21,6 +30,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             Response.Redirect("AgregarTransportista.aspx");
         }
 
+<<<<<<< HEAD
         protected void btnTodos_Click(object sender, EventArgs e)
         {
 
@@ -35,6 +45,20 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected void btnInactivo_Click(object sender, EventArgs e)
         {
 
+=======
+        protected void dgvTransportistas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var algo = dgvTransportistas.SelectedRow.Cells[0];
+            var id = dgvTransportistas.SelectedDataKey.Value.ToString();
+            Response.Redirect("AdminTransportistas.aspx");
+            //Response.Redirect("Perfil.aspx?OrdenId=" + id);
+        }
+
+        protected void dgvTransportistas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvTransportistas.PageIndex = e.NewPageIndex;
+            dgvTransportistas.DataBind();
+>>>>>>> 1ea686079d71ef126950945915d8ae0cb7d8178d
         }
     }
 }

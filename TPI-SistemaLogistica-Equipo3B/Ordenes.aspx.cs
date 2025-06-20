@@ -11,20 +11,18 @@ namespace TPI_SistemaLogistica_Equipo3B
 {
     public partial class Ordenes : System.Web.UI.Page
     {
+        public bool FiltroAvanzado { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    var listaOrdenes = ObtenerOrdenes(); // método que trae datos
-            //    rptOrdenes.DataSource = listaOrdenes;
-            //    rptOrdenes.DataBind();
-            //}
 
-            GestionOrdenesEnvio ordenes = new GestionOrdenesEnvio();
-            Session.Add("listaOrdenes", ordenes.ListarOrdenes());
-            dgvOrdenes.DataSource = Session["listaOrdenes"];    
-            dgvOrdenes.DataBind();
-
+            if (!IsPostBack)
+            {
+                FiltroAvanzado = false;
+                GestionOrdenesEnvio ordenes = new GestionOrdenesEnvio();
+                Session.Add("listaOrdenes", ordenes.ListarOrdenes());
+                dgvOrdenes.DataSource = Session["listaOrdenes"];
+                dgvOrdenes.DataBind();
+            }
         }
 
         protected void btnAñadir_Click(object sender, EventArgs e)
@@ -41,7 +39,18 @@ namespace TPI_SistemaLogistica_Equipo3B
 
         protected void filtro_TextChanged(object sender, EventArgs e)
         {
-            List<Ordenes> lista = (List<Ordenes>)Session["listaOrdenes"];
+            List<OrdenesEnvio> lista = (List<OrdenesEnvio>)Session["listaOrdenes"];
+            List<OrdenesEnvio> listafiltrada = lista.FindAll(x => x.cliente.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
+            x.cliente.Apellido.ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
+            x.estado.DescripcionEstado.ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
+            x.idTransportistaAsignado.ToString().ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
+            x.FechaCreacion.ToString().ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
+            x.FechaEnvio.ToString().ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
+            x.FechaEstimadaLlegada.ToString().ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
+            x.FechaDeLlegada.ToString().ToUpper().Contains(txtFiltro.Text.ToUpper())
+            );
+            dgvOrdenes.DataSource = listafiltrada;
+            dgvOrdenes.DataBind();
         }
 
         protected void dgvOrdenes_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -49,5 +58,13 @@ namespace TPI_SistemaLogistica_Equipo3B
             dgvOrdenes.PageIndex= e.NewPageIndex;
             dgvOrdenes.DataBind();
         }
+
+        protected void chkAvanzado_CheckedChanged(object sender, EventArgs e)
+        {
+            FiltroAvanzado = chkAvanzado.Checked;
+            txtFiltro.Enabled = !FiltroAvanzado;
+        }
+
+        
     }
 }

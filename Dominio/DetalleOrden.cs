@@ -15,5 +15,7 @@ namespace Dominio
         public decimal Total { get; set; }
 
         public OrdenesEnvio Orden {  get; set; }
+
+        public bool Activo { get; set; }
     }
 }

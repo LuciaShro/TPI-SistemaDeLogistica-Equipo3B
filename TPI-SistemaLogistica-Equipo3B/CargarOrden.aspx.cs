@@ -203,7 +203,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             ordenesEnvio.FechaEstimadaLlegada = new DateTime(2025, 6, 20);
             ordenesEnvio.FechaDeLlegada = new DateTime(2025, 6, 20);
 
-            ordenesEnvio.estado.idEstado = 1;
+            ordenesEnvio.estado.idEstado = 3;
 
             //DETALLE ORDEN
 

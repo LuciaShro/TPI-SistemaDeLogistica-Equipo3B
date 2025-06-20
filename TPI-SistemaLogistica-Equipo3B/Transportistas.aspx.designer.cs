@@ -24,6 +24,7 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.Button btnAñadirTransportista;
 
         /// <summary>
+<<<<<<< HEAD
         /// Control btnTodos.
         /// </summary>
         /// <remarks>
@@ -49,5 +50,14 @@ namespace TPI_SistemaLogistica_Equipo3B
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnInactivo;
+=======
+        /// dgvTransportistas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvTransportistas;
+>>>>>>> 1ea686079d71ef126950945915d8ae0cb7d8178d
     }
 }
