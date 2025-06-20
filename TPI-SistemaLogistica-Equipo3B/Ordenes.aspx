@@ -76,7 +76,7 @@
         <Columns>
         <asp:BoundField HeaderText="ID Orden" DataField="idOrdenEnvio" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
         <asp:BoundField HeaderText="Cliente" DataField="cliente.Apellido"   />
-        <asp:BoundField HeaderText="Transportista" DataField="idTransportistaAsignado"  />
+        <asp:BoundField HeaderText="Transportista" DataField="transportista.Nombre"  />
         <asp:BoundField HeaderText="Estado" DataField="estado.DescripcionEstado" />
         <asp:BoundField HeaderText="Fecha Creación" DataField="FechaCreacion" />
         <asp:BoundField HeaderText="Fecha Envío" DataField="FechaEnvio" />

@@ -33,6 +33,33 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox TxtTransportista;
 
         /// <summary>
+        /// txtNombreTransportista control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNombreTransportista;
+
+        /// <summary>
+        /// dllTransportista control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dllTransportista;
+
+        /// <summary>
+        /// txtVehiculo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVehiculo;
+
+        /// <summary>
         /// TxtPuntoPartida control.
         /// </summary>
         /// <remarks>
@@ -195,22 +222,13 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.DropDownList dllEstado;
 
         /// <summary>
-        /// gvItems control.
+        /// dllEstadoVehiculo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvItems;
-
-        /// <summary>
-        /// lblTotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotal;
+        protected global::System.Web.UI.WebControls.DropDownList dllEstadoVehiculo;
 
         /// <summary>
         /// btnModificar control.

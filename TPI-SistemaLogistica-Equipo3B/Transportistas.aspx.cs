@@ -29,30 +29,42 @@ namespace TPI_SistemaLogistica_Equipo3B
 
         protected void btnTodos_Click(object sender, EventArgs e)
         {
-
+            GestionTransportista gestionTransportista = new GestionTransportista();
+            var lista = gestionTransportista.listarTranportistas();
+            dgvTransportistas.DataSource = lista;
+            dgvTransportistas.DataBind();
         }
 
         protected void btnActivo_Click(object sender, EventArgs e)
         {
             GestionTransportista gestionTransportista = new GestionTransportista();
-            
+            var lista = gestionTransportista.transportistasActivos();
+            dgvTransportistas.DataSource = lista;
+            dgvTransportistas.DataBind();
         }
 
         protected void btnInactivo_Click(object sender, EventArgs e)
         {
+
+            GestionTransportista gestionTransportista = new GestionTransportista();
+            var lista = gestionTransportista.transportistasInactivos(); 
+            dgvTransportistas.DataSource = lista;
+            dgvTransportistas.DataBind();
+
         }
 
         protected void dgvTransportistas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var algo = dgvTransportistas.SelectedRow.Cells[0];
             var id = dgvTransportistas.SelectedDataKey.Value.ToString();
-            Response.Redirect("AdminTransportistas.aspx");
-            //Response.Redirect("Perfil.aspx?OrdenId=" + id);
+            Response.Redirect("AdminTransportistas.aspx?id=" + id);
+
+           
         }
 
         protected void dgvTransportistas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvTransportistas.PageIndex = e.NewPageIndex;
+            dgvTransportistas.DataSource = Session["listaTransportistas"]; 
             dgvTransportistas.DataBind();
         }
     }

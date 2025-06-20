@@ -43,7 +43,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             List<OrdenesEnvio> listafiltrada = lista.FindAll(x => x.cliente.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
             x.cliente.Apellido.ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
             x.estado.DescripcionEstado.ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
-            x.idTransportistaAsignado.ToString().ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
+            x.transportista.Nombre.ToString().ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
             x.FechaCreacion.ToString().ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
             x.FechaEnvio.ToString().ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
             x.FechaEstimadaLlegada.ToString().ToUpper().Contains(txtFiltro.Text.ToUpper()) ||
