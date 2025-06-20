@@ -30,6 +30,9 @@ namespace Dominio
 
         public bool Activo { get; set; }
 
+        public string Nombre { get; set; }  
+        public string Apellido { get; set; }
+
         //public int CantidadTotalEnviada {  get; set; } //SE REPITE EN DETALLE
 
 

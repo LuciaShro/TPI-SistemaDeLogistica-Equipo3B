@@ -109,7 +109,7 @@ namespace Gestion
 
             try
             {
-                datos.setearConsulta("SELECT OE.IDOrden, C.Nombre AS NombreCliente, C.Apellido AS ApellidoCliente, T.Nombre AS NombreTransportista," +
+                datos.setearConsulta("SELECT OE.IDOrden, C.Nombre AS NombreCliente, C.Apellido AS ApellidoCliente, T.IDTransportista AS IDTransportista, T.Nombre AS NombreTransportista," +
                     " T.Apellido AS ApellidoTransportista, R.PuntoPartida, R.PuntoDestino, EO.Descripcion AS EstadoOrden, D.Nombre AS NombreDestinatario," +
                     " D.Apellido AS ApellidoDestinatario, D.Cuil AS CuilDestinatario, D.Email AS EmailDestinatario, D.Telefono AS TelefonoDestinatario, C.Cuil AS CuilCliente, " +
                     "C.Telefono AS TelefonoCliente, OE.FechaCreacion, OE.FechaEnvio, OE.FechaEstimadaLlegada, OE.FechaLlegada, U.Email AS EmailCliente, " +
@@ -128,6 +128,9 @@ namespace Gestion
                 {
                     OrdenesEnvio aux = new OrdenesEnvio();
                     DetalleOrden detalle = new DetalleOrden();
+                    Transportista transportista = new Transportista();
+                    GestionTransportista gestionTransportista = new GestionTransportista();
+
                     aux.idOrdenEnvio = (int)datos.Lector["IDOrden"];
                     aux.cliente = new Cliente();
                     aux.cliente.Nombre = datos.Lector["NombreCliente"].ToString();
@@ -136,9 +139,13 @@ namespace Gestion
                     aux.cliente.Usuario = new Usuario();
                     aux.cliente.Usuario.Email= datos.Lector["EmailCliente"].ToString();
                     aux.cliente.Telefono = datos.Lector["TelefonoCliente"].ToString();
-                    //aux.idTransportistaAsignado = new Transportista();
-                    //aux.idTransportistaAsignado.Nombre = datos.Lector["NombreTransportista"].ToString();
-                    //aux.idTransportistaAsignado.Apellido = datos.Lector["ApellidoTransportista"].ToString();
+
+                    aux.idTransportistaAsignado = (int)datos.Lector["IDTransportista"];
+                    transportista = gestionTransportista.returnTransportista(aux.idTransportistaAsignado);
+                    transportista.Nombre = datos.Lector["NombreTransportista"].ToString();
+                    transportista.Apellido = datos.Lector["ApellidoTransportista"].ToString();
+                    
+                    
                     aux.destinatario = new Destinatario();
                     aux.destinatario.Nombre = datos.Lector["NombreDestinatario"].ToString();
                     aux.destinatario.Apellido = datos.Lector["ApellidoDestinatario"].ToString();
@@ -155,12 +162,12 @@ namespace Gestion
                     aux.FechaEnvio = (DateTime)datos.Lector["FechaEnvio"];
                     aux.FechaEstimadaLlegada = (DateTime)datos.Lector["FechaEstimadaLlegada"];
                     aux.FechaDeLlegada = (DateTime)datos.Lector["FechaLlegada"];
-                    //aux.CantidadTotalEnviada = (int)datos.Lector["CantidadPaquetes"];
+
                     //detalle.paquete = new Paquete();
+                    //detalle.paquete.ValorDeclarado = (decimal)datos.Lector["ValorDeclarado"];
                     //detalle.paquete.Largo = (float)datos.Lector["Largo"];
                     //detalle.paquete.Ancho = (float)datos.Lector["Ancho"];
                     //detalle.paquete.Alto = (float)datos.Lector["Alto"];
-                    //detalle.paquete.Peso = (float)datos.Lector["Peso"];
                     //detalle.paquete.Peso = (float)datos.Lector["Peso"];
 
                     lista.Add(aux);

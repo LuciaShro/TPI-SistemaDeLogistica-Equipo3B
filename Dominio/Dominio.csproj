@@ -52,7 +52,6 @@
     <Compile Include="ItemOrden.cs" />
     <Compile Include="OrdenesEnvio.cs" />
     <Compile Include="Paquete.cs" />
-    <Compile Include="Marca.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ruta.cs" />
     <Compile Include="Transportista.cs" />
