@@ -19,8 +19,8 @@
             
             <div class="transportistas-tabs">
                 <asp:LinkButton ID="btnTodos" runat="server" CssClass="tab active" OnClick="btnTodos_Click">Todos</asp:LinkButton>
-                <asp:LinkButton ID="btnActivo" runat="server" CssClass="tab" OnClick="btnActivo_Click">Activos</asp:LinkButton>
-                <asp:LinkButton ID="btnInactivo" runat="server" CssClass="tab" OnClick="btnInactivo_Click">Inactivos</asp:LinkButton>
+                <asp:LinkButton ID="btnActivo" runat="server" CssClass="tab active" OnClick="btnActivo_Click">Activos</asp:LinkButton>
+                <asp:LinkButton ID="btnInactivo" runat="server" CssClass="tab active" OnClick="btnInactivo_Click">Inactivos</asp:LinkButton>
         </div>
 
     <asp:GridView runat="server" ID="dgvTransportistas" DataKeyNames="idTransportista" OnSelectedIndexChanged="dgvTransportistas_SelectedIndexChanged" OnPageIndexChanging="dgvTransportistas_PageIndexChanging" AllowPaging="true" PageSize="5" Class="transportistas-grid table-bordered text-center align-middle" AutoGenerateColumns="false">

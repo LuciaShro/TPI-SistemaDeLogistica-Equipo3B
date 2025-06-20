@@ -15,7 +15,7 @@ namespace Gestion
             try
             {
                 datos.abrirConexion();
-                datos.setearConsulta("insert into Vehiculo (Patente, CapacidadDeCarga, Disponible, IDEstadoVehiculo) values (@Patente, @CapacidadDeCarga, 1, 1)");
+                datos.setearConsulta("insert into Vehiculo (Patente, CapacidadDeCarga, Disponible, IDEstadoVehiculo, Activo) values (@Patente, @CapacidadDeCarga, 1, 1, 1)");
                 datos.setearParametro("@Patente", vehiculo.Patente);
                 datos.setearParametro("@CapacidadDeCarga", vehiculo.CapacidadCarga);
 
@@ -41,7 +41,7 @@ namespace Gestion
 
             try
             {
-                datos.setearConsulta("select Patente, CapacidadDeCarga from Vehiculo where IDEstadoVehiculo=2");
+                datos.setearConsulta("select Patente, CapacidadDeCarga from Vehiculo where Disponible=0");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -78,11 +78,10 @@ namespace Gestion
 
             try
             {
-                gestionDatos.setearConsulta("UPDATE Vehiculo SET Patente = @Patente, CapacidadDeCarga = @CapacidadDeCarga, Disponible = @Disponible, IDEstadoVehiculo = @IDEstadoVehiculo WHERE IDVehiculo = @IDVehiculo");
+                gestionDatos.setearConsulta("UPDATE Vehiculo SET Patente = @Patente, CapacidadDeCarga = @CapacidadDeCarga, IDEstadoVehiculo = @IDEstadoVehiculo WHERE IDVehiculo = @IDVehiculo");
 
                 gestionDatos.setearParametro("@Patente", vehiculo.Patente);
                 gestionDatos.setearParametro("@CapacidadDeCarga", vehiculo.CapacidadCarga);
-                gestionDatos.setearParametro("@Disponible", vehiculo.Disponible);
                 gestionDatos.setearParametro("@IDEstadoVehiculo", vehiculo.estadoVehiculo.IDEstado);
 
 
@@ -129,7 +128,7 @@ namespace Gestion
             try
             {
                 datos.abrirConexion();
-                datos.setearConsulta("select IDVehiculo, Patente from Vehiculo where Disponible=1 and IDEstadoVehiculo=1");
+                datos.setearConsulta("select IDVehiculo, Patente from Vehiculo where Disponible=1");
 
                 datos.ejecutarLectura();
 

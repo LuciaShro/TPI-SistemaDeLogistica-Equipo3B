@@ -34,7 +34,7 @@ namespace Gestion
                /* Transportista nuevo = new Transportista();*/
 
 
-                datos.setearConsulta("insert into Transportista (IDVehiculo, IDUsuario, Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin, Imagen) values (@IDVehiculo, @IDUsuario, @Nombre, @Apellido, @Cuil, @Telefono, @Licencia, 1, @HoraInicio, @HoraFin, @Imagen)");
+                datos.setearConsulta("insert into Transportista (IDVehiculo, IDUsuario, Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, Activo, HoraInicio, HoraFin, Imagen) values (@IDVehiculo, @IDUsuario, @Nombre, @Apellido, @Cuil, @Telefono, @Licencia, 1, 1, @HoraInicio, @HoraFin, @Imagen)");
                 datos.Comando.Parameters.Clear();
                 datos.setearParametro("@IDVehiculo", transportista.Vehiculo.idVehiculo); // asigno un vehiculo ya que aun no esta creado el abm de vehiculos
                 datos.setearParametro("@IDUsuario", idUsuario);
@@ -49,7 +49,7 @@ namespace Gestion
 
                 datos.ejecutarAccion();
 
-                datos.setearConsulta("update Vehiculo set Disponible = 0, IDEstadoVehiculo=2 where IDVehiculo = @IDVehiculo");
+                datos.setearConsulta("update Vehiculo set Disponible = 0 where IDVehiculo = @IDVehiculo");
                 datos.Comando.Parameters.Clear();
                 datos.setearParametro("@IDVehiculo", transportista.Vehiculo.idVehiculo);
                 datos.ejecutarAccion();
@@ -152,6 +152,7 @@ namespace Gestion
                 datos.setearConsulta("update Transportista set Activo = 0 where IDTransportista = @IDTransportista ");
                 datos.Comando.Parameters.Clear();
                 datos.setearParametro("@IDTransportista", idTransportista);
+                datos.ejecutarAccion();
                
 
                 datos.setearConsulta("update Usuario set Activo = 0 where IDUsuario = (select IDUsuario from Transportista where IDTransportista=@IDTransportista)");
@@ -185,12 +186,13 @@ namespace Gestion
             try
             {
                 datos.abrirConexion();
-                datos.setearConsulta("select Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin, Imagen from Transportista");
+                datos.setearConsulta("select IDTransportista, Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin, Imagen from Transportista");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Transportista transportista = new Transportista();
+                    transportista.IdTransportista = Convert.ToInt32(datos.Lector["IDTransportista"]);
                     transportista.Nombre = datos.Lector["Nombre"].ToString();
                     transportista.Apellido = datos.Lector["Apellido"].ToString();
                     transportista.CuilTransportista = Convert.ToInt64(datos.Lector["Cuil"]);
@@ -305,11 +307,12 @@ namespace Gestion
             {
 
                 datos.abrirConexion();
-                datos.setearConsulta("select Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin from Transportista where Activo=1");
+                datos.setearConsulta("select IDTransportista, Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin from Transportista where Activo=1");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Transportista transportista = new Transportista();
+                    transportista.IdTransportista = Convert.ToInt32(datos.Lector["IDTransportista"]);
                     transportista.Nombre = datos.Lector["Nombre"].ToString();
                     transportista.Apellido = datos.Lector["Apellido"].ToString();
                     transportista.CuilTransportista = Convert.ToInt64(datos.Lector["Cuil"]);
@@ -329,6 +332,11 @@ namespace Gestion
 
                 throw new Exception("Error en mostrar Transportistas Activos: " + ex.Message, ex);
             }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public List<Transportista> transportistasInactivos()
@@ -340,11 +348,12 @@ namespace Gestion
             {
 
                 datos.abrirConexion();
-                datos.setearConsulta("select Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin from Transportista where Activo=0");
+                datos.setearConsulta("select IDTransportista, Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin from Transportista where Activo=0");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Transportista transportista = new Transportista();
+                    transportista.IdTransportista = Convert.ToInt32(datos.Lector["IDTransportista"]);
                     transportista.Nombre = datos.Lector["Nombre"].ToString();
                     transportista.Apellido = datos.Lector["Apellido"].ToString();
                     transportista.CuilTransportista = Convert.ToInt64(datos.Lector["Cuil"]);
@@ -363,6 +372,144 @@ namespace Gestion
             {
 
                 throw new Exception("Error en mostrar Transportistas Inactivos: " + ex.Message, ex);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public Transportista obtenerTransportista(int idTransportista)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("select t.Nombre, t.Apellido, t.Cuil, t.Telefono, t.Licencia, t.Activo, t.HoraInicio, t.HoraFin, t.Imagen, usuario.Email from Transportista t inner join Usuario usuario on usuario.IDUsuario = t.IDUsuario where IDTransportista=@IDTransportista");
+                datos.setearParametro("@IDTransportista", idTransportista);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read()) {
+
+                    Transportista transportista = new Transportista();
+                    transportista.Nombre = datos.Lector["Nombre"].ToString();
+                    transportista.Apellido = datos.Lector["Apellido"].ToString();
+                    transportista.CuilTransportista = Convert.ToInt64(datos.Lector["Cuil"]);
+                    transportista.Telefono = datos.Lector["Telefono"].ToString();
+                    transportista.Licencia = datos.Lector["Licencia"].ToString();
+                    transportista.Activo = Convert.ToBoolean(datos.Lector["Activo"]);
+                    transportista.HoraInicio = TimeSpan.Parse(datos.Lector["HoraInicio"].ToString());
+                    transportista.HoraFin = TimeSpan.Parse(datos.Lector["HoraFin"].ToString());
+
+                    if (!DBNull.Value.Equals(datos.Lector["Imagen"]))
+                        transportista.Imagen = datos.Lector["Imagen"].ToString();
+
+                    transportista.usuario = new Usuario();
+                    transportista.usuario.Email = datos.Lector["Email"].ToString();
+
+                    return transportista;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error al obtener transportista", ex);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void reactivarTransportista(int idTransportista)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+            SqlTransaction transaccion = null;
+
+
+            try
+            {
+                datos.abrirConexion();
+                transaccion = datos.Conexion.BeginTransaction();
+                datos.Comando.Connection = datos.Conexion;
+                datos.Comando.Transaction = transaccion;
+
+                datos.setearConsulta("update Transportista set Activo = 1 where IDTransportista = @IDTransportista ");
+                datos.Comando.Parameters.Clear();
+                datos.setearParametro("@IDTransportista", idTransportista);
+                datos.ejecutarAccion();
+
+
+                datos.setearConsulta("update Usuario set Activo = 1 where IDUsuario = (select IDUsuario from Transportista where IDTransportista=@IDTransportista)");
+                datos.Comando.Parameters.Clear();
+                datos.setearParametro("@IDTransportista", idTransportista);
+
+                datos.ejecutarAccion();
+
+                transaccion.Commit();
+            }
+            catch (Exception ex)
+            {
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
+                throw new Exception("Error al reactivar el transportista y el usuario: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+        }
+
+        public void ModificarTransportista(Transportista transportista)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            SqlTransaction transaccion = null;
+
+            try
+            {
+                datos.abrirConexion();
+                transaccion = datos.Conexion.BeginTransaction();
+                datos.Comando.Connection = datos.Conexion;
+                datos.Comando.Transaction = transaccion;
+
+                datos.setearConsulta("update Transportista set Nombre=@Nombre, Apellido= @Apellido, Cuil=@Cuil, Telefono=@Telefono, Licencia=@Licencia, HoraInicio=@HoraInicio, HoraFin=@HoraFin where IDTransportista=@IDTransportista");
+                datos.setearParametro("@IDTransportista", transportista.IdTransportista);
+                datos.setearParametro("@Nombre", transportista.Nombre);
+                datos.setearParametro("@Apellido", transportista.Apellido);
+                datos.setearParametro("@Cuil", transportista.CuilTransportista);
+                datos.setearParametro("@Telefono", transportista.Telefono);
+                datos.setearParametro("@Licencia", transportista.Licencia);
+                datos.setearParametro("@HoraInicio", transportista.HoraInicio);
+                datos.setearParametro("@HoraFin", transportista.HoraFin);
+
+                datos.ejecutarAccion();
+
+                datos.setearConsulta("UPDATE Usuario SET Email = @Email WHERE IDUsuario = (SELECT IDUsuario FROM Transportista WHERE IDTransportista = @IDTransportista)");
+                datos.Comando.Parameters.Clear();
+                datos.setearParametro("@Email", transportista.usuario.Email);
+                datos.setearParametro("@IDTransportista", transportista.IdTransportista);
+                datos.ejecutarAccion();
+
+                transaccion.Commit();
+            }
+            catch (Exception ex)
+            {
+
+                if (transaccion != null)
+                    transaccion.Rollback();
+
+                throw new Exception("Error al modificar transportista y usuario: " + ex.Message);
+            }
+            finally {
+                datos.cerrarConexion();
             }
         }
     }
