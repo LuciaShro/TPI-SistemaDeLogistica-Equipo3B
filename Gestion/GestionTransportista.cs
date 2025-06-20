@@ -100,6 +100,42 @@ namespace Gestion
             }
         }
 
+        public Transportista returnTransportista(int id)
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("SELECT IDTransportista, Nombre, Apellido, Cuil, Telefono FROM Transportista WHERE IDTransportista = @IDTransportista");
+                gestionDatos.setearParametro("@IDTransportista", id);
+                gestionDatos.ejecutarLectura();
+
+                while (gestionDatos.Lector.Read())
+                {
+                    Transportista t = new Transportista();
+                    t.IdTransportista = (int)gestionDatos.Lector["IDTransportista"];
+                    t.Nombre = (string)gestionDatos.Lector["Nombre"];
+                    t.Apellido = (string)gestionDatos.Lector["Apellido"];
+                    t.CuilTransportista = (long)gestionDatos.Lector["Cuil"];
+                    t.Telefono = (string)gestionDatos.Lector["Telefono"];
+
+                    return t;
+                }
+
+                throw new Exception("Transportista no encontrado con ese ID.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método buscarVehiculo: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
+
         public void darBajaTransportista(int idTransportista) {
 
             AccesoDatos datos = new AccesoDatos();

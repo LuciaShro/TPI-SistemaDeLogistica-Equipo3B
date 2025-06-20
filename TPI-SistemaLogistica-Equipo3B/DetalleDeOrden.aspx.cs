@@ -72,9 +72,16 @@ namespace TPI_SistemaLogistica_Equipo3B
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            //OrdenesEnvio orden = new OrdenesEnvio();
-            //orden.eliminarOrdenEnvio(int.Parse());
-            //Response.Redirect("");
+            try
+            {
+                GestionOrdenesEnvio orden = new GestionOrdenesEnvio();
+                orden.eliminarOrdenEnvio(int.Parse(id));
+                Response.Redirect("Ordenes.aspx");
+            }
+            catch(Exception ex) {
+                Session.Add("error", ex);
+            }
+            
         }
 
     }
