@@ -18,11 +18,17 @@
             <asp:BoundField DataField="idVehiculo" HeaderText="IDVEHICULO" />
             <asp:BoundField DataField="Patente" HeaderText="PATENTE" />
             <asp:BoundField DataField="CapacidadCarga" HeaderText="CAPACIDAD" />
+            <asp:TemplateField HeaderText="ESTADO">
+            <ItemTemplate>
+             <%# Eval("estadoVehiculo.descripcioEstado") %>
+             </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="ACCIONES">
                 <ItemTemplate>
                     <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/img/edit_icon.png" ToolTip="Editar" OnClick="btnEditar_Click" CommandName="Editar" CommandArgument='<%# Eval("IdVehiculo") %>'/>
                 </ItemTemplate>
             </asp:TemplateField>
+
         </Columns>
     </asp:GridView>
 

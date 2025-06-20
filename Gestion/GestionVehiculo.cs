@@ -41,7 +41,7 @@ namespace Gestion
 
             try
             {
-                datos.setearConsulta("select IDVehiculo, Patente, CapacidadDeCarga from Vehiculo where Disponible=0");
+                datos.setearConsulta("select v.IDVehiculo, v.Patente, v.CapacidadDeCarga, estadovehiculo.Descripcion from Vehiculo v inner join EstadoVehiculo estadovehiculo on estadovehiculo.IDEstadoVehiculo=v.IDEstadoVehiculo where v.Disponible=0");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -51,10 +51,11 @@ namespace Gestion
                     vehiculo.idVehiculo = (int)datos.Lector["IDVehiculo"];
                     vehiculo.Patente = datos.Lector["Patente"].ToString();
                     vehiculo.CapacidadCarga = Convert.ToSingle((decimal)datos.Lector["CapacidadDeCarga"]);
-                   
 
 
 
+                    vehiculo.estadoVehiculo = new EstadoVehiculo();
+                    vehiculo.estadoVehiculo.descripcioEstado = datos.Lector["Descripcion"].ToString();
 
                     listaVehiculos.Add(vehiculo);
                 }
@@ -130,7 +131,7 @@ namespace Gestion
             try
             {
                 datos.abrirConexion();
-                datos.setearConsulta("select IDVehiculo, Patente, CapacidadDeCarga from Vehiculo where Disponible=1");
+                datos.setearConsulta("select v.IDVehiculo, v.Patente, v.CapacidadDeCarga, estadovehiculo.Descripcion from Vehiculo v inner join EstadoVehiculo estadovehiculo on estadovehiculo.IDEstadoVehiculo=v.IDEstadoVehiculo where v.Disponible=1");
 
                 datos.ejecutarLectura();
 
@@ -141,6 +142,8 @@ namespace Gestion
                     vehiculo.Patente = datos.Lector["Patente"].ToString();
                     vehiculo.CapacidadCarga = Convert.ToSingle((decimal)datos.Lector["CapacidadDeCarga"]);
 
+                    vehiculo.estadoVehiculo = new EstadoVehiculo();
+                    vehiculo.estadoVehiculo.descripcioEstado = datos.Lector["Descripcion"].ToString();
 
 
 
@@ -207,7 +210,7 @@ namespace Gestion
             try
             {
                 datos.abrirConexion();
-                datos.setearConsulta("select IDVehiculo, Patente, CapacidadDeCarga from Vehiculo");
+                datos.setearConsulta("select v.IDVehiculo, v.Patente, v.CapacidadDeCarga, estadovehiculo.Descripcion from Vehiculo v inner join EstadoVehiculo estadovehiculo on estadovehiculo.IDEstadoVehiculo=v.IDEstadoVehiculo");
 
                 datos.ejecutarLectura();
 
@@ -219,6 +222,8 @@ namespace Gestion
                     vehiculo.CapacidadCarga = Convert.ToSingle((decimal)datos.Lector["CapacidadDeCarga"]);
 
 
+                    vehiculo.estadoVehiculo = new EstadoVehiculo();
+                    vehiculo.estadoVehiculo.descripcioEstado = datos.Lector["Descripcion"].ToString();
 
 
 
