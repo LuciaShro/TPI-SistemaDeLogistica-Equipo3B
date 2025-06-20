@@ -29,7 +29,6 @@
     <asp:BoundField HeaderText="Nombre" DataField="Nombre"   />
         <asp:BoundField HeaderText="Apellido" DataField="Apellido"   />
         <asp:BoundField HeaderText="Licencia" DataField="Licencia"   />
-    <asp:BoundField HeaderText="Estado" DataField="EstadoDisponibilidad"  />
     <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
     <asp:BoundField HeaderText="Horario Inicio" DataField="HoraInicio" />
         <asp:BoundField HeaderText="Horario Fin" DataField="HoraFin" />

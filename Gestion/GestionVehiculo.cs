@@ -41,15 +41,17 @@ namespace Gestion
 
             try
             {
-                datos.setearConsulta("select Patente, CapacidadDeCarga from Vehiculo where Disponible=0");
+                datos.setearConsulta("select IDVehiculo, Patente, CapacidadDeCarga from Vehiculo where Disponible=0");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
                     Vehiculo vehiculo = new Vehiculo();
+                    Transportista transportista = new Transportista();
                     vehiculo.idVehiculo = (int)datos.Lector["IDVehiculo"];
                     vehiculo.Patente = datos.Lector["Patente"].ToString();
-                    
+                    vehiculo.CapacidadCarga = Convert.ToSingle((decimal)datos.Lector["CapacidadDeCarga"]);
+                   
 
 
 
@@ -128,7 +130,7 @@ namespace Gestion
             try
             {
                 datos.abrirConexion();
-                datos.setearConsulta("select IDVehiculo, Patente from Vehiculo where Disponible=1");
+                datos.setearConsulta("select IDVehiculo, Patente, CapacidadDeCarga from Vehiculo where Disponible=1");
 
                 datos.ejecutarLectura();
 
@@ -137,7 +139,8 @@ namespace Gestion
                     Vehiculo vehiculo = new Vehiculo();
                     vehiculo.idVehiculo = (int)datos.Lector["IDVehiculo"];
                     vehiculo.Patente = datos.Lector["Patente"].ToString();
-                    
+                    vehiculo.CapacidadCarga = Convert.ToSingle((decimal)datos.Lector["CapacidadDeCarga"]);
+
 
 
 
@@ -175,7 +178,7 @@ namespace Gestion
                     Vehiculo v = new Vehiculo();
                     v.idVehiculo = (int)gestionDatos.Lector["IDVehiculo"];
                     v.Patente = (string)gestionDatos.Lector["Patente"];
-                    v.CapacidadCarga = (int)gestionDatos.Lector["CapacidadDeCarga"];
+                    v.CapacidadCarga = (float)gestionDatos.Lector["CapacidadDeCarga"];
                     v.Disponible = (bool)gestionDatos.Lector["Disponible"];
                     v.estadoVehiculo.IDEstado = (int)gestionDatos.Lector["IDEstadoVehiculo"];
 
@@ -195,5 +198,48 @@ namespace Gestion
                 gestionDatos.cerrarConexion();
             }
         }
+
+        public List<Vehiculo> listarVehiculos()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Vehiculo> listaVehiculos = new List<Vehiculo>();
+
+            try
+            {
+                datos.abrirConexion();
+                datos.setearConsulta("select IDVehiculo, Patente, CapacidadDeCarga from Vehiculo");
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Vehiculo vehiculo = new Vehiculo();
+                    vehiculo.idVehiculo = (int)datos.Lector["IDVehiculo"];
+                    vehiculo.Patente = datos.Lector["Patente"].ToString();
+                    vehiculo.CapacidadCarga = Convert.ToSingle((decimal)datos.Lector["CapacidadDeCarga"]);
+
+
+
+
+
+                    listaVehiculos.Add(vehiculo);
+                }
+
+                return listaVehiculos;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+
+            }
+
+        }
+
     }
 }

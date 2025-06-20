@@ -7,29 +7,24 @@
     <h2>Vehículos</h2>
 
     <div class="tabs">
-        <asp:Button runat="server" ID="btnTodos" Text="Todos" CssClass="tab active" />
-        <asp:Button runat="server" ID="btnActivos" Text="Activos" CssClass="tab" />
-        <asp:Button runat="server" ID="btnInactivos" Text="Inactivos" CssClass="tab"/>
+        <asp:Button runat="server" ID="btnTodos" Text="Todos" CssClass="tab active" OnClick="btnTodos_Click" />
+        <asp:Button runat="server" ID="btnAsignados" Text="Asignados" CssClass="tab" OnClick="btnAsignados_Click" />
+        <asp:Button runat="server" ID="btnNoAsignados" Text="No Asignados" CssClass="tab" OnClick="btnNoAsignados_Click"/>
         <asp:Button runat="server" ID="btnAnadir" Text="+ Añadir" CssClass="add-button" OnClick="btnAñadirVehiculo_Click"/>
     </div>
 
     <asp:GridView ID="gvVehiculos" runat="server" AutoGenerateColumns="False" CssClass="vehiculos-table">
         <Columns>
-            <asp:BoundField DataField="IdVehiculo" HeaderText="IDVEHICULO" />
-            <asp:TemplateField HeaderText="TRANSPORTISTA">
-                <ItemTemplate>
-                    <b><%# Eval("NombreTransportista") %></b><br />
-                    <span><%# Eval("EmailTransportista") %></span>
-                </ItemTemplate>
-            </asp:TemplateField>
+            <asp:BoundField DataField="idVehiculo" HeaderText="IDVEHICULO" />
             <asp:BoundField DataField="Patente" HeaderText="PATENTE" />
-            <asp:BoundField DataField="Estado" HeaderText="ESTADO" />
-            <asp:BoundField DataField="Capacidad" HeaderText="CAPACIDAD" />
+            <asp:BoundField DataField="CapacidadCarga" HeaderText="CAPACIDAD" />
             <asp:TemplateField HeaderText="ACCIONES">
                 <ItemTemplate>
-                    <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/img/edit_icon.png" ToolTip="Editar" CommandName="Editar" CommandArgument='<%# Eval("IdVehiculo") %>' />
+                    <asp:ImageButton ID="btnEditar" runat="server" ImageUrl="~/img/edit_icon.png" ToolTip="Editar" OnClick="btnEditar_Click" CommandName="Editar" CommandArgument='<%# Eval("IdVehiculo") %>'/>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
+
+
 </asp:Content>
