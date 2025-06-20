@@ -2,6 +2,7 @@
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="Content/Transportistas.css" />
+    <link rel="stylesheet" type="text/css" href="Content/Ordenes.css" />
 </asp:Content>
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="InicioContent" runat="server">
@@ -22,58 +23,18 @@
             <a href="#" class="tab">Inactivos</a>
         </div>
 
-        <div class="container text-center mt-4">
-        <div class="row-top">
-        <div class="row">
-    <div class="col">
-        <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-       <label class="form-check-label" for="checkDefault">
-    </label>
-         </div>
-    </div>
-    <div class="col">Nombre</div>
-    <div class="col">Estado</div>
-    <div class="col">Ubicacion</div>
-    <div class="col">Orden</div>
-    <div class="col">Horario</div>
-    <div class="col">Accion</div>
-</div>
-            </div>
-        <div class="row">
-            <div class="col">
-                <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-               <label class="form-check-label" for="checkDefault">
-            </label>
-                 </div>
-            </div>
-            <div class="col">
-            <div class="perfil">
-            <img src="https://preview.redd.it/is-there-a-sniper-default-pfp-that-someone-made-v0-78az45pd9f6c1.jpg?width=396&format=pjpg&auto=webp&s=5be4618605b25e0546d72dff52a7b897c3d4e1d4" class="foto-perfil" alt="FotoPerfil">Nombre Usuario</div>
-            </div>
-            <div class="col">Activo</div>
-            <div class="col">Pacheco</div>
-            <div class="col">1</div>
-            <div class="col">Horario</div>
-            <div class="col"><a href="AdminTransportistas.aspx">Detalle<i class="bi bi-pencil-square"></i></a></div>
-        </div>
-        <div class="row">
-            <div class="col">    <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-            <label class="form-check-label" for="checkDefault">
-            </label>
-        </div></div>
-            <div class="col">
-            <div class="perfil">
-            <img src="https://preview.redd.it/is-there-a-sniper-default-pfp-that-someone-made-v0-78az45pd9f6c1.jpg?width=396&format=pjpg&auto=webp&s=5be4618605b25e0546d72dff52a7b897c3d4e1d4" class="foto-perfil" alt="FotoPerfil">Nombre Usuario</div>
-            </div>
-            <div class="col">Activo</div>
-            <div class="col">Pacheco</div>
-            <div class="col">2</div>
-            <div class="col">Horario</div>
-            <div class="col"><a href="AdminTransportistas.aspx">Detalle<i class="bi bi-pencil-square"></i></a></div>
-        </div>
-        </div>
+    <asp:GridView runat="server" ID="dgvTransportistas" DataKeyNames="idTransportista" OnSelectedIndexChanged="dgvTransportistas_SelectedIndexChanged" OnPageIndexChanging="dgvTransportistas_PageIndexChanging" AllowPaging="true" PageSize="5" Class="transportistas-grid table-bordered text-center align-middle" AutoGenerateColumns="false">
+    <Columns>
+    <asp:BoundField HeaderText="ID Transportista" DataField="IdTransportista" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
+    <asp:BoundField HeaderText="Nombre" DataField="Nombre"   />
+        <asp:BoundField HeaderText="Apellido" DataField="Apellido"   />
+        <asp:BoundField HeaderText="Licencia" DataField="Licencia"   />
+    <asp:BoundField HeaderText="Estado" DataField="EstadoDisponibilidad"  />
+    <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
+    <asp:BoundField HeaderText="Horario Inicio" DataField="HoraInicio" />
+        <asp:BoundField HeaderText="Horario Fin" DataField="HoraFin" />
+        <asp:CommandField ShowSelectButton="true" SelectText="Detalles" HeaderText="Accion" />
+     </Columns>
+</asp:GridView>
 
 </asp:Content>

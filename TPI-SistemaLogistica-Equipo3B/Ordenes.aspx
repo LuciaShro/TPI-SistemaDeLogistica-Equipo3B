@@ -75,7 +75,7 @@
     <asp:GridView runat="server" ID="dgvOrdenes" DataKeyNames="idOrdenEnvio" OnSelectedIndexChanged="dgvOrdenes_SelectedIndexChanged" OnPageIndexChanging="dgvOrdenes_PageIndexChanging" AllowPaging="true" PageSize="5" Class="ordenes-grid table-bordered text-center align-middle" AutoGenerateColumns="false">
         <Columns>
         <asp:BoundField HeaderText="ID Orden" DataField="idOrdenEnvio" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
-        <asp:BoundField HeaderText="Cliente" DataField="cliente.Apellido"   />
+        <asp:BoundField HeaderText="Cliente" DataField=".Apellido"   />
         <asp:BoundField HeaderText="Transportista" DataField="idTransportistaAsignado"  />
         <asp:BoundField HeaderText="Estado" DataField="estado.DescripcionEstado" />
         <asp:BoundField HeaderText="Fecha Creación" DataField="FechaCreacion" />
