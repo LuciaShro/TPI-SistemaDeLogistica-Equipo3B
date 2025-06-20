@@ -22,6 +22,8 @@ namespace TPI_SistemaLogistica_Equipo3B
                     Cliente clienteLogueado = (Cliente)Session["cliente"];
 
                     txtNombreOrigen.Text = clienteLogueado.Nombre;
+                    txtApellidoOrigen.Text = clienteLogueado.Apellido;
+                    txtCUILOrigen.Text = clienteLogueado.CUIL.ToString();
                     txtTelefonoOrigen.Text = clienteLogueado.Telefono;
                     txtEmailOrigen.Text = clienteLogueado.Usuario.Email;
                     txtCalleOrigen.Text = clienteLogueado.Direccion.Calle;
