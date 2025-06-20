@@ -185,7 +185,7 @@ namespace Gestion
             try
             {
                 datos.abrirConexion();
-                datos.setearConsulta("select Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin, Imagen from Transportista");
+                datos.setearConsulta("select IDTransportista, Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, HoraInicio, HoraFin, Imagen from Transportista");
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -200,6 +200,7 @@ namespace Gestion
                     transportista.HoraInicio = TimeSpan.Parse(datos.Lector["HoraInicio"].ToString());
                     transportista.HoraFin = TimeSpan.Parse(datos.Lector["HoraFin"].ToString());
                     transportista.Imagen = datos.Lector["Imagen"].ToString();
+                    transportista.IdTransportista = (int)datos.Lector["IDTransportista"];
 
                     lista.Add(transportista);
                 }

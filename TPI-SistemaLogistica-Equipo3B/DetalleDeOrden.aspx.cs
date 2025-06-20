@@ -33,8 +33,6 @@ namespace TPI_SistemaLogistica_Equipo3B
 
                         dllTransportista.SelectedValue = seleccionado.transportista.IdTransportista.ToString();
 
-                        TxtTransportista.Text = seleccionado.idTransportistaAsignado.ToString();
-                        txtNombreTransportista.Text = seleccionado.transportista.Nombre + " " + seleccionado.transportista.Apellido;
                         GestionVehiculo gestionVehiculo = new GestionVehiculo();
                         txtVehiculo.Text = seleccionado.transportista.Vehiculo.Patente;
 
@@ -44,13 +42,11 @@ namespace TPI_SistemaLogistica_Equipo3B
                         TxtPuntoDestino.Text = seleccionado.ruta.PuntoDestino;
 
                         txtNombreOrigen.Text = seleccionado.cliente.Nombre;
-                        txtApellidoOrigen.Text = seleccionado.cliente.Apellido;
                         txtCUILOrigen.Text = seleccionado.cliente.CUIL.ToString();
                         txtEmailOrigen.Text = seleccionado.cliente.Usuario.Email;
                         txtTelefonoOrigen.Text = seleccionado.cliente.Telefono;
 
                         txtNombreDestino.Text = seleccionado.destinatario.Nombre;
-                        txtApellidoDestino.Text = seleccionado.destinatario.Apellido;
                         txtEmailDestino.Text = seleccionado.destinatario.Email;
                         txtTelefonoDestino.Text = seleccionado.destinatario.Telefono;
                         txtCUILDestino.Text = seleccionado.destinatario.CUIL.ToString();
@@ -87,8 +83,28 @@ namespace TPI_SistemaLogistica_Equipo3B
 
 
         protected void btnModificar_Click(object sender, EventArgs e)
-        { 
-            
+        {
+            try
+            {
+                OrdenesEnvio orden = new OrdenesEnvio();
+                orden.idOrdenEnvio = int.Parse(txtIdOrden.Text);
+
+                orden.idTransportistaAsignado = int.Parse(dllTransportista.SelectedValue);
+                orden.estado = new EstadoOrdenEnvio();
+                orden.estado.idEstado = int.Parse(dllEstado.SelectedValue);
+                orden.transportista = new Transportista();
+                orden.transportista.Vehiculo = new Vehiculo();
+                orden.transportista.Vehiculo.estadoVehiculo = new EstadoVehiculo();
+                orden.transportista.Vehiculo.estadoVehiculo.IDEstado = int.Parse(dllEstadoVehiculo.SelectedValue);
+
+                GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+                gestion.modificarOrdenEnvio(orden);
+                Response.Redirect("Ordenes.aspx");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
         }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
