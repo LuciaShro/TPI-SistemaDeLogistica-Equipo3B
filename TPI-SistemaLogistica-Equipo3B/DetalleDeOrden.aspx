@@ -9,14 +9,9 @@
 
         <!-- DESTINO -->
         <h4>Transportista</h4>
-        <div class="form-group">
-        <label>Transportista asignado:</label>
-        <asp:TextBox ID="TxtTransportista" runat="server" CssClass="form-control" enabled="false"/>
-        </div>
-        <div class="form-group">
+
 <label>Transportista:</label>
-<asp:TextBox ID="txtNombreTransportista" runat="server" CssClass="form-control" enabled="false"/>
-</div>
+
                    <div class="col">
                <asp:DropDownList runat="server" ID="dllTransportista" CssClass="form-select">
                </asp:DropDownList>
@@ -43,10 +38,6 @@
             <asp:TextBox ID="txtNombreOrigen" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
-            <label>Apellido:</label>
-            <asp:TextBox ID="txtApellidoOrigen" runat="server" CssClass="form-control" enabled="false"/>
-        </div>
-        <div class="form-group">
             <label>CUIL:</label>
             <asp:TextBox ID="txtCUILOrigen" runat="server" CssClass="form-control" enabled="false"/>
         </div>
@@ -64,10 +55,6 @@
         <div class="form-group">
             <label>Nombre:</label>
             <asp:TextBox ID="txtNombreDestino" runat="server" CssClass="form-control" enabled="false"/>
-        </div>
-        <div class="form-group">
-            <label>Apellido:</label>
-            <asp:TextBox ID="txtApellidoDestino" runat="server" CssClass="form-control" enabled="false"/>
         </div>
         <div class="form-group">
             <label>CUIL:</label>
