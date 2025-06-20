@@ -16,38 +16,63 @@
     </div>
             <div class="card p-5 w-50 mx-auto">
   <div class="card-body pb-0">
-    <h5>Detalles</h5> <a href="AgregarTransportista.aspx">Modificar<i class="bi bi-pencil-square"></i></a>
+    <h5>Detalles</h5> 
+    <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn btn-outline-primary" OnClick="btnModificar_Click" Visible="true" />
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
       <h6>Email</h6>
-       <p>Ejemplo@gmail.com</p>
+      <asp:Label ID="lblEmail" runat="server" Text="--"></asp:Label>
+      <asp:TextBox ID="txtEmail" runat="server" Visible="false"></asp:TextBox>
     </li>
     <li class="list-group-item">
       <h6>Nombre</h6>
-      <p>Juan</p>
+        <asp:Label ID="lblNombre" runat="server" Text="--"></asp:Label>
+        <asp:TextBox ID="txtNombre" runat="server" Visible="false"></asp:TextBox>
     </li>
     <li class="list-group-item">
       <h6>Apellido</h6>
-      <p>Perez</p>
+        <asp:Label ID="lblApellido" runat="server" Text="--"></asp:Label>
+        <asp:TextBox ID="txtApellido" runat="server" Visible="false"></asp:TextBox>
+    </li>
+       <li class="list-group-item">
+    <h6>Cuil</h6>
+     <asp:Label ID="lblCuil" runat="server" Text="--"></asp:Label>
+     <asp:TextBox ID="txtCuil" runat="server" Visible="false"></asp:TextBox>
     </li>
     <li class="list-group-item">
       <h6>Teléfono</h6>
-      <p>+54 011 11111111</p>
+        <asp:Label ID="lblTelefono" runat="server" Text="--"></asp:Label>
+        <asp:TextBox ID="txtTelefono" runat="server" Visible="false"></asp:TextBox>
     </li>
     <li class="list-group-item">
       <h6>Licencia</h6>
-      <p>C3</p>
+        <asp:Label ID="lblLicencia" runat="server" Text="--"></asp:Label>
+        <asp:TextBox ID="txtLicencia" runat="server" Visible="false"></asp:TextBox>
     </li>
     <li class="list-group-item">
       <h6>Estado</h6>
-      <p>Activo</p>
+      <asp:Label ID="lblEstado" runat="server" Text="--"></asp:Label>
     </li>
+      <li class="list-group-item">
+     <h6>Horario Inicio</h6>
+    <asp:Label ID="lblHorarioInicio" runat="server" Text="--" />
+    <asp:TextBox ID="txtHorarioInicio" runat="server" Visible="false"></asp:TextBox>
+    </li>
+    <li class="list-group-item">
+    <h6>Horario Fin</h6>
+    <asp:Label ID="lblHorarioFin" runat="server" Text="--" />
+    <asp:TextBox ID="txtHorarioFin" runat="server" Visible="false"></asp:TextBox>
+</li>
   </ul>
 </div>
 
-    <div class="card p-5 w-50 mx-auto mt-3">
-    <asp:Button ID="btnDarBajaTransportista" runat="server" Text="Dar de baja" CssClass="btn  btn-outline-danger" OnClientClick="return confirm('Estas seguro que queres dar de baja este usuario? Esta accion es irreversible');" OnClick="btnDarBajaTransportista_Click"/>
-    </div> 
 
+    <div class="card p-5 w-50 mx-auto mt-3">
+    <asp:Button ID="btnDarBajaTransportista" runat="server" Text="Dar de baja" CssClass="btn  btn-outline-danger" OnClientClick="return confirm('Estas seguro que queres dar de baja este usuario? Esta accion es irreversible');" OnClick="btnDarBajaTransportista_Click" Visible="false"/>
+    <asp:Button ID="btnReactivarTransportista" runat="server" Text="Reactivar transportista" CssClass="btn btn-outline-danger" OnClientClick="return confirm('Estas seguro que queres dar de baja este usuario? Esta accion es irreversible');" OnClick ="btnReactivarTransportista_Click" Visible="false"/>
+    </div> 
+    <asp:Button ID="btnGuardarCambios" runat="server" Text="Guardar cambios" CssClass="btn btn-outline-primary" Visible="false" OnClick="btnGuardarCambios_Click"/>
+    <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" CssClass="btn btn-outline-primary" OnClick="btnCancelar_Click" Visible="false"/>
+    <asp:Label ID="lblMensajePantalla" runat="server" Text="" CssClass="text-danger"></asp:Label>
 </asp:Content>

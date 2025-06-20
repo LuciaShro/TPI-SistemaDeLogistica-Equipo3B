@@ -26,16 +26,22 @@ namespace TPI_SistemaLogistica_Equipo3B
 
                 // desplegable en jornada laboral inicio
                 ddlInicioJornadaLaboral.Items.Add("-- Seleccionar un horario --");
+                ddlInicioJornadaLaboral.Items.Add("6:00");
                 ddlInicioJornadaLaboral.Items.Add("8:00");
+                ddlInicioJornadaLaboral.Items.Add("9:00");
+                ddlInicioJornadaLaboral.Items.Add("10:00");
                 ddlInicioJornadaLaboral.Items.Add("14:00");
 
                 // desplegable en jornada laboral fin
                 ddlFinJornadaLaboral.Items.Add("-- Seleccionar un horario --");
+                ddlFinJornadaLaboral.Items.Add("12:00");
                 ddlFinJornadaLaboral.Items.Add("14:00");
+                ddlFinJornadaLaboral.Items.Add("17:00");
+                ddlFinJornadaLaboral.Items.Add("18:00");
                 ddlFinJornadaLaboral.Items.Add("20:00");
 
                 // desplegable en licencia
-
+                ddlLicencia.Items.Add("-- Seleccionar una licencia --");
                 ddlLicencia.Items.Add("C");
                 ddlLicencia.Items.Add("D1");
                 ddlLicencia.Items.Add("D2");
@@ -88,6 +94,7 @@ namespace TPI_SistemaLogistica_Equipo3B
                 transportista.usuario.User = txtUsuarioTransportista.Text;
                 transportista.usuario.Password = txtContraseñaTransportista.Text;
                 transportista.usuario.Email = txtEmailTransportista.Text;
+                transportista.Activo = true;
                 
 
                 if (Session["RutaImagen"] != null)
