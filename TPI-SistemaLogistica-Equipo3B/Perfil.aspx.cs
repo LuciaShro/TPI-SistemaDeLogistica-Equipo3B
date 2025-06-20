@@ -50,7 +50,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             txtCiudadCliente.ReadOnly = false;
             txtProvCliente.ReadOnly = false;
 
-            btnGuardar.Visible = true;
+            //btnGuardar.Visible = true;
         }
 
         //protected void btnGuardar_Click(object sender, EventArgs e)

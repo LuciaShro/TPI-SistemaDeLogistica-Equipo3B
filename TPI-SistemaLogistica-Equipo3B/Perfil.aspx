@@ -70,7 +70,7 @@
             </fieldset>
         </div>
         <asp:Button ID="btnModificarPerfil" runat="server" Text="Modificar" CssClass="btn-purple w-100" OnClick="btnModificarPerfil_Click" />
-        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn-purple w-100" OnClick="btnGuardar_Click" CssClass="btn btn-success" Visible="false" />
+        
     </div>
     <div class="card p-5 w-50 mx-auto mt-3">
         <p>Eliminar cuenta y todos sus datos. Esta opcion es irreversible.</p>
