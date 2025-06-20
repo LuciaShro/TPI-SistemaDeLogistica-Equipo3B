@@ -99,7 +99,23 @@ namespace Gestion
 
         public void modificarOrdenEnvio() { }
 
-        public void eliminarOrdenEnvio(int id) { }
+        public void eliminarOrdenEnvio(int id) {
+            
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("")
+            }
+            catch (Exception ex) {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
 
         public List<OrdenesEnvio> ListarOrdenes(string idOrden = "")
         {
