@@ -276,15 +276,6 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.Label lblMensajePaquete;
 
         /// <summary>
-        /// btnCotizar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCotizar;
-
-        /// <summary>
         /// gvItems control.
         /// </summary>
         /// <remarks>
@@ -292,6 +283,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvItems;
+
+        /// <summary>
+        /// btnCotizar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCotizar;
 
         /// <summary>
         /// lblTotal control.
