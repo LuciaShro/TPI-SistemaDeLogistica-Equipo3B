@@ -8,12 +8,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Gestion;
+using TPI_SistemaLogistica_Equipo3B.Models;
+
+using TPI_SistemaLogistica_Equipo3B.Servicios;
 
 namespace TPI_SistemaLogistica_Equipo3B
 {
     public partial class CargarOrden : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected async void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
@@ -36,16 +39,42 @@ namespace TPI_SistemaLogistica_Equipo3B
                 }
                 else
                 {
-                    Response.Redirect("ErrorLogin.aspx");
+                    Response.Redirect("ErrorLogin.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
 
 
                 //gvItems.DataSource = new List<ItemOrden>(); // Inicial vacío
                 gvItems.DataSource = ViewState["Items"];
                 gvItems.DataBind();
+
+                //API LOCALIDADES/PROVINCIAS
+
+                var geoService = new GeorefService();
+                //var provincias = geoService.ObtenerProvinciasAsync().GetAwaiter().GetResult();
+                var provincias = await geoService.ObtenerProvinciasAsync();
+
+                ddlProvincias.DataSource = provincias;
+                ddlProvincias.DataTextField = "nombre";
+                ddlProvincias.DataValueField = "nombre";
+                ddlProvincias.DataBind();
             }
 
         }
+
+        protected async void ddlProvincias_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var geoService = new GeorefService();
+            var provinciaSeleccionada = ddlProvincias.SelectedValue;
+
+            var localidades = await geoService.ObtenerLocalidadesPorProvinciaAsync(provinciaSeleccionada);
+
+            ddlLocalidades.DataSource = localidades;
+            ddlLocalidades.DataTextField = "nombre";
+            ddlLocalidades.DataValueField = "nombre";
+            ddlLocalidades.DataBind();
+        }
+
 
         protected void btnCotizar_Click(object sender, EventArgs e)
         {
@@ -198,8 +227,10 @@ namespace TPI_SistemaLogistica_Equipo3B
             destinatario.Direccion.Calle = txtCalleDestino.Text;
             destinatario.Direccion.NumeroCalle = int.Parse(txtNumeroDestino.Text);
             destinatario.Direccion.CodigoPostal = txtCPDestino.Text;
-            destinatario.Direccion.Ciudad = txtCiudadDestino.Text;
-            destinatario.Direccion.Provincia = txtProvinciaDesino.Text;
+            //api provincias y localidades
+            destinatario.Direccion.Provincia = ddlProvincias.SelectedValue;
+            destinatario.Direccion.Ciudad = ddlLocalidades.SelectedValue;
+
             destinatario.Direccion.Piso = txtPisoDestino.Text;
             //destinatario.InfoAdicional = txtInfoDestino.Text;
 
@@ -248,6 +279,7 @@ namespace TPI_SistemaLogistica_Equipo3B
 
             detalleOrden.paquete = paquete;
             detalleOrden.Total = decimal.Parse(lblTotal.Text);
+
 
             gestionOrdenesEnvio.agregarOrdenEnvio(ordenesEnvio, detalleOrden);
         }
@@ -342,8 +374,8 @@ namespace TPI_SistemaLogistica_Equipo3B
                 string.IsNullOrWhiteSpace(txtCalleDestino.Text) ||
                 string.IsNullOrWhiteSpace(txtNumeroDestino.Text) ||
                 string.IsNullOrWhiteSpace(txtCPDestino.Text) ||
-                string.IsNullOrWhiteSpace(txtCiudadDestino.Text) ||
-                string.IsNullOrWhiteSpace(txtProvinciaDesino.Text))
+                string.IsNullOrWhiteSpace(ddlLocalidades.Text) ||
+                string.IsNullOrWhiteSpace(ddlProvincias.Text))
             {
                 lblMensajeDestinatario.Text = "Todos los campos son obligatorios.";
                 return false;

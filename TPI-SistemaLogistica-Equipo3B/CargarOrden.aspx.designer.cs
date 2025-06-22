@@ -186,22 +186,22 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtCPDestino;
 
         /// <summary>
-        /// txtCiudadDestino control.
+        /// ddlProvincias control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCiudadDestino;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProvincias;
 
         /// <summary>
-        /// txtProvinciaDesino control.
+        /// ddlLocalidades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProvinciaDesino;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocalidades;
 
         /// <summary>
         /// txtPisoDestino control.

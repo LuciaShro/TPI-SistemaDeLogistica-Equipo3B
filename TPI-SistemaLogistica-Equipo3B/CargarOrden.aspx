@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" CodeBehind="CargarOrden.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.CargarOrden" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" Async="true" CodeBehind="CargarOrden.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.CargarOrden" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link href="Content/CargarOrden.css" rel="stylesheet" />
@@ -17,12 +17,12 @@
 
         <div class="form-group">
             <label for="txtApellidoOrigen">Apellido:</label>
-            <asp:TextBox ID="txtApellidoOrigen" runat="server" CssClass="form-control"  ReadOnly="true" />
+            <asp:TextBox ID="txtApellidoOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
         <div class="form-group">
             <label for="txtCUILOrigen">CUIL:</label>
-            <asp:TextBox ID="txtCUILOrigen" runat="server" CssClass="form-control"  ReadOnly="true"  />
+            <asp:TextBox ID="txtCUILOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
         <div class="form-group">
@@ -39,7 +39,7 @@
             <label for="txtCalleOrigen">Calle:</label>
             <asp:TextBox ID="txtCalleOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
-
+ 
         <div class="form-group">
             <label for="txtNumeroOrigen">Número:</label>
             <asp:TextBox ID="txtNumeroOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
@@ -65,7 +65,7 @@
             <asp:TextBox ID="txtPisoOrigen" runat="server" CssClass="form-control" ReadOnly="true" />
         </div>
 
-       <%-- <div class="form-group">
+        <%-- <div class="form-group">
             <label for="txtInfoOrigen">Info Adicional:</label>
             <asp:TextBox ID="txtInfoOrigen" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control" />
         </div>--%>
@@ -116,7 +116,26 @@
             <asp:TextBox ID="txtCPDestino" runat="server" CssClass="form-control" />
         </div>
 
-        <div class="form-group">
+        <asp:DropDownList
+            ID="ddlProvincias"
+            runat="server"
+            AutoPostBack="true"
+            OnSelectedIndexChanged="ddlProvincias_SelectedIndexChanged"
+            AppendDataBoundItems="true" >
+            <asp:ListItem Text="Seleccione una provincia" Value="" />
+        </asp:DropDownList>
+
+        <br />
+        <br />
+
+        <asp:DropDownList
+            ID="ddlLocalidades"
+            runat="server"
+            AppendDataBoundItems="true">
+            <asp:ListItem Text="Seleccione una localidad" Value="" />
+        </asp:DropDownList>
+
+        <%--<div class="form-group">
             <label for="txtCiudadDestino">Ciudad / Localidad / Partido:</label>
             <asp:TextBox ID="txtCiudadDestino" runat="server" CssClass="form-control" />
         </div>
@@ -124,7 +143,7 @@
         <div class="form-group">
             <label for="txtProvinciaDesino">Provincia:</label>
             <asp:TextBox ID="txtProvinciaDesino" runat="server" CssClass="form-control" />
-        </div>
+        </div>--%>
 
         <div class="form-group">
             <label for="txtPisoDestino">Piso / Depto / Manzana / Lote:</label>
@@ -135,7 +154,6 @@
             <label for="txtInfoDestino">Info Adicional:</label>
             <asp:TextBox ID="txtInfoDestino" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control" />
         </div>--%>
-
     </div>
 
     <!-- PAQUETE -->
