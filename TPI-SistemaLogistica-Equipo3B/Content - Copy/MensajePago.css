@@ -1,0 +1,28 @@
+﻿.gracias-contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    text-align: center;
+    font-family: 'Segoe UI', 'Poppins', sans-serif;
+}
+
+.gracias-titulo {
+    font-size: 48px;
+    font-weight: bold;
+    color: #a855f7;
+    margin-bottom: 20px;
+}
+
+.gracias-subtitulo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.gracias-texto {
+    font-size: 16px;
+    color: #333;
+}

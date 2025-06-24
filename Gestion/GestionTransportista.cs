@@ -127,7 +127,7 @@ namespace Gestion
             catch (Exception ex)
             {
 
-                throw new Exception("Error en método buscarVehiculo: " + ex.Message, ex);
+                throw new Exception("Error en método returnTransportista: " + ex.Message, ex);
             }
 
             finally

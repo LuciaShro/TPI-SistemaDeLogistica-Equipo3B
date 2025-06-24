@@ -267,5 +267,41 @@ namespace Gestion
         
         
         }
+
+        public Usuario returnUsuario(int id)
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("SELECT IDUsuario, NombreUser, Email, Activo FROM Usuario WHERE IDUsuario = @IDUsuario");
+                gestionDatos.setearParametro("@IDUsuario", id);
+                gestionDatos.ejecutarLectura();
+
+                while (gestionDatos.Lector.Read())
+                {
+                    Usuario usuario =new Usuario();
+                    usuario.idUsuario = (int)gestionDatos.Lector["IDUsuario"];
+                    usuario.User = (string)gestionDatos.Lector["NombreUser"];
+                    usuario.Email = (string)gestionDatos.Lector["Email"];
+                    //usuario.tipoUsuario = (enum)gestionDatos.Lector["TipoUsuario"];
+                    usuario.Activo = (bool)gestionDatos.Lector["Activo"];
+
+                    return usuario;
+                }
+
+                throw new Exception("Usuario no encontrado con ese ID.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método returnUsuario: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
     }
 }

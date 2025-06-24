@@ -1,0 +1,82 @@
+﻿.invoice-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    max-width: 900px;
+    margin: auto;
+}
+
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.company-logo img {
+    height: 40px;
+}
+
+.invoice-actions {
+    text-align: right;
+}
+
+.status-paid {
+    color: #1BC5BD;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.btn-download {
+    background-color: #9b59b6;
+    color: white;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.invoice-info,
+.invoice-dates {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    font-size: 0.95rem;
+}
+
+.billed-to {
+    margin-top: 30px;
+    font-size: 0.95rem;
+}
+
+.invoice-table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+
+    .invoice-table th, .invoice-table td {
+        padding: 12px;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: left;
+    }
+
+.invoice-summary {
+    margin-top: 30px;
+    text-align: right;
+    font-size: 1rem;
+}
+
+.invoice-summary div {
+        margin-bottom: 5px;
+}
+
+.invoice-summary .total {
+        font-weight: bold;
+        font-size: 1.1rem;
+
+}

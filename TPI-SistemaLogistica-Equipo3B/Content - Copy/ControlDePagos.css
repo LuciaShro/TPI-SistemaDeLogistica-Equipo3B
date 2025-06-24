@@ -1,0 +1,52 @@
+﻿.estado-pago {
+    background-color: #fbe9e7;
+    color: #e65100;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+.estado-envio {
+    background-color: #e0e0e0;
+    color: #424242;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
+.btn-mas {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.acciones-menu {
+    display: block; /* de momento visible para que lo puedas ver */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px;
+    z-index: 10;
+    width: max-content;
+}
+
+.acciones-menu div {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.acciones-menu div:hover {
+
+    background-color: #f0f0f0;
+
+}
+
+.acciones-menu .cancelar {
+    color: red;
+    font-weight: bold;
+}

@@ -133,7 +133,14 @@ namespace Gestion
             comando.CommandText = sp;
             }
 
-            public object obtenerValor()
+        public void setearProcedimiento_(string nombreProcedimiento)
+        {
+            comando = new SqlCommand(nombreProcedimiento, conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+        }
+
+
+        public object obtenerValor()
             {
             comando.Connection = conexion; 
 

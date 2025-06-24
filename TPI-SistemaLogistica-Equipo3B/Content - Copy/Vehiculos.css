@@ -1,0 +1,39 @@
+﻿.tabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tab {
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.tab.active {
+    border-bottom: 3px solid purple;
+    color: purple;
+}
+
+.add-button {
+    background-color: #9b59b6;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.vehiculos-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vehiculos-table th, .vehiculos-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}

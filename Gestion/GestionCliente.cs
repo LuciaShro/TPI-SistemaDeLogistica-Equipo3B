@@ -160,6 +160,46 @@ namespace Gestion
             }
         }
 
+        public Cliente returnCliente(long cuil)
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("SELECT IDUsuario, IDDireccion, Cuil, Nombre, Apellido, Telefono FROM Clientes WHERE Cuil = @Cuil");
+                gestionDatos.setearParametro("@Cuil", cuil);
+                gestionDatos.ejecutarLectura();
+
+                while (gestionDatos.Lector.Read())
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.Usuario = new Usuario(); 
+                    cliente.Direccion = new Direccion();
+
+                    cliente.Usuario.idUsuario = (int)gestionDatos.Lector["IDUsuario"];
+                    cliente.Direccion.idDireccion = (int)gestionDatos.Lector["IDDireccion"];
+                    cliente.CUIL = (long)gestionDatos.Lector["Cuil"];
+                    cliente.Nombre = (string)gestionDatos.Lector["Nombre"];
+                    cliente.Apellido = (string)gestionDatos.Lector["Apellido"];
+                    cliente.Telefono = (string)gestionDatos.Lector["Telefono"];
+
+                    return cliente;
+                }
+
+                throw new Exception("Cliente no encontrado con ese Cuil.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método returnCliente: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
+
         public int returnIDUsuario(long cuil)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -189,52 +229,46 @@ namespace Gestion
             }
         }
 
-        //public void modificarCliente (Cliente cliente, Direccion direccion) 
-        //{
-        //    AccesoDatos gestionDatos = new AccesoDatos();
+        public void modificarCliente(Cliente cliente, Cliente cliente2)
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
 
-        //    try
-        //    {
-        //        gestionDatos.setearConsulta("UPDATE Usuario SET Email = @Email WHERE IDUsuario = @IDUsuario");
+            try
+            {
+                gestionDatos.abrirConexion();
 
-        //        gestionDatos.setearParametro("@Email", cliente.Usuario.Email);
-        //        int idUsuario = Convert.ToInt32(gestionDatos.obtenerValor());
-        //        gestionDatos.cerrarConexion();
+                gestionDatos.setearProcedimiento_("sp_ModificarCliente");
 
+             
+                gestionDatos.setearParametro("@IDUsuario", cliente2.Usuario.idUsuario);
+                gestionDatos.setearParametro("@Email", cliente.Usuario.Email);
+             
+                gestionDatos.setearParametro("@IDDireccion", cliente2.Direccion.idDireccion);
+                gestionDatos.setearParametro("@Calle", cliente.Direccion.Calle);
+                gestionDatos.setearParametro("@CodigoPostal", cliente.Direccion.CodigoPostal);
+                gestionDatos.setearParametro("@Provincia", cliente.Direccion.Provincia);
+                gestionDatos.setearParametro("@Ciudad", cliente.Direccion.Ciudad);
+                gestionDatos.setearParametro("@Numero", cliente.Direccion.NumeroCalle);
+                gestionDatos.setearParametro("@Piso", cliente.Direccion.Piso);
+               
+                gestionDatos.setearParametro("@CUIL_Anterior", cliente2.CUIL);
+                gestionDatos.setearParametro("@CUIL_Nuevo", cliente.CUIL);
+                gestionDatos.setearParametro("@Nombre", cliente.Nombre);
+                gestionDatos.setearParametro("@Apellido", cliente.Apellido);
+                gestionDatos.setearParametro("@Telefono", cliente.Telefono);
 
-        //        gestionDatos.setearConsulta("UPDATE Direccion SET Calle = @Calle, CodigoPostal = @CodigoPostal, Provincia = @Provincia, Ciudad = @Ciudad, Numero = @Numero, Piso = @Piso WHERE IDDireccion = @IDDireccion");
+                gestionDatos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
 
-        //        gestionDatos.setearParametro("@Calle", cliente.Direccion.Calle);
-        //        gestionDatos.setearParametro("@CodigoPostal", cliente.Direccion.CodigoPostal);
-        //        gestionDatos.setearParametro("@Provincia", cliente.Direccion.Provincia );
-        //        gestionDatos.setearParametro("@Ciudad", cliente.Direccion.Ciudad);
-        //        gestionDatos.setearParametro("@Numero", cliente.Direccion.NumeroCalle);
-        //        gestionDatos.setearParametro("@Piso", cliente.Direccion.Piso);
-        //        int idDireccion = Convert.ToInt32(gestionDatos.obtenerValor());
-        //        gestionDatos.cerrarConexion();
-
-
-        //        gestionDatos.setearConsulta("UPDATE Destinatarios SET IDDirección = @IDDirección, Cuil = @Cuil, Nombre = @Nombre, Apellido = @Apellido, Telefono = @Telefono, Email = @Email WHERE Cuil = @Cuil");
-
-        //        gestionDatos.setearParametro("@IDDIreccion", idDireccion);
-        //        gestionDatos.setearParametro("@Cuil", cliente.CUIL);
-        //        gestionDatos.setearParametro("@Nombre", cliente.Nombre);
-        //        gestionDatos.setearParametro("@Apellido", cliente.Apellido);
-        //        gestionDatos.setearParametro("@Telefono", cliente.Telefono);
-
-        //        gestionDatos.ejecutarAccion();
-
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //    finally
-        //    {
-        //        gestionDatos.cerrarConexion();
-        //    }
-        //}
 
         public void eliminacionFisicaCliente(int idCliente) {
             AccesoDatos datos = new AccesoDatos ();

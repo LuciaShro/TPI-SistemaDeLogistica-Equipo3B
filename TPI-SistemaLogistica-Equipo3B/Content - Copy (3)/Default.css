@@ -1,0 +1,233 @@
+﻿:root {
+    --primary-color: #7B3E9C; 
+    --secondary-color: #6C757D; 
+    --light-grey: #F8F9FA; 
+    --text-dark: #343A40; 
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif; 
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--white);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%; 
+    background-color: var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-dark);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+    .nav-link:hover {
+        color: var(--primary-color);
+    }
+
+.btn {
+    padding: 0.8rem 1.8rem;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+    .btn-primary:hover {
+        background-color: #5D2F7E;
+    }
+
+.btn-secondary {
+    background-color: var(--primary-color); 
+    color: var(--white);
+    padding: 1rem 2.5rem; 
+}
+
+    .btn-secondary:hover {
+        background-color: #5D2F7E;
+    }
+
+
+.hero-section {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 5%; 
+    min-height: calc(100vh - 80px); 
+    overflow: hidden; 
+    background-color: var(--white);
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+    margin-right: 3rem;
+    text-align: left;
+}
+
+    .hero-content h1 {
+        font-size: 3.5rem; 
+        font-weight: bold;
+        color: var(--text-dark);
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        color: var(--secondary-color);
+        margin-bottom: 2.5rem;
+    }
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem; 
+}
+
+.link-text {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+    .link-text:hover {
+        color: var(--primary-color);
+    }
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px; 
+    height: 600px;
+    position: relative; 
+}
+
+.delivery-illustration {
+    max-width: 100%; 
+    height: auto;
+    display: block; 
+}
+
+
+@media (max-width: 992px) {
+    .hero-section {
+        flex-direction: column;
+        padding: 3rem 5%;
+    }
+
+    .hero-content {
+        margin-right: 0;
+        margin-bottom: 3rem; 
+        text-align: center; 
+        max-width: 100%; 
+    }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+        }
+
+    .hero-actions {
+        justify-content: center; 
+    }
+
+    .hero-image {
+        max-width: 80%; 
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 5%;
+    }
+
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+
+    .navbar-nav {
+        gap: 0.8rem;
+    }
+
+    .nav-link, .btn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .btn-secondary {
+        padding: 0.8rem 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-end;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .btn-secondary {
+        width: 80%; 
+    }
+}

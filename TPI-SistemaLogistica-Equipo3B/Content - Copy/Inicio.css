@@ -1,0 +1,8 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap');
+
+h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 900;
+    color: #9854CB;
+    padding-bottom: 3rem;
+}
