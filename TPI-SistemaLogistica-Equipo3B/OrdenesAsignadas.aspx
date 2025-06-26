@@ -28,9 +28,11 @@
             <div class="card mb-3" style="width: 50%;">
                 <div class="card-body">
                     <h5 class="card-title"><strong>Orden#<%#Eval ("idOrdenEnvio")%></strong></h5>
-                    <p class="card-text"><strong>Destinatario:</strong> <%#Eval ("Destinatario")%></p>
-                    <p class="card-text"><strong>Salida:</strong> <%#Eval ("ruta.PuntoPartida")%></p>
-                    <p class="card-text"><strong>Destino:</strong> <%#Eval ("ruta.PuntoDestino")%></p>
+                    <p class="card-text"><strong>Destinatario nombre:</strong> <%#Eval ("destinatario.Nombre")+" "+Eval ("destinatario.Apellido")%></p>
+                    <p class="card-text"><strong>Telefono destinatario:</strong> <%#Eval ("destinatario.Telefono")%></p>
+                    <p class="card-text"><strong>Direccion destinatario:</strong> <%#Eval("destinatario.Direccion.Calle") + " " + Eval("destinatario.Direccion.NumeroCalle")%></p>
+                    <p class="card-text"><strong>Punto de partida:</strong> <%#Eval ("ruta.PuntoPartida")%></p>
+                    <p class="card-text"><strong>Punto de destino:</strong> <%#Eval ("ruta.PuntoDestino")%></p>
                     <p class="card-text"><strong>Fecha envio:</strong> <%#Eval ("FechaEnvio")%></p>
                     <p class="card-text"><strong>Fecha estimada llegada:</strong> <%#Eval ("FechaEstimadaLlegada")%></p>
                     <p class="card-text"><strong>Estado:</strong> <%#Eval ("estado.DescripcionEstado")%></p>

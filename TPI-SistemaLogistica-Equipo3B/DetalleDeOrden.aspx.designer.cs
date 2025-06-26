@@ -33,6 +33,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.DropDownList dllTransportista;
 
         /// <summary>
+        /// txtTransportista control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTransportista;
+
+        /// <summary>
         /// txtVehiculo control.
         /// </summary>
         /// <remarks>
@@ -186,13 +195,13 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.DropDownList dllEstado;
 
         /// <summary>
-        /// dllEstadoVehiculo control.
+        /// txtEstadoVehiculo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dllEstadoVehiculo;
+        protected global::System.Web.UI.WebControls.TextBox txtEstadoVehiculo;
 
         /// <summary>
         /// btnModificar control.
@@ -211,5 +220,50 @@ namespace TPI_SistemaLogistica_Equipo3B
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEliminar;
+
+        /// <summary>
+        /// btnComenzarViaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnComenzarViaje;
+
+        /// <summary>
+        /// btnEntregado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEntregado;
+
+        /// <summary>
+        /// btnDemorado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDemorado;
+
+        /// <summary>
+        /// dllEstadoVehiculo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dllEstadoVehiculo;
+
+        /// <summary>
+        /// btnActualizarVehiculo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnActualizarVehiculo;
     }
 }

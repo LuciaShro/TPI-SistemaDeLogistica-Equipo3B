@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Configuration;
 using System.Net.Http;
@@ -156,14 +157,13 @@ namespace Gestion
                 datos.setearConsulta("SELECT OE.IDOrden, C.Nombre AS NombreCliente, C.Apellido AS ApellidoCliente, T.IDTransportista AS IDTransportista, T.Nombre AS NombreTransportista," +
                     " T.Apellido AS ApellidoTransportista,V.Patente AS PatenteVehiculo, R.PuntoPartida, R.PuntoDestino,EO.IDEstadoOrdenEnvio, EO.Descripcion AS EstadoOrden, D.Nombre AS NombreDestinatario," +
                     " D.Apellido AS ApellidoDestinatario, D.Cuil AS CuilDestinatario, D.Email AS EmailDestinatario, D.Telefono AS TelefonoDestinatario, C.Cuil AS CuilCliente, " +
-                    "C.Telefono AS TelefonoCliente, OE.FechaCreacion, OE.FechaEnvio, OE.FechaEstimadaLlegada, OE.FechaLlegada, U.Email AS EmailCliente, EV.IDEstadoVehiculo, EV.Descripcion AS DescripcionEstadoVehiculo, " +
-                    "Pq.Largo, Pq.Alto, Pq.Ancho, Pq.Peso, Pq.valorDeclarado FROM OrdenesEnvio OE INNER JOIN Usuario U ON OE.IDUsuario = U.IDUsuario " +
-                    "INNER JOIN Clientes C ON OE.IDCliente = C.IDCliente INNER JOIN Transportista T ON OE.IDTransportista = T.IDTransportista " +
-                    "INNER JOIN Vehiculo V ON T.IDVehiculo = V.IDVehiculo " +
+                    "C.Telefono AS TelefonoCliente, OE.FechaCreacion, OE.FechaEnvio, OE.FechaEstimadaLlegada, OE.FechaLlegada, U.Email AS EmailCliente, EV.IDEstadoVehiculo, EV.Descripcion AS DescripcionEstadoVehiculo, DN.Calle, DN.Numero " +
+                    "FROM OrdenesEnvio OE INNER JOIN Usuario U ON OE.IDUsuario = U.IDUsuario " +
+                    "INNER JOIN Clientes C ON OE.IDCliente = C.IDCliente INNER JOIN Transportista T ON OE.IDTransportista = T.IDTransportista INNER JOIN Vehiculo V ON T.IDVehiculo = V.IDVehiculo " +
                     "INNER JOIN EstadoVehiculo EV ON V.IDEstadoVehiculo = EV.IDEstadoVehiculo " +
                     "INNER JOIN Rutas R ON OE.IDRuta = R.IDRuta INNER JOIN EstadoOrdenesEnvio EO ON OE.IDEstadoOrdenEnvio = EO.IDEstadoOrdenEnvio " +
-                    "INNER JOIN Destinatarios D ON OE.IDDestinatario = D.IDDestinatario INNER JOIN DetalleOrdenesEnvio DO ON DO.IDOrden = OE.IDOrden " +
-                    "INNER JOIN Paquete Pq ON Pq.IDPaquete = DO.IDPaquete ");
+                    "INNER JOIN Destinatarios D ON OE.IDDestinatario = D.IDDestinatario " +
+                    "INNER JOIN Direccion DN ON D.IDDirección = DN.IDDireccion");
                 if (idOrden != "")
                 {
                     datos.Comando.CommandText += " WHERE OE.IDOrden = " + idOrden + " AND OE.Activo=1";
@@ -177,7 +177,6 @@ namespace Gestion
                 while (datos.Lector.Read())
                 {
                     OrdenesEnvio aux = new OrdenesEnvio();
-                    DetalleOrden detalle = new DetalleOrden();
                     Transportista transportista = new Transportista();
                     GestionTransportista gestionTransportista = new GestionTransportista();
 
@@ -204,6 +203,105 @@ namespace Gestion
 
 
                     aux.destinatario = new Destinatario();
+                    aux.destinatario.Direccion = new Direccion();
+                    aux.destinatario.Nombre = datos.Lector["NombreDestinatario"].ToString();
+                    aux.destinatario.Apellido = datos.Lector["ApellidoDestinatario"].ToString();
+                    aux.destinatario.CUIL = Convert.ToInt64(datos.Lector["CuilDestinatario"]);
+                    aux.destinatario.Usuario = new Usuario();
+                    aux.destinatario.Email = datos.Lector["EmailDestinatario"].ToString();
+                    aux.destinatario.Telefono = datos.Lector["TelefonoDestinatario"].ToString();
+                    aux.destinatario.Direccion.Calle= datos.Lector["Calle"].ToString();
+                    aux.destinatario.Direccion.NumeroCalle = Convert.ToInt32(datos.Lector["Numero"]);
+                    aux.ruta = new Ruta();
+                    aux.ruta.PuntoPartida = datos.Lector["PuntoPartida"].ToString();
+                    aux.ruta.PuntoDestino = datos.Lector["PuntoDestino"].ToString();
+                    aux.estado = new EstadoOrdenEnvio();
+                    aux.estado.DescripcionEstado = datos.Lector["EstadoOrden"].ToString();
+                    aux.estado.idEstado = (int)datos.Lector["IDEstadoOrdenEnvio"];
+                    aux.estado.DescripcionEstado = datos.Lector["EstadoOrden"].ToString();
+                    aux.FechaCreacion = (DateTime)datos.Lector["FechaCreacion"];
+                    aux.FechaEnvio = (DateTime)datos.Lector["FechaEnvio"];
+                    aux.FechaEstimadaLlegada = (DateTime)datos.Lector["FechaEstimadaLlegada"];
+                    aux.FechaDeLlegada = (DateTime)datos.Lector["FechaLlegada"];
+
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+
+        public List<OrdenesEnvio> ListarOrdenCompleta(string idOrden = "")
+        {
+
+            List<OrdenesEnvio> lista = new List<OrdenesEnvio>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT DISTINCT OE.IDOrden, C.Nombre AS NombreCliente, C.Apellido AS ApellidoCliente, T.IDTransportista AS IDTransportista, T.Nombre AS NombreTransportista," +
+                    " T.Apellido AS ApellidoTransportista,V.Patente AS PatenteVehiculo, R.PuntoPartida, R.PuntoDestino,EO.IDEstadoOrdenEnvio, EO.Descripcion AS EstadoOrden, D.Nombre AS NombreDestinatario," +
+                    " D.Apellido AS ApellidoDestinatario, D.Cuil AS CuilDestinatario, D.Email AS EmailDestinatario, D.Telefono AS TelefonoDestinatario, C.Cuil AS CuilCliente, " +
+                    "C.Telefono AS TelefonoCliente, OE.FechaCreacion, OE.FechaEnvio, OE.FechaEstimadaLlegada, OE.FechaLlegada, U.Email AS EmailCliente, EV.IDEstadoVehiculo, EV.Descripcion AS DescripcionEstadoVehiculo, " +
+                    "Pq.Largo, Pq.Alto, Pq.Ancho, Pq.Peso, Pq.valorDeclarado, DN.Calle, DN.Numero FROM OrdenesEnvio OE INNER JOIN Usuario U ON OE.IDUsuario = U.IDUsuario " +
+                    "INNER JOIN Clientes C ON OE.IDCliente = C.IDCliente INNER JOIN Transportista T ON OE.IDTransportista = T.IDTransportista " +
+                    "INNER JOIN Vehiculo V ON T.IDVehiculo = V.IDVehiculo " +
+                    "INNER JOIN EstadoVehiculo EV ON V.IDEstadoVehiculo = EV.IDEstadoVehiculo " +
+                    "INNER JOIN Rutas R ON OE.IDRuta = R.IDRuta INNER JOIN EstadoOrdenesEnvio EO ON OE.IDEstadoOrdenEnvio = EO.IDEstadoOrdenEnvio " +
+                    "INNER JOIN Destinatarios D ON OE.IDDestinatario = D.IDDestinatario INNER JOIN DetalleOrdenesEnvio DO ON DO.IDOrden = OE.IDOrden " +
+                    "INNER JOIN Paquete Pq ON Pq.IDPaquete = DO.IDPaquete " +
+                    "INNER JOIN Direccion DN ON D.IDDirección = DN.IDDireccion");
+                if (idOrden != "")
+                {
+                    datos.Comando.CommandText += " WHERE OE.IDOrden = " + idOrden + " AND OE.Activo=1";
+                }
+                else
+                {
+                    datos.Comando.CommandText += " WHERE OE.Activo=1";
+                }
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    OrdenesEnvio aux = new OrdenesEnvio();
+                    DetalleOrden detalle = new DetalleOrden();
+                    Transportista transportista = new Transportista();
+                    GestionTransportista gestionTransportista = new GestionTransportista();
+
+                    aux.idOrdenEnvio = (int)datos.Lector["IDOrden"];
+                    aux.cliente = new Cliente();
+                    aux.cliente.Nombre = datos.Lector["NombreCliente"].ToString() + " " + datos.Lector["ApellidoCliente"].ToString();
+                    aux.cliente.Apellido = datos.Lector["ApellidoCliente"].ToString();
+                    aux.cliente.CUIL = Convert.ToInt64(datos.Lector["CuilCliente"]);
+                    aux.cliente.Usuario = new Usuario();
+                    aux.cliente.Usuario.Email = datos.Lector["EmailCliente"].ToString();
+                    aux.cliente.Telefono = datos.Lector["TelefonoCliente"].ToString();
+
+                    aux.transportista = new Transportista();
+                    aux.idTransportistaAsignado = (int)datos.Lector["IDTransportista"];
+                    aux.transportista.IdTransportista = (int)datos.Lector["IDTransportista"];
+                    aux.transportista.Nombre = datos.Lector["NombreTransportista"].ToString() + " " + datos.Lector["ApellidoTransportista"].ToString();
+                    aux.transportista.Apellido = datos.Lector["ApellidoTransportista"].ToString();
+                    aux.transportista.Vehiculo = new Vehiculo();
+                    aux.transportista.Vehiculo.Patente = datos.Lector["PatenteVehiculo"].ToString();
+
+                    aux.transportista.Vehiculo.estadoVehiculo = new EstadoVehiculo();
+                    aux.transportista.Vehiculo.estadoVehiculo.IDEstado = (int)datos.Lector["IDEstadoVehiculo"];
+                    aux.transportista.Vehiculo.estadoVehiculo.descripcioEstado = datos.Lector["DescripcionEstadoVehiculo"].ToString();
+
+
+                    aux.destinatario = new Destinatario();
+                    aux.destinatario.Direccion = new Direccion();
                     aux.destinatario.Nombre = datos.Lector["NombreDestinatario"].ToString();
                     aux.destinatario.Apellido = datos.Lector["ApellidoDestinatario"].ToString();
                     aux.destinatario.CUIL = Convert.ToInt64(datos.Lector["CuilDestinatario"]);
@@ -250,6 +348,75 @@ namespace Gestion
         }
 
         public bool buscarOrdenEnvio() { return false; }
+
+        public void ActualizarEstadoYFechaLlegada(int idOrden, int idNuevoEstado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try{
+                datos.setearConsulta("UPDATE OrdenesEnvio SET IDEstadoOrdenEnvio = @estado, FechaLlegada = @fecha WHERE IDOrden = @id");
+                datos.setearParametro("@estado", idNuevoEstado);
+                datos.setearParametro("@fecha", DateTime.Now);
+                datos.setearParametro("@id", idOrden);
+
+                datos.ejecutarAccion();
+            }
+            catch(Exception ex) 
+            { 
+                throw ex; 
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void ActualizarEstadoYFechaEnvio(int idOrden, int idNuevoEstado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.setearConsulta("UPDATE OrdenesEnvio SET IDEstadoOrdenEnvio = @estado, FechaEnvio = @fechaEnvio, FechaEstimadaLLegada = @fechaEstimadaLlegada WHERE IDOrden = @idOrden;" +
+                    "UPDATE Transportista SET Activo = 0 WHERE IDTransportista = (SELECT idTransportista FROM OrdenesEnvio WHERE IDOrden = @idOrden);" +
+                    "UPDATE Vehiculo SET Activo = 0 WHERE IDVehiculo = (SELECT idTransportista FROM OrdenesEnvio WHERE IDOrden = @idOrden);");
+                datos.setearParametro("@estado", idNuevoEstado);
+                datos.setearParametro("@fechaEnvio", DateTime.Now);
+                datos.setearParametro("@fechaEstimadaLlegada", DateTime.Now.AddDays(1));
+                datos.setearParametro("@idOrden", idOrden);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void ActualizarEstadoYFechaDemora(int idOrden, int idNuevoEstado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE OrdenesEnvio SET IDEstadoOrdenEnvio = @estado, FechaEstimadaLLegada = @fechaEstimadaLlegada WHERE IDOrden = @idOrden;");
+                datos.setearParametro("@estado", idNuevoEstado);
+                datos.setearParametro("@fechaEnvio", DateTime.Now);
+                datos.setearParametro("@fechaEstimadaLlegada", DateTime.Now.AddDays(2));
+                datos.setearParametro("@idOrden", idOrden);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
     }
 }

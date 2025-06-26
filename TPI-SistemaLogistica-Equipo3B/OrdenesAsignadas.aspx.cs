@@ -18,9 +18,9 @@ namespace TPI_SistemaLogistica_Equipo3B
             {
                 if (Session["idTransportistaAsignado"] == null)
                 {
-                    //Response.Redirect("Login.aspx");
-                    //return;
+                    Session["idTransportistaAsignado"] = 5;
                 }
+
 
                 int idTransportista = Convert.ToInt32(Session["idTransportistaAsignado"]);
 

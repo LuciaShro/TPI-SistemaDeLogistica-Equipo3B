@@ -7,11 +7,13 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Gestion;
+using static Dominio.Usuario;
 
 namespace TPI_SistemaLogistica_Equipo3B
 {
     public partial class DetalleDeOrden : System.Web.UI.Page
     {
+        public int TipoUsuario;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -23,14 +25,14 @@ namespace TPI_SistemaLogistica_Equipo3B
                     if (id != null)
                     {
                         GestionOrdenesEnvio ordenes = new GestionOrdenesEnvio();
-                        OrdenesEnvio seleccionado = (ordenes.ListarOrdenes(id))[0];
+                        OrdenesEnvio seleccionado = (ordenes.ListarOrdenCompleta(id))[0];
 
                         GestionTransportista transportista = new GestionTransportista();
                         dllTransportista.DataSource = transportista.listarTranportistas();
                         dllTransportista.DataTextField = "Apellido";
                         dllTransportista.DataValueField = "IDTransportista";
                         dllTransportista.DataBind();
-
+                        txtTransportista.Text = seleccionado.transportista.Nombre;
                         dllTransportista.SelectedValue = seleccionado.transportista.IdTransportista.ToString();
 
                         GestionVehiculo gestionVehiculo = new GestionVehiculo();
@@ -72,11 +74,19 @@ namespace TPI_SistemaLogistica_Equipo3B
                         dllEstadoVehiculo.DataValueField = "IDEstado";
                         dllEstadoVehiculo.DataBind();
 
+
                         dllEstadoVehiculo.SelectedValue = seleccionado.transportista.Vehiculo.estadoVehiculo.IDEstado.ToString();
+
+                        //if (Session["TipoUsuario"] != null)
+                        //{
+                        //    TipoUsuario = Convert.ToInt32(Session["TipoUsuario"]);
+                        //}
+
                     }
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 Session.Add("error", ex);
             }
         }
@@ -115,11 +125,75 @@ namespace TPI_SistemaLogistica_Equipo3B
                 orden.eliminarOrdenEnvio(int.Parse(txtIdOrden.Text));
                 Response.Redirect("Ordenes.aspx");
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
                 Session.Add("error", ex);
             }
-            
+
         }
 
+        protected void btnEntregado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idOrden = Convert.ToInt32(txtIdOrden.Text);
+                GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+                gestion.ActualizarEstadoYFechaLlegada(idOrden, 3);
+
+                
+
+                Response.Redirect("OrdenesAsignadas.aspx");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
+        }
+        protected void btnDemorado_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idOrden = Convert.ToInt32(txtIdOrden.Text);
+                GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+                gestion.ActualizarEstadoYFechaDemora(idOrden, 1);
+
+                Response.Redirect("OrdenesAsignadas.aspx");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
+        }
+        protected void btnComenzarViaje_Click(object sender, EventArgs e)
+        {
+            OrdenesEnvio orden = new OrdenesEnvio();
+            try { 
+            int idOrden = Convert.ToInt32(txtIdOrden.Text);
+            GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+            gestion.ActualizarEstadoYFechaEnvio(idOrden, 2);
+
+                Response.Redirect("OrdenesAsignadas.aspx");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
+        }
+
+        protected void btnActualizarVehiculo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idOrden = Convert.ToInt32(txtIdOrden.Text);
+                GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+
+                Response.Redirect("OrdenesAsignadas.aspx");
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
+        }
     }
+
 }
