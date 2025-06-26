@@ -8,6 +8,7 @@ namespace Dominio
 {
     public class Cliente
     {
+        public int id;
         public string Nombre { get; set; }
 
         public string Apellido { get; set; }

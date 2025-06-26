@@ -46,9 +46,11 @@
     <Compile Include="Destinatario.cs" />
     <Compile Include="DetalleOrden.cs" />
     <Compile Include="Direccion.cs" />
+    <Compile Include="EstadoDePago.cs" />
     <Compile Include="EstadoOrdenEnvio.cs" />
     <Compile Include="EstadoVehiculo.cs" />
     <Compile Include="Factura.cs" />
+    <Compile Include="FormaDePago.cs" />
     <Compile Include="ItemOrden.cs" />
     <Compile Include="OrdenesEnvio.cs" />
     <Compile Include="Paquete.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="Transportista.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Vehiculo.cs" />
+    <Compile Include="Venta.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

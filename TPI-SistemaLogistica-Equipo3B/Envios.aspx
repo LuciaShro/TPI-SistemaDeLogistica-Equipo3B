@@ -5,12 +5,10 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="InicioContent" runat="server">
-    <!-- DASHBOARD DE LOGÍSTICA - VISUAL MODERNA -->
     <div class="dashboard">
-        <!-- Encabezado -->
+
         <h1>Logística</h1>
 
-        <!-- Resumen de estado de vehículos -->
         <div class="status-cards">
             <div class="status-card red">
                 <div class="number">38</div>
@@ -30,7 +28,6 @@
             </div>
         </div>
 
-        <!-- Condición de los paquetes -->
         <div class="cards-group">
             <div class="card donut-card blue">
                 <h3>Entregados</h3>
@@ -49,7 +46,6 @@
             </div>
         </div>
 
-        <!-- Tabla de vehículos en ruta -->
         <div class="card full">
             <h2>Vehículos en Ruta</h2>
             <p class="subtitle">Condición</p>
@@ -63,7 +59,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Estos datos deben ser generados dinámicamente con datos de la base -->
+                    
                     <tr>
                         <td><i class="icon-truck"></i>VOL-653CD1</td>
                         <td>Cleveland, Ohio, USA</td>

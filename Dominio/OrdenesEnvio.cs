@@ -39,6 +39,8 @@ namespace Dominio
 
         public Paquete paquete { get; set; }
 
+        public Usuario usuario { get; set; }
+
         //public int CantidadTotalEnviada {  get; set; } //SE REPITE EN DETALLE
 
 
