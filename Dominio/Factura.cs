@@ -13,13 +13,17 @@ namespace Dominio
 
         public OrdenesEnvio OrdenesEnvio { get; set; }
 
-        public DetalleOrden idDetalle {  get; set; }
+        //public DetalleOrden idDetalle {  get; set; }
 
         public DateTime FechaEmision { get; set; }
 
-        public string MetodoPago { get; set; }
+        public long cuilEmisor {  get; set; }
+        public string razonSocial {  get; set; }
+        public FormaDePago formaDePago { get; set; }
 
-        public Ruta idruta { get; set; }
+        //public string MetodoPago { get; set; }
+
+        //public Ruta idruta { get; set; }
 
         public float Total {  get; set; }
     }

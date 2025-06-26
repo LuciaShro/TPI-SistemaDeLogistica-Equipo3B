@@ -51,7 +51,7 @@ namespace Gestion
                 gestionDatos.setearConsulta("INSERT INTO OrdenesEnvio (IDUsuario, IDCliente, IDTransportista, IDRuta, IDEstadoOrdenEnvio, IDDestinatario, FechaCreacion, FechaEnvio, FechaEstimadaLlegada, FechaLlegada, Activo) " +
                                     "OUTPUT INSERTED.IDOrden " + "VALUES (@IDUsuario, @IDCliente, @IDTransportista, @IDRuta, @IDEstadoOrdenEnvio, @IDDestinatario, @FechaCreacion, @FechaEnvio, @FechaEstimadaLlegada, @FechaLlegada, @Activo)");
 
-                gestionDatos.setearParametro("@IDUsuario", idUsuario); 
+                gestionDatos.setearParametro("@IDUsuario", idUsuario);
                 gestionDatos.setearParametro("@IDCliente", idCliente);
                 gestionDatos.setearParametro("@IDTransportista", ordenEnvio.idTransportistaAsignado);
                 gestionDatos.setearParametro("@IDRuta", idRuta);
@@ -99,7 +99,8 @@ namespace Gestion
 
         }
 
-        public void modificarOrdenEnvio(OrdenesEnvio orden) {
+        public void modificarOrdenEnvio(OrdenesEnvio orden)
+        {
             AccesoDatos datos = new AccesoDatos();
             try
             {
@@ -116,7 +117,8 @@ namespace Gestion
                 datos.ejecutarAccion();
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally
@@ -125,8 +127,9 @@ namespace Gestion
             }
         }
 
-        public void eliminarOrdenEnvio(int id) {
-            
+        public void eliminarOrdenEnvio(int id)
+        {
+
             AccesoDatos datos = new AccesoDatos();
 
             try
@@ -136,7 +139,8 @@ namespace Gestion
                 datos.setearParametro("idOrden", id);
                 datos.ejecutarAccion();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally
@@ -172,7 +176,7 @@ namespace Gestion
                 {
                     datos.Comando.CommandText += " WHERE OE.Activo=1";
                 }
-                    datos.ejecutarLectura();
+                datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
                 {
@@ -182,17 +186,17 @@ namespace Gestion
 
                     aux.idOrdenEnvio = (int)datos.Lector["IDOrden"];
                     aux.cliente = new Cliente();
-                    aux.cliente.Nombre = datos.Lector["NombreCliente"].ToString() +" "+ datos.Lector["ApellidoCliente"].ToString();
+                    aux.cliente.Nombre = datos.Lector["NombreCliente"].ToString() + " " + datos.Lector["ApellidoCliente"].ToString();
                     aux.cliente.Apellido = datos.Lector["ApellidoCliente"].ToString();
                     aux.cliente.CUIL = Convert.ToInt64(datos.Lector["CuilCliente"]);
                     aux.cliente.Usuario = new Usuario();
-                    aux.cliente.Usuario.Email= datos.Lector["EmailCliente"].ToString();
+                    aux.cliente.Usuario.Email = datos.Lector["EmailCliente"].ToString();
                     aux.cliente.Telefono = datos.Lector["TelefonoCliente"].ToString();
 
                     aux.transportista = new Transportista();
                     aux.idTransportistaAsignado = (int)datos.Lector["IDTransportista"];
                     aux.transportista.IdTransportista = (int)datos.Lector["IDTransportista"];
-                    aux.transportista.Nombre = datos.Lector["NombreTransportista"].ToString()+ " " + datos.Lector["ApellidoTransportista"].ToString();
+                    aux.transportista.Nombre = datos.Lector["NombreTransportista"].ToString() + " " + datos.Lector["ApellidoTransportista"].ToString();
                     aux.transportista.Apellido = datos.Lector["ApellidoTransportista"].ToString();
                     aux.transportista.Vehiculo = new Vehiculo();
                     aux.transportista.Vehiculo.Patente = datos.Lector["PatenteVehiculo"].ToString();
@@ -347,7 +351,46 @@ namespace Gestion
 
         }
 
-        public bool buscarOrdenEnvio() { return false; }
+        public OrdenesEnvio returnOrdenEnvio(int id)
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("SELECT IDUsuario, IDCliente, IDTransportista, IDRuta, IDEstadoOrdenEnvio, IDDestinatario, FechaCreacion, FechaEnvio, FechaEstimadaLlegada, FechaLlegada FROM OrdenesEnvio WHERE IDOrden = @IDOrden");
+                gestionDatos.setearParametro("@IDOrden", id);
+                gestionDatos.ejecutarLectura();
+
+                while (gestionDatos.Lector.Read())
+                {
+                    OrdenesEnvio orden = new OrdenesEnvio();
+                    orden.usuario.idUsuario = (int)gestionDatos.Lector["IDUsuario"];
+                    orden.cliente.id = (int)gestionDatos.Lector["IDCliente"];
+                    orden.idTransportistaAsignado = (int)gestionDatos.Lector["IDTransportista"];
+                    orden.ruta.idRuta = (int)gestionDatos.Lector["IDRuta"];
+                    orden.estado.idEstado = (int)gestionDatos.Lector["IDEstadoOrdenEnvio"];
+                    orden.destinatario.idDestinatario = (int)gestionDatos.Lector["IDDestinatario"];
+                    orden.FechaCreacion = (DateTime)gestionDatos.Lector["FechaCreacion"];
+                    orden.FechaEnvio = (DateTime)gestionDatos.Lector["FechaEnvio"];
+                    orden.FechaEstimadaLlegada = (DateTime)gestionDatos.Lector["FechaEstimadaLlegada"];
+                    orden.FechaDeLlegada = (DateTime)gestionDatos.Lector["FechaLlegada"]; ;
+
+                    return orden;
+                }
+
+                throw new Exception("Orden no encontrada con ese ID.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método returnOrdenEnvio: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
 
         public void ActualizarEstadoYFechaLlegada(int idOrden, int idNuevoEstado)
         {

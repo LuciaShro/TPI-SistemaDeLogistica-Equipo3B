@@ -1,0 +1,144 @@
+﻿.table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+th {
+    font-weight: bold;
+    color: #555;
+}
+
+.table tbody tr {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.table td {
+    vertical-align: middle;
+    padding: 14px;
+    border-top: none !important;
+}
+
+.badge-pago {
+    background-color: #fcefd6;
+    color: #9f6519;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.badge-envio {
+    background-color: #eaeaea;
+    color: #666;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.dropdown .btn-sm {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: #333;
+    padding: 0;
+}
+
+.dropdown-menu {
+    font-size: 14px;
+    min-width: 240px;
+    padding: 0;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.dropdown-item {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.dropdown-divider {
+    margin: 0;
+}
+
+
+.text-danger {
+    color: #e02424 !important;
+}
+
+.text-danger:hover {
+    background-color: #ffecec !important;
+}
+
+a[href="#"] {
+    color: #d93025;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+a[href="#"]:after {
+    content: " ▾";
+    font-size: 10px;
+}
+
+.estado-pendiente {
+    background-color: #fff3cd;
+    color: #721c24;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.estado-proceso {
+    /*background-color: #f8d7da;*/
+    background-color: orange; 
+    color: #856404;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.estado-recibido {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.envio-pendiente {
+    background-color: #e2e3e5; 
+    color: #383d41;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.envio-proceso {
+    background-color: #cce5ff; 
+    color: #004085;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.envio-recibido {
+    background-color: #d1ecf1; 
+    color: #0c5460;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+

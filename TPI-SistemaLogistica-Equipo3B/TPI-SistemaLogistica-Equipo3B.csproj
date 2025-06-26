@@ -285,6 +285,7 @@
     <Content Include="Content\Envios.css" />
     <Content Include="Content\MensajePago.css" />
     <Content Include="Content\Navbar.css" />
+    <Content Include="Content\PanelAdminPagos.css" />
     <Content Include="Content\PasarelaDePago.css" />
     <Content Include="Content\Perfil.css" />
     <Content Include="Content\Ordenes.css" />
@@ -312,6 +313,7 @@
     <Content Include="Envios.aspx" />
     <Content Include="MensajePago.aspx" />
     <Content Include="OrdenesAsignadas.aspx" />
+    <Content Include="PanelAdminPagos.aspx" />
     <Content Include="PasarelaDePago.aspx" />
     <Content Include="Perfil.aspx" />
     <Content Include="Ordenes.aspx" />
@@ -536,6 +538,13 @@
     </Compile>
     <Compile Include="OrdenesAsignadas.aspx.designer.cs">
       <DependentUpon>OrdenesAsignadas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PanelAdminPagos.aspx.cs">
+      <DependentUpon>PanelAdminPagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelAdminPagos.aspx.designer.cs">
+      <DependentUpon>PanelAdminPagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="PasarelaDePago.aspx.cs">
       <DependentUpon>PasarelaDePago.aspx</DependentUpon>
