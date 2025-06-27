@@ -277,6 +277,7 @@
     <Content Include="Content\CargarOrden.css" />
     <Content Include="Content\CargarOrden.js" />
     <Content Include="Content\ControlDePagos.css" />
+    <Content Include="Content\DetalleVenta.css" />
     <Content Include="Content\Factura.css" />
     <Content Include="Content\georef.js" />
     <Content Include="Content\GestionTarifas.css" />
@@ -296,6 +297,7 @@
     <Content Include="Content\Vehiculos.css" />
     <Content Include="Content\VerOrden.css" />
     <Content Include="DetalleDeOrden.aspx" />
+    <Content Include="DetalleVenta.aspx" />
     <Content Include="ErrorLogin.aspx" />
     <Content Include="Factura.aspx" />
     <Content Include="GestionTarifas.aspx" />
@@ -468,6 +470,13 @@
     </Compile>
     <Compile Include="DetalleDeOrden.aspx.designer.cs">
       <DependentUpon>DetalleDeOrden.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleVenta.aspx.cs">
+      <DependentUpon>DetalleVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleVenta.aspx.designer.cs">
+      <DependentUpon>DetalleVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorLogin.aspx.cs">
       <DependentUpon>ErrorLogin.aspx</DependentUpon>

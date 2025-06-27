@@ -1,0 +1,22 @@
+﻿.estado {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.estado-pendiente {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.estado-proceso {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.estado-recibido {
+    background-color: #d4edda;
+    color: #155724;
+}

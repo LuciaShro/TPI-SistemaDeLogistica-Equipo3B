@@ -46,6 +46,7 @@
     <Compile Include="GestionCategoria.cs" />
     <Compile Include="GestionCliente.cs" />
     <Compile Include="GestionDestinatario.cs" />
+    <Compile Include="GestionDetalleVenta.cs" />
     <Compile Include="GestionDireccion.cs" />
     <Compile Include="GestionEstado.cs" />
     <Compile Include="GestionEstadoVehiculo.cs" />

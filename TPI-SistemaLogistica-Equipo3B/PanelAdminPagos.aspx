@@ -12,7 +12,7 @@
                     <th>Venta</th>
                     <th>Cliente</th>
                     <th>Fecha</th>
-                    <th>Factura</th>
+                    <th>Detalle</th>
                     <th>Estado del pago</th>
                     <th>Estado del envío</th>
                     <th>Total</th>
@@ -26,7 +26,7 @@
                             <td><%# Eval("VentaID") %></td>
                             <td><%# Eval("OrdenesEnvio.cliente.Nombre") %></td>
                             <td><%# Eval("Factura.FechaEmision", "{0:d MMMM}") %></td>
-                            <td><a href="#">Ver</a></td>
+                            <td> <a href='<%# "DetalleVenta.aspx?VentaID=" + Eval("VentaID") %>'>Ver</a></td>
                             <td>
                                 <asp:Label ID="lblEstadoPago" runat="server"
                                     Text='<%# "🧾 " + Eval("Factura.formaDePago.estadoDePago.nombreEstado") %>'
