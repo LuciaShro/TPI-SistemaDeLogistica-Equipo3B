@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                <asp:Repeater ID="rptPedidos" runat="server">
+                <asp:Repeater ID="rptPedidos" runat="server" OnItemCommand="rptPedidos_ItemCommand">
                     <ItemTemplate>
                         <tr>
                             <td><%# Eval("VentaID") %></td>
@@ -63,8 +63,12 @@
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
+
+
             </tbody>
         </table>
+
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

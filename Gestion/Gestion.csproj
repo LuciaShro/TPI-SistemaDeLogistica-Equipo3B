@@ -50,6 +50,7 @@
     <Compile Include="GestionDetalleVenta.cs" />
     <Compile Include="GestionDireccion.cs" />
     <Compile Include="GestionEstado.cs" />
+    <Compile Include="GestionEstadoDePagos.cs" />
     <Compile Include="GestionEstadoVehiculo.cs" />
     <Compile Include="GestionFactura.cs" />
     <Compile Include="GestionFacturas.cs" />

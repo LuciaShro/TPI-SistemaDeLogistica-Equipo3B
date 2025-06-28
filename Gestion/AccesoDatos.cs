@@ -10,45 +10,45 @@ namespace Gestion
 {
     public class AccesoDatos
     {
-        
-            private SqlConnection conexion;
-            private SqlCommand comando;
-            private SqlDataReader lector;
-            public SqlDataReader Lector
-            {
-                get
-                {
-                    return lector;
-                }
-            }
 
-            public SqlConnection Conexion
+        private SqlConnection conexion;
+        private SqlCommand comando;
+        private SqlDataReader lector;
+        public SqlDataReader Lector
+        {
+            get
             {
+                return lector;
+            }
+        }
+
+        public SqlConnection Conexion
+        {
             get { return conexion; }
-            }
+        }
 
-            public SqlCommand Comando
-            {
+        public SqlCommand Comando
+        {
             get { return comando; }
-            }
+        }
 
 
-            public AccesoDatos()
-            {
-                conexion = new SqlConnection("server=.\\SQLEXPRESS; database=flashShip; integrated security=true;");
-                comando = new SqlCommand();
+        public AccesoDatos()
+        {
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=flashShip; integrated security=true;");
+            comando = new SqlCommand();
 
-            }
+        }
 
-            public void setearConsulta(string consulta)
-            {
-                comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = consulta;
-            }
+        public void setearConsulta(string consulta)
+        {
+            comando.CommandType = System.Data.CommandType.Text;
+            comando.CommandText = consulta;
+        }
 
-            public void ejecutarLectura()
-            {
-                comando.Connection = conexion;
+        public void ejecutarLectura()
+        {
+            comando.Connection = conexion;
             try
             {
                 if (conexion.State != ConnectionState.Open)
@@ -61,7 +61,7 @@ namespace Gestion
                 throw;
             }
 
-            }
+        }
 
         /* public void ejecutarAccion()
          {
@@ -96,42 +96,42 @@ namespace Gestion
 
 
 
-            public void setearParametro(string nombre, object valor)
-            {
-                comando.Parameters.AddWithValue(nombre, valor);
-            }
+        public void setearParametro(string nombre, object valor)
+        {
+            comando.Parameters.AddWithValue(nombre, valor);
+        }
 
-            public void abrirConexion()
-            {
+        public void abrirConexion()
+        {
             if (conexion.State != System.Data.ConnectionState.Open)
                 conexion.Open();
-            }
+        }
 
-        
-            public SqlTransaction iniciarTransaccion()
-            {
+
+        public SqlTransaction iniciarTransaccion()
+        {
             return conexion.BeginTransaction();
-            }
+        }
 
 
-            public void cerrarConexion()
-            {
-                if (lector != null)
-                    lector.Close();
-                conexion.Close();
+        public void cerrarConexion()
+        {
+            if (lector != null)
+                lector.Close();
+            conexion.Close();
 
-            }
+        }
 
         /* public object obtenerValor()
          {
          return Comando.ExecuteScalar();
          } */
 
-            public void setearProcedimiento(string sp)
-            {
+        public void setearProcedimiento(string sp)
+        {
             comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.CommandText = sp;
-            }
+        }
 
         public void setearProcedimiento_(string nombreProcedimiento)
         {
@@ -141,8 +141,8 @@ namespace Gestion
 
 
         public object obtenerValor()
-            {
-            comando.Connection = conexion; 
+        {
+            comando.Connection = conexion;
 
             try
             {
@@ -160,10 +160,10 @@ namespace Gestion
             {
                 conexion.Close();
             }
-            }
+        }
 
-            public object obtenerValorSinCerrarConexion()
-            {
+        public object obtenerValorSinCerrarConexion()
+        {
             comando.Connection = conexion;
 
             try
@@ -178,8 +178,8 @@ namespace Gestion
                 Console.WriteLine("Error en obtenerValor: " + ex.Message);
                 throw;
             }
-            
-            }
+
+        }
 
 
 
