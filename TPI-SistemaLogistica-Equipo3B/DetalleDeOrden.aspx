@@ -131,7 +131,7 @@
     <div class="card p-5 w-50 mx-auto mt-3">
         <p>Actualizar estado de entrega:</p>
         <asp:Button ID="btnComenzarViaje" runat="server" CssClass="btn btn-primary me-2 px-4 py-2" Text="Comenzar viaje" OnClick="btnComenzarViaje_Click" />
-        <asp:Button ID="btnEntregado" runat="server" CssClass="btn btn-success me-2 pb-3" Text="Envío Entregado" OnClick="btnEntregado_Click" />
+        <asp:Button ID="btnEntregado" runat="server" CssClass="btn btn-success me-2 pb-3" Text="Envío Entregado" OnClick="btnEntregado_Click"/>
         <asp:Button ID="btnDemorado" runat="server" CssClass="btn btn-warning" Text="Demorado" OnClick="btnDemorado_Click" />
     </div>
     <div class="card p-5 w-50 mx-auto mt-3">
@@ -143,6 +143,7 @@
         <asp:Button ID="btnActualizarVehiculo" runat="server" CssClass="btn btn-info mt-2" Text="Actualizar" OnClick="btnActualizarVehiculo_Click" />
     </div>
 <%--<% } %>--%>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="Alerts/Alerts.js"></script>
 </asp:Content>
 

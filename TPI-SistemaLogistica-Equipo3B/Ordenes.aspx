@@ -13,11 +13,10 @@
         </div>
 
         <div class="ordenes-tabs">
-            <a href="#" class="tab active">Todos</a>
-            <a href="#" class="tab">Canceladas</a>
-            <a href="#" class="tab">Completados</a>
-            <a href="#" class="tab">Pendientes</a>
-            <a href="#" class="tab">Rechazados</a>
+            <asp:LinkButton ID="btnTodasOrdenes" runat="server" CssClass="tab active" OnClick="btnTodasOrdenes_Click">Todos</asp:LinkButton>
+            <asp:LinkButton ID="btnOrdenesEntregadas" runat="server" CssClass="tab active" OnClick="btnOrdenesEntregadas_Click">Entregadas</asp:LinkButton>
+            <asp:LinkButton ID="btnOrdenesEnCamino" runat="server" CssClass="tab active" OnClick="btnOrdenesEnCamino_Click">En Camino</asp:LinkButton>
+            <asp:LinkButton ID="btnOrdenesPendientes" runat="server" CssClass="tab active" OnClick="btnOrdenesPendientes_Click">Pendientes</asp:LinkButton>
         </div>
 
         <div class="ordenes-search">

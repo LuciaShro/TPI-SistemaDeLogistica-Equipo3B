@@ -24,6 +24,42 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.Button btnAñadir;
 
         /// <summary>
+        /// btnTodasOrdenes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnTodasOrdenes;
+
+        /// <summary>
+        /// btnOrdenesEntregadas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnOrdenesEntregadas;
+
+        /// <summary>
+        /// btnOrdenesEnCamino control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnOrdenesEnCamino;
+
+        /// <summary>
+        /// btnOrdenesPendientes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnOrdenesPendientes;
+
+        /// <summary>
         /// txtFiltro control.
         /// </summary>
         /// <remarks>

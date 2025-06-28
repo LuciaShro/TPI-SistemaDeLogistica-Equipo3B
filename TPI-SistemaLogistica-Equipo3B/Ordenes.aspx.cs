@@ -65,6 +65,41 @@ namespace TPI_SistemaLogistica_Equipo3B
             txtFiltro.Enabled = !FiltroAvanzado;
         }
 
-        
+        protected void btnTodasOrdenes_Click(object sender, EventArgs e)
+        {
+            GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+            var lista = gestion.ListarOrdenes();
+            dgvOrdenes.DataSource = lista;
+            dgvOrdenes.DataBind();
+            GestionTransportista gestionTransportista = new GestionTransportista();
+        }
+
+        protected void btnOrdenesEntregadas_Click(object sender, EventArgs e)
+        {
+            GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+            var lista = gestion.ListarOrdenesEntregadas();
+            dgvOrdenes.DataSource = lista;
+            dgvOrdenes.DataBind();
+            GestionTransportista gestionTransportista = new GestionTransportista();
+        }
+
+        protected void btnOrdenesEnCamino_Click(object sender, EventArgs e)
+        {
+            GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+            var lista = gestion.ListarOrdenesEnCamino();
+            dgvOrdenes.DataSource = lista;
+            dgvOrdenes.DataBind();
+            GestionTransportista gestionTransportista = new GestionTransportista();
+        }
+
+        protected void btnOrdenesPendientes_Click(object sender, EventArgs e)
+        {
+            GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+            var lista = gestion.ListarOrdenesPendientes();
+            dgvOrdenes.DataSource = lista;
+            dgvOrdenes.DataBind();
+            GestionTransportista gestionTransportista = new GestionTransportista();
+        }
+
     }
 }

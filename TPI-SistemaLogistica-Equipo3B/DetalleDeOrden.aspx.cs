@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
+using System.Web.Optimization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
@@ -134,29 +135,48 @@ namespace TPI_SistemaLogistica_Equipo3B
 
         protected void btnEntregado_Click(object sender, EventArgs e)
         {
-            try
+            GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+            int idOrden = Convert.ToInt32(txtIdOrden.Text);
+            int estadoActual = gestion.ObtenerEstadoOrden(idOrden);
+            if (estadoActual == 3)
             {
-                int idOrden = Convert.ToInt32(txtIdOrden.Text);
-                GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
-                gestion.ActualizarEstadoYFechaLlegada(idOrden, 3);
-
-                
-
-                Response.Redirect("OrdenesAsignadas.aspx");
+                throw new Exception("La orden no puede ser cambiada a 'Entregada' ya que actualmente se encuentra en ese mismo estado.");
             }
-            catch (Exception ex)
+            else if (estadoActual == 1)
             {
-                Session.Add("error", ex);
+                throw new Exception("La orden no puede ser cambiada a 'Entregada' ya que se encuentra 'Pendiente', primero deber ser cambiada a 'En camino'.");
             }
+                try
+                {
+                    gestion.ActualizarEstadoYFechaLlegada(idOrden, 3);
+                    EmailService emailService = new EmailService();
+                    emailService.armarCorreo("migue8935@gmail.com", txtNombreDestino.Text, idOrden.ToString(), 3);
+                    emailService.enviarMail();
+
+
+
+                    Response.Redirect("OrdenesAsignadas.aspx");
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("error", ex.Message);
+                }
         }
         protected void btnDemorado_Click(object sender, EventArgs e)
         {
+            GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+            int idOrden = Convert.ToInt32(txtIdOrden.Text);
+            int estadoActual = gestion.ObtenerEstadoOrden(idOrden);
+            if (estadoActual == 3)
+            {
+                throw new Exception("La orden no puede ser cambiada a 'Demorado' ya que se encuentra Entregada.");
+            }
             try
             {
-                int idOrden = Convert.ToInt32(txtIdOrden.Text);
-                GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
                 gestion.ActualizarEstadoYFechaDemora(idOrden, 1);
-
+                EmailService emailService = new EmailService();
+                emailService.armarCorreo("migue8935@gmail.com", txtNombreDestino.Text, idOrden.ToString(), 2);
+                emailService.enviarMail();
                 Response.Redirect("OrdenesAsignadas.aspx");
             }
             catch (Exception ex)
@@ -166,12 +186,23 @@ namespace TPI_SistemaLogistica_Equipo3B
         }
         protected void btnComenzarViaje_Click(object sender, EventArgs e)
         {
-            OrdenesEnvio orden = new OrdenesEnvio();
-            try { 
-            int idOrden = Convert.ToInt32(txtIdOrden.Text);
             GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
-            gestion.ActualizarEstadoYFechaEnvio(idOrden, 2);
+            int idOrden = Convert.ToInt32(txtIdOrden.Text);
+            int estadoActual = gestion.ObtenerEstadoOrden(idOrden);
+            if (estadoActual == 3)
+            {
+                throw new Exception("La orden no puede ser cambiada a 'En Camino' ya que se encuentra Entregada.");
+            }
+            else if (estadoActual == 2)
+            {
+                throw new Exception("La orden no puede ser cambiada a 'En Camino' ya que se encuentra actualmente en ese mismo estado");
+            }
 
+            try { 
+                 gestion.ActualizarEstadoYFechaEnvio(idOrden, 2);
+                EmailService emailService = new EmailService();
+                emailService.armarCorreo("migue8935@gmail.com", txtNombreDestino.Text, idOrden.ToString(),1);
+                emailService.enviarMail();
                 Response.Redirect("OrdenesAsignadas.aspx");
             }
             catch (Exception ex)

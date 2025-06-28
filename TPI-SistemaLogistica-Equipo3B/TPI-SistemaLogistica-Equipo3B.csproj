@@ -135,6 +135,7 @@
     <Content Include="AdminTransportistas.aspx" />
     <Content Include="AgregarTransportista.aspx" />
     <Content Include="AgregarVehiculo.aspx" />
+    <Content Include="Alerts\Alerts.js" />
     <Content Include="CargarOrden.aspx" />
     <Content Include="Content - Copy %282%29\AdminTransportistas.css" />
     <Content Include="Content - Copy %282%29\AgregarTransportista.css" />
