@@ -24,6 +24,24 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.Label lblVentaID;
 
         /// <summary>
+        /// lblEstadoDePago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEstadoDePago;
+
+        /// <summary>
+        /// lblEstadoDeEnvio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEstadoDeEnvio;
+
+        /// <summary>
         /// lblCategoria control.
         /// </summary>
         /// <remarks>

@@ -6,14 +6,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="InicioContent" runat="server">
     <div class="container p-4">
 
-        <!-- Encabezado -->
         <h2>Venta #<asp:Label ID="lblVentaID" runat="server" /></h2>
         <div class="d-flex gap-2 mb-4">
-            <span class="estado estado-proceso">🧾 Pago en proceso</span>
-            <span class="estado estado-proceso">📦 En proceso</span>
+            <asp:Label ID="lblEstadoDePago" runat="server" CssClass="estado" />
+            <asp:Label ID="lblEstadoDeEnvio" runat="server" CssClass="estado" />
         </div>
 
-        <!-- Producto y precio -->
         <div class="card mb-4">
             <div class="card-header"><strong>📦 Precio Envio</strong></div>
             <div class="card-body d-flex justify-content-between">
@@ -59,7 +57,6 @@
             </div>
         </div>
 
-        <!-- Cliente y datos -->
         <div class="row mb-4">
             <div class="col-md-6">
                 <div class="card h-100">
@@ -73,7 +70,6 @@
                             <strong>CUIL:</strong>
                             <asp:Label ID="lblCUILCliente" runat="server" />
                         </p>
-                        <hr />
                         <p>
                             <strong>Email:</strong>
                             <asp:Label ID="lblEmailCliente" runat="server" />
@@ -82,7 +78,6 @@
                             <strong>Telefono:</strong>
                             <asp:Label ID="lblTelefonoCliente" runat="server" />
                         </p>
-                        <hr />
                         <p>
                             <strong>Calle:</strong>
                             <asp:Label ID="lblCalleCliente" runat="server" />
@@ -107,12 +102,10 @@
                 </div>
             </div>
 
-            <!-- Forma de pago -->
             <div class="col-md-6">
                 <div class="card h-100">
                     <div class="card-header"><strong>💳 Forma de pago</strong></div>
                     <div class="card-body">
-                        <p><span class="estado estado-proceso">🧾 Pago en proceso</span></p>
                         <p>
                             <strong>Estado:</strong>
                             <asp:Label ID="lblEstadoPago" runat="server" />
@@ -121,23 +114,19 @@
                             <strong>Método:</strong>
                             <asp:Label ID="lblMetodoPago" runat="server" />
                         </p>
-                        <hr />
                         <p>
                             <strong>Costo de envío:</strong>
                             <asp:Label ID="lblCostoEnvio" runat="server" />
                         </p>
-                        <hr />
                         <p class="fw-bold fs-5">Total: $<asp:Label ID="lblTotalFinal" runat="server" /></p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Forma de entrega -->
         <div class="card mb-4">
             <div class="card-header"><strong>🚚 Forma de entrega</strong></div>
             <div class="card-body">
-                <p><span class="estado estado-proceso">📦 En proceso</span></p>
                 <p>
                     <strong>Estado de envío:</strong>
                     <asp:Label ID="lblEstadoEnvio" runat="server" />
@@ -152,7 +141,6 @@
                     <strong>CUIL:</strong>
                     <asp:Label ID="lblCuil" runat="server" />
                 </p>
-                <hr />
                 <p>
                     <strong>Email:</strong>
                     <asp:Label ID="lblEmailDestino" runat="server" />
@@ -161,7 +149,6 @@
                     <strong>Telefono:</strong>
                     <asp:Label ID="lblTelefonoDestino" runat="server" />
                 </p>
-                <hr />
                 <p>
                     <strong>Calle:</strong>
                     <asp:Label ID="lblCalleDestino" runat="server" />

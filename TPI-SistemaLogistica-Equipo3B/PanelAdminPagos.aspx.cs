@@ -16,40 +16,53 @@ namespace TPI_SistemaLogistica_Equipo3B
             if (!IsPostBack)
             {
                 //cargarRepeater();
-                GestionVenta gestionVenta = new GestionVenta();
-                rptPedidos.DataSource = gestionVenta.listarVenta();
-                rptPedidos.DataBind();
+                //GestionVenta gestionVenta = new GestionVenta();
+                //rptPedidos.DataSource = gestionVenta.listarVenta();
+                //rptPedidos.DataBind();
+                CargarPedidos();
+
+                
             }
         }
+        private void CargarPedidos()
+        {
+            GestionVenta gestionVenta = new GestionVenta();
+            rptPedidos.DataSource = gestionVenta.listarVenta();
+            rptPedidos.DataBind();
+        }
+
 
         protected void rptPedidos_ItemCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
         {
+            GestionEstadoDePagos gestionEstado = new GestionEstadoDePagos();
+
             int ventaId = int.Parse(e.CommandArgument.ToString());
 
             switch (e.CommandName)
             {
                 case "PagoProceso":
-                    // Lógica para marcar como en proceso
+                    gestionEstado.ActualizarEstadoPago(ventaId, 1);
                     break;
                 case "PagoRecibido":
-                    // Lógica para marcar como recibido
+                    gestionEstado.ActualizarEstadoPago(ventaId, 2);
                     break;
                 case "PagoRechazado":
-                    // Lógica para marcar como rechazado
+                    gestionEstado.ActualizarEstadoPago(ventaId, 3);
                     break;
                 case "CancelarOrden":
-                    // Lógica para cancelar orden
+                    gestionEstado.ActualizarEstadoPago(ventaId, 4);
                     break;
             }
 
-            // Recargar datos
-            Page_Load(null, null);
+            //Page_Load(null, null);
+            CargarPedidos();
+            //Response.Redirect(Request.RawUrl);
         }
 
         private void cargarRepeater()
         {
             GestionVenta gestion = new GestionVenta();
-            List<Venta> lista = gestion.listarVenta(); 
+            List<Venta> lista = gestion.listarVenta();
 
             rptPedidos.DataSource = lista;
             rptPedidos.DataBind();
@@ -66,9 +79,11 @@ namespace TPI_SistemaLogistica_Equipo3B
                 case "pendiente":
                     return "estado-pendiente";
                 case "recibido":
-                    return "estado-proceso";
+                    return "estado-recibido";
                 case "rechazado":
                     return "estado-rechazado";
+                case "cancelar orden":
+                    return "estado-cancelado";
                 default:
                     return "";
             }
@@ -83,12 +98,19 @@ namespace TPI_SistemaLogistica_Equipo3B
                 case "pendiente":
                     return "envio-pendiente";
                 case "en transito":
-                    return "envio-proceso";
+                    return "envio-transito";
                 case "entregado":
-                    return "envio-recibido";
+                    return "envio-entregado";
+                case "reprogramado":
+                    return "envio-reprogramado";
+                case "demorado":
+                    return "envio-demorado";
+                case "cancelado":
+                    return "envio-cancelado";
                 default:
                     return "";
             }
         }
+
     }
 }

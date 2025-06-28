@@ -46,11 +46,13 @@ namespace TPI_SistemaLogistica_Equipo3B
                     lblCPCliente.Text = detalle.cliente.Direccion.CodigoPostal.ToString();
 
                     lblEstadoPago.Text = detalle.estadoDePago.nombreEstado;
+                    lblEstadoPago.CssClass += " " + GetClaseEstadoPago(detalle.estadoDePago.nombreEstado);
                     lblMetodoPago.Text = detalle.MetodoPago.medioDePago;
                     lblCostoEnvio.Text = detalle.detalle.Total.ToString();
                     lblTotalFinal.Text = detalle.detalle.Total.ToString();
 
                     lblEstadoEnvio.Text = detalle.EstadoEnvio.DescripcionEstado;
+                    lblEstadoEnvio.CssClass += " " + GetClaseEstadoEnvio(detalle.EstadoEnvio.DescripcionEstado);
 
                     lblNombre.Text = detalle.destinatario.Nombre + " " + detalle.destinatario.Apellido;
                     lblCuil.Text = detalle.destinatario.CUIL.ToString();
@@ -62,10 +64,56 @@ namespace TPI_SistemaLogistica_Equipo3B
                     lblProvinciaDestino.Text = detalle.destinatario.Direccion.Provincia;
                     lblCPDestino.Text = detalle.destinatario.Direccion.CodigoPostal.ToString();
 
+                    lblEstadoDePago.Text = "🧾 " + detalle.estadoDePago.nombreEstado;
+                    lblEstadoDePago.CssClass += " " + GetClaseEstadoPago(detalle.estadoDePago.nombreEstado);
+
+                    lblEstadoDeEnvio.Text = "📦 " + detalle.EstadoEnvio.DescripcionEstado;
+                    lblEstadoDeEnvio.CssClass += " " + GetClaseEstadoEnvio(detalle.EstadoEnvio.DescripcionEstado);
 
                 }
             }
 
         }
+
+        public string GetClaseEstadoPago(string estado)
+        {
+            switch (estado?.ToLower())
+            {
+                case "pendiente":
+                    return "estado-pendiente";
+                case "recibido":
+                    return "estado-recibido";
+                case "rechazado":
+                    return "estado-rechazado";
+                case "pago en proceso":
+                    return "estado-proceso";
+                case "cancelar orden":
+                    return "estado-cancelado";
+                default:
+                    return "";
+            }
+        }
+
+        public string GetClaseEstadoEnvio(string estado)
+        {
+            switch (estado?.ToLower())
+            {
+                case "pendiente":
+                    return "envio-pendiente";
+                case "en transito":
+                    return "envio-transito";
+                case "entregado":
+                    return "envio-entregado";
+                case "reprogramado":
+                    return "envio-reprogramado";
+                case "demorado":
+                    return "envio-demorado";
+                case "cancelado":
+                    return "envio-cancelado";
+                default:
+                    return "";
+            }
+        }
+
     }
 }

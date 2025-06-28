@@ -105,38 +105,68 @@ a[href="#"]:after {
     border-radius: 10px;
 }
 
-.estado-proceso {
-    /*background-color: #f8d7da;*/
-    background-color: orange; 
-    color: #856404;
+.estado-recibido {
+    /*background-color: #f8d7da;*/ /*recibido*/
+    background-color: #b5e282;
+    color: black;
     padding: 5px 10px;
     border-radius: 10px;
 }
 
-.estado-recibido {
-    background-color: #d4edda;
+.estado-rechazado {
+    background-color: #ed7f70;
     color: #155724;
     padding: 5px 10px;
     border-radius: 10px;
 }
 
-.envio-pendiente {
-    background-color: #e2e3e5; 
-    color: #383d41;
+.estado-cancelado {
+    background-color: #b44949;
+    color: white;
     padding: 5px 10px;
     border-radius: 10px;
 }
 
-.envio-proceso {
+/*------------------------------------*/
+
+.envio-pendiente {
+    background-color: #f3ed7b;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.envio-transito {
     background-color: #cce5ff; 
     color: #004085;
     padding: 5px 10px;
     border-radius: 10px;
 }
 
-.envio-recibido {
+.envio-entregado {
     background-color: #d1ecf1; 
     color: #0c5460;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.envio-reprogramado {
+    background-color: #fff3cd;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.envio-demorado {
+    background-color: #da3434f4;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.envio-cancelado {
+    background-color: #b44949;
+    color: white;
     padding: 5px 10px;
     border-radius: 10px;
 }

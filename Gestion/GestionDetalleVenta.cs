@@ -14,7 +14,6 @@ namespace Gestion
             AccesoDatos datos = new AccesoDatos();
             VentaDetalle detalle = new VentaDetalle();
 
-            // Inicialización de objetos anidados
             detalle.estadoDePago = new EstadoDePago();
             detalle.EstadoEnvio = new EstadoOrdenEnvio();
             detalle.cliente = new Cliente();
