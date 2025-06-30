@@ -1,9 +1,19 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" Async="true" CodeBehind="CargarOrden.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.CargarOrden" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SideBar.Master" AutoEventWireup="true" Async="true" CodeBehind="CargarOrden.aspx.cs" Inherits="TPI_SistemaLogistica_Equipo3B.CargarOrden" ClientIDMode="Static" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js'></script>
+    
+    
+
     <link href="Content/CargarOrden.css" rel="stylesheet" />
-    <script src="Content/CargarOrden.js" defer></script>
+    
+    <%-- <script src="Content/CargarOrden.js" defer></script> --%> 
+    
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="InicioContent" runat="server">
     <h1>Cargar orden</h1>
 
@@ -74,7 +84,6 @@
         </div>
 
 
-        <!-- DESTINO -->
         <div class="card">
             <h2>Destino del Envío (¿Hasta Dónde?)</h2>
 
@@ -152,13 +161,15 @@
                 <asp:TextBox ID="txtPisoDestino" runat="server" CssClass="form-control" />
             </div>
 
+            <%-- <div id="map" style="width: 100%; height: 400px; margin-top: 20px; border-radius: 8px;"></div>
+            <div id="routeInfo" style="margin-top: 10px;"></div> --%>
+
             <%--<div class="form-group">
             <label for="txtInfoDestino">Info Adicional:</label>
             <asp:TextBox ID="txtInfoDestino" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control" />
         </div>--%>
         </div>
 
-        <!-- PAQUETE -->
         <div class="card full">
             <h2>Datos del Paquete</h2>
 
@@ -194,7 +205,6 @@
         </div>
         <asp:Label ID="lblMensajePaquete" runat="server" ForeColor="Red"></asp:Label>
 
-        <!-- ORDER ITEMS -->
         <div class="card full">
             <h2>Items de la Orden</h2>
             <asp:GridView ID="gvItems" runat="server" AutoGenerateColumns="false" CssClass="order-table">
@@ -210,7 +220,10 @@
             <asp:Button ID="btnCotizar" runat="server" Text="COTIZAR ENVÍO" CssClass="btn-principal" OnClientClick="return validarPaquete();" OnClick="btnCotizar_Click" />
         </div>
 
-    </div>
+    </div> <%-- Cierre de div.cards-grid --%>
+
+    <div id="map" style="width: 100%; height: 400px; margin-top: 20px; border-radius: 8px;"></div>
+    <div id="routeInfo" style="margin-top: 10px;"></div>
 
     <div class="total">
         <strong>TOTAL:</strong>
@@ -222,4 +235,12 @@
         <asp:Label ID="lblMensajeDestinatario" runat="server" />
     </div>
 
+
+    <script src="Content/mapbox.js"></script>
+    <script src="Content/CargarOrden.js"></script>
+
 </asp:Content>
+
+<%-- <asp:Content ID="Content3" ContentPlaceHolderID="ScriptsContent" runat="server">
+    <script src="Content/CargarOrden.js"></script>
+</asp:Content> --%>
