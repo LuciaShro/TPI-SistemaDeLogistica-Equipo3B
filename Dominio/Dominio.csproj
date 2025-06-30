@@ -49,7 +49,7 @@
     <Compile Include="EstadoDePago.cs" />
     <Compile Include="EstadoOrdenEnvio.cs" />
     <Compile Include="EstadoVehiculo.cs" />
-    <Compile Include="Factura.cs" />
+    <Compile Include="FacturaPago.cs" />
     <Compile Include="FormaDePago.cs" />
     <Compile Include="ItemOrden.cs" />
     <Compile Include="OrdenesEnvio.cs" />

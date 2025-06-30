@@ -37,11 +37,11 @@
             <h3>Resumen</h3>
             <p>
                 Precio envío: <strong>
-                    <asp:Label ID="lblEnvio" runat="server" Text="$300.00" /></strong>
+                    <asp:Label ID="lblEnvio" runat="server" Text="" /></strong>
             </p>
             <p>
                 Total: <strong>
-                    <asp:Label ID="lblTotal" runat="server" Text="$300.00" /></strong>
+                    <asp:Label ID="lblTotal" runat="server" Text="" /></strong>
             </p>
 
             <p class="condiciones">
@@ -50,6 +50,8 @@
 
             <asp:Button ID="btnCompletarPago" runat="server" Text="Completar Pago" CssClass="btn-pago"
                 OnClick="btnCompletarPago_Click"/>
+
+            <asp:Label ID="lblError" runat="server" Text="" />
         </div>
     </div>
 

@@ -16,7 +16,7 @@ namespace Gestion
     public class GestionOrdenesEnvio
     {
        
-        public void agregarOrdenEnvio(OrdenesEnvio ordenEnvio, DetalleOrden detalleOrden)
+        public int agregarOrdenEnvio(OrdenesEnvio ordenEnvio, DetalleOrden detalleOrden)
         {
 
             AccesoDatos gestionDatos = new AccesoDatos();
@@ -24,6 +24,7 @@ namespace Gestion
             GestionDestinatario gestionDestinatario = new GestionDestinatario();
             GestionDetalleOrden gestionDetalle = new GestionDetalleOrden();
             GestionPaquete gestionPaquete = new GestionPaquete();
+            int OrdenId = 0;
 
             try
             {
@@ -68,6 +69,8 @@ namespace Gestion
                 ordenEnvio.idOrdenEnvio = idOrden;
                 detalleOrden.Orden = ordenEnvio;
 
+                OrdenId = idOrden;
+
                 gestionDatos.cerrarConexion();
 
 
@@ -85,19 +88,18 @@ namespace Gestion
 
                 gestionDatos.cerrarConexion();
 
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception("Error al agregar la orden de envío: " + ex.Message, ex); ;
             }
             finally
             {
                 gestionDatos.cerrarConexion();
             }
 
-
+            return OrdenId; 
         }
 
         public void modificarOrdenEnvio(OrdenesEnvio orden)
@@ -705,7 +707,33 @@ namespace Gestion
 
         }
 
+        public int returnIDClienteOrden(int idOrden)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.setearConsulta("SELECT IDCliente FROM OrdenesEnvio WHERE IDOrden = @IDOrden;");
+                datos.setearParametro("@IDOrden", idOrden);
+                datos.ejecutarLectura();
 
+                while (datos.Lector.Read())
+                {
+                    return (int)datos.Lector["IDCliente"];
+                }
+
+                throw new Exception("Orden no encontrada con ese ID.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método returnIDClienteOrden: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 }

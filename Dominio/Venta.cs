@@ -10,6 +10,6 @@ namespace Dominio
     {
         public int VentaID { get; set; }
         public OrdenesEnvio OrdenesEnvio { get; set; }
-        public Factura Factura { get; set; }
+        public FacturaPago Factura { get; set; }
     }
 }

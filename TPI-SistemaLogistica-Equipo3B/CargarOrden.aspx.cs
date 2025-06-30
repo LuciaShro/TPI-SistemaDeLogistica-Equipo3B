@@ -16,6 +16,7 @@ namespace TPI_SistemaLogistica_Equipo3B
 {
     public partial class CargarOrden : System.Web.UI.Page
     {
+        //protected int idCliente = 0;
         protected async void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,6 +25,7 @@ namespace TPI_SistemaLogistica_Equipo3B
                 {
                     Cliente clienteLogueado = (Cliente)Session["cliente"];
 
+                    //idCliente = clienteLogueado.id;
                     txtNombreOrigen.Text = clienteLogueado.Nombre;
                     txtApellidoOrigen.Text = clienteLogueado.Apellido;
                     txtCUILOrigen.Text = clienteLogueado.CUIL.ToString();
@@ -186,6 +188,7 @@ namespace TPI_SistemaLogistica_Equipo3B
 
             lblTotal.Text = total.ToString("N2");
 
+
         }
 
         protected void btnCargar_Click(object sender, EventArgs e)
@@ -203,6 +206,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             GestionTransportista gestionTransportista = new GestionTransportista();
             GestionOrdenesEnvio gestionOrdenesEnvio = new GestionOrdenesEnvio();
             GestionPaquete gestionPaquete = new GestionPaquete();
+            GestionCliente gestionCliente = new GestionCliente();
 
             cliente.Nombre = txtNombreOrigen.Text;
             cliente.Apellido = txtApellidoOrigen.Text;
@@ -215,6 +219,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             cliente.Direccion.Provincia = txtProvinciaOrigen.Text;
             cliente.Direccion.Piso = txtPisoOrigen.Text;
             //cliente.InfoAdicional = txtInfoOrigen.Text;
+            //int idCliente = gestionCliente.returnIDCliente(27443338749);
 
             if (!validarDestinatario())
                 return;
@@ -253,6 +258,9 @@ namespace TPI_SistemaLogistica_Equipo3B
             ordenesEnvio.cliente = cliente;
             ordenesEnvio.destinatario = destinatario;
             ordenesEnvio.idTransportistaAsignado = gestionTransportista.transportistaDisponible();
+            //int idCliente = gestionCliente.returnIDCliente(cliente.CUIL);
+            //Cliente clienteLogueado = (Cliente)Session["cliente"];
+            //int idCliente = clienteLogueado.id;
 
             ordenesEnvio.ruta = new Ruta();
             ordenesEnvio.estado = new EstadoOrdenEnvio();
@@ -263,12 +271,14 @@ namespace TPI_SistemaLogistica_Equipo3B
 
             //SETEAR EN TABLA ORDEN
 
-            //ordenesEnvio.FechaCreacion = DateTime.Now;
             //ordenesEnvio.FechaEnvio = ordenesEnvio.FechaCreacion.AddDays(2); ; //estos datos hay que revisarlos.
             //ordenesEnvio.FechaEstimadaLlegada = ordenesEnvio.FechaCreacion.AddDays(4);
             //ordenesEnvio.FechaDeLlegada = ordenesEnvio.FechaDeLlegada.AddDays(4);
 
-            ordenesEnvio.FechaCreacion = new DateTime(2025, 6, 15);
+            ordenesEnvio.FechaCreacion = new DateTime();
+            ordenesEnvio.FechaCreacion = DateTime.Now;
+
+            //VER DEPENDE DE ASIGNACIÓN DE ORDEN A TRANSPORTISTA
             ordenesEnvio.FechaEnvio = new DateTime(2025, 6, 17);
             ordenesEnvio.FechaEstimadaLlegada = new DateTime(2025, 6, 20);
             ordenesEnvio.FechaDeLlegada = new DateTime(2025, 6, 20);
@@ -280,8 +290,18 @@ namespace TPI_SistemaLogistica_Equipo3B
             detalleOrden.paquete = paquete;
             detalleOrden.Total = decimal.Parse(lblTotal.Text);
 
+            decimal total = decimal.Parse(lblTotal.Text);
 
-            gestionOrdenesEnvio.agregarOrdenEnvio(ordenesEnvio, detalleOrden);
+            ordenesEnvio.idOrdenEnvio = gestionOrdenesEnvio.agregarOrdenEnvio(ordenesEnvio, detalleOrden);
+
+            Session["IDOrden"] = ordenesEnvio.idOrdenEnvio;
+            Session["Total"] = total;
+
+            System.Diagnostics.Debug.WriteLine("IDOrden: " + ordenesEnvio.idOrdenEnvio);
+            System.Diagnostics.Debug.WriteLine("Total: " + total);
+
+            Response.Redirect("PasarelaDePago.aspx");
+
         }
 
         protected int idCategoriaPaquete(Paquete paquete)

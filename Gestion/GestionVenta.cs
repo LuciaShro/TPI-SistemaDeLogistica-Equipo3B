@@ -13,16 +13,23 @@ namespace Gestion
         {
 
             AccesoDatos gestionDatos = new AccesoDatos();
+            int idGenerado = 0;
 
             try
             {
-                gestionDatos.setearConsulta("INSERT INTO Venta (IDOrden, IDFactura) ) " +
-                                           "VALUES (@IDOrden, @IDFactura)");
+                gestionDatos.setearConsulta("INSERT INTO Venta (IDOrden, IDFactura) " +
+                                           "VALUES (@IDOrden, @IDFactura);" +
+                                           "SELECT SCOPE_IDENTITY();");
 
                 gestionDatos.setearParametro("@IDOrden", venta.OrdenesEnvio.idOrdenEnvio);
                 gestionDatos.setearParametro("@IDFactura", venta.Factura.idFactura);
 
-                gestionDatos.ejecutarAccion();
+                object resultado = gestionDatos.ejecutarScalar();
+
+                if (resultado != null)
+                    idGenerado = Convert.ToInt32(resultado);
+
+                //gestionDatos.ejecutarAccion();
 
             }
             catch (Exception)
@@ -103,7 +110,7 @@ namespace Gestion
                     venta.OrdenesEnvio = new OrdenesEnvio();
                     venta.OrdenesEnvio.cliente = new Cliente();
                     venta.OrdenesEnvio.estado = new EstadoOrdenEnvio();
-                    venta.Factura = new Factura();
+                    venta.Factura = new FacturaPago();
                     venta.Factura.formaDePago = new FormaDePago();
                     venta.Factura.formaDePago.estadoDePago = new EstadoDePago();
 
@@ -124,7 +131,7 @@ namespace Gestion
                         venta.Factura.formaDePago.estadoDePago.nombreEstado = gestionDatos.Lector["EstadoPago"].ToString();
 
                     if (!gestionDatos.Lector.IsDBNull(gestionDatos.Lector.GetOrdinal("Total")))
-                        venta.Factura.Total = Convert.ToSingle(gestionDatos.Lector["Total"]);
+                        venta.Factura.Total = Convert.ToDecimal(gestionDatos.Lector["Total"]);
 
                     lista.Add(venta);
                 }

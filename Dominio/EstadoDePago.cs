@@ -11,6 +11,6 @@ namespace Dominio
     {
         public int idEstadoDePago { get; set; }
 
-        public String nombreEstado { get; set; } //Rechazado, Pendiente, Recibido
+        public string nombreEstado { get; set; } //Rechazado, Pendiente, Recibido
     }
 }

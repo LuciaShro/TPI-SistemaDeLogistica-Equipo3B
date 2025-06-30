@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
@@ -9,25 +12,32 @@ namespace Gestion
 {
     public class GestionFacturas
     {
-        public void AgregarFactura(Factura factura)
+        public int AgregarFactura(FacturaPago factura, FormaDePago formaPago)
         {
 
             AccesoDatos gestionDatos = new AccesoDatos();
+            int idGenerado = 0;
 
-            try
+            try 
             {
-                gestionDatos.setearConsulta("INSERT INTO Factura (Numero, FechaEmision, CUILEmisor, RazonSocial, IDFormadePago, IDOrden, Total) " +
-                                           "VALUES (@Numero, @FechaEmision, @CUILEmisor, @RazonSocial, @IDFormadePago, @IDOrden, @Total)");
 
+                gestionDatos.setearProcedimiento("sp_AgregarFacturaConFormaDePago");
+
+                gestionDatos.setearParametro("@MedioDePago", formaPago.medioDePago);
+                gestionDatos.setearParametro("@FechaDePago", formaPago.fechaDePago);
+                gestionDatos.setearParametro("@IDEstadoPago", formaPago.estadoDePago.idEstadoDePago);
                 gestionDatos.setearParametro("@Numero", factura.NumeroFactura);
                 gestionDatos.setearParametro("@FechaEmision", factura.FechaEmision);
-                gestionDatos.setearParametro("@CUILEmisor", factura.cuilEmisor);
-                gestionDatos.setearParametro("@RazonSocial", factura.razonSocial);
-                gestionDatos.setearParametro("@IDFormadePago", factura.formaDePago.idFormaDePago);
                 gestionDatos.setearParametro("@IDOrden", factura.OrdenesEnvio.idOrdenEnvio);
                 gestionDatos.setearParametro("@Total", factura.Total);
 
-                gestionDatos.ejecutarAccion();
+                SqlParameter outputParam = new SqlParameter("@IDFactura", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                gestionDatos.Comando.Parameters.Add(outputParam);
+
+                idGenerado = Convert.ToInt32(gestionDatos.obtenerValor());
 
             }
             catch (Exception)
@@ -39,9 +49,11 @@ namespace Gestion
             {
                 gestionDatos.cerrarConexion();
             }
+
+            return idGenerado;
         }
 
-        public void ModificarFactura(Factura factura)
+        public void ModificarFactura(FacturaPago factura)
         {
             AccesoDatos gestionDatos = new AccesoDatos();
 
@@ -93,7 +105,7 @@ namespace Gestion
             }
         }
 
-        public Factura obtenerFactura(int idFactura)
+        public FacturaPago obtenerFactura(int idFactura)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -106,7 +118,7 @@ namespace Gestion
                 if (datos.Lector.Read())
                 {
 
-                    Factura factura = new Factura();
+                    FacturaPago factura = new FacturaPago();
                     factura.idFactura = (int)datos.Lector["IDFactura"];
                     factura.NumeroFactura = (int)datos.Lector["Numero"];
                     factura.FechaEmision = (DateTime)datos.Lector["FechaEmision"];
@@ -114,7 +126,7 @@ namespace Gestion
                     factura.razonSocial = (string)datos.Lector["RazonSocial"];
                     factura.formaDePago.idFormaDePago = (int)datos.Lector["IDFormadePago"];
                     factura.OrdenesEnvio.idOrdenEnvio = (int)datos.Lector["IDOrden"];
-                    factura.Total = (float)datos.Lector["Total"];
+                    factura.Total = (decimal)datos.Lector["Total"];
 
                     return factura;
                 }
@@ -129,6 +141,62 @@ namespace Gestion
             finally
             {
                 datos.cerrarConexion();
+            }
+        }
+
+        public int returnIDFactura()
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("SELECT IDFactura FROM Factura ORDER BY IDFactura DESC");
+                gestionDatos.ejecutarLectura();
+
+                if (gestionDatos.Lector.Read())
+                {
+                    return (int)gestionDatos.Lector["IDFactura"];
+                }
+
+                throw new Exception("ID no encontrado.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método returnIDFactura: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
+
+        public int returnIDFormaDePago()
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("SELECT IDFormaDePago FROM Factura ORDER BY IDFactura DESC");
+                gestionDatos.ejecutarLectura();
+
+                if (gestionDatos.Lector.Read())
+                {
+                    return (int)gestionDatos.Lector["IDFormaDePago"];
+                }
+
+                throw new Exception("ID no encontrado.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método returnIDFormaDePago: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                gestionDatos.cerrarConexion();
             }
         }
 

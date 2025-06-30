@@ -178,11 +178,13 @@ namespace Gestion
                 Console.WriteLine("Error en obtenerValor: " + ex.Message);
                 throw;
             }
-
         }
 
-
-
-
+        public object ejecutarScalar()
+        {
+            comando.Connection = conexion;
+            conexion.Open();
+            return comando.ExecuteScalar();
+        }
     }
 }
