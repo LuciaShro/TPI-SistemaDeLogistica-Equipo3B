@@ -6,7 +6,7 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.css' rel='stylesheet' />
     <script src='https://api.mapbox.com/mapbox-gl-js/v3.4.0/mapbox-gl.js'></script>
     
-    
+    <script src="Content/mapbox.js"></script>
 
     <link href="Content/CargarOrden.css" rel="stylesheet" />
     
@@ -161,8 +161,6 @@
                 <asp:TextBox ID="txtPisoDestino" runat="server" CssClass="form-control" />
             </div>
 
-            <%-- <div id="map" style="width: 100%; height: 400px; margin-top: 20px; border-radius: 8px;"></div>
-            <div id="routeInfo" style="margin-top: 10px;"></div> --%>
 
             <%--<div class="form-group">
             <label for="txtInfoDestino">Info Adicional:</label>
@@ -236,7 +234,7 @@
     </div>
 
 
-    <script src="Content/mapbox.js"></script>
+
     <script src="Content/CargarOrden.js"></script>
 
 </asp:Content>

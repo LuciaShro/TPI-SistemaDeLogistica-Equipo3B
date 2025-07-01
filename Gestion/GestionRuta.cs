@@ -15,11 +15,13 @@ namespace Gestion
 
             try
             {
-                gestionDatos.setearConsulta("INSERT INTO Rutas (PuntoPartida, PuntoDestino) " +
-                                           " VALUES (@PuntoPartida, @PuntoDestino)");
+                gestionDatos.setearConsulta("INSERT INTO Rutas (PuntoPartida, PuntoDestino, TiempoEnMinutos, DistanciaEnKM) " +
+                                           " VALUES (@PuntoPartida, @PuntoDestino, @TiempoEnMinutos, @DistanciaEnKM)");
 
                 gestionDatos.setearParametro("@PuntoPartida", ruta.PuntoPartida);
                 gestionDatos.setearParametro("@PuntoDestino", ruta.PuntoDestino);
+                gestionDatos.setearParametro("@TiempoEnMinutos", ruta.TiempoEstimadoMinutos);
+                gestionDatos.setearParametro("@DistanciaEnKM", ruta.DistanciaEnKM);
 
                 gestionDatos.ejecutarAccion();
 

@@ -225,7 +225,10 @@ namespace TPI_SistemaLogistica_Equipo3B
             gvItems.DataBind();
 
             //decimal total = 0;
-            decimal total = item.Precio;
+
+            // realizo una prueba 
+
+            //decimal total = item.Precio;
 
             //for (int i = 0; i < listaItems.Count; i++)
             //{
@@ -235,7 +238,9 @@ namespace TPI_SistemaLogistica_Equipo3B
             //detalle.Cantidad = listaItems.Count; //Si se deja cantidad en detalle lo descomento
             //detalle.Cantidad = paquete.Cantidad;
 
-            lblTotal.Text = total.ToString("N2");
+
+            // realizo una prueba
+            //lblTotal.Text = total.ToString("N2");
 
 
             // prueba para la llamada a la api de mapbox
@@ -286,10 +291,18 @@ namespace TPI_SistemaLogistica_Equipo3B
            
             var routeData = await _mapboxService.GetRouteData(startLng, startLat, endLng, endLat);
 
+            double distanciaKm = 0;
+            double duracionMinutos = 0;
+
+
             if (routeData != null && routeData.Routes != null && routeData.Routes.Any())
             {
                 var route = routeData.Routes.First();
-                lblMensajePaquete.Text = $"Distancia: {route.Distance / 1000:N2} km, Duración: {route.Duration / 60:N2} minutos.";
+
+                
+                distanciaKm = route.Distance / 1000; 
+                duracionMinutos = route.Duration / 60; 
+                lblMensajePaquete.Text = $"Distancia: {distanciaKm:N2} km, Duración: {duracionMinutos:N2} minutos.";
                 lblTotal.Text = "Calculando..."; 
 
                
@@ -308,12 +321,18 @@ namespace TPI_SistemaLogistica_Equipo3B
             else
             {
                 lblMensajePaquete.Text = "No se pudo obtener la ruta o los datos son inválidos. Verifique las direcciones ingresadas.";
-
-
-
-
-
             }
+
+            decimal totalItem = item.Precio;
+            double distanciaTotal = distanciaKm * 1500;
+
+            decimal distanciaTotalDecimal = (decimal)distanciaTotal;
+
+            decimal total = totalItem + distanciaTotalDecimal;
+
+            lblTotal.Text = total.ToString("N2");
+
+
         }
 
         protected void btnCargar_Click(object sender, EventArgs e)
@@ -393,6 +412,8 @@ namespace TPI_SistemaLogistica_Equipo3B
             //SETEAR RUTAS EN TABLA RUTAS
             ordenesEnvio.ruta.PuntoPartida = cliente.Direccion.Provincia + cliente.Direccion.Ciudad + cliente.Direccion.Calle + cliente.Direccion.NumeroCalle;
             ordenesEnvio.ruta.PuntoDestino = destinatario.Direccion.Provincia + destinatario.Direccion.Ciudad + destinatario.Direccion.Calle + destinatario.Direccion.NumeroCalle;
+         //   ordenesEnvio.ruta.DistanciaEnKM;
+         //  ordenesEnvio.ruta.TiempoEstimadoMinutos;
 
             //SETEAR EN TABLA ORDEN
 
