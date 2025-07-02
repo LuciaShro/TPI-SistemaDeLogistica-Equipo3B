@@ -28,6 +28,7 @@ namespace TPI_SistemaLogistica_Equipo3B
                         GestionOrdenesEnvio ordenes = new GestionOrdenesEnvio();
                         OrdenesEnvio seleccionado = (ordenes.ListarOrdenCompleta(id))[0];
 
+                        // datos transportista
                         GestionTransportista transportista = new GestionTransportista();
                         dllTransportista.DataSource = transportista.listarTranportistas();
                         dllTransportista.DataTextField = "Apellido";
@@ -36,46 +37,57 @@ namespace TPI_SistemaLogistica_Equipo3B
                         txtTransportista.Text = seleccionado.transportista.Nombre;
                         dllTransportista.SelectedValue = seleccionado.transportista.IdTransportista.ToString();
 
+                        // datos patente
                         GestionVehiculo gestionVehiculo = new GestionVehiculo();
                         txtVehiculo.Text = seleccionado.transportista.Vehiculo.Patente;
 
+                        // dato id
                         txtIdOrden.Text = seleccionado.idOrdenEnvio.ToString();
 
+                        // datos puntos
                         TxtPuntoPartida.Text = seleccionado.ruta.PuntoPartida;
                         TxtPuntoDestino.Text = seleccionado.ruta.PuntoDestino;
 
+                        // datos cliente
                         txtNombreOrigen.Text = seleccionado.cliente.Nombre;
                         txtCUILOrigen.Text = seleccionado.cliente.CUIL.ToString();
                         txtEmailOrigen.Text = seleccionado.cliente.Usuario.Email;
                         txtTelefonoOrigen.Text = seleccionado.cliente.Telefono;
 
+                        // datos destinatario
                         txtNombreDestino.Text = seleccionado.destinatario.Nombre;
                         txtEmailDestino.Text = seleccionado.destinatario.Email;
                         txtTelefonoDestino.Text = seleccionado.destinatario.Telefono;
                         txtCUILDestino.Text = seleccionado.destinatario.CUIL.ToString();
+                        txtDireccion.Text = seleccionado.destinatario.Direccion.Calle;
+                        txtPiso.Text = seleccionado.destinatario.Direccion.Piso;
+                        txtProvincia.Text = seleccionado.destinatario.Direccion.Provincia;
+                        txtCiudad.Text = seleccionado.destinatario.Direccion.Ciudad;
+                        txtCodigoPostal.Text = seleccionado.destinatario.Direccion.CodigoPostal;
 
+                        // datos paquete
                         txtLargo.Text = seleccionado.paquete.Alto.ToString();
                         txtAlto.Text = seleccionado.paquete.Alto.ToString();
                         txtAncho.Text = seleccionado.paquete.Ancho.ToString();
                         txtPeso.Text = seleccionado.paquete.Peso.ToString();
                         txtValor.Text = seleccionado.paquete.ValorDeclarado.ToString();
 
-
+                        // estado de orden
                         GestionEstado estados = new GestionEstado();
                         dllEstado.DataSource = estados.listarEstado();
                         dllEstado.DataTextField = "DescripcionEstado";
                         dllEstado.DataValueField = "idEstado";
+                        TxtEstadoOrden.Text = seleccionado.estado.DescripcionEstado.ToString();
                         dllEstado.DataBind();
-
                         dllEstado.SelectedValue = seleccionado.estado.idEstado.ToString();
 
+                        // estado de vechiculo
                         GestionEstadoVehiculo estadosVehiculo = new GestionEstadoVehiculo();
                         dllEstadoVehiculo.DataSource = estadosVehiculo.listarEstadoVehiculo();
                         dllEstadoVehiculo.DataTextField = "descripcioEstado";
                         dllEstadoVehiculo.DataValueField = "IDEstado";
+                        txtEstadoVehiculo.Text = seleccionado.transportista.Vehiculo.estadoVehiculo.descripcioEstado.ToString();
                         dllEstadoVehiculo.DataBind();
-
-
                         dllEstadoVehiculo.SelectedValue = seleccionado.transportista.Vehiculo.estadoVehiculo.IDEstado.ToString();
 
                         //if (Session["TipoUsuario"] != null)
@@ -224,6 +236,17 @@ namespace TPI_SistemaLogistica_Equipo3B
             {
                 Session.Add("error", ex);
             }
+        }
+
+        public bool validacionUsuario(Dominio.Usuario.TipoUsuario tipoEsperado)
+        {
+            if (Session["usuario"] != null)
+            {
+                var usuario = (Dominio.Usuario)Session["usuario"];
+                return usuario.tipoUsuario == tipoEsperado;
+            }
+            return false;
+
         }
     }
 

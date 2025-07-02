@@ -21,7 +21,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             Response.Redirect("Default.aspx", false);
         }
 
-        protected bool validacionUsuario(Dominio.Usuario.TipoUsuario tipoEsperado)
+        public bool validacionUsuario(Dominio.Usuario.TipoUsuario tipoEsperado)
         {
             if (Session["usuario"] != null)
             {

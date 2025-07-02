@@ -166,7 +166,7 @@ namespace Gestion
                 datos.setearConsulta("SELECT OE.IDOrden, C.Nombre AS NombreCliente, C.Apellido AS ApellidoCliente, T.IDTransportista AS IDTransportista, T.Nombre AS NombreTransportista," +
                     " T.Apellido AS ApellidoTransportista,V.Patente AS PatenteVehiculo, R.PuntoPartida, R.PuntoDestino,EO.IDEstadoOrdenEnvio, EO.Descripcion AS EstadoOrden, D.Nombre AS NombreDestinatario," +
                     " D.Apellido AS ApellidoDestinatario, D.Cuil AS CuilDestinatario, D.Email AS EmailDestinatario, D.Telefono AS TelefonoDestinatario, C.Cuil AS CuilCliente, " +
-                    "C.Telefono AS TelefonoCliente, OE.FechaCreacion, OE.FechaEnvio, OE.FechaEstimadaLlegada, OE.FechaLlegada, U.Email AS EmailCliente, EV.IDEstadoVehiculo, EV.Descripcion AS DescripcionEstadoVehiculo, DN.Calle, DN.Numero " +
+                    "C.Telefono AS TelefonoCliente, OE.FechaCreacion, OE.FechaEnvio, OE.FechaEstimadaLlegada, OE.FechaLlegada, U.Email AS EmailCliente, EV.IDEstadoVehiculo, EV.Descripcion AS DescripcionEstadoVehiculo, DN.Calle, DN.Numero, DN.Provincia, DN.Piso, DN.Ciudad, DN.CodigoPostal " +
                     "FROM OrdenesEnvio OE INNER JOIN Usuario U ON OE.IDUsuario = U.IDUsuario " +
                     "INNER JOIN Clientes C ON OE.IDCliente = C.IDCliente INNER JOIN Transportista T ON OE.IDTransportista = T.IDTransportista INNER JOIN Vehiculo V ON T.IDVehiculo = V.IDVehiculo " +
                     "INNER JOIN EstadoVehiculo EV ON V.IDEstadoVehiculo = EV.IDEstadoVehiculo " +
@@ -204,8 +204,17 @@ namespace Gestion
 
 
                     aux.destinatario = new Destinatario();
-                    aux.destinatario.Nombre = datos.Lector["NombreDestinatario"].ToString();
+                    aux.destinatario.Nombre = datos.Lector["NombreDestinatario"].ToString() +" "+ datos.Lector["ApellidoDestinatario"].ToString();
                     aux.destinatario.Apellido = datos.Lector["ApellidoDestinatario"].ToString();
+                    aux.destinatario.Direccion = new Direccion();
+                    aux.destinatario.Direccion.Calle = datos.Lector["Calle"].ToString() + " " + datos.Lector["Numero"].ToString();
+                    aux.destinatario.Direccion.Piso = datos.Lector["Piso"].ToString();
+                    aux.destinatario.Direccion.Provincia = datos.Lector["Provincia"].ToString();
+                    aux.destinatario.Direccion.Ciudad = datos.Lector["Ciudad"].ToString();
+                    aux.destinatario.Direccion.CodigoPostal = datos.Lector["CodigoPostal"].ToString();
+
+
+
                     aux.ruta = new Ruta();
                     aux.ruta.PuntoPartida = datos.Lector["PuntoPartida"].ToString();
                     aux.ruta.PuntoDestino = datos.Lector["PuntoDestino"].ToString();
@@ -483,7 +492,7 @@ namespace Gestion
                     " T.Apellido AS ApellidoTransportista,V.Patente AS PatenteVehiculo, R.PuntoPartida, R.PuntoDestino,EO.IDEstadoOrdenEnvio, EO.Descripcion AS EstadoOrden, D.Nombre AS NombreDestinatario," +
                     " D.Apellido AS ApellidoDestinatario, D.Cuil AS CuilDestinatario, D.Email AS EmailDestinatario, D.Telefono AS TelefonoDestinatario, C.Cuil AS CuilCliente, " +
                     "C.Telefono AS TelefonoCliente, OE.FechaCreacion, OE.FechaEnvio, OE.FechaEstimadaLlegada, OE.FechaLlegada, U.Email AS EmailCliente, EV.IDEstadoVehiculo, EV.Descripcion AS DescripcionEstadoVehiculo, " +
-                    "Pq.Largo, Pq.Alto, Pq.Ancho, Pq.Peso, Pq.valorDeclarado, DN.Calle, DN.Numero FROM OrdenesEnvio OE INNER JOIN Usuario U ON OE.IDUsuario = U.IDUsuario " +
+                    "Pq.Largo, Pq.Alto, Pq.Ancho, Pq.Peso, Pq.valorDeclarado, DN.Calle, DN.Numero, DN.Provincia, DN.Piso, DN.Ciudad, DN.CodigoPostal FROM OrdenesEnvio OE INNER JOIN Usuario U ON OE.IDUsuario = U.IDUsuario " +
                     "INNER JOIN Clientes C ON OE.IDCliente = C.IDCliente INNER JOIN Transportista T ON OE.IDTransportista = T.IDTransportista " +
                     "INNER JOIN Vehiculo V ON T.IDVehiculo = V.IDVehiculo " +
                     "INNER JOIN EstadoVehiculo EV ON V.IDEstadoVehiculo = EV.IDEstadoVehiculo " +
@@ -532,12 +541,18 @@ namespace Gestion
 
                     aux.destinatario = new Destinatario();
                     aux.destinatario.Direccion = new Direccion();
-                    aux.destinatario.Nombre = datos.Lector["NombreDestinatario"].ToString();
+                    aux.destinatario.Nombre = datos.Lector["NombreDestinatario"].ToString() +" "+ datos.Lector["ApellidoDestinatario"].ToString();
                     aux.destinatario.Apellido = datos.Lector["ApellidoDestinatario"].ToString();
                     aux.destinatario.CUIL = Convert.ToInt64(datos.Lector["CuilDestinatario"]);
                     aux.destinatario.Usuario = new Usuario();
                     aux.destinatario.Email = datos.Lector["EmailDestinatario"].ToString();
                     aux.destinatario.Telefono = datos.Lector["TelefonoDestinatario"].ToString();
+                    aux.destinatario.Direccion.Calle = datos.Lector["Calle"].ToString() + " " + datos.Lector["Numero"].ToString();
+                    aux.destinatario.Direccion.Piso = datos.Lector["Piso"].ToString();
+                    aux.destinatario.Direccion.Provincia = datos.Lector["Provincia"].ToString();
+                    aux.destinatario.Direccion.Ciudad = datos.Lector["Ciudad"].ToString();
+                    aux.destinatario.Direccion.CodigoPostal = datos.Lector["CodigoPostal"].ToString();
+
                     aux.ruta = new Ruta();
                     aux.ruta.PuntoPartida = datos.Lector["PuntoPartida"].ToString();
                     aux.ruta.PuntoDestino = datos.Lector["PuntoDestino"].ToString();
