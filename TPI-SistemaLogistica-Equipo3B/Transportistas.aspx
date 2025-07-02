@@ -23,11 +23,10 @@
                 <asp:LinkButton ID="btnInactivo" runat="server" CssClass="tab active" OnClick="btnInactivo_Click">Inactivos</asp:LinkButton>
         </div>
 
-    <asp:GridView runat="server" ID="dgvTransportistas" DataKeyNames="idTransportista" OnSelectedIndexChanged="dgvTransportistas_SelectedIndexChanged" OnPageIndexChanging="dgvTransportistas_PageIndexChanging" AllowPaging="true" PageSize="5" Class="transportistas-grid table-bordered text-center align-middle" AutoGenerateColumns="false">
+    <asp:GridView runat="server" ID="dgvTransportistas" DataKeyNames="idTransportista" OnSelectedIndexChanged="dgvTransportistas_SelectedIndexChanged" OnPageIndexChanging="dgvTransportistas_PageIndexChanging" AllowPaging="true" PageSize="5" Class="ordenes-grid table-bordered text-center align-middle" AutoGenerateColumns="false">
     <Columns>
     <asp:BoundField HeaderText="ID Transportista" DataField="IdTransportista" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
     <asp:BoundField HeaderText="Nombre" DataField="Nombre"   />
-        <asp:BoundField HeaderText="Apellido" DataField="Apellido"   />
         <asp:BoundField HeaderText="Licencia" DataField="Licencia"   />
     <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
     <asp:BoundField HeaderText="Horario Inicio" DataField="HoraInicio" />

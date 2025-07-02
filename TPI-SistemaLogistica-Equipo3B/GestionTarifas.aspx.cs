@@ -13,5 +13,20 @@ namespace TPI_SistemaLogistica_Equipo3B
         {
 
         }
+
+        protected void btnGuardarGrande_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarMediano_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnGuardarPequeno_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

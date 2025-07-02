@@ -6,21 +6,30 @@ using System.Web;
 using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Dominio;
+using System.Globalization;
 using Gestion;
 using TPI_SistemaLogistica_Equipo3B.Models;
 
 using TPI_SistemaLogistica_Equipo3B.Servicios;
+using System.Configuration;
+using System.Web.Script.Serialization;
+using System.Text;
+using Newtonsoft.Json;
+using static TPI_SistemaLogistica_Equipo3B.Servicios.MapBoxService;
 
 namespace TPI_SistemaLogistica_Equipo3B
 {
     public partial class CargarOrden : System.Web.UI.Page
     {
+        private MapBoxService _mapboxService;
         //protected int idCliente = 0;
         protected async void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                string mapboxAccessToken = ConfigurationManager.AppSettings["MapboxAccessToken"];
+                _mapboxService = new MapBoxService(mapboxAccessToken);
+
                 if (Session["cliente"] != null)
                 {
                     Cliente clienteLogueado = (Cliente)Session["cliente"];
@@ -41,6 +50,7 @@ namespace TPI_SistemaLogistica_Equipo3B
                 }
                 else
                 {
+                    
                     Response.Redirect("ErrorLogin.aspx", false);
                     Context.ApplicationInstance.CompleteRequest();
                 }
@@ -62,6 +72,13 @@ namespace TPI_SistemaLogistica_Equipo3B
                 ddlProvincias.DataBind();
             }
 
+            else
+            {
+                // Para PostBacks, asegúrate de que el servicio se reinicialice
+                string mapboxAccessToken = ConfigurationManager.AppSettings["MapboxAccessToken"];
+                _mapboxService = new MapBoxService(mapboxAccessToken);
+            }
+
         }
 
         protected async void ddlProvincias_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,8 +94,40 @@ namespace TPI_SistemaLogistica_Equipo3B
             ddlLocalidades.DataBind();
         }
 
+        private string BuildFullAddress(string street, string number, string city, string province, string postalCode, string floorInfo = "")
+        {
+            StringBuilder address = new StringBuilder();
 
-        protected void btnCotizar_Click(object sender, EventArgs e)
+            if (!string.IsNullOrWhiteSpace(street))
+            {
+                address.Append(street.Trim());
+            }
+            if (!string.IsNullOrWhiteSpace(number))
+            {
+                address.Append($" {number.Trim()}");
+            }
+            if (!string.IsNullOrWhiteSpace(floorInfo))
+            {
+                address.Append($", {floorInfo.Trim()}");
+            }
+            if (!string.IsNullOrWhiteSpace(city))
+            {
+                address.Append($", {city.Trim()}");
+            }
+            if (!string.IsNullOrWhiteSpace(province))
+            {
+                address.Append($", {province.Trim()}");
+            }
+            if (!string.IsNullOrWhiteSpace(postalCode))
+            {
+                address.Append($", {postalCode.Trim()}");
+            }
+
+            return address.ToString().TrimStart(',', ' ').TrimEnd(','); // Limpiar comas y espacios iniciales/finales
+        }
+
+
+        protected async void btnCotizar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtLargo.Text) ||
                 string.IsNullOrWhiteSpace(txtAncho.Text) ||
@@ -160,6 +209,13 @@ namespace TPI_SistemaLogistica_Equipo3B
                 }
             }
 
+
+            // realizar busqueda del precio dependiendo la categoria
+            GestionTarifasEnvio gestionTarifas = new GestionTarifasEnvio();
+            decimal precioPorKm = gestionTarifas.ObtenerPrecioCategoria(paquete.Categoria.idCategoria);
+
+
+
             item.Descripcion = "Producto";
 
             // Obtener la lista anterior de ViewState o crear una nueva
@@ -176,7 +232,10 @@ namespace TPI_SistemaLogistica_Equipo3B
             gvItems.DataBind();
 
             //decimal total = 0;
-            decimal total = item.Precio;
+
+            // realizo una prueba 
+
+            //decimal total = item.Precio;
 
             //for (int i = 0; i < listaItems.Count; i++)
             //{
@@ -186,6 +245,109 @@ namespace TPI_SistemaLogistica_Equipo3B
             //detalle.Cantidad = listaItems.Count; //Si se deja cantidad en detalle lo descomento
             //detalle.Cantidad = paquete.Cantidad;
 
+
+            // realizo una prueba
+            //lblTotal.Text = total.ToString("N2");
+
+
+            // prueba para la llamada a la api de mapbox
+            string origenAddress = BuildFullAddress(
+                txtCalleOrigen.Text,
+                txtNumeroOrigen.Text,
+                txtCiudadOrigen.Text,
+                txtProvinciaOrigen.Text,
+                txtCPOrigen.Text,
+                txtPisoOrigen.Text
+            );
+
+            string destinoAddress = BuildFullAddress(
+                txtCalleDestino.Text,
+                txtNumeroDestino.Text,
+                ddlLocalidades.SelectedItem?.Text, 
+                ddlProvincias.SelectedItem?.Text,  
+                txtCPDestino.Text,
+                txtPisoDestino.Text
+            );
+
+            if (string.IsNullOrWhiteSpace(origenAddress) || string.IsNullOrWhiteSpace(destinoAddress))
+            {
+                lblMensajePaquete.Text = "Por favor, ingrese direcciones de origen y destino completas para cotizar.";
+                return;
+            }
+
+          
+            GeocodingResponse origenGeo = await _mapboxService.GetCoordinatesFromAddress(origenAddress);
+            if (origenGeo == null || !origenGeo.Features.Any())
+            {
+                lblMensajePaquete.Text = $"No se pudieron encontrar coordenadas para la dirección de origen: '{origenAddress}'. Verifique la dirección. Mensaje de Mapbox: {origenGeo?.Message ?? "N/A"}";
+                return;
+            }
+            double startLng = origenGeo.Features[0].Center[0];
+            double startLat = origenGeo.Features[0].Center[1];
+
+           
+            GeocodingResponse destinoGeo = await _mapboxService.GetCoordinatesFromAddress(destinoAddress);
+            if (destinoGeo == null || !destinoGeo.Features.Any())
+            {
+                lblMensajePaquete.Text = $"No se pudieron encontrar coordenadas para la dirección de destino: '{destinoAddress}'. Verifique la dirección. Mensaje de Mapbox: {destinoGeo?.Message ?? "N/A"}";
+                return;
+            }
+            double endLng = destinoGeo.Features[0].Center[0];
+            double endLat = destinoGeo.Features[0].Center[1];
+
+           
+            var routeData = await _mapboxService.GetRouteData(startLng, startLat, endLng, endLat);
+
+            double distanciaKm = 0;
+            double duracionMinutos = 0;
+
+
+            if (routeData != null && routeData.Routes != null && routeData.Routes.Any())
+            {
+                var route = routeData.Routes.First();
+
+                
+                distanciaKm = route.Distance / 1000; 
+                duracionMinutos = route.Duration / 60; 
+                lblMensajePaquete.Text = $"Distancia: {distanciaKm:N2} km, Duración: {duracionMinutos:N2} minutos.";
+                lblTotal.Text = "Calculando..."; 
+
+               
+                if (route.Geometry != null && route.Geometry.Coordinates != null)
+                {
+                    var geometryCoordinatesJson = JsonConvert.SerializeObject(route.Geometry.Coordinates);
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "DrawRoute",
+                        $"drawRouteOnMap({geometryCoordinatesJson}, {startLng.ToString(CultureInfo.InvariantCulture)}, {startLat.ToString(CultureInfo.InvariantCulture)}, {endLng.ToString(CultureInfo.InvariantCulture)}, {endLat.ToString(CultureInfo.InvariantCulture)});", true);
+                }
+            }
+            else if (routeData != null && !string.IsNullOrEmpty(routeData.Message))
+            {
+                lblMensajePaquete.Text = $"Error de Mapbox al calcular la ruta: {routeData.Message} (Código: {routeData.Code})";
+            }
+            else
+            {
+                lblMensajePaquete.Text = "No se pudo obtener la ruta o los datos son inválidos. Verifique las direcciones ingresadas.";
+            }
+
+            // se realiza el guardado para poder recibirlo en el cargar orden
+            ViewState["DistanciaKm"] = distanciaKm;
+            ViewState["DuracionMin"] = duracionMinutos;
+
+            // precio segun categoria
+            decimal totalItem = item.Precio;
+            
+            // calculo de la distancia por el precio de 1 km
+            decimal distanciaTotal = (decimal)distanciaKm * precioPorKm;
+
+            // conversion para que quede en decimal
+            decimal distanciaTotalDecimal = (decimal)distanciaTotal;
+
+            // total de la suma por categoria y por distancia
+            decimal total = totalItem + distanciaTotalDecimal;
+
+
+            // se muestra el total en pantalla
             lblTotal.Text = total.ToString("N2");
 
 
@@ -266,8 +428,15 @@ namespace TPI_SistemaLogistica_Equipo3B
             ordenesEnvio.estado = new EstadoOrdenEnvio();
 
             //SETEAR RUTAS EN TABLA RUTAS
+            if (ViewState["DistanciaKm"] != null)
+            ordenesEnvio.ruta.DistanciaEnKM = Convert.ToDecimal(ViewState["DistanciaKm"]);
+
+            if (ViewState["DuracionMin"] != null)
+            ordenesEnvio.ruta.TiempoEstimadoMinutos = Convert.ToDecimal(ViewState["DuracionMin"]);
+
             ordenesEnvio.ruta.PuntoPartida = cliente.Direccion.Provincia + cliente.Direccion.Ciudad + cliente.Direccion.Calle + cliente.Direccion.NumeroCalle;
             ordenesEnvio.ruta.PuntoDestino = destinatario.Direccion.Provincia + destinatario.Direccion.Ciudad + destinatario.Direccion.Calle + destinatario.Direccion.NumeroCalle;
+         
 
             //SETEAR EN TABLA ORDEN
 

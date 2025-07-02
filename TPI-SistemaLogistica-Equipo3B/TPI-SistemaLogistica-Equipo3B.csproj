@@ -285,6 +285,7 @@
     <Content Include="Content\Inicio.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Envios.css" />
+    <Content Include="Content\mapbox.js" />
     <Content Include="Content\MensajePago.css" />
     <Content Include="Content\Navbar.css" />
     <Content Include="Content\PanelAdminPagos.css" />
@@ -593,6 +594,7 @@
       <DependentUpon>ResumenFacturas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Servicios\GeorefService.cs" />
+    <Compile Include="Servicios\MapBoxService.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

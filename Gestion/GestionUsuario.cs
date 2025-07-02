@@ -150,11 +150,44 @@ namespace Gestion
                     }
                 
                 }
-
                 
             }
             return null;
 
+        }
+
+
+        public Usuario loginEmpresa(string username, string password)
+        {
+            Usuario usuario = new Usuario(username, password);
+            if (Login(usuario))
+            {
+                if (usuario.tipoUsuario == Usuario.TipoUsuario.admin || usuario.tipoUsuario == Usuario.TipoUsuario.empleado)
+                {
+                    AccesoDatos datos = new AccesoDatos();
+                    try
+                    {
+                        datos.setearConsulta("SELECT Email FROM Usuario WHERE IDUsuario = @IDUsuario");
+                        datos.setearParametro("@IDUsuario", usuario.idUsuario);
+                        datos.ejecutarLectura();
+
+                        if (datos.Lector.Read())
+                        {
+                            usuario.Email = datos.Lector["Email"].ToString();
+                            return usuario;
+                    }
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        datos.cerrarConexion();
+                    }
+                }
+            }
+            return null;
         }
         public void agregarUsuario (Usuario usuario) {
             AccesoDatos datos = new AccesoDatos();

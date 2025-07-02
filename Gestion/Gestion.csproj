@@ -58,6 +58,7 @@
     <Compile Include="GestionOrdenesEnvio.cs" />
     <Compile Include="GestionPaquete.cs" />
     <Compile Include="GestionRuta.cs" />
+    <Compile Include="GestionTarifasEnvio.cs" />
     <Compile Include="GestionTransportista.cs" />
     <Compile Include="GestionUsuario.cs" />
     <Compile Include="GestionVehiculo.cs" />

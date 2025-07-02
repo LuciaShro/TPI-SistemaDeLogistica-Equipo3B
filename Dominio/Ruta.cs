@@ -14,6 +14,8 @@ namespace Dominio
 
         public string PuntoDestino { get; set; }
 
-        //public int TiempoEstimadoMinutos { get; set; }
+        public decimal TiempoEstimadoMinutos { get; set; }
+
+        public decimal DistanciaEnKM { get; set; }
     }
 }
