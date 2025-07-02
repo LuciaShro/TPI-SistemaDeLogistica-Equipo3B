@@ -20,5 +20,16 @@ namespace TPI_SistemaLogistica_Equipo3B
             Session.Abandon();
             Response.Redirect("Default.aspx", false);
         }
+
+        protected bool validacionUsuario(Dominio.Usuario.TipoUsuario tipoEsperado)
+        {
+            if (Session["usuario"] != null)
+            {
+                var usuario = (Dominio.Usuario)Session["usuario"];
+                return usuario.tipoUsuario == tipoEsperado;
+            }
+            return false;
+
+        }
     }
 }

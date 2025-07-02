@@ -16,13 +16,14 @@ namespace TPI_SistemaLogistica_Equipo3B
         {
             if (!IsPostBack)
             {
-                if (Session["idTransportistaAsignado"] == null)
+                if (Session["usuario"] == null)
                 {
-                    Session["idTransportistaAsignado"] = 5;
+                    Response.Redirect("Login.aspx");
+                    return;
+
                 }
-
-
-                int idTransportista = Convert.ToInt32(Session["idTransportistaAsignado"]);
+                var usuario = (Usuario)Session["usuario"];
+                int idTransportista = usuario.idUsuario;
 
                 GestionOrdenesEnvio ordenes = new GestionOrdenesEnvio();
                 List<OrdenesEnvio> todas = ordenes.ListarOrdenes();

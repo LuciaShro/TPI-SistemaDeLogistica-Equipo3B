@@ -17,6 +17,8 @@
                 <div class="sidebar">
                     <h4>FlashShip</h4>
                     <ul class="menu">
+                        <% if (validacionUsuario(Dominio.Usuario.TipoUsuario.admin))
+                            {  %>
                         <li>
                             <a href="Inicio.aspx" class="nav-link"><i class="bi bi-box me-2"></i>Inicio</a>
                         </li>
@@ -38,6 +40,29 @@
                         <li>
                             <a href="PanelAdminPagos.aspx" class="nav-link"><i class="bi bi-receipt me-2"></i>Ventas</a>
                         </li>
+                    
+                    <%}
+                        else if (validacionUsuario(Dominio.Usuario.TipoUsuario.empleado))
+                        { %>
+                      <li>
+                        <a href="OrdenesAsignadas.aspx" class="nav-link"><i class="bi bi-cart"></i>Ordenes</a>
+                      </li>
+                      <li>
+                        <a href="Envios.aspx" class="nav-link"><i class="bi bi-truck"></i>Envios</a>
+                      </li>
+                    <%}
+                        else if (validacionUsuario(Dominio.Usuario.TipoUsuario.cliente))
+                        {  %>
+                     <li>
+                         <a href="Ordenes.aspx" class="nav-link"><i class="bi bi-cart"></i>Ordenes</a>
+                    </li>
+                     <li>
+                         <a href="Envios.aspx" class="nav-link"><i class="bi bi-truck"></i>Envios</a>
+                     </li>
+                    <li>
+                    <a href="ResumenFacturas.aspx" class="nav-link"><i class="bi bi-receipt me-2"></i>Facturas</a>
+                    </li>
+                    <%} %>
                     </ul>
                     <ul class="sesion">
                         <hr />

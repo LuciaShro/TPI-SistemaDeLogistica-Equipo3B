@@ -34,6 +34,14 @@ namespace Dominio
             Password = password;
         }
 
+        public Usuario(string username, string password, bool admin)
+        {
+
+            User = username;
+            Password = password;
+            tipoUsuario = admin ? TipoUsuario.admin : TipoUsuario.cliente;
+        }
+
         public Usuario()
         {
             tipoUsuario = TipoUsuario.cliente;
