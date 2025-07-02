@@ -597,7 +597,7 @@ namespace Gestion
                     orden.FechaCreacion = (DateTime)gestionDatos.Lector["FechaCreacion"];
                     orden.FechaEnvio = (DateTime)gestionDatos.Lector["FechaEnvio"];
                     orden.FechaEstimadaLlegada = (DateTime)gestionDatos.Lector["FechaEstimadaLlegada"];
-                    orden.FechaDeLlegada = (DateTime)gestionDatos.Lector["FechaLlegada"]; ;
+                    orden.FechaDeLlegada = (DateTime)gestionDatos.Lector["FechaLlegada"]; 
 
                     return orden;
                 }

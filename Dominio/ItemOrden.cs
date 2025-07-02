@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,8 @@ namespace Dominio
     {
         public string Descripcion { get; set; }
         public string Categoria { get; set; }
-        public decimal Precio { get; set; }
+        public decimal Precio { get; set; } 
+        public decimal Total { get; set; }
+
     }
 }
