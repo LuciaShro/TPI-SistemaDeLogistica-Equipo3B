@@ -209,6 +209,13 @@ namespace TPI_SistemaLogistica_Equipo3B
                 }
             }
 
+
+            // realizar busqueda del precio dependiendo la categoria
+            GestionTarifasEnvio gestionTarifas = new GestionTarifasEnvio();
+            decimal precioPorKm = gestionTarifas.ObtenerPrecioCategoria(paquete.Categoria.idCategoria);
+
+
+
             item.Descripcion = "Producto";
 
             // Obtener la lista anterior de ViewState o crear una nueva
@@ -323,13 +330,24 @@ namespace TPI_SistemaLogistica_Equipo3B
                 lblMensajePaquete.Text = "No se pudo obtener la ruta o los datos son inválidos. Verifique las direcciones ingresadas.";
             }
 
-            decimal totalItem = item.Precio;
-            double distanciaTotal = distanciaKm * 1500;
+            // se realiza el guardado para poder recibirlo en el cargar orden
+            ViewState["DistanciaKm"] = distanciaKm;
+            ViewState["DuracionMin"] = duracionMinutos;
 
+            // precio segun categoria
+            decimal totalItem = item.Precio;
+            
+            // calculo de la distancia por el precio de 1 km
+            decimal distanciaTotal = (decimal)distanciaKm * precioPorKm;
+
+            // conversion para que quede en decimal
             decimal distanciaTotalDecimal = (decimal)distanciaTotal;
 
+            // total de la suma por categoria y por distancia
             decimal total = totalItem + distanciaTotalDecimal;
 
+
+            // se muestra el total en pantalla
             lblTotal.Text = total.ToString("N2");
 
 
@@ -410,10 +428,15 @@ namespace TPI_SistemaLogistica_Equipo3B
             ordenesEnvio.estado = new EstadoOrdenEnvio();
 
             //SETEAR RUTAS EN TABLA RUTAS
+            if (ViewState["DistanciaKm"] != null)
+            ordenesEnvio.ruta.DistanciaEnKM = Convert.ToDecimal(ViewState["DistanciaKm"]);
+
+            if (ViewState["DuracionMin"] != null)
+            ordenesEnvio.ruta.TiempoEstimadoMinutos = Convert.ToDecimal(ViewState["DuracionMin"]);
+
             ordenesEnvio.ruta.PuntoPartida = cliente.Direccion.Provincia + cliente.Direccion.Ciudad + cliente.Direccion.Calle + cliente.Direccion.NumeroCalle;
             ordenesEnvio.ruta.PuntoDestino = destinatario.Direccion.Provincia + destinatario.Direccion.Ciudad + destinatario.Direccion.Calle + destinatario.Direccion.NumeroCalle;
-         //   ordenesEnvio.ruta.DistanciaEnKM;
-         //  ordenesEnvio.ruta.TiempoEstimadoMinutos;
+         
 
             //SETEAR EN TABLA ORDEN
 

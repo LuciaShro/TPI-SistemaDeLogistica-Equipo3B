@@ -38,11 +38,13 @@ namespace Gestion
 
 
 
-                gestionDatos.setearConsulta("INSERT INTO Rutas (PuntoPartida, PuntoDestino) " +
-                                            " OUTPUT INSERTED.IDRuta VALUES (@PuntoPartida, @PuntoDestino)");
+                gestionDatos.setearConsulta("INSERT INTO Rutas (PuntoPartida, PuntoDestino, TiempoEnMinutos, DistanciaEnKM) " +
+                                            " OUTPUT INSERTED.IDRuta VALUES (@PuntoPartida, @PuntoDestino, @TiempoEnMinutos, @DistanciaEnKM)");
 
                 gestionDatos.setearParametro("@PuntoPartida", ordenEnvio.ruta.PuntoPartida);
                 gestionDatos.setearParametro("@PuntoDestino", ordenEnvio.ruta.PuntoDestino);
+                gestionDatos.setearParametro("@TiempoEnMinutos", ordenEnvio.ruta.TiempoEstimadoMinutos);
+                gestionDatos.setearParametro("@DistanciaEnKM", ordenEnvio.ruta.DistanciaEnKM);
 
                 int idRuta = Convert.ToInt32(gestionDatos.obtenerValor());
 
