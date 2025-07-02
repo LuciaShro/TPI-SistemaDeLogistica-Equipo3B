@@ -16,6 +16,7 @@ namespace Dominio
         //public DetalleOrden idDetalle {  get; set; }
 
         public DateTime FechaEmision { get; set; }
+        public DateTime FechaVencimiento { get; set; }
 
         public long cuilEmisor { get; set; }
         public string razonSocial { get; set; }

@@ -341,8 +341,67 @@ namespace Gestion
             {
                 datos.cerrarConexion();
             }
+        }
 
+        public int returnIDClienteOrdenEnv(int idOrden)
+        {
+            AccesoDatos datos = new AccesoDatos();
 
+            try
+            {
+                datos.setearConsulta("SELECT c.IDCliente FROM OrdenesEnvio AS oe INNER JOIN Clientes AS c ON c.IDCliente = oe.IDCliente WHERE oe.IDOrden = @IDOrden");
+                datos.setearParametro("@IDOrden", idOrden);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    return (int)datos.Lector["IDCliente"];
+                }
+
+                throw new Exception("Cliente no encontrado con ese ID.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método returnIDClienteOrdenEnv: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public long returnCuilCliente(int id)
+        {
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("SELECT Cuil FROM Clientes WHERE IDCliente = @IDCLiente");
+                gestionDatos.setearParametro("@IDCliente", id);
+                gestionDatos.ejecutarLectura();
+
+                while (gestionDatos.Lector.Read())
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.CUIL = (long)gestionDatos.Lector["Cuil"];
+
+                    return cliente.CUIL;
+                }
+
+                throw new Exception("Cliente no encontrado con ese ID.");
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método returnCuilCliente: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
         }
     }
 }
