@@ -12,13 +12,6 @@
             </button>
         </div>
 
-        <div class="ordenes-tabs">
-            <asp:LinkButton ID="btnTodasOrdenes" runat="server" CssClass="tab active" OnClick="btnTodasOrdenes_Click">Todos</asp:LinkButton>
-            <asp:LinkButton ID="btnOrdenesEntregadas" runat="server" CssClass="tab active" OnClick="btnOrdenesEntregadas_Click">Entregadas</asp:LinkButton>
-            <asp:LinkButton ID="btnOrdenesEnCamino" runat="server" CssClass="tab active" OnClick="btnOrdenesEnCamino_Click">En Camino</asp:LinkButton>
-            <asp:LinkButton ID="btnOrdenesPendientes" runat="server" CssClass="tab active" OnClick="btnOrdenesPendientes_Click">Pendientes</asp:LinkButton>
-        </div>
-
         <div class="ordenes-search">
             <asp:TextBox runat="server" ID="txtFiltro" AutoPostBack="true" placeholder="Buscar..." OnTextChanged="filtro_TextChanged" />
             <span class="search-icon">🔍</span>
@@ -69,6 +62,12 @@
 </div>
         </div>
 <% } %>
+                <div class="ordenes-tabs">
+            <asp:LinkButton ID="btnTodasOrdenes" runat="server" CssClass="tab active" OnClick="btnTodasOrdenes_Click">Todos</asp:LinkButton>
+            <asp:LinkButton ID="btnOrdenesEntregadas" runat="server" CssClass="tab active" OnClick="btnOrdenesEntregadas_Click">Entregadas</asp:LinkButton>
+            <asp:LinkButton ID="btnOrdenesEnCamino" runat="server" CssClass="tab active" OnClick="btnOrdenesEnCamino_Click">En Camino</asp:LinkButton>
+            <asp:LinkButton ID="btnOrdenesPendientes" runat="server" CssClass="tab active" OnClick="btnOrdenesPendientes_Click">Pendientes</asp:LinkButton>
+        </div>
     </div>
 
     <asp:GridView runat="server" ID="dgvOrdenes" DataKeyNames="idOrdenEnvio" OnSelectedIndexChanged="dgvOrdenes_SelectedIndexChanged" OnPageIndexChanging="dgvOrdenes_PageIndexChanging" AllowPaging="true" PageSize="5" Class="ordenes-grid table-bordered text-center align-middle" AutoGenerateColumns="false">

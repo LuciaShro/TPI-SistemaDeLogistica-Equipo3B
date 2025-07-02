@@ -193,7 +193,7 @@ namespace Gestion
                 {
                     Transportista transportista = new Transportista();
                     transportista.IdTransportista = Convert.ToInt32(datos.Lector["IDTransportista"]);
-                    transportista.Nombre = datos.Lector["Nombre"].ToString();
+                    transportista.Nombre = datos.Lector["Nombre"].ToString() +' '+ datos.Lector["Apellido"].ToString();
                     transportista.Apellido = datos.Lector["Apellido"].ToString();
                     transportista.CuilTransportista = Convert.ToInt64(datos.Lector["Cuil"]);
                     transportista.Telefono = datos.Lector["Telefono"].ToString();
