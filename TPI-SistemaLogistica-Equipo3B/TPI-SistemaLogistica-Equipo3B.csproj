@@ -294,6 +294,7 @@
     <Content Include="Content\Perfil.css" />
     <Content Include="Content\Ordenes.css" />
     <Content Include="Content\Register.css" />
+    <Content Include="Content\RegistroExitoso.css" />
     <Content Include="Content\ResumenFacturas.css" />
     <Content Include="Content\SideBar.css" />
     <Content Include="Content\Transportistas.css" />
@@ -323,6 +324,7 @@
     <Content Include="Perfil.aspx" />
     <Content Include="Ordenes.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="RegistroExitoso.aspx" />
     <Content Include="ResumenFacturas.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -586,6 +588,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroExitoso.aspx.cs">
+      <DependentUpon>RegistroExitoso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroExitoso.aspx.designer.cs">
+      <DependentUpon>RegistroExitoso.aspx</DependentUpon>
     </Compile>
     <Compile Include="ResumenFacturas.aspx.cs">
       <DependentUpon>ResumenFacturas.aspx</DependentUpon>
