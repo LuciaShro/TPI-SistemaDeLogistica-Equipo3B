@@ -24,6 +24,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
 
         /// <summary>
+        /// Control lblCategoriaPequeño.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCategoriaPequeño;
+
+        /// <summary>
         /// Control txtCategoriaPequeno.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCategoriaPequeno;
+
+        /// <summary>
+        /// Control btnModificarPequeno.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificarPequeno;
 
         /// <summary>
         /// Control btnGuardarPequeno.
@@ -42,6 +60,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.Button btnGuardarPequeno;
 
         /// <summary>
+        /// Control lblCategoriaMediano.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCategoriaMediano;
+
+        /// <summary>
         /// Control txtCategoriaMediano.
         /// </summary>
         /// <remarks>
@@ -49,6 +76,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCategoriaMediano;
+
+        /// <summary>
+        /// Control btnModificarMediano.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificarMediano;
 
         /// <summary>
         /// Control btnGuardarMediano.
@@ -60,6 +96,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.Button btnGuardarMediano;
 
         /// <summary>
+        /// Control lblCategoriaGrande.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCategoriaGrande;
+
+        /// <summary>
         /// Control txtCategoriaGrande.
         /// </summary>
         /// <remarks>
@@ -69,6 +114,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.TextBox txtCategoriaGrande;
 
         /// <summary>
+        /// Control btnModificarGrande.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModificarGrande;
+
+        /// <summary>
         /// Control btnGuardarGrande.
         /// </summary>
         /// <remarks>
@@ -76,6 +130,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardarGrande;
+
+        /// <summary>
+        /// Control lblMensajeError.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensajeError;
 
         /// <summary>
         /// Control txtSimDistancia.
