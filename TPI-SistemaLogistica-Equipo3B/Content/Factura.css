@@ -1,22 +1,23 @@
 ﻿.invoice-container {
     background: #fff;
-    padding: 30px;
+    padding: 40px;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0,0,0,0.05);
     font-family: 'Segoe UI', sans-serif;
     color: #333;
     max-width: 900px;
-    margin: auto;
+    margin: 40px auto;
 }
 
 .invoice-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    margin-bottom: 30px; /* Espaciado inferior */
 }
 
 .company-logo img {
-    height: 40px;
+    height: 45px;
 }
 
 .invoice-actions {
@@ -35,48 +36,65 @@
     background-color: #9b59b6;
     color: white;
     border: none;
-    padding: 6px 16px;
+    padding: 8px 20px;
     border-radius: 8px;
     cursor: pointer;
+    font-size: 0.95rem;
 }
 
-.invoice-info,
-.invoice-dates {
+/* Espaciado entre secciones de info */
+.invoice-info {
     display: flex;
     justify-content: space-between;
+    gap: 50px;
+    margin-top: 40px;
+    font-size: 1rem;
+}
+
+    .invoice-info .info-block {
+        flex: 1;
+    }
+
+/* Bloque de fechas separado */
+.invoice-dates {
     margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
     font-size: 0.95rem;
 }
 
+/* Datos del cliente */
 .billed-to {
-    margin-top: 30px;
+    margin-top: 40px;
     font-size: 0.95rem;
+    line-height: 1.6;
 }
 
+/* Tabla */
 .invoice-table {
     width: 100%;
-    margin-top: 30px;
+    margin-top: 40px;
     border-collapse: collapse;
 }
 
     .invoice-table th, .invoice-table td {
-        padding: 12px;
+        padding: 14px 12px;
         border-bottom: 1px solid #e0e0e0;
         text-align: left;
     }
 
+/* Resumen */
 .invoice-summary {
-    margin-top: 30px;
+    margin-top: 40px;
     text-align: right;
     font-size: 1rem;
 }
 
-.invoice-summary div {
-        margin-bottom: 5px;
-}
+    .invoice-summary div {
+        margin-bottom: 6px;
+    }
 
-.invoice-summary .total {
+    .invoice-summary .total {
         font-weight: bold;
-        font-size: 1.1rem;
-
-}
+        font-size: 1.15rem;
+    }

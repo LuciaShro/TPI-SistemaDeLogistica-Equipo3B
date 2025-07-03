@@ -1,112 +1,173 @@
 ﻿.facturas-container {
-    padding: 30px;
-    font-family: 'Segoe UI', sans-serif;
-    color: #333;
-    max-width: 1000px;
+    width: 100%;
+    max-width: 1200px; 
     margin: auto;
+    padding: 60px 40px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #1f1f1f;
+    box-sizing: border-box;
 }
 
-.header-bar {
+
+.factura-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    gap: 40px;
 }
 
-.btn-nuevo {
-    background-color: #9b59b6;
-    color: #fff;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 10px;
-    cursor: pointer;
+h2{
+    margin-top: -90px;
 }
 
-.factura-total-card {
+
+
+.factura-total-box {
+    background: #f6f7fb;
+    padding: 25px 30px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
-    background: #f8f9fb;
-    padding: 20px;
-    border-radius: 16px;
-    margin: 20px 0;
-    gap: 15px;
+    gap: 18px;
+    min-width: 260px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-left: -160px;
 }
 
-.circle-avatar {
-    background-color: #dedede;
-    color: #444;
+.icono-factura {
+    background-color: #e4e4e4;
+    color: #4a4a4a;
     font-weight: bold;
-    font-size: 18px;
-    width: 48px;
-    height: 48px;
+    font-size: 22px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.factura-list {
-    background: #fff;
-    border-radius: 16px;
-    padding: 10px 0;
-    box-shadow: 0 0 10px rgba(0,0,0,0.03);
-    margin-bottom: 25px;
-}
-
-    .factura-list.empty {
-        padding: 20px;
-        text-align: center;
-        color: #aaa;
-    }
-
-.factura-item {
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-    padding: 12px 20px;
-}
-
-    .factura-item:last-child {
-        border-bottom: none;
-    }
-
-.factura-info {
-    display: flex;
-    justify-content: space-between;
-    flex: 1;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-    .factura-info > div {
-        min-width: 80px;
-        text-align: center;
-    }
-
-.small {
-    font-size: 0.8rem;
+.total-label {
+    font-size: 15px;
     color: #777;
 }
 
-.estado {
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.85rem;
+.total-monto {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1f1f1f;
+}
+
+.total-detalle {
+    font-size: 13px;
+    color: #999;
+}
+
+.canceladas-link {
+    font-size: 18px;
+    color: #888;
+    text-decoration: none;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 650px;
+}
+
+.canceladas-link:hover {
+    color: #9854CB;
+}
+
+.seccion-titulo {
+    margin: 30px 0 15px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #333;
+}
+
+.factura-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    transition: all 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+.factura-avatar {
+    background-color: #dedede;
+    color: #444;
     font-weight: bold;
+    font-size: 15px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 25px;
+}
+
+.factura-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+.factura-nombre-numero {
+    min-width: 130px;
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+.factura-nombre-numero span {
+    color: #666;
+    font-size: 16px;
+}
+
+.factura-monto {
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 100px;
+    color: #1a1a1a;
+}
+
+.fecha {
+    font-size: 13px;
+    color: #666;
+}
+
+.estado.entregado {
+    background-color: #e6f6f3;
+    color: #1BC5BD;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
     white-space: nowrap;
 }
 
-    .estado.entregado {
-        background-color: #e6f6f3;
-        color: #1BC5BD;
-    }
-
-    .estado.pendiente {
-        background-color: #fff4e5;
-        color: #FFA500;
-    }
-
 .arrow {
-    font-size: 1.5rem;
-    color: #ccc;
+    font-size: 22px;
+    color: #bbb;
+    margin-left: 14px;
 }
+
+.estado.cancelado {
+    background-color: #fdecea;
+    color: #e74c3c;
+    padding: 5px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+

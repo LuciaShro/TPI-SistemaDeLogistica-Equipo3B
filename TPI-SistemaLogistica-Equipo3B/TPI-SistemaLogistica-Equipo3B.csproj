@@ -278,6 +278,7 @@
     <Content Include="Content\CargarOrden.css" />
     <Content Include="Content\CargarOrden.js" />
     <Content Include="Content\ControlDePagos.css" />
+    <Content Include="Content\DetalleDeOrden.css" />
     <Content Include="Content\DetalleVenta.css" />
     <Content Include="Content\Factura.css" />
     <Content Include="Content\georef.js" />

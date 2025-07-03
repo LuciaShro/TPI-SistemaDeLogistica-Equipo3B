@@ -64,7 +64,7 @@ namespace TPI_SistemaLogistica_Equipo3B
 
         }
 
-        protected bool validacionUsuario(Dominio.Usuario.TipoUsuario tipoEsperado)
+        public bool validacionUsuario(Dominio.Usuario.TipoUsuario tipoEsperado)
         {
             if (Session["usuario"] != null){
                 var usuario = (Dominio.Usuario)Session["usuario"];

@@ -11,75 +11,79 @@
                 <img src="logo.png" alt="Logo" />
             </div>
             <div class="invoice-actions">
-                <span class="status-paid">PAGADO</span>
-                <asp:Button runat="server" CssClass="btn-download" Text="Download" />
+                <asp:Label ID="lblEstadoPago" runat="server" CssClass="status-paid" Text="PAGADO" />
+                <asp:Button ID="btnDownload" runat="server" CssClass="btn-download" Text="Descargar" />
             </div>
         </div>
 
         <div class="invoice-info">
             <div>
                 <strong>www.FlashShip.com</strong><br />
-                Street King William, 123<br />
-                Level 2, C, 442456<br />
-                San Francisco, CA, USA
+                 AV. 9 de Julio, 175<br />
+                 Buenos Aires, ARG
             </div>
             <div>
-                Company No. 4675933<br />
-                EU VAT No. 949 67545 45<br />
-                accounts@devias.io<br />
-                (+40) 652 3456 23
+                <asp:Label ID="lblRazonSocial" runat="server" />
+                <asp:Label ID="lblCUilEmisor" runat="server" />
+                flashship@gmail.com<br />
+                (+54) 011 2239 6672
             </div>
         </div>
 
         <div class="invoice-dates">
             <div>
-                <strong>Date of issue:</strong><br />
-                01 Feb 2024
+                <strong>Fecha de emisión:</strong><br />
+                <asp:Label ID="lblFechaEmision" runat="server" />
             </div>
             <div>
-                <strong>Due date:</strong><br />
-                06 Feb 2024
+                <strong>Fecha de vencimiento:</strong><br />
+                <asp:Label ID="lblFechaVencimiento" runat="server" />
             </div>
             <div>
-                <strong>Invoice #:</strong><br />
-                INV-0019
+                <strong>Número de factura #:</strong><br />
+                <asp:Label ID="lblNumeroFactura" runat="server" />
             </div>
         </div>
 
         <div class="billed-to">
-            <strong>Billed to</strong><br />
-            ACME SRL<br />
-            Countdown Grey Lynn<br />
-            6934656854231<br />
-            271 Richmond Rd, Grey Lynn, Auckland 1022, New Zealand
+            <strong>Facturado a</strong><br />
+            <asp:Label ID="lblNombreCliente" runat="server" /><br />
+            <asp:Label ID="lblCuil" runat="server" /><br />
+            <asp:Label ID="lblDireccionCliente" runat="server" />
+            <asp:Label ID="lblCPCDCliente" runat="server" />
+            <asp:Label ID="lblProvCliente" runat="server" />
         </div>
 
         <table class="invoice-table">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>DESCRIPTION</th>
-                    <th>QTY</th>
-                    <th>PRECIO ENVIO</th>
+                    <th>DESCRIPCIÓN</th>
+                    <th>PRECIO ENVÍO</th>
                     <th>TOTAL</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Freelancer Subscription (12/05/2019 - 11/06/2019)</td>
-                    <td>1</td>
-                    <td>$55.50</td>
-                    <td>$55.50</td>
-                </tr>
+                <asp:Repeater ID="rptItems" runat="server">
+                    <ItemTemplate>
+                        <tr>
+                            <td><%# Container.ItemIndex + 1 %></td>
+                            <td><%# Eval("Categoria") %></td>
+                            <td><%# Eval("Precio", "{0:C}") %></td>
+                            <td><%# Eval("Total", "{0:C}") %></td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
             </tbody>
         </table>
 
         <div class="invoice-summary">
-            <div>Subtotal: <span>$50.00</span></div>
-            <div>Impuestos: <span>$5.50</span></div>
-            <div class="total">Total: <span>$55.50</span></div>
+            <div>Subtotal: <span>
+                <asp:Label ID="lblSubtotal" runat="server" /></span></div>
+            <div class="total">Total: <span>
+                <asp:Label ID="lblTotal" runat="server" /></span></div>
         </div>
     </div>
+
 </asp:Content>
 

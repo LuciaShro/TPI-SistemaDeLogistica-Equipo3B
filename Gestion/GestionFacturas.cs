@@ -18,7 +18,7 @@ namespace Gestion
             AccesoDatos gestionDatos = new AccesoDatos();
             int idGenerado = 0;
 
-            try 
+            try
             {
 
                 gestionDatos.setearProcedimiento("sp_AgregarFacturaConFormaDePago");
@@ -28,6 +28,7 @@ namespace Gestion
                 gestionDatos.setearParametro("@IDEstadoPago", formaPago.estadoDePago.idEstadoDePago);
                 gestionDatos.setearParametro("@Numero", factura.NumeroFactura);
                 gestionDatos.setearParametro("@FechaEmision", factura.FechaEmision);
+                gestionDatos.setearParametro("@FechaVencimiento", factura.FechaVencimiento);
                 gestionDatos.setearParametro("@IDOrden", factura.OrdenesEnvio.idOrdenEnvio);
                 gestionDatos.setearParametro("@Total", factura.Total);
 
@@ -111,7 +112,7 @@ namespace Gestion
 
             try
             {
-                datos.setearConsulta("SELECT IDFactura, Numero, FechaEmision, CUILEmisor, RazonSocial, IDFormadePago, IDOrden, Total FROM Factura WHERE IDFactura = @IDFactura");
+                datos.setearConsulta("SELECT f.IDFactura, f.Numero, f.FechaEmision, f.FechaVencimiento, f.CUILEmisor, f.RazonSocial, fp.MedioDePago, f.IDOrden, f.Total, ep.Estado FROM Factura as f INNER JOIN FormaDePago as fp ON fp.IDFormaDePago = f.IDFormadePago INNER JOIN EstadoDePago as ep ON ep.IDEstadoPago = fp.IDEstadoPago WHERE IDFactura = @IDFactura");
                 datos.setearParametro("@IDFactura", idFactura);
                 datos.ejecutarLectura();
 
@@ -119,14 +120,20 @@ namespace Gestion
                 {
 
                     FacturaPago factura = new FacturaPago();
-                    factura.idFactura = (int)datos.Lector["IDFactura"];
-                    factura.NumeroFactura = (int)datos.Lector["Numero"];
-                    factura.FechaEmision = (DateTime)datos.Lector["FechaEmision"];
-                    factura.cuilEmisor = (long)datos.Lector["CUILEmisor"];
-                    factura.razonSocial = (string)datos.Lector["RazonSocial"];
-                    factura.formaDePago.idFormaDePago = (int)datos.Lector["IDFormadePago"];
-                    factura.OrdenesEnvio.idOrdenEnvio = (int)datos.Lector["IDOrden"];
-                    factura.Total = (decimal)datos.Lector["Total"];
+                    factura.formaDePago = new FormaDePago(); 
+                    factura.OrdenesEnvio = new OrdenesEnvio();
+                    factura.formaDePago.estadoDePago = new EstadoDePago();
+
+                    factura.idFactura = Convert.ToInt32(datos.Lector["IDFactura"]);
+                    factura.NumeroFactura = Convert.ToInt32(datos.Lector["Numero"]);
+                    factura.FechaEmision = Convert.ToDateTime(datos.Lector["FechaEmision"]);
+                    factura.FechaVencimiento = Convert.ToDateTime(datos.Lector["FechaVencimiento"]);
+                    factura.cuilEmisor = Convert.ToInt64(datos.Lector["CUILEmisor"]);
+                    factura.razonSocial = datos.Lector["RazonSocial"].ToString();
+                    factura.formaDePago.medioDePago = datos.Lector["MedioDePago"].ToString();
+                    factura.formaDePago.estadoDePago.nombreEstado = datos.Lector["Estado"].ToString();
+                    factura.OrdenesEnvio.idOrdenEnvio = Convert.ToInt32(datos.Lector["IDOrden"]);
+                    factura.Total = Convert.ToDecimal(datos.Lector["Total"]);
 
                     return factura;
                 }
@@ -194,6 +201,97 @@ namespace Gestion
                 throw new Exception("Error en método returnIDFormaDePago: " + ex.Message, ex);
             }
 
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
+
+        public List<FacturaPago> listarFacturas()
+        {
+            List<FacturaPago> lista = new List<FacturaPago>();
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("SELECT IDFactura ,Numero, FechaEmision, FechaVencimiento, CUILEmisor, RazonSocial, fp.MedioDePago, f.IDOrden,f.Total,\r\nfp.FechaDePago, estadoP.Estado, c.Nombre +  ' '  + c.Apellido as Nombre\r\nFROM Factura AS F\r\ninner join FormaDePago AS fp ON fp.IDFormaDePago = f.IDFormadePago\r\ninner join EstadoDePago AS estadoP ON estadoP.IDEstadoPago = fp.IDEstadoPago\r\ninner join OrdenesEnvio AS od ON od.IDOrden = f.IDOrden\r\ninner join Clientes AS c ON c.IDCliente = od.IDCliente\r\nwhere fp.IDEstadoPago = 2;");
+
+                gestionDatos.ejecutarLectura();
+
+                while (gestionDatos.Lector.Read())
+                {
+                    FacturaPago factura = new FacturaPago();
+                    factura.formaDePago = new FormaDePago();
+                    factura.OrdenesEnvio = new OrdenesEnvio();
+                    factura.formaDePago.estadoDePago = new EstadoDePago();
+                    factura.OrdenesEnvio.cliente = new Cliente();
+
+                    factura.idFactura = Convert.ToInt32(gestionDatos.Lector["IDFactura"]);
+                    factura.NumeroFactura = Convert.ToInt32(gestionDatos.Lector["Numero"]);
+                    factura.FechaEmision = Convert.ToDateTime(gestionDatos.Lector["FechaEmision"]);
+                    factura.FechaVencimiento = Convert.ToDateTime(gestionDatos.Lector["FechaVencimiento"]);
+                    factura.cuilEmisor = Convert.ToInt64(gestionDatos.Lector["CUILEmisor"]);
+                    factura.OrdenesEnvio.idOrdenEnvio = Convert.ToInt32(gestionDatos.Lector["IDOrden"]);
+                    factura.Total = Convert.ToDecimal(gestionDatos.Lector["Total"]);
+                    factura.formaDePago.medioDePago = gestionDatos.Lector["MedioDePago"].ToString();
+                    factura.formaDePago.fechaDePago = Convert.ToDateTime(gestionDatos.Lector["FechaDePago"]);
+                    factura.formaDePago.estadoDePago.nombreEstado = gestionDatos.Lector["Estado"].ToString();
+                    factura.OrdenesEnvio.cliente.Nombre = gestionDatos.Lector["Nombre"].ToString();
+
+                    lista.Add(factura);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                gestionDatos.cerrarConexion();
+            }
+        }
+
+        public List<FacturaPago> listarFacturasCanceladas()
+        {
+            List<FacturaPago> lista = new List<FacturaPago>();
+            AccesoDatos gestionDatos = new AccesoDatos();
+
+            try
+            {
+                gestionDatos.setearConsulta("SELECT IDFactura ,Numero, FechaEmision, CUILEmisor, RazonSocial, fp.MedioDePago, f.IDOrden,f.Total, fp.FechaDePago, estadoP.Estado, c.Nombre +  ' '  + c.Apellido as Nombre FROM Factura AS F inner join FormaDePago AS fp ON fp.IDFormaDePago = f.IDFormadePago inner join EstadoDePago AS estadoP ON estadoP.IDEstadoPago = fp.IDEstadoPago inner join OrdenesEnvio AS od ON od.IDOrden = f.IDOrden inner join Clientes AS c ON c.IDCliente = od.IDCliente where fp.IDEstadoPago = 4;");
+
+                gestionDatos.ejecutarLectura();
+
+                while (gestionDatos.Lector.Read())
+                {
+                    FacturaPago factura = new FacturaPago();
+                    factura.formaDePago = new FormaDePago();
+                    factura.OrdenesEnvio = new OrdenesEnvio();
+                    factura.formaDePago.estadoDePago = new EstadoDePago();
+                    factura.OrdenesEnvio.cliente = new Cliente();
+
+                    factura.idFactura = Convert.ToInt32(gestionDatos.Lector["IDFactura"]);
+                    factura.NumeroFactura = Convert.ToInt32(gestionDatos.Lector["Numero"]);
+                    factura.FechaEmision = Convert.ToDateTime(gestionDatos.Lector["FechaEmision"]);
+                    factura.cuilEmisor = Convert.ToInt64(gestionDatos.Lector["CUILEmisor"]);
+                    factura.OrdenesEnvio.idOrdenEnvio = Convert.ToInt32(gestionDatos.Lector["IDOrden"]);
+                    factura.Total = Convert.ToDecimal(gestionDatos.Lector["Total"]);
+                    factura.formaDePago.medioDePago = gestionDatos.Lector["MedioDePago"].ToString();
+                    factura.formaDePago.fechaDePago = Convert.ToDateTime(gestionDatos.Lector["FechaDePago"]);
+                    factura.formaDePago.estadoDePago.nombreEstado = gestionDatos.Lector["Estado"].ToString();
+                    factura.OrdenesEnvio.cliente.Nombre = gestionDatos.Lector["Nombre"].ToString();
+
+                    lista.Add(factura);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             finally
             {
                 gestionDatos.cerrarConexion();

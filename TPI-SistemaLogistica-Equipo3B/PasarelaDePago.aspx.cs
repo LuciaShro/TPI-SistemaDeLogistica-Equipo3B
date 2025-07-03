@@ -146,6 +146,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             factura.OrdenesEnvio.idOrdenEnvio = orden;
             factura.Total = monto;
             factura.FechaEmision = DateTime.Now;
+            factura.FechaVencimiento = DateTime.Now.AddDays(5);
             factura.NumeroFactura = gestionFactura.returnIDFactura();
             factura.NumeroFactura += 1;
 
