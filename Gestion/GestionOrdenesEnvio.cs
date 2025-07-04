@@ -172,7 +172,7 @@ namespace Gestion
                     "INNER JOIN EstadoVehiculo EV ON V.IDEstadoVehiculo = EV.IDEstadoVehiculo " +
                     "INNER JOIN Rutas R ON OE.IDRuta = R.IDRuta INNER JOIN EstadoOrdenesEnvio EO ON OE.IDEstadoOrdenEnvio = EO.IDEstadoOrdenEnvio " +
                     "INNER JOIN Destinatarios D ON OE.IDDestinatario = D.IDDestinatario " +
-                    "INNER JOIN Direccion DN ON D.IDDirección = DN.IDDireccion");
+                    "INNER JOIN Direccion DN ON D.IDDirección = DN.IDDireccion ");
                 if (idOrden != "")
                 {
                     datos.Comando.CommandText += " WHERE OE.IDOrden = " + idOrden + " AND OE.Activo=1";
@@ -181,6 +181,7 @@ namespace Gestion
                 {
                     datos.Comando.CommandText += " WHERE OE.Activo=1";
                 }
+                datos.Comando.CommandText += " ORDER BY OE.FechaEnvio DESC";
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -271,6 +272,7 @@ namespace Gestion
                 {
                     datos.Comando.CommandText += " AND OE.Activo=1";
                 }
+                datos.Comando.CommandText += " ORDER BY OE.FechaEnvio DESC";
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -353,6 +355,7 @@ namespace Gestion
                 {
                     datos.Comando.CommandText += " AND OE.Activo=1";
                 }
+                datos.Comando.CommandText += " ORDER BY OE.FechaEnvio DESC";
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -435,6 +438,7 @@ namespace Gestion
                 {
                     datos.Comando.CommandText += " AND OE.Activo=1";
                 }
+                datos.Comando.CommandText += " ORDER BY OE.FechaEnvio DESC";
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -519,6 +523,7 @@ namespace Gestion
                 {
                     datos.Comando.CommandText += " WHERE OE.Activo=1";
                 }
+                datos.Comando.CommandText += " ORDER BY OE.FechaEnvio DESC";
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -677,13 +682,12 @@ namespace Gestion
             try
             {
 
-                datos.setearConsulta("UPDATE OrdenesEnvio SET IDEstadoOrdenEnvio = @estado, FechaEnvio = @fechaEnvio, FechaEstimadaLLegada = @fechaEstimadaLlegada WHERE IDOrden = @idOrden;");
+                datos.setearConsulta("UPDATE OrdenesEnvio SET IDEstadoOrdenEnvio = @estado, FechaEnvio = @fechaEnvio, FechaEstimadaLlegada = @fechaEstimadaLlegada WHERE IDOrden = @idOrden;");
                 datos.setearParametro("@estado", idNuevoEstado);
                 datos.setearParametro("@fechaEnvio", DateTime.Now);
-                datos.setearParametro("@fechaEstimadaLlegada", DateTime.Now.AddDays(1));
                 datos.setearParametro("@idOrden", idOrden);
-
                 datos.ejecutarAccion();
+
             }
             catch (Exception ex)
             {
@@ -697,13 +701,18 @@ namespace Gestion
 
         public void ComenzarViajeTransportista(int idTransportista, DateTime fechaHoy)
         {
-            List<OrdenesEnvio> todas = ListarOrdenes();
-
-            var ordenesDeHoy = todas.Where(o => o.idTransportistaAsignado == idTransportista && o.FechaEnvio.Date == fechaHoy.Date).ToList();
-
-            foreach (var orden in ordenesDeHoy)
+            try
             {
-                ActualizarEstadoYFechaEnvio(orden.idOrdenEnvio, 2);
+                AccesoDatos datos = new AccesoDatos();
+
+                datos.setearConsulta("UPDATE OrdenesEnvio SET IDEstadoOrdenEnvio = 2, FechaEnvio = @fecha WHERE IDTransportista = @idTransportista AND CAST(FechaEnvio AS DATE) = CAST(@fecha AS DATE) AND Activo = 1");
+                datos.setearParametro("@fecha", fechaHoy);
+                datos.setearParametro("@idTransportista", idTransportista);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -712,10 +721,18 @@ namespace Gestion
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("UPDATE OrdenesEnvio SET IDEstadoOrdenEnvio = @estado, FechaEstimadaLLegada = @fechaEstimadaLlegada WHERE IDOrden = @idOrden;");
+                datos.abrirConexion();
+                datos.setearConsulta("SELECT FechaEstimadaLLegada FROM OrdenesEnvio WHERE IDOrden = @idOrden");
+                datos.setearParametro("@idOrden", idOrden);
+                DateTime fechaLlegad = Convert.ToDateTime(datos.obtenerValor());
+                datos.cerrarConexion();
+
+                DateTime nuevaFecha = fechaLlegad.AddDays(1);
+
+                datos.abrirConexion();
+                datos.setearConsulta("UPDATE OrdenesEnvio SET IDEstadoOrdenEnvio = @estado, FechaEstimadaLLegada = @fechaEstimadaLlegada WHERE IDOrden = @idOrden");
                 datos.setearParametro("@estado", idNuevoEstado);
-                datos.setearParametro("@fechaEnvio", DateTime.Now);
-                datos.setearParametro("@fechaEstimadaLlegada", DateTime.Now.AddDays(2));
+                datos.setearParametro("@fechaEstimadaLlegada", nuevaFecha);
                 datos.setearParametro("@idOrden", idOrden);
                 datos.ejecutarAccion();
             }
@@ -749,6 +766,25 @@ namespace Gestion
                 datos.cerrarConexion();
             }
 
+        }
+
+        public string ObtenerProvinciaOrden(int idOrden)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("SELECT dir.Provincia FROM OrdenesEnvio oe INNER JOIN Destinatarios d ON oe.IDDestinatario = d.IDDestinatario INNER JOIN Direccion dir ON d.IDDirección = dir.IDDireccion WHERE oe.IDOrden = @idOrden");
+                datos.setearParametro("@idOrden", idOrden);
+                return datos.obtenerValor().ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public int returnIDClienteOrden(int idOrden)

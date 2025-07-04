@@ -60,6 +60,16 @@ namespace TPI_SistemaLogistica_Equipo3B
 
                 ListaOrdenes = gestion.ListarOrdenes().Where(o => o.idTransportistaAsignado == idTransportista).ToList();
 
+                EmailService emailService = new EmailService();
+                foreach (var orden in ListaOrdenes)
+                {
+                    string provincia = gestion.ObtenerProvinciaOrden(orden.idOrdenEnvio);
+                    emailService.armarCorreo(orden.destinatario.Email, orden.destinatario.Nombre, orden.idOrdenEnvio.ToString(), 1, provincia);
+                    emailService.enviarMail();
+
+                    gestion.ActualizarEstadoYFechaEnvio(orden.idOrdenEnvio, 1);
+                }
+
                 dgvOrdenesAsignadas.DataSource = ListaOrdenes;
                 dgvOrdenesAsignadas.DataBind();
 

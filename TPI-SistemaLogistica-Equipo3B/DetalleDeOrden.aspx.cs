@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Dominio;
 using Gestion;
+using TPI_SistemaLogistica_Equipo3B.Models;
 using static Dominio.Usuario;
 
 namespace TPI_SistemaLogistica_Equipo3B
@@ -152,6 +153,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
             int idOrden = Convert.ToInt32(txtIdOrden.Text);
             int estadoActual = gestion.ObtenerEstadoOrden(idOrden);
+            string provincia = gestion.ObtenerProvinciaOrden(idOrden);
             if (estadoActual == 3)
             {
                 throw new Exception("La orden no puede ser cambiada a 'Entregada' ya que actualmente se encuentra en ese mismo estado.");
@@ -164,10 +166,8 @@ namespace TPI_SistemaLogistica_Equipo3B
                 {
                     gestion.ActualizarEstadoYFechaLlegada(idOrden, 3);
                     EmailService emailService = new EmailService();
-                    emailService.armarCorreo("migue8935@gmail.com", txtNombreDestino.Text, idOrden.ToString(), 3);
+                    emailService.armarCorreo("migue8935@gmail.com", txtNombreDestino.Text, idOrden.ToString(), 3, provincia);
                     emailService.enviarMail();
-
-
 
                     Response.Redirect("OrdenesAsignadas.aspx");
                 }
@@ -181,6 +181,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
             int idOrden = Convert.ToInt32(txtIdOrden.Text);
             int estadoActual = gestion.ObtenerEstadoOrden(idOrden);
+            string provincia = gestion.ObtenerProvinciaOrden(idOrden);
             if (estadoActual == 3)
             {
                 throw new Exception("La orden no puede ser cambiada a 'Demorado' ya que se encuentra Entregada.");
@@ -189,7 +190,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             {
                 gestion.ActualizarEstadoYFechaDemora(idOrden, 1);
                 EmailService emailService = new EmailService();
-                emailService.armarCorreo("migue8935@gmail.com", txtNombreDestino.Text, idOrden.ToString(), 2);
+                emailService.armarCorreo("migue8935@gmail.com", txtNombreDestino.Text, idOrden.ToString(), 2, provincia);
                 emailService.enviarMail();
                 Response.Redirect("OrdenesAsignadas.aspx");
             }
