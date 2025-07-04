@@ -23,7 +23,7 @@ namespace Gestion
                 datos.Comando.Transaction = transaccion;
 
                
-                datos.setearConsulta("insert into Usuario (NombreUser, Contraseña, Email,TipoUsuario, Activo) OUTPUT INSERTED.IDUsuario values (@NombreUser, @Contraseña, @Email, 1, 1)");
+                datos.setearConsulta("insert into Usuario (NombreUser, Contraseña, Email,TipoUsuario, Activo) OUTPUT INSERTED.IDUsuario values (@NombreUser, @Contraseña, @Email, 2, 1)");
                 datos.Comando.Parameters.Clear();
                 datos.setearParametro("@NombreUser", transportista.usuario.User);
                 datos.setearParametro("@Contraseña", transportista.usuario.Password);

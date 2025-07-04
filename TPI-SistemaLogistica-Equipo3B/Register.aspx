@@ -15,72 +15,72 @@
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="txtNombre" class="form-label">Nombre</label>
-                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" Placeholder="Juan" />
+                            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtApellido" class="form-label">Apellido</label>
-                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" Placeholder="Pérez" />
+                            <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtCuil" class="form-label">CUIL</label>
-                            <asp:TextBox ID="txtCuil" runat="server" CssClass="form-control" Placeholder="20-12345678-9" />
+                            <asp:TextBox ID="txtCuil" runat="server" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtTelefono" class="form-label">Teléfono</label>
-                            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" Placeholder="11 2345 6789" />
+                            <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtUsername" class="form-label">Nombre de usuario</label>
-                            <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" Placeholder="usuario123" />
+                            <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtEmail" class="form-label">E-mail</label>
-                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Placeholder="correo@ejemplo.com" />
+                            <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtCalle" class="form-label">Calle</label>
-                            <asp:TextBox ID="txtCalle" runat="server" CssClass="form-control" Placeholder="Av. Siempre Viva" />
+                            <asp:TextBox ID="txtCalle" runat="server" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtNumero" class="form-label">Número</label>
-                            <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control" Placeholder="742" />
+                            <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtPiso" class="form-label">Piso</label>
-                            <asp:TextBox ID="txtPiso" runat="server" CssClass="form-control" Placeholder="1° A" />
+                            <asp:TextBox ID="txtPiso" runat="server" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtCP" class="form-label">Código Postal</label>
-                            <asp:TextBox ID="txtCP" runat="server" CssClass="form-control" Placeholder="1405" />
+                            <asp:TextBox ID="txtCP" runat="server" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtProvincia" class="form-label">Provincia</label>
-                            <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control" Placeholder="Buenos Aires" />
+                            <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtCiudad" class="form-label">Ciudad</label>
-                            <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" Placeholder="La Plata" />
+                            <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control"  />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtPassword" class="form-label">Contraseña</label>
-                            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" Placeholder="••••••" />
+                            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control" />
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="txtConfirmPassword" class="form-label">Confirmar contraseña</label>
-                            <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" CssClass="form-control" Placeholder="••••••" />
+                            <asp:TextBox ID="txtConfirmPassword" runat="server" TextMode="Password" CssClass="form-control" />
                         </div>
                     </div>
 

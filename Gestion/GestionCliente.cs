@@ -28,7 +28,7 @@ namespace Gestion
                 datos.setearParametro("@Calle", cliente.Direccion.Calle);
                 datos.setearParametro("@CodigoPostal", cliente.Direccion.CodigoPostal);
                 datos.setearParametro("@Provincia", cliente.Direccion.Provincia);
-                datos.setearParametro("@Piso", cliente.Direccion.Piso);
+                datos.setearParametro("@Piso", string.IsNullOrWhiteSpace(cliente.Direccion.Piso) ? DBNull.Value : (object)cliente.Direccion.Piso);
                 datos.setearParametro("@Numero", cliente.Direccion.NumeroCalle);
                 datos.setearParametro("@Ciudad", cliente.Direccion.Ciudad);
                 int idDireccion = Convert.ToInt32(datos.obtenerValor());
