@@ -190,6 +190,8 @@ namespace Gestion
             }
             return null;
         }
+
+
         public void agregarUsuario (Usuario usuario) {
             AccesoDatos datos = new AccesoDatos();
 

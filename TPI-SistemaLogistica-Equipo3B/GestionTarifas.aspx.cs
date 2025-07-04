@@ -31,7 +31,13 @@ namespace TPI_SistemaLogistica_Equipo3B
                 Session["tarifaMediano"] = tarifaMediano;
                 Session["tarifaGrande"] = tarifaGrande;
             }
-            
+
+            if (Session["admin"] == null)
+            {
+                Response.Redirect("ErrorLogin.aspx", false);
+            }
+
+
 
         }
 

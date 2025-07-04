@@ -60,9 +60,11 @@
     <Compile Include="GestionRuta.cs" />
     <Compile Include="GestionTarifasEnvio.cs" />
     <Compile Include="GestionTransportista.cs" />
+    <Compile Include="GestionTransportistaZona.cs" />
     <Compile Include="GestionUsuario.cs" />
     <Compile Include="GestionVehiculo.cs" />
     <Compile Include="GestionVenta.cs" />
+    <Compile Include="GestionZona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

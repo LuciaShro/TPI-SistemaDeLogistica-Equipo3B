@@ -41,6 +41,11 @@
                             <a href="PanelAdminPagos.aspx" class="nav-link"><i class="bi bi-receipt me-2"></i>Ventas</a>
                         </li>
 
+                        <li>
+                         <a href="GestionTarifas.aspx" class="nav-link"><i class="bi bi-receipt me-2"></i>GestionTarifas</a>
+                        </li>
+
+
                         <%}
                             else if (validacionUsuario(Dominio.Usuario.TipoUsuario.empleado))
                             { %>
@@ -65,33 +70,6 @@
                         </li>
                         <li>
                             <a href="HistorialEnviosCliente.aspx" class="nav-link"><i class="bi bi-truck"></i>Historial Envios</a>
-                        </li>
-                        <%}
-                            else
-                            { %>
-                        <li>
-                            <a href="Inicio.aspx" class="nav-link"><i class="bi bi-box me-2"></i>Inicio</a>
-                        </li>
-                        <li>
-                            <a href="Transportistas.aspx" class="nav-link"><i class="bi bi-person-badge me-2"></i>Transportistas</a>
-                        </li>
-                        <li>
-                            <a href="Ordenes.aspx" class="nav-link"><i class="bi bi-cart"></i>Ordenes</a>
-                        </li>
-                        <li>
-                            <a href="Envios.aspx" class="nav-link"><i class="bi bi-truck"></i>Envios</a>
-                        </li>
-                        <li>
-                            <a href="Vehiculos.aspx" class="nav-link"><i class="bi bi-bar-chart me-2"></i>Vehiculos</a>
-                        </li>
-                        <li>
-                            <a href="ResumenFacturas.aspx" class="nav-link"><i class="bi bi-receipt me-2"></i>Facturas</a>
-                        </li>
-                        <li>
-                            <a href="PanelAdminPagos.aspx" class="nav-link"><i class="bi bi-receipt me-2"></i>Ventas</a>
-                        </li>
-                        <li>
-                            <a href="GestionTarifas.aspx" class="nav-link"><i class="bi bi-receipt me-2"></i>Tarifas Envios</a>
                         </li>
                         <%} %>
                     </ul>

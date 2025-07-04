@@ -34,7 +34,7 @@ namespace Gestion
                /* Transportista nuevo = new Transportista();*/
 
 
-                datos.setearConsulta("insert into Transportista (IDVehiculo, IDUsuario, Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, Activo, HoraInicio, HoraFin, Imagen) values (@IDVehiculo, @IDUsuario, @Nombre, @Apellido, @Cuil, @Telefono, @Licencia, 1, 1, @HoraInicio, @HoraFin, @Imagen)");
+                datos.setearConsulta("insert into Transportista (IDVehiculo, IDUsuario, Nombre, Apellido, Cuil, Telefono, Licencia, EstadoDisponibilidad, Activo, HoraInicio, HoraFin, Imagen) OUTPUT INSERTED.IDTransportista values (@IDVehiculo, @IDUsuario, @Nombre, @Apellido, @Cuil, @Telefono, @Licencia, 1, 1, @HoraInicio, @HoraFin, @Imagen)");
                 datos.Comando.Parameters.Clear();
                 datos.setearParametro("@IDVehiculo", transportista.Vehiculo.idVehiculo); // asigno un vehiculo ya que aun no esta creado el abm de vehiculos
                 datos.setearParametro("@IDUsuario", idUsuario);
@@ -46,6 +46,13 @@ namespace Gestion
                 datos.setearParametro("@HoraInicio", transportista.HoraInicio);
                 datos.setearParametro("@HoraFin", transportista.HoraFin);
                 datos.setearParametro("@Imagen", (object)transportista.Imagen ?? DBNull.Value);
+                int idTransportista = Convert.ToInt32(datos.obtenerValorSinCerrarConexion());
+
+                datos.setearConsulta("insert into TransportistaZona (IDTransportista, IDZona) values (@IDTransportista, @IDZona)");
+                datos.Comando.Parameters.Clear();
+                datos.setearParametro("@IDTransportista", idTransportista);
+                datos.setearParametro("@IDZona", transportista.transportistaZona.idZona);
+
 
                 datos.ejecutarAccion();
 

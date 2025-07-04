@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ID="MainContent" ContentPlaceHolderID="InicioContent" runat="server">
-    <h1>👋 Hola, "Usuario"!</h1>
+    <h1>¡👋 Hola!</h1>
     <div class="row row-cols-1 row-cols-md-2 g-5">
     <div class="col">
     <div class="card">

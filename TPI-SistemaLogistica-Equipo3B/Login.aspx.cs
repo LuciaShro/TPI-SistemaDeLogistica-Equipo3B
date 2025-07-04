@@ -28,7 +28,7 @@ namespace TPI_SistemaLogistica_Equipo3B
                 {
                     Session["cliente"] = clienteLogueado;
                     Session["usuario"] = clienteLogueado.Usuario;
-                    Response.Redirect("CargarOrden.aspx", false);
+                    Response.Redirect("BienvenidoUser.aspx", false);
                 }
                 else
                 {
@@ -43,7 +43,7 @@ namespace TPI_SistemaLogistica_Equipo3B
                         }
                         else
                         {
-                            Response.Redirect("OrdenesAsignadas.aspx", false);
+                            Response.Redirect("BienvenidoTransportista.aspx", false);
                         }
 
                     }

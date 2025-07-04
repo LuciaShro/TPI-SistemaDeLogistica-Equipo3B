@@ -84,7 +84,16 @@
             <label for="txtListaVehiculosDisponibles">Vehiculos disponibles:</label>
             <asp:DropDownList ID="ddlVehiculosDisponibles" runat="server" CssClass="form-control"></asp:DropDownList>
         </div> 
+
+            <div class="form-group">
+        <label for="txtZonas">Zonas:</label>
+        <asp:DropDownList ID="ddlZonas" runat="server" CssClass="form-control"></asp:DropDownList>
+    </div> 
     </div>
+
+        
+
+
 
     <div class="center-button">
     <asp:Button ID="btnGuardar" runat="server" Text="Guardar datos" CssClass="btn-principal" OnClick="btnGuardar_Click" />

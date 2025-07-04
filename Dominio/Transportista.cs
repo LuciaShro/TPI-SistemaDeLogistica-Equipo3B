@@ -33,6 +33,8 @@ namespace Dominio
 
         public string Imagen { get; set; }
 
+        public TransportistaZona transportistaZona {  get; set; }
+
 
     }
 }

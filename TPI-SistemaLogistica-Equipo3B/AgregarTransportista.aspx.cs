@@ -49,6 +49,13 @@ namespace TPI_SistemaLogistica_Equipo3B
                 ddlLicencia.Items.Add("E1");
                 ddlLicencia.Items.Add("E2");
 
+                GestionZona zona = new GestionZona();
+                ddlZonas.DataSource = zona.listarZonas();
+                ddlZonas.DataTextField = "Nombre"; // esto muestra al usuario
+                ddlZonas.DataValueField = "IDZona"; // esto es lo que se guarda en la bdd
+                ddlZonas.DataBind();
+                ddlZonas.Items.Insert(0, new ListItem("-- Seleccionar una zona --", ""));
+
             }
 
 
@@ -81,6 +88,7 @@ namespace TPI_SistemaLogistica_Equipo3B
                 Transportista transportista = new Transportista();
                 GestionTransportista gestion = new GestionTransportista();
                 GestionUsuario usuarioGestion = new GestionUsuario();
+                transportista.transportistaZona = new TransportistaZona();
                 transportista.Vehiculo = new Vehiculo();
                 transportista.usuario = new Usuario();
 
@@ -95,7 +103,8 @@ namespace TPI_SistemaLogistica_Equipo3B
                 transportista.usuario.Password = txtContraseñaTransportista.Text;
                 transportista.usuario.Email = txtEmailTransportista.Text;
                 transportista.Activo = true;
-                
+                transportista.transportistaZona.idZona = int.Parse(ddlZonas.SelectedValue);
+
 
                 if (Session["RutaImagen"] != null)
                 {
@@ -115,14 +124,44 @@ namespace TPI_SistemaLogistica_Equipo3B
 
                 if (string.IsNullOrEmpty(ddlInicioJornadaLaboral.SelectedValue) || string.IsNullOrEmpty(ddlFinJornadaLaboral.SelectedValue))
                 {
-                    lblMensajeEnPantalla.Text= "Debe seleccionar las horas de inicio y fin de jornada.";
+                    lblMensajeEnPantalla.Text = "Debe seleccionar las horas de inicio y fin de jornada.";
                     return;
                 }
+
+                // validaciones horarios de jornada laboral
+                if (!TimeSpan.TryParse(ddlInicioJornadaLaboral.SelectedValue, out TimeSpan horaInicio))
+                {
+                    lblMensajeEnPantalla.Text = "Debe seleccionar una hora de inicio válida.";
+                    return;
+                }
+
+                if (!TimeSpan.TryParse(ddlFinJornadaLaboral.SelectedValue, out TimeSpan horaFin))
+                {
+                    lblMensajeEnPantalla.Text = "Debe seleccionar una hora de fin válida.";
+                    return;
+                }
+
+                transportista.HoraInicio = horaInicio;
+                transportista.HoraFin = horaFin;
+
+                if (transportista.HoraInicio >= transportista.HoraFin)
+                {
+                    lblMensajeEnPantalla.Text = "La hora de inicio debe ser menor a la hora de fin de la jornada.";
+                    return;
+                }
+
 
                 if (string.IsNullOrEmpty(ddlLicencia.SelectedValue))
                 {
                     lblMensajeEnPantalla.Text = "Debe seleccionar una Licencia";
                     return;
+                }
+
+                if (string.IsNullOrEmpty(ddlZonas.SelectedValue))
+                {
+                    lblMensajeEnPantalla.Text = "Debe seleccionar una zona para el transportista";
+                    return;
+                        
                 }
 
                 if (txtContraseñaTransportista.Text != txtConfirmarContraseñaTransportista.Text)

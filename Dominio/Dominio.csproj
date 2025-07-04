@@ -59,10 +59,12 @@
     <Compile Include="Ruta.cs" />
     <Compile Include="TarifasEnvio.cs" />
     <Compile Include="Transportista.cs" />
+    <Compile Include="TransportistaZona.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="Vehiculo.cs" />
     <Compile Include="Venta.cs" />
     <Compile Include="VentaDetalle.cs" />
+    <Compile Include="Zona.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

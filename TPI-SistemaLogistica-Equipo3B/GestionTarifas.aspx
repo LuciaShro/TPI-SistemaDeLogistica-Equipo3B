@@ -61,7 +61,7 @@
 
     <asp:Label ID="lblMensajeError" runat="server" Text="" Visible="false" CssClass="alert-dark"></asp:Label>
 
-    <div class="simulator-box">
+ <%--   <div class="simulator-box">
         <h4>Simulador de Costos (Opcional)</h4>
         <div>
             <label for="<%= txtSimDistancia.ClientID %>">Distancia (KM):</label>
@@ -76,7 +76,7 @@
             </asp:DropDownList>
         </div>
         <strong>Costo Estimado: $ <span id="sim_costo" runat="server" clientidmode="Static">0.00</span> ARS</strong>
-    </div>
+    </div> --%>
 
     <%-- IMPORTANT: The original "Provincia" elements are removed/commented out here. --%>
     <%-- 
