@@ -5,6 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="InicioContent" runat="server">
     <h1>VENTAS</h1>
+    <asp:Label ID="lblMensaje" runat="server" EnableViewState="false" CssClass="alert" />
     <div class="container mt-5">
         <table class="table">
             <thead>
@@ -58,6 +59,7 @@
                                         <li>
                                             <asp:LinkButton ID="btnCancelar" runat="server" CommandName="CancelarOrden" CommandArgument='<%# Eval("VentaID") %>' CssClass="dropdown-item text-danger">🗑 Cancelar orden</asp:LinkButton></li>
                                     </ul>
+                                    
                                 </div>
                             </td>
                         </tr>

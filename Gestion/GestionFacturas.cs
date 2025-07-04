@@ -298,6 +298,26 @@ namespace Gestion
             }
         }
 
+        public string AsignarPaqueteConCapacidad(int idVenta)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedimiento("AsignarPaqueteConControlDeCapacidad");
+                datos.setearParametro("@IDVenta", idVenta);
+                return datos.obtenerValor().ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }
 

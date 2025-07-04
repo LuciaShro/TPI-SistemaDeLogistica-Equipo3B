@@ -214,7 +214,6 @@ namespace Gestion
                     aux.destinatario.Direccion.CodigoPostal = datos.Lector["CodigoPostal"].ToString();
 
 
-
                     aux.ruta = new Ruta();
                     aux.ruta.PuntoPartida = datos.Lector["PuntoPartida"].ToString();
                     aux.ruta.PuntoDestino = datos.Lector["PuntoDestino"].ToString();
@@ -222,9 +221,12 @@ namespace Gestion
                     aux.estado.DescripcionEstado = datos.Lector["EstadoOrden"].ToString();
                     aux.estado.idEstado = (int)datos.Lector["IDEstadoOrdenEnvio"];
                     aux.FechaCreacion = (DateTime)datos.Lector["FechaCreacion"];
-                    aux.FechaEnvio = (DateTime)datos.Lector["FechaEnvio"];
-                    aux.FechaEstimadaLlegada = (DateTime)datos.Lector["FechaEstimadaLlegada"];
-                    aux.FechaDeLlegada = (DateTime)datos.Lector["FechaLlegada"];
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaEnvio")))
+                        aux.FechaEnvio = Convert.ToDateTime(datos.Lector["FechaEnvio"]);
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaEstimadaLlegada")))
+                        aux.FechaEstimadaLlegada = Convert.ToDateTime(datos.Lector["FechaEstimadaLlegada"]);
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaLlegada")))
+                        aux.FechaDeLlegada = Convert.ToDateTime(datos.Lector["FechaLlegada"]);
 
 
                     lista.Add(aux);
@@ -301,9 +303,12 @@ namespace Gestion
                     aux.estado.DescripcionEstado = datos.Lector["EstadoOrden"].ToString();
                     aux.estado.idEstado = (int)datos.Lector["IDEstadoOrdenEnvio"];
                     aux.FechaCreacion = (DateTime)datos.Lector["FechaCreacion"];
-                    aux.FechaEnvio = (DateTime)datos.Lector["FechaEnvio"];
-                    aux.FechaEstimadaLlegada = (DateTime)datos.Lector["FechaEstimadaLlegada"];
-                    aux.FechaDeLlegada = (DateTime)datos.Lector["FechaLlegada"];
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaEnvio")))
+                        aux.FechaEnvio = Convert.ToDateTime(datos.Lector["FechaEnvio"]);
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaEstimadaLlegada")))
+                        aux.FechaEstimadaLlegada = Convert.ToDateTime(datos.Lector["FechaEstimadaLlegada"]);
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaLlegada")))
+                        aux.FechaDeLlegada = Convert.ToDateTime(datos.Lector["FechaLlegada"]);
 
 
                     lista.Add(aux);
@@ -380,9 +385,12 @@ namespace Gestion
                     aux.estado.DescripcionEstado = datos.Lector["EstadoOrden"].ToString();
                     aux.estado.idEstado = (int)datos.Lector["IDEstadoOrdenEnvio"];
                     aux.FechaCreacion = (DateTime)datos.Lector["FechaCreacion"];
-                    aux.FechaEnvio = (DateTime)datos.Lector["FechaEnvio"];
-                    aux.FechaEstimadaLlegada = (DateTime)datos.Lector["FechaEstimadaLlegada"];
-                    aux.FechaDeLlegada = (DateTime)datos.Lector["FechaLlegada"];
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaEnvio")))
+                        aux.FechaEnvio = Convert.ToDateTime(datos.Lector["FechaEnvio"]);
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaEstimadaLlegada")))
+                        aux.FechaEstimadaLlegada = Convert.ToDateTime(datos.Lector["FechaEstimadaLlegada"]);
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaLlegada")))
+                        aux.FechaDeLlegada = Convert.ToDateTime(datos.Lector["FechaLlegada"]);
 
 
                     lista.Add(aux);
@@ -459,9 +467,12 @@ namespace Gestion
                     aux.estado.DescripcionEstado = datos.Lector["EstadoOrden"].ToString();
                     aux.estado.idEstado = (int)datos.Lector["IDEstadoOrdenEnvio"];
                     aux.FechaCreacion = (DateTime)datos.Lector["FechaCreacion"];
-                    aux.FechaEnvio = (DateTime)datos.Lector["FechaEnvio"];
-                    aux.FechaEstimadaLlegada = (DateTime)datos.Lector["FechaEstimadaLlegada"];
-                    aux.FechaDeLlegada = (DateTime)datos.Lector["FechaLlegada"];
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaEnvio")))
+                        aux.FechaEnvio = Convert.ToDateTime(datos.Lector["FechaEnvio"]);
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaEstimadaLlegada")))
+                        aux.FechaEstimadaLlegada = Convert.ToDateTime(datos.Lector["FechaEstimadaLlegada"]);
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaLlegada")))
+                        aux.FechaDeLlegada = Convert.ToDateTime(datos.Lector["FechaLlegada"]);
 
 
                     lista.Add(aux);
@@ -561,9 +572,12 @@ namespace Gestion
                     aux.estado = new EstadoOrdenEnvio();
                     aux.estado.DescripcionEstado = datos.Lector["EstadoOrden"].ToString();
                     aux.FechaCreacion = (DateTime)datos.Lector["FechaCreacion"];
-                    aux.FechaEnvio = (DateTime)datos.Lector["FechaEnvio"];
-                    aux.FechaEstimadaLlegada = (DateTime)datos.Lector["FechaEstimadaLlegada"];
-                    aux.FechaDeLlegada = (DateTime)datos.Lector["FechaLlegada"];
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaEnvio")))
+                        aux.FechaEnvio = Convert.ToDateTime(datos.Lector["FechaEnvio"]);
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaEstimadaLlegada")))
+                        aux.FechaEstimadaLlegada = Convert.ToDateTime(datos.Lector["FechaEstimadaLlegada"]);
+                    if (!datos.Lector.IsDBNull(datos.Lector.GetOrdinal("FechaLlegada")))
+                        aux.FechaDeLlegada = Convert.ToDateTime(datos.Lector["FechaLlegada"]);
 
 
                     aux.paquete = new Paquete();

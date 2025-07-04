@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -45,6 +47,39 @@ namespace TPI_SistemaLogistica_Equipo3B
                     break;
                 case "PagoRecibido":
                     gestionEstado.ActualizarEstadoPago(ventaId, 2);
+                    try
+                    {
+                        GestionFacturas gestionFacturas = new GestionFacturas();
+                        gestionFacturas.AsignarPaqueteConCapacidad(ventaId);
+                        string resultado = gestionFacturas.AsignarPaqueteConCapacidad(ventaId);
+
+                        if (resultado == "OK")
+                        {
+                            lblMensaje.Text = "El paquete fue asignado correctamente.";
+                            lblMensaje.CssClass = "alert alert-success";
+                        }
+                        else if (resultado == "SIN_TRANSPORTISTA")
+                        {
+                            lblMensaje.Text = "No hay transportistas disponibles para esta zona o con capacidad suficiente.";
+                            lblMensaje.CssClass = "alert alert-warning";
+                        }
+                        else if (resultado == "NO_PAGADO")
+                        {
+                            lblMensaje.Text = "El estado de pago aún no está marcado como 'Pagado'.";
+                            lblMensaje.CssClass = "alert alert-warning";
+                        }
+                        else
+                        {
+                            lblMensaje.Text = "Error inesperado: " + resultado;
+                            lblMensaje.CssClass = "alert alert-danger";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        lblMensaje.Text = "❌ Error: " + ex.Message;
+                        lblMensaje.CssClass = "alert alert-danger";
+                        Session["error"] = ex;
+                    }
                     break;
                 case "PagoRechazado":
                     gestionEstado.ActualizarEstadoPago(ventaId, 3);
