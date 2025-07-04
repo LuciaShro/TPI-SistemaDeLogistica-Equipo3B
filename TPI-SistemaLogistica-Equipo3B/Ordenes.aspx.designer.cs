@@ -15,15 +15,6 @@ namespace TPI_SistemaLogistica_Equipo3B
     {
 
         /// <summary>
-        /// btnAñadir control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAñadir;
-
-        /// <summary>
         /// txtFiltro control.
         /// </summary>
         /// <remarks>

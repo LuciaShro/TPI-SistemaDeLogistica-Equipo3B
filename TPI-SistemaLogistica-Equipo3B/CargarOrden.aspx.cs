@@ -436,7 +436,7 @@ namespace TPI_SistemaLogistica_Equipo3B
 
             ordenesEnvio.ruta.PuntoPartida = cliente.Direccion.Provincia + cliente.Direccion.Ciudad + cliente.Direccion.Calle + cliente.Direccion.NumeroCalle;
             ordenesEnvio.ruta.PuntoDestino = destinatario.Direccion.Provincia + destinatario.Direccion.Ciudad + destinatario.Direccion.Calle + destinatario.Direccion.NumeroCalle;
-         
+
 
             //SETEAR EN TABLA ORDEN
 
@@ -448,9 +448,9 @@ namespace TPI_SistemaLogistica_Equipo3B
             ordenesEnvio.FechaCreacion = DateTime.Now;
 
             //VER DEPENDE DE ASIGNACIÓN DE ORDEN A TRANSPORTISTA
-            ordenesEnvio.FechaEnvio = new DateTime(2025, 6, 17);
-            ordenesEnvio.FechaEstimadaLlegada = new DateTime(2025, 6, 20);
-            ordenesEnvio.FechaDeLlegada = new DateTime(2025, 6, 20);
+            ordenesEnvio.FechaEnvio = new DateTime(2025, 7, 3);
+            ordenesEnvio.FechaEstimadaLlegada = new DateTime(2025, 7, 3);
+            ordenesEnvio.FechaDeLlegada = new DateTime(2025, 7, 3);
 
             ordenesEnvio.estado.idEstado = 3;
 

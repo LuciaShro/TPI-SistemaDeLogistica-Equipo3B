@@ -46,6 +46,7 @@
     <Compile Include="Destinatario.cs" />
     <Compile Include="DetalleOrden.cs" />
     <Compile Include="Direccion.cs" />
+    <Compile Include="Envio.cs" />
     <Compile Include="EstadoDePago.cs" />
     <Compile Include="EstadoOrdenEnvio.cs" />
     <Compile Include="EstadoVehiculo.cs" />

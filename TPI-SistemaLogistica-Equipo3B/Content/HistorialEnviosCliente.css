@@ -1,0 +1,89 @@
+﻿.tracking-container {
+    font-family: 'Segoe UI', sans-serif;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+ .tracking-container h2 {
+     color: #555;
+     margin-bottom: 15px;
+     font-size: 1.5rem;
+ }
+
+.tracking-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.tracking-table thead {
+    background-color: #f5f5f5;
+}
+
+.tracking-table th {
+    text-align: left;
+    padding: 14px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.tracking-table td {
+    padding: 14px;
+    vertical-align: middle;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.tracking-table tr.even {
+    background-color: #f0f3f7;
+}
+
+.codigo {
+    font-weight: bold;
+    color: #333;
+}
+
+.codigo .fecha {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 4px;
+}
+
+.estado-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.estado-icono {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.estado-texto {
+    font-weight: 500;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.detalle-texto {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Opcional: columna derecha con ícono tipo dropdown */
+/*.tracking-table td:last-child::after {
+    content: "\25BC";*/ /* flecha hacia abajo */
+    /*float: right;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 4px;
+}*/

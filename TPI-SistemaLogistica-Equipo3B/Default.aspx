@@ -23,7 +23,7 @@
                     <p>Tu tranquilidad es nuestra prioridad.<br>
                         Cada envío lo tratamos con el cuidado que merece.</p>
                     <div class="hero-actions">
-                        <a href="#" class="btn btn-secondary">Comienza</a>
+                        <a href="Login.aspx" class="btn btn-secondary">Comienza</a>
                         <a href="#" class="link-text">Mira Como Funciona</a>
                     </div>
                 </div>

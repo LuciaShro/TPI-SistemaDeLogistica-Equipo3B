@@ -214,7 +214,7 @@ namespace Gestion
 
             try
             {
-                gestionDatos.setearConsulta("SELECT IDFactura ,Numero, FechaEmision, FechaVencimiento, CUILEmisor, RazonSocial, fp.MedioDePago, f.IDOrden,f.Total,\r\nfp.FechaDePago, estadoP.Estado, c.Nombre +  ' '  + c.Apellido as Nombre\r\nFROM Factura AS F\r\ninner join FormaDePago AS fp ON fp.IDFormaDePago = f.IDFormadePago\r\ninner join EstadoDePago AS estadoP ON estadoP.IDEstadoPago = fp.IDEstadoPago\r\ninner join OrdenesEnvio AS od ON od.IDOrden = f.IDOrden\r\ninner join Clientes AS c ON c.IDCliente = od.IDCliente\r\nwhere fp.IDEstadoPago = 2;");
+                gestionDatos.setearConsulta("SELECT IDFactura ,Numero, FechaEmision, FechaVencimiento, CUILEmisor, RazonSocial, fp.MedioDePago, f.IDOrden,f.Total, fp.FechaDePago, estadoP.Estado, c.Nombre +  ' '  + c.Apellido as Nombre FROM Factura AS F inner join FormaDePago AS fp ON fp.IDFormaDePago = f.IDFormadePago\r\ninner join EstadoDePago AS estadoP ON estadoP.IDEstadoPago = fp.IDEstadoPago\r\ninner join OrdenesEnvio AS od ON od.IDOrden = f.IDOrden inner join Clientes AS c ON c.IDCliente = od.IDCliente where fp.IDEstadoPago = 2;");
 
                 gestionDatos.ejecutarLectura();
 
