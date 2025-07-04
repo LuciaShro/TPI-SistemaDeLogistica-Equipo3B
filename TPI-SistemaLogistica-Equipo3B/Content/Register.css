@@ -47,7 +47,7 @@
 }
 
 .link-login:hover {
-        text-decoration: underline;
+    text-decoration: #6800c4;
 }
 
 .form-container .row > .mb-3 {
@@ -55,3 +55,6 @@
     padding-left: 10px;
 }
 
+.text-center mt-3.a {
+    color: #9b59b6;
+}

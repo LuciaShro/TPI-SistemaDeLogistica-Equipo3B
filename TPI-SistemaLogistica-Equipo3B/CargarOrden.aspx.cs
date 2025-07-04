@@ -308,11 +308,19 @@ namespace TPI_SistemaLogistica_Equipo3B
 
                 
                 distanciaKm = route.Distance / 1000; 
-                duracionMinutos = route.Duration / 60; 
-                lblMensajePaquete.Text = $"Distancia: {distanciaKm:N2} km, Duración: {duracionMinutos:N2} minutos.";
-                lblTotal.Text = "Calculando..."; 
+                duracionMinutos = route.Duration / 60;
+                // lblMensajePaquete.Text = $"Distancia: {distanciaKm:N2} km, Duración: {duracionMinutos:N2} minutos.";
+                //lblMensajePaquete.Text = $"Distancia: {distanciaKm:N2} km, Duración: {(int)Math.Round(duracionMinutos)} minutos.";
 
-               
+                //lblTotal.Text = "Calculando..."; 
+
+                lblDistanciaKm.Text = $"{distanciaKm:N2} km";
+                lblDuracionMinutos.Text = $"{(int)Math.Round(duracionMinutos)} minutos";
+
+                lblMensajePaquete.Text = $"Distancia: {distanciaKm:N2} km, Duración: {(int)Math.Round(duracionMinutos)} minutos.";
+
+
+
                 if (route.Geometry != null && route.Geometry.Coordinates != null)
                 {
                     var geometryCoordinatesJson = JsonConvert.SerializeObject(route.Geometry.Coordinates);
@@ -324,10 +332,15 @@ namespace TPI_SistemaLogistica_Equipo3B
             else if (routeData != null && !string.IsNullOrEmpty(routeData.Message))
             {
                 lblMensajePaquete.Text = $"Error de Mapbox al calcular la ruta: {routeData.Message} (Código: {routeData.Code})";
+
+                lblDistanciaKm.Text = "N/A";
+                lblDuracionMinutos.Text = "N/A";
             }
             else
             {
                 lblMensajePaquete.Text = "No se pudo obtener la ruta o los datos son inválidos. Verifique las direcciones ingresadas.";
+                lblDistanciaKm.Text = "N/A";
+                lblDuracionMinutos.Text = "N/A";
             }
 
             // se realiza el guardado para poder recibirlo en el cargar orden
@@ -436,7 +449,7 @@ namespace TPI_SistemaLogistica_Equipo3B
 
             ordenesEnvio.ruta.PuntoPartida = cliente.Direccion.Provincia + cliente.Direccion.Ciudad + cliente.Direccion.Calle + cliente.Direccion.NumeroCalle;
             ordenesEnvio.ruta.PuntoDestino = destinatario.Direccion.Provincia + destinatario.Direccion.Ciudad + destinatario.Direccion.Calle + destinatario.Direccion.NumeroCalle;
-         
+
 
             //SETEAR EN TABLA ORDEN
 
@@ -448,9 +461,9 @@ namespace TPI_SistemaLogistica_Equipo3B
             ordenesEnvio.FechaCreacion = DateTime.Now;
 
             //VER DEPENDE DE ASIGNACIÓN DE ORDEN A TRANSPORTISTA
-            ordenesEnvio.FechaEnvio = new DateTime(2025, 6, 17);
-            ordenesEnvio.FechaEstimadaLlegada = new DateTime(2025, 6, 20);
-            ordenesEnvio.FechaDeLlegada = new DateTime(2025, 6, 20);
+            ordenesEnvio.FechaEnvio = new DateTime(2025, 7, 3);
+            ordenesEnvio.FechaEstimadaLlegada = new DateTime(2025, 7, 3);
+            ordenesEnvio.FechaDeLlegada = new DateTime(2025, 7, 3);
 
             ordenesEnvio.estado.idEstado = 3;
 

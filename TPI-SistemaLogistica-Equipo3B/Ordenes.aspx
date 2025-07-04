@@ -8,8 +8,8 @@
     <div class="ordenes-container">
         <div class="ordenes-header">
             <h1>Ordenes</h1>
-            <asp:Button ID="btnAñadir" runat="server" Text="＋ Añadir" CssClass="btn-añadir" OnClick="btnAñadir_Click" />
-            </button>
+            <%--<asp:Button ID="btnAñadir" runat="server" Text="＋ Añadir" CssClass="btn-añadir" OnClick="btnAñadir_Click" />--%>
+           <%-- </button>--%>
         </div>
 
         <div class="ordenes-search">

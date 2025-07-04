@@ -18,13 +18,13 @@
                 </div>
 
                 <div class="options">
-                    <label><input type="checkbox" /> Remember me</label>
+                    <%--<label><input type="checkbox" /> Remember me</label>--%>
                     <a href="#">Forgot Password?</a>
                 </div>
 
                 <asp:Button ID="btnLogin" runat="server" Text="ACCEDER" CssClass="login-button" OnClick ="btnLogin_Click" />
                 <asp:Label ID="lblError" runat="server" Forecolor="Red" Visible="false"></asp:Label>
-                <p class="register-link">¿No tenés cuenta? <a href="#">Regístrate gratis</a></p>
+                <p class="register-link">¿No tenés cuenta? <a href="Register.aspx">Regístrate gratis</a></p>
             </div>
 
             <div class="login-image">

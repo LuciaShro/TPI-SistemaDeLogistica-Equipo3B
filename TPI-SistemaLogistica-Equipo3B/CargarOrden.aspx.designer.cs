@@ -285,6 +285,24 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.GridView gvItems;
 
         /// <summary>
+        /// Control lblDistanciaKm.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDistanciaKm;
+
+        /// <summary>
+        /// Control lblDuracionMinutos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDuracionMinutos;
+
+        /// <summary>
         /// Control btnCotizar.
         /// </summary>
         /// <remarks>

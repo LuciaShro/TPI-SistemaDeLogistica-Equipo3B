@@ -26,32 +26,40 @@
             <tr>
                 <td>Pequeño</td>
                 <td>
-                    <asp:TextBox ID="txtCategoriaPequeno" runat="server" Text="0.00" CssClass="rate-input" TextMode="Number"></asp:TextBox>
+                    <asp:Label ID="lblCategoriaPequeño" runat="server" CssClass="rate-label"></asp:Label>
+                    <asp:TextBox ID="txtCategoriaPequeno" runat="server" Text="0.00" CssClass="rate-input" TextMode="Number" Visible="false"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:Button ID="btnGuardarPequeno" runat="server" Text="Guardar" CssClass="rate-save-btn" OnClick="btnGuardarPequeno_Click" CommandArgument="pequeno" />
+                    <asp:Button ID="btnModificarPequeno" runat="server" Text="Modificar" CssClass="rate-modify-btn" OnClick="btnModificarPequeno_Click" />
+                    <asp:Button ID="btnGuardarPequeno" runat="server" Text="Guardar" CssClass="rate-save-btn" OnClick="btnGuardarPequeno_Click" CommandArgument="pequeno" Visible="false" />
                 </td>
             </tr>
             <tr>
                 <td>Mediano</td>
                 <td>
-                    <asp:TextBox ID="txtCategoriaMediano" runat="server" Text="0.00" CssClass="rate-input" TextMode="Number"></asp:TextBox>
+                    <asp:Label ID="lblCategoriaMediano" runat="server" CssClass="rate-label"></asp:Label>
+                    <asp:TextBox ID="txtCategoriaMediano" runat="server" Text="0.00" CssClass="rate-input" TextMode="Number" Visible="false"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:Button ID="btnGuardarMediano" runat="server" Text="Guardar" CssClass="rate-save-btn" OnClick="btnGuardarMediano_Click" CommandArgument="mediano" />
+                    <asp:Button ID="btnModificarMediano" runat="server" Text="Modificar" CssClass="rate-modify-btn" OnClick="btnModificarMediano_Click" />
+                    <asp:Button ID="btnGuardarMediano" runat="server" Text="Guardar" CssClass="rate-save-btn" OnClick="btnGuardarMediano_Click" CommandArgument="mediano" Visible="false" />
                 </td>
             </tr>
             <tr>
                 <td>Grande</td>
                 <td>
-                    <asp:TextBox ID="txtCategoriaGrande" runat="server" Text="0.00" CssClass="rate-input" TextMode="Number"></asp:TextBox>
+                    <asp:Label ID="lblCategoriaGrande" runat="server" CssClass="rate-label"></asp:Label>
+                    <asp:TextBox ID="txtCategoriaGrande" runat="server" Text="0.00" CssClass="rate-input" TextMode="Number" Visible="false"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:Button ID="btnGuardarGrande" runat="server" Text="Guardar" CssClass="rate-save-btn" OnClick="btnGuardarGrande_Click" CommandArgument="grande" />
+                    <asp:Button ID="btnModificarGrande" runat="server" Text="Modificar" CssClass="rate-modify-btn" OnClick="btnModificarGrande_Click" />
+                    <asp:Button ID="btnGuardarGrande" runat="server" Text="Guardar" CssClass="rate-save-btn" OnClick="btnGuardarGrande_Click" CommandArgument="grande" Visible="false" />
                 </td>
             </tr>
         </tbody>
     </table>
+
+    <asp:Label ID="lblMensajeError" runat="server" Text="" Visible="false" CssClass="alert-dark"></asp:Label>
 
     <div class="simulator-box">
         <h4>Simulador de Costos (Opcional)</h4>

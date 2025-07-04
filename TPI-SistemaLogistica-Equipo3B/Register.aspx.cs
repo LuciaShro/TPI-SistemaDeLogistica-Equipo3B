@@ -104,7 +104,8 @@ namespace TPI_SistemaLogistica_Equipo3B
                     }
 
                     gestionCliente.agregarCliente(nuevo);
-                    lblMensaje.Text = "Registro exitoso.";
+                    Response.Redirect("RegistroExitoso.aspx");
+
 
 
             }

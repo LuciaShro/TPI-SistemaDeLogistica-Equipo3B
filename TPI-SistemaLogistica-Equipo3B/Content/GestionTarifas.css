@@ -230,3 +230,34 @@ body {
         display: block;
     }
 }
+
+.rate-modify-btn,
+.rate-save-btn {
+    background-color: #8e44ad; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 12px; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+    .rate-modify-btn:hover,
+    .rate-save-btn:hover {
+        background-color: #732d91; 
+        transform: scale(1.05);
+    }
+
+.rate-label {
+    display: inline-block;
+    background-color: #f1f1f1;
+    padding: 10px 18px;
+    border-radius: 12px;
+    min-width: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+

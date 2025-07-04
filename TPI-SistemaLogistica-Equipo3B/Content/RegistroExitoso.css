@@ -1,0 +1,59 @@
+﻿
+.registro-exitoso-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+}
+
+.mensaje-exito {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+    border-top: 6px solid #9C4CC2; /* color de marca */
+}
+
+    .mensaje-exito h1 {
+        color: #9C4CC2;
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .mensaje-exito p {
+        font-size: 1.2em;
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+.btn-volver {
+    text-decoration: none;
+    background-color: #9C4CC2;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    display: inline-block;
+}
+
+    .btn-volver:hover {
+        background-color: #7e3aa0;
+    }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

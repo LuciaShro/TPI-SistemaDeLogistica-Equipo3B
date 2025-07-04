@@ -136,6 +136,8 @@
     <Content Include="AgregarTransportista.aspx" />
     <Content Include="AgregarVehiculo.aspx" />
     <Content Include="Alerts\Alerts.js" />
+    <Content Include="BienvenidoTransportista.aspx" />
+    <Content Include="BienvenidoUser.aspx" />
     <Content Include="CargarOrden.aspx" />
     <Content Include="Content - Copy %282%29\AdminTransportistas.css" />
     <Content Include="Content - Copy %282%29\AgregarTransportista.css" />
@@ -259,6 +261,7 @@
     <Content Include="Content - Copy\VerOrden.css" />
     <Content Include="Content\AdminTransportistas.css" />
     <Content Include="Content\AgregarTransportista.css" />
+    <Content Include="Content\BienvenidoUser.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -283,6 +286,7 @@
     <Content Include="Content\Factura.css" />
     <Content Include="Content\georef.js" />
     <Content Include="Content\GestionTarifas.css" />
+    <Content Include="Content\HistorialEnviosCliente.css" />
     <Content Include="Content\Inicio.css" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Envios.css" />
@@ -294,6 +298,7 @@
     <Content Include="Content\Perfil.css" />
     <Content Include="Content\Ordenes.css" />
     <Content Include="Content\Register.css" />
+    <Content Include="Content\RegistroExitoso.css" />
     <Content Include="Content\ResumenFacturas.css" />
     <Content Include="Content\SideBar.css" />
     <Content Include="Content\Transportistas.css" />
@@ -305,6 +310,7 @@
     <Content Include="ErrorLogin.aspx" />
     <Content Include="Factura.aspx" />
     <Content Include="GestionTarifas.aspx" />
+    <Content Include="HistorialEnviosCliente.aspx" />
     <Content Include="Imagenes\mercado-pago-logo.png" />
     <Content Include="Inicio.aspx" />
     <Content Include="Login.aspx" />
@@ -324,6 +330,7 @@
     <Content Include="Perfil.aspx" />
     <Content Include="Ordenes.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="RegistroExitoso.aspx" />
     <Content Include="ResumenFacturas.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -461,6 +468,20 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BienvenidoTransportista.aspx.cs">
+      <DependentUpon>BienvenidoTransportista.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BienvenidoTransportista.aspx.designer.cs">
+      <DependentUpon>BienvenidoTransportista.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BienvenidoUser.aspx.cs">
+      <DependentUpon>BienvenidoUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BienvenidoUser.aspx.designer.cs">
+      <DependentUpon>BienvenidoUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CargarOrden.aspx.cs">
       <DependentUpon>CargarOrden.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -509,6 +530,13 @@
     </Compile>
     <Compile Include="GestionTarifas.aspx.designer.cs">
       <DependentUpon>GestionTarifas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HistorialEnviosCliente.aspx.cs">
+      <DependentUpon>HistorialEnviosCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HistorialEnviosCliente.aspx.designer.cs">
+      <DependentUpon>HistorialEnviosCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
@@ -594,6 +622,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroExitoso.aspx.cs">
+      <DependentUpon>RegistroExitoso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistroExitoso.aspx.designer.cs">
+      <DependentUpon>RegistroExitoso.aspx</DependentUpon>
     </Compile>
     <Compile Include="ResumenFacturas.aspx.cs">
       <DependentUpon>ResumenFacturas.aspx</DependentUpon>

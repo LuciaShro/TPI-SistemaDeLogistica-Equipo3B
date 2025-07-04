@@ -107,7 +107,7 @@ namespace Gestion
 
                     try
                     {
-                        datos.setearConsulta("select c.Nombre, c.Apellido, c.Cuil, c.Telefono, d.Calle, d.CodigoPostal, d.Ciudad, d.Numero, d.Piso, d.Provincia, u.Email from clientes c inner join direccion d on d.IDDireccion=c.IDDireccion inner join usuario u on u.IDUsuario = c.IDUsuario where c.IDUsuario=@IDUsuario");
+                        datos.setearConsulta("select c.IDCliente, c.Nombre, c.Apellido, c.Cuil, c.Telefono, d.Calle, d.CodigoPostal, d.Ciudad, d.Numero, d.Piso, d.Provincia, u.Email from clientes c inner join direccion d on d.IDDireccion=c.IDDireccion inner join usuario u on u.IDUsuario = c.IDUsuario where c.IDUsuario=@IDUsuario");
                         datos.setearParametro("@IDUsuario", usuario.idUsuario);
 
                         datos.ejecutarLectura();
@@ -116,6 +116,7 @@ namespace Gestion
                         {
                             Cliente cliente = new Cliente();
 
+                            cliente.id = Convert.ToInt32(datos.Lector["IDCliente"]);
                             cliente.Nombre = datos.Lector["Nombre"].ToString();
                             cliente.Apellido = datos.Lector["Apellido"].ToString();
                             cliente.CUIL = Convert.ToInt64(datos.Lector["Cuil"]);
