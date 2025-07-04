@@ -214,6 +214,19 @@
             </asp:GridView>
         </div>
 
+                <%-- nuevo div para Distancia y Duración --%>
+        <div class="card full">
+            <h2>Detalles de la Ruta</h2>
+            <div class="form-group">
+                <label>Distancia:</label>
+                <asp:Label ID="lblDistanciaKm" runat="server" CssClass="form-control-static" />
+            </div>
+            <div class="form-group">
+                <label>Duración estimada:</label>
+                <asp:Label ID="lblDuracionMinutos" runat="server" CssClass="form-control-static" />
+            </div>
+        </div>
+
         <div class="center-button">
             <asp:Button ID="btnCotizar" runat="server" Text="COTIZAR ENVÍO" CssClass="btn-principal" OnClientClick="return validarPaquete();" OnClick="btnCotizar_Click" />
         </div>

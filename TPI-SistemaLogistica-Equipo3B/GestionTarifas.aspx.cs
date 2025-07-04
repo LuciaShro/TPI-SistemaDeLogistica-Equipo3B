@@ -41,7 +41,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             TarifasEnvio tarifasEnvio = new TarifasEnvio();
 
             decimal nuevoPrecio;
-            if (decimal.TryParse(txtCategoriaPequeno.Text, out nuevoPrecio))
+            if (decimal.TryParse(txtCategoriaGrande.Text, out nuevoPrecio))
             {
                 if (nuevoPrecio > 0)
                 {
@@ -51,9 +51,14 @@ namespace TPI_SistemaLogistica_Equipo3B
                 }
                 else
                 {
-                    lblMensajeError.Text = "Para continuar debe insertar un número mayor a 0";
                     lblMensajeError.Visible = true;
+                    lblMensajeError.Text = "Para continuar debe insertar un número mayor a 0.";
                 }
+            }
+            else
+            {
+                lblMensajeError.Visible = true;
+                lblMensajeError.Text = "Ingrese un número válido. Ej: 12.50";
             }
         }
 
@@ -63,7 +68,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             TarifasEnvio tarifasEnvio = new TarifasEnvio();
 
             decimal nuevoPrecio;
-            if (decimal.TryParse(txtCategoriaPequeno.Text, out nuevoPrecio))
+            if (decimal.TryParse(txtCategoriaMediano.Text, out nuevoPrecio))
             {
                 if (nuevoPrecio > 0)
                 {
@@ -74,8 +79,13 @@ namespace TPI_SistemaLogistica_Equipo3B
                 else
                 {
                     lblMensajeError.Visible = true;
-                    lblMensajeError.Text = "Para continuar debe insertar un número mayor a 0";
+                    lblMensajeError.Text = "Para continuar debe insertar un número mayor a 0.";
                 }
+            }
+            else
+            {
+                lblMensajeError.Visible = true;
+                lblMensajeError.Text = "Ingrese un número válido. Ej: 10.50";
             }
         }
 
@@ -96,8 +106,13 @@ namespace TPI_SistemaLogistica_Equipo3B
                 else
                 {
                     lblMensajeError.Visible = true;
-                    lblMensajeError.Text = "Para continuar debe insertar un número mayor a 0";
+                    lblMensajeError.Text = "Para continuar debe insertar un número mayor a 0.";
                 }
+            }
+            else
+            {
+                lblMensajeError.Visible = true;
+                lblMensajeError.Text = "Ingrese un número válido. Ej: 12.50";
             }
         }
 
