@@ -30,8 +30,43 @@ namespace TPI_SistemaLogistica_Equipo3B
 
                 ListaOrdenes = todas.FindAll(o => o.idTransportistaAsignado == idTransportista);
 
-                rptOrdenes.DataSource = ListaOrdenes;
-                rptOrdenes.DataBind();
+                dgvOrdenesAsignadas.DataSource = ListaOrdenes;
+                dgvOrdenesAsignadas.DataBind();
+            }
+        }
+
+        protected void dgvOrdenesAsignadas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idOrden = Convert.ToInt32(dgvOrdenesAsignadas.SelectedDataKey.Value);
+            Response.Redirect("DetalleDeOrden.aspx?id=" + idOrden);
+        }
+
+        protected void dgvOrdenesAsignadas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvOrdenesAsignadas.PageIndex = e.NewPageIndex;
+            dgvOrdenesAsignadas.DataSource = ListaOrdenes;
+            dgvOrdenesAsignadas.DataBind();
+        }
+
+        protected void btnComenzarViaje_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var usuario = (Usuario)Session["usuario"];
+                int idTransportista = usuario.idUsuario;
+
+                GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+                gestion.ComenzarViajeTransportista(idTransportista, DateTime.Today);
+
+                ListaOrdenes = gestion.ListarOrdenes().Where(o => o.idTransportistaAsignado == idTransportista).ToList();
+
+                dgvOrdenesAsignadas.DataSource = ListaOrdenes;
+                dgvOrdenesAsignadas.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
             }
         }
     }

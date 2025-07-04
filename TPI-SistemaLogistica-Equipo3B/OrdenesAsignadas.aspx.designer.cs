@@ -15,12 +15,21 @@ namespace TPI_SistemaLogistica_Equipo3B
     {
 
         /// <summary>
-        /// rptOrdenes control.
+        /// btnComenzarViaje control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptOrdenes;
+        protected global::System.Web.UI.WebControls.Button btnComenzarViaje;
+
+        /// <summary>
+        /// dgvOrdenesAsignadas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvOrdenesAsignadas;
     }
 }

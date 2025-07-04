@@ -24,26 +24,36 @@
       <h6>Email</h6>
       <asp:Label ID="lblEmail" runat="server" Text="--"></asp:Label>
       <asp:TextBox ID="txtEmail" runat="server" Visible="false"></asp:TextBox>
+        <asp:RequiredFieldValidator ErrorMessage="El Email es requerido" ControlToValidate="txtEmail" runat="server"  EnableClientScript="true" Display="Dynamic" ValidationGroup="transportista" ></asp:RequiredFieldValidator>
+        <asp:RegularExpressionValidator ErrorMessage=" Solo se pueden ingresar formato de email" ControlToValidate="txtEmail" ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" runat="server" EnableClientScript="true" Display="Dynamic" ValidationGroup="transportista"></asp:RegularExpressionValidator>
     </li>
     <li class="list-group-item">
       <h6>Nombre</h6>
         <asp:Label ID="lblNombre" runat="server" Text="--"></asp:Label>
         <asp:TextBox ID="txtNombre" runat="server" Visible="false"></asp:TextBox>
+        <asp:RequiredFieldValidator ErrorMessage="El Nombre es requerido" ControlToValidate="txtNombre" runat="server"  EnableClientScript="true" Display="Dynamic" ValidationGroup="transportista" ></asp:RequiredFieldValidator>
+        <asp:RegularExpressionValidator ErrorMessage=" Solo se pueden ingresar caracteres" ControlToValidate="txtNombre" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" runat="server" EnableClientScript="true" Display="Dynamic" ValidationGroup="transportista"></asp:RegularExpressionValidator>
     </li>
     <li class="list-group-item">
       <h6>Apellido</h6>
         <asp:Label ID="lblApellido" runat="server" Text="--"></asp:Label>
         <asp:TextBox ID="txtApellido" runat="server" Visible="false"></asp:TextBox>
+        <asp:RequiredFieldValidator ErrorMessage="El Apellido es requerido" ControlToValidate="txtApellido" runat="server"  EnableClientScript="true" Display="Dynamic" ValidationGroup="transportista" ></asp:RequiredFieldValidator>
+        <asp:RegularExpressionValidator ErrorMessage=" Solo se pueden ingresar caracteres" ControlToValidate="txtApellido" ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" runat="server" EnableClientScript="true" Display="Dynamic" ValidationGroup="transportista"></asp:RegularExpressionValidator>
     </li>
        <li class="list-group-item">
     <h6>Cuil</h6>
      <asp:Label ID="lblCuil" runat="server" Text="--"></asp:Label>
      <asp:TextBox ID="txtCuil" runat="server" Visible="false"></asp:TextBox>
+     <asp:RequiredFieldValidator ErrorMessage="El Cuil es requerido" ControlToValidate="txtCuil" runat="server"  EnableClientScript="true" Display="Dynamic" ValidationGroup="transportista" ></asp:RequiredFieldValidator>
+    <asp:RegularExpressionValidator ErrorMessage=" El cuil debe tener 11 digitos" ControlToValidate="txtCuil" ValidationExpression="^\d{11}$" runat="server" EnableClientScript="true" Display="Dynamic" ValidationGroup="transportista"></asp:RegularExpressionValidator>
     </li>
     <li class="list-group-item">
       <h6>Teléfono</h6>
         <asp:Label ID="lblTelefono" runat="server" Text="--"></asp:Label>
         <asp:TextBox ID="txtTelefono" runat="server" Visible="false"></asp:TextBox>
+        <asp:RequiredFieldValidator ErrorMessage="El Telefono es requerido" ControlToValidate="txtTelefono" runat="server"  EnableClientScript="true" Display="Dynamic" ValidationGroup="transportista" ></asp:RequiredFieldValidator>
+        <asp:RegularExpressionValidator ErrorMessage=" El telefono debe tener 10 digitos" ControlToValidate="txtTelefono" ValidationExpression="^\d{10}$" runat="server" EnableClientScript="true" Display="Dynamic" ValidationGroup="transportista"></asp:RegularExpressionValidator>
     </li>
     <li class="list-group-item">
       <h6>Licencia</h6>
@@ -69,7 +79,7 @@
 
 
     <div class="card p-5 w-50 mx-auto mt-3">
-    <asp:Button ID="btnDarBajaTransportista" runat="server" Text="Dar de baja" CssClass="btn  btn-outline-danger" OnClientClick="return confirm('Estas seguro que queres dar de baja este usuario? Esta accion es irreversible');" OnClick="btnDarBajaTransportista_Click" Visible="false"/>
+    <asp:Button ID="btnDarBajaTransportista" runat="server" Text="Dar de baja" CssClass="btn  btn-outline-danger" OnClientClick="return confirm('Estas seguro que queres dar de baja este usuario? Esta accion es irreversible');" OnClick="btnDarBajaTransportista_Click" Visible="false" ValidationGroup="transportista"/>
     <asp:Button ID="btnReactivarTransportista" runat="server" Text="Reactivar transportista" CssClass="btn btn-outline-danger" OnClientClick="return confirm('Estas seguro que queres dar de baja este usuario? Esta accion es irreversible');" OnClick ="btnReactivarTransportista_Click" Visible="false"/>
     </div> 
     <asp:Button ID="btnGuardarCambios" runat="server" Text="Guardar cambios" CssClass="btn btn-outline-primary" Visible="false" OnClick="btnGuardarCambios_Click"/>

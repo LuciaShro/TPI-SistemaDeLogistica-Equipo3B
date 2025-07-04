@@ -276,15 +276,6 @@ namespace TPI_SistemaLogistica_Equipo3B
         protected global::System.Web.UI.WebControls.Button btnEliminar;
 
         /// <summary>
-        /// btnComenzarViaje control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnComenzarViaje;
-
-        /// <summary>
         /// btnEntregado control.
         /// </summary>
         /// <remarks>
@@ -301,6 +292,15 @@ namespace TPI_SistemaLogistica_Equipo3B
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDemorado;
+
+        /// <summary>
+        /// hdnIdVehiculo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnIdVehiculo;
 
         /// <summary>
         /// dllEstadoVehiculo control.

@@ -300,6 +300,7 @@
     <Content Include="Content\Vehiculos.css" />
     <Content Include="Content\VerOrden.css" />
     <Content Include="DetalleDeOrden.aspx" />
+    <Content Include="DetalleVehiculo.aspx" />
     <Content Include="DetalleVenta.aspx" />
     <Content Include="ErrorLogin.aspx" />
     <Content Include="Factura.aspx" />
@@ -473,6 +474,13 @@
     </Compile>
     <Compile Include="DetalleDeOrden.aspx.designer.cs">
       <DependentUpon>DetalleDeOrden.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleVehiculo.aspx.cs">
+      <DependentUpon>DetalleVehiculo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleVehiculo.aspx.designer.cs">
+      <DependentUpon>DetalleVehiculo.aspx</DependentUpon>
     </Compile>
     <Compile Include="DetalleVenta.aspx.cs">
       <DependentUpon>DetalleVenta.aspx</DependentUpon>

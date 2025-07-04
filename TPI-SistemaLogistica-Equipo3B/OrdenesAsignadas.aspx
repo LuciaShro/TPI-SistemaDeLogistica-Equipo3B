@@ -17,29 +17,26 @@
             <a href="#" class="tab">Pendientes</a>
         </div>
 
+        <asp:Button ID="btnComenzarViaje" runat="server" CssClass="btn btn-primary mx-2 px-4 py-2" Text="Comenzar viaje" OnClick="btnComenzarViaje_Click" />
+
         <div class="ordenes-search">
             <input type="text" placeholder="Buscar..." />
             <span class="search-icon">🔍</span>
         </div>
     </div>
 
-    <asp:Repeater ID="rptOrdenes" runat="server">
-        <ItemTemplate>
-            <div class="card mb-3" style="width: 50%;">
-                <div class="card-body">
-                    <h5 class="card-title"><strong>Orden#<%#Eval ("idOrdenEnvio")%></strong></h5>
-                    <p class="card-text"><strong>Destinatario nombre:</strong> <%#Eval ("destinatario.Nombre")+" "+Eval ("destinatario.Apellido")%></p>
-                    <p class="card-text"><strong>Telefono destinatario:</strong> <%#Eval ("destinatario.Telefono")%></p>
-                    <p class="card-text"><strong>Direccion destinatario:</strong> <%#Eval("destinatario.Direccion.Calle") + " " + Eval("destinatario.Direccion.NumeroCalle")%></p>
-                    <p class="card-text"><strong>Punto de partida:</strong> <%#Eval ("ruta.PuntoPartida")%></p>
-                    <p class="card-text"><strong>Punto de destino:</strong> <%#Eval ("ruta.PuntoDestino")%></p>
-                    <p class="card-text"><strong>Fecha envio:</strong> <%#Eval ("FechaEnvio")%></p>
-                    <p class="card-text"><strong>Fecha estimada llegada:</strong> <%#Eval ("FechaEstimadaLlegada")%></p>
-                    <p class="card-text"><strong>Estado:</strong> <%#Eval ("estado.DescripcionEstado")%></p>
-                    <a href="DetalleDeOrden.aspx?id=<%#Eval ("idOrdenEnvio") %>" class="btn btn-primary">Ver detalle</a>
-                </div>
-</div>
-        </ItemTemplate>
-    </asp:Repeater>
+        <asp:GridView runat="server" ID="dgvOrdenesAsignadas" DataKeyNames="idOrdenEnvio" OnSelectedIndexChanged="dgvOrdenesAsignadas_SelectedIndexChanged" OnPageIndexChanging="dgvOrdenesAsignadas_PageIndexChanging" AllowPaging="true" PageSize="5" Class="ordenes-grid table-bordered text-center align-middle" AutoGenerateColumns="false">
+        <Columns>
+        <asp:BoundField HeaderText="ID Orden" DataField="idOrdenEnvio" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
+        <asp:BoundField HeaderText="Destinatario" DataField="destinatario.Nombre"   />
+        <asp:BoundField HeaderText="Estado" DataField="estado.DescripcionEstado" />
+        <asp:BoundField HeaderText="Fecha Creación" DataField="FechaCreacion" />
+        <asp:BoundField HeaderText="Fecha Envío" DataField="FechaEnvio" />
+        <asp:BoundField HeaderText="Fecha Estimada" DataField="FechaEstimadaLlegada" />
+        <asp:BoundField HeaderText="Fecha Llegada" DataField="FechaDeLlegada" />
+            <asp:CommandField ShowSelectButton="true" SelectText="Detalles" HeaderText="Accion" />
+         </Columns>
+    </asp:GridView>
+
 </asp:Content>
 

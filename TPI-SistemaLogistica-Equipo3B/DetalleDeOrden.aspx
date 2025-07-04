@@ -167,18 +167,18 @@
 
     <div class="card p-5 w-50 mx-auto mt-3">
         <p>Actualizar estado de entrega:</p>
-        <asp:Button ID="btnComenzarViaje" runat="server" CssClass="btn btn-primary mx-2 px-4 py-2" Text="Comenzar viaje" OnClick="btnComenzarViaje_Click" />
-        <br />
+        
         <asp:Button ID="btnEntregado" runat="server" CssClass="btn btn-success mx-2 px-4 py-2" Text="Envío Entregado" OnClick="btnEntregado_Click"/>
         <br />
         <asp:Button ID="btnDemorado" runat="server" CssClass="btn btn-warning mx-2 px-4 py-2" Text="Demorado" OnClick="btnDemorado_Click" />
     </div>
     <div class="card p-5 w-50 mx-auto mt-3">
         <p>Actualizar estado del vehículo:</p>
+        <asp:HiddenField ID="hdnIdVehiculo" runat="server" />
            <div class="col">
        <asp:DropDownList runat="server" ID="dllEstadoVehiculo" CssClass="form-select">
        </asp:DropDownList>
-               <asp:TextBox ID="ComentarioEstadoVehiculo" runat="server"></asp:TextBox>
+               <asp:TextBox ID="ComentarioEstadoVehiculo" runat="server" TextMode="MultiLine" CssClass="form-control mt-2"></asp:TextBox>
             </div>
         <asp:Button ID="btnActualizarVehiculo" runat="server" CssClass="btn btn-info mt-2" Text="Actualizar" OnClick="btnActualizarVehiculo_Click" />
     </div>

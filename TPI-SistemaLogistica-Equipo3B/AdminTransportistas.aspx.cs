@@ -159,6 +159,10 @@ namespace TPI_SistemaLogistica_Equipo3B
 
                 try
                 {
+                    Page.Validate();
+                    if (!Page.IsValid)
+                        return;
+
                     GestionTransportista gestion = new GestionTransportista();
                     gestion.ModificarTransportista(t);
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,11 +82,13 @@ namespace Gestion
 
             try
             {
-                gestionDatos.setearConsulta("UPDATE Vehiculo SET Patente = @Patente, CapacidadDeCarga = @CapacidadDeCarga, IDEstadoVehiculo = @IDEstadoVehiculo WHERE IDVehiculo = @IDVehiculo");
+                gestionDatos.setearConsulta("UPDATE Vehiculo SET Patente = @Patente, CapacidadDeCarga = @CapacidadDeCarga, IDEstadoVehiculo = @IDEstadoVehiculo, Comentario = @Comentario WHERE IDVehiculo = @IDVehiculo");
 
                 gestionDatos.setearParametro("@Patente", vehiculo.Patente);
                 gestionDatos.setearParametro("@CapacidadDeCarga", vehiculo.CapacidadCarga);
                 gestionDatos.setearParametro("@IDEstadoVehiculo", vehiculo.estadoVehiculo.IDEstado);
+                gestionDatos.setearParametro("@Comentario", vehiculo.Comentario ?? "");
+                gestionDatos.setearParametro("@IDVehiculo", vehiculo.idVehiculo);
 
 
                 gestionDatos.ejecutarAccion();
@@ -202,7 +205,7 @@ namespace Gestion
             }
         }
 
-        public List<Vehiculo> listarVehiculos()
+        public List<Vehiculo> listarVehiculos(string idVehiculo = "")
         {
             AccesoDatos datos = new AccesoDatos();
             List<Vehiculo> listaVehiculos = new List<Vehiculo>();
@@ -210,8 +213,12 @@ namespace Gestion
             try
             {
                 datos.abrirConexion();
-                datos.setearConsulta("select v.IDVehiculo, v.Patente, v.CapacidadDeCarga, estadovehiculo.Descripcion from Vehiculo v inner join EstadoVehiculo estadovehiculo on estadovehiculo.IDEstadoVehiculo=v.IDEstadoVehiculo");
-
+                datos.setearConsulta("select v.IDVehiculo, v.Patente, v.CapacidadDeCarga, v.Comentario, v.Activo, estadovehiculo.Descripcion from Vehiculo v inner join EstadoVehiculo estadovehiculo on estadovehiculo.IDEstadoVehiculo=v.IDEstadoVehiculo");
+                if (idVehiculo != "")
+                {
+                    datos.Comando.CommandText += " WHERE v.IDVehiculo = @id";
+                    datos.setearParametro("@id",idVehiculo);
+                }
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
@@ -220,7 +227,8 @@ namespace Gestion
                     vehiculo.idVehiculo = (int)datos.Lector["IDVehiculo"];
                     vehiculo.Patente = datos.Lector["Patente"].ToString();
                     vehiculo.CapacidadCarga = Convert.ToSingle((decimal)datos.Lector["CapacidadDeCarga"]);
-
+                    vehiculo.Comentario = datos.Lector["Comentario"].ToString();
+                    vehiculo.Activo = (bool)datos.Lector["Activo"];
 
                     vehiculo.estadoVehiculo = new EstadoVehiculo();
                     vehiculo.estadoVehiculo.descripcioEstado = datos.Lector["Descripcion"].ToString();
@@ -244,6 +252,93 @@ namespace Gestion
 
             }
 
+        }
+
+        public Vehiculo obtenerVehiculoPorId(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Vehiculo vehiculo = null;
+
+            try
+            {
+                datos.abrirConexion();
+                datos.setearConsulta("SELECT v.IDVehiculo, v.Patente, v.CapacidadDeCarga, v.Comentario, v.Disponible, v.IDEstadoVehiculo, ev.Descripcion FROM Vehiculo v INNER JOIN EstadoVehiculo ev ON ev.IDEstadoVehiculo = v.IDEstadoVehiculo WHERE v.IDVehiculo = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    vehiculo = new Vehiculo();
+                    vehiculo.idVehiculo = (int)datos.Lector["IDVehiculo"];
+                    vehiculo.Patente = datos.Lector["Patente"].ToString();
+                    vehiculo.CapacidadCarga = Convert.ToSingle((decimal)datos.Lector["CapacidadDeCarga"]);
+                    vehiculo.Comentario = datos.Lector["Comentario"].ToString();
+                    vehiculo.Disponible = (bool)datos.Lector["Disponible"];
+
+                    vehiculo.estadoVehiculo = new EstadoVehiculo();
+                    vehiculo.estadoVehiculo.IDEstado = Convert.ToInt32(datos.Lector["IDEstadoVehiculo"]);
+                    vehiculo.estadoVehiculo.descripcioEstado = datos.Lector["Descripcion"].ToString();
+                }
+                return vehiculo;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener vehículo por ID: " + ex.Message, ex);
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void reactivarVehiculo(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("update Vehiculo set Activo = 1 where IDVehiculo = @id;" +
+                                      "update Vehiculo set Disponible = 1 where IDVehiculo = @id;" +
+                                      "update Transportista set EstadoDisponible = 1 where IDVehiculo = @id;");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método buscarVehiculo: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void darDeBajaVehiculo(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("update Vehiculo set Activo = 0 where IDVehiculo = @id;" +
+                                     "update Vehiculo set Disponible = 0 where IDVehiculo = @id; " +
+                                     "update Transportista set EstadoDisponible = 0 where IDVehiculo = @id;");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error en método buscarVehiculo: " + ex.Message, ex);
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
     }

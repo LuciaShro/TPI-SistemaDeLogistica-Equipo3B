@@ -89,6 +89,8 @@ namespace TPI_SistemaLogistica_Equipo3B
                         txtEstadoVehiculo.Text = seleccionado.transportista.Vehiculo.estadoVehiculo.descripcioEstado.ToString();
                         dllEstadoVehiculo.DataBind();
                         dllEstadoVehiculo.SelectedValue = seleccionado.transportista.Vehiculo.estadoVehiculo.IDEstado.ToString();
+                        hdnIdVehiculo.Value = seleccionado.transportista.Vehiculo.idVehiculo.ToString();
+                         
 
                         //if (Session["TipoUsuario"] != null)
                         //{
@@ -196,40 +198,17 @@ namespace TPI_SistemaLogistica_Equipo3B
                 Session.Add("error", ex);
             }
         }
-        protected void btnComenzarViaje_Click(object sender, EventArgs e)
-        {
-            GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
-            int idOrden = Convert.ToInt32(txtIdOrden.Text);
-            int estadoActual = gestion.ObtenerEstadoOrden(idOrden);
-            if (estadoActual == 3)
-            {
-                throw new Exception("La orden no puede ser cambiada a 'En Camino' ya que se encuentra Entregada.");
-            }
-            else if (estadoActual == 2)
-            {
-                throw new Exception("La orden no puede ser cambiada a 'En Camino' ya que se encuentra actualmente en ese mismo estado");
-            }
-
-            try { 
-                 gestion.ActualizarEstadoYFechaEnvio(idOrden, 2);
-                EmailService emailService = new EmailService();
-                emailService.armarCorreo("migue8935@gmail.com", txtNombreDestino.Text, idOrden.ToString(),1);
-                emailService.enviarMail();
-                Response.Redirect("OrdenesAsignadas.aspx");
-            }
-            catch (Exception ex)
-            {
-                Session.Add("error", ex);
-            }
-        }
 
         protected void btnActualizarVehiculo_Click(object sender, EventArgs e)
         {
             try
             {
-                int idOrden = Convert.ToInt32(txtIdOrden.Text);
-                GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+                int idVehiculo = int.Parse(hdnIdVehiculo.Value);
+                int idEstadoNuevo = int.Parse(dllEstadoVehiculo.SelectedValue);
+                string comentario = ComentarioEstadoVehiculo.Text;
 
+                GestionOrdenesEnvio gestion = new GestionOrdenesEnvio();
+                gestion.actualizarEstadoVehiculo(idEstadoNuevo,comentario, idVehiculo);
                 Response.Redirect("OrdenesAsignadas.aspx");
             }
             catch (Exception ex)

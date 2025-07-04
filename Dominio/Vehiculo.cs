@@ -16,6 +16,10 @@ namespace Dominio
 
         public bool Disponible { get; set; }
 
+        public bool Activo { get; set; }
+        
+        public string Comentario { get; set; }
+
         public EstadoVehiculo estadoVehiculo {  set; get; }
     }
 }

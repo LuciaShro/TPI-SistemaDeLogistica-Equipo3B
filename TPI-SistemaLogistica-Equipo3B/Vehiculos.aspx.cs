@@ -16,8 +16,8 @@ namespace TPI_SistemaLogistica_Equipo3B
             {
                 GestionVehiculo vehiculo = new GestionVehiculo();
                 Session.Add("listaVehiculos", vehiculo.listarVehiculos());
-                gvVehiculos.DataSource = Session["listaVehiculos"];
-                gvVehiculos.DataBind();
+                dgvVehiculos.DataSource = Session["listaVehiculos"];
+                dgvVehiculos.DataBind();
             }
         }
 
@@ -30,29 +30,44 @@ namespace TPI_SistemaLogistica_Equipo3B
         {
             GestionVehiculo gestionVehiculo = new GestionVehiculo();
             var lista = gestionVehiculo.listarVehiculos();
-            gvVehiculos.DataSource = lista;
-            gvVehiculos.DataBind();
+            dgvVehiculos.DataSource = lista;
+            dgvVehiculos.DataBind();
         }
 
         protected void btnAsignados_Click(object sender, EventArgs e)
         {
             GestionVehiculo gestionVehiculo = new GestionVehiculo();
             var lista = gestionVehiculo.vehiculosAsignados();
-            gvVehiculos.DataSource = lista;
-            gvVehiculos.DataBind();
+            dgvVehiculos.DataSource = lista;
+            dgvVehiculos.DataBind();
         }
 
         protected void btnNoAsignados_Click(object sender, EventArgs e)
         {
             GestionVehiculo gestionVehiculo = new GestionVehiculo();
             var lista = gestionVehiculo.listarVehiculosSinAsignar();
-            gvVehiculos.DataSource = lista;
-            gvVehiculos.DataBind();
+            dgvVehiculos.DataSource = lista;
+            dgvVehiculos.DataBind();
         }
 
         protected void btnEditar_Click(object sender, ImageClickEventArgs e)
         {
 
+        }
+
+        protected void dgvVehiculos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var id = dgvVehiculos.SelectedDataKey.Value.ToString();
+            Response.Redirect("DetalleVehiculo.aspx?id=" + id);
+
+
+        }
+
+        protected void dgvVehiculos_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvVehiculos.PageIndex = e.NewPageIndex;
+            dgvVehiculos.DataSource = Session["listaVehiculos"];
+            dgvVehiculos.DataBind();
         }
     }
 }

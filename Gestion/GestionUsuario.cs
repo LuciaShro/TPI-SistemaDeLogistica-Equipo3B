@@ -120,6 +120,7 @@ namespace Gestion
                             cliente.Apellido = datos.Lector["Apellido"].ToString();
                             cliente.CUIL = Convert.ToInt64(datos.Lector["Cuil"]);
                             cliente.Telefono = datos.Lector["Telefono"].ToString();
+                            cliente.Usuario.idUsuario = Convert.ToInt32(datos.Lector["IDUsario"]);
 
                             cliente.Direccion = new Direccion
                             {
