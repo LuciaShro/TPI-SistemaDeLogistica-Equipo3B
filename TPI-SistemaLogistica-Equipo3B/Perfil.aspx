@@ -74,7 +74,9 @@
         
     </div>
     <div class="card p-5 w-50 mx-auto mt-3">
-        <p>Eliminar cuenta y todos sus datos. Esta opcion es irreversible.</p>
-        <button type="button" class="btn btn-outline-danger">Eliminar cuenta</button>
+        <p>Dar de baja la cuenta</p>
+        <asp:Button ID="btnDarBaja" runat="server" Text="Dar de baja la cuenta" CssClass="btn btn-outline-danger" OnClick="btnDarBaja_Click" />
     </div>
+
+    <asp:Label ID="lblMensaje" runat="server" Text=""></asp:Label>
 </asp:Content>

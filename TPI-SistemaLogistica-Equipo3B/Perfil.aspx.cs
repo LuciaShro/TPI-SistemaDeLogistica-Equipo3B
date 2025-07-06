@@ -154,5 +154,31 @@ namespace TPI_SistemaLogistica_Equipo3B
 
             gestionCliente.modificarCliente(clienteNuevo, clienteBuscado);
         }
+
+        protected void btnDarBaja_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (int.TryParse(Request.QueryString["id"], out int id))
+                {
+                    GestionTransportista gestionTransportista = new GestionTransportista();
+
+                    gestionTransportista.darBajaTransportista(id);
+                    lblMensaje.Text = "Tu cuenta ha sido dada de baja exitosamente";
+                }
+
+                else
+                {
+                    Session.Add("error", "ID de cliente no válido.");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex);
+            }
+        }
     }
 }
