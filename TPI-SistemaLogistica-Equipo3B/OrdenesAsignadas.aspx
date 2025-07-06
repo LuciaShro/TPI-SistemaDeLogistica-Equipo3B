@@ -2,12 +2,14 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <link rel="stylesheet" type="text/css" href="Content/Ordenes.css" />
+    <link rel="stylesheet" type="text/css" href="Content/Transportistas.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="InicioContent" runat="server">
     <div class="ordenes-container">
         <div class="ordenes-header">
             <h1>Ordenes Asignadas</h1>
+            <asp:Button ID="btnComenzarViaje" runat="server" Text="Comenzar viajes del dia" CssClass="btn-añadirTransportista" OnClick="btnComenzarViaje_Click" />
         </div>
 
         <div class="ordenes-tabs">
@@ -17,7 +19,7 @@
             <a href="#" class="tab">Pendientes</a>
         </div>
 
-        <asp:Button ID="btnComenzarViaje" runat="server" CssClass="btn btn-primary mx-2 px-4 py-2" Text="Comenzar viaje" OnClick="btnComenzarViaje_Click" />
+        
 
         <div class="ordenes-search">
             <input type="text" placeholder="Buscar..." />
