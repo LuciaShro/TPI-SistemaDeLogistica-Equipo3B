@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
@@ -295,7 +296,38 @@ namespace Gestion
         
         }
 
-        public void buscarCliente () { }
+        public void darBajaCliente(int idCliente)
+        {
+
+            AccesoDatos datos = new AccesoDatos();
+           
+
+
+            try
+            {
+               
+                datos.setearConsulta("update Usuario set Activo = 0 where IDUsuario = (select IDUsuario from Clientes where IDCliente=@IDCliente)");
+                datos.Comando.Parameters.Clear();
+                datos.setearParametro("@IDCliente", idCliente);
+
+                datos.ejecutarAccion();
+
+               
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Error al dar de baja el usuario cliente" + ex.Message, ex);
+            }
+
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+
+        }
+
 
         public List<Cliente> listarClientes() {
             AccesoDatos datos = new AccesoDatos();

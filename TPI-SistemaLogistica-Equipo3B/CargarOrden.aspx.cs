@@ -447,8 +447,8 @@ namespace TPI_SistemaLogistica_Equipo3B
             if (ViewState["DuracionMin"] != null)
             ordenesEnvio.ruta.TiempoEstimadoMinutos = Convert.ToDecimal(ViewState["DuracionMin"]);
 
-            ordenesEnvio.ruta.PuntoPartida = cliente.Direccion.Provincia + cliente.Direccion.Ciudad + cliente.Direccion.Calle + cliente.Direccion.NumeroCalle;
-            ordenesEnvio.ruta.PuntoDestino = destinatario.Direccion.Provincia + destinatario.Direccion.Ciudad + destinatario.Direccion.Calle + destinatario.Direccion.NumeroCalle;
+            ordenesEnvio.ruta.PuntoPartida = cliente.Direccion.Provincia + "" + cliente.Direccion.Ciudad + "" + cliente.Direccion.Calle + "" + cliente.Direccion.NumeroCalle;
+            ordenesEnvio.ruta.PuntoDestino = destinatario.Direccion.Provincia + "" + destinatario.Direccion.Ciudad + "" + destinatario.Direccion.Calle + "" + destinatario.Direccion.NumeroCalle;
 
 
             //SETEAR EN TABLA ORDEN
@@ -465,7 +465,7 @@ namespace TPI_SistemaLogistica_Equipo3B
             ordenesEnvio.FechaEstimadaLlegada = new DateTime(2025, 7, 3);
             ordenesEnvio.FechaDeLlegada = new DateTime(2025, 7, 3);
 
-            ordenesEnvio.estado.idEstado = 3;
+            ordenesEnvio.estado.idEstado = 1;
 
             //DETALLE ORDEN
 

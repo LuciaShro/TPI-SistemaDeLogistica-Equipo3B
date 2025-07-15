@@ -157,15 +157,17 @@ namespace Gestion
 
             try
             {
-                gestionDatos.setearConsulta("SELECT IDFactura FROM Factura ORDER BY IDFactura DESC");
+                gestionDatos.setearConsulta("SELECT TOP 1 IDFactura FROM Factura ORDER BY IDFactura DESC");
                 gestionDatos.ejecutarLectura();
 
                 if (gestionDatos.Lector.Read())
                 {
-                    return (int)gestionDatos.Lector["IDFactura"];
+                    if (!gestionDatos.Lector.IsDBNull(0))
+                        return Convert.ToInt32(gestionDatos.Lector[0]);
                 }
 
-                throw new Exception("ID no encontrado.");
+                return 0;
+
             }
             catch (Exception ex)
             {

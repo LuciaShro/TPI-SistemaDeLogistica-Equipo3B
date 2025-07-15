@@ -6,3 +6,12 @@ h1 {
     color: #9854CB;
     padding-bottom: 3rem;
 }
+
+.col{
+    margin-left: -10px;
+    border: 1px solid red;
+}
+
+#miGrafico{
+    margin-left: -10px;
+}
