@@ -120,14 +120,87 @@ namespace TPI_SistemaLogistica_Equipo3B
             //ViewState["MetodoPagoSeleccionado"] = metodo;
         }
 
+        /* protected void btnCompletarPago_Click(object sender, EventArgs e)
+         {
+             int orden = idOrden;
+             decimal monto = total;
+             //int clienteId = idCliente;
+
+             string metodoSeleccionado = Session["MetodoPagoSeleccionado"]?.ToString();
+
+             if (string.IsNullOrEmpty(metodoSeleccionado))
+             {
+                 lblError.Text = "Por favor selecciona un método de pago.";
+                 return;
+             }
+
+             FacturaPago factura = new FacturaPago();
+             GestionFacturas gestionFactura = new GestionFacturas();
+             Venta venta = new Venta();
+             GestionVenta gestionVenta = new GestionVenta();
+             FormaDePago formaPago = new FormaDePago();
+             factura.formaDePago = new FormaDePago();
+             GestionOrdenesEnvio gestionOrden = new GestionOrdenesEnvio();
+
+             factura.OrdenesEnvio = new OrdenesEnvio();
+             factura.OrdenesEnvio.idOrdenEnvio = orden;
+             factura.Total = monto;
+             factura.FechaEmision = DateTime.Now;
+             factura.FechaVencimiento = DateTime.Now.AddDays(5);
+             factura.NumeroFactura = gestionFactura.returnIDFactura();
+             factura.NumeroFactura += 1;
+
+             switch (metodoSeleccionado)
+             {
+                 case "Mercado Pago":
+                     formaPago.medioDePago = "Mercado Pago";
+                     break;
+                 case "Transferencia":
+                     formaPago.medioDePago = "Transferencia";
+                     break;
+                 default:
+                     formaPago.medioDePago = "NULL";
+                     break;
+             }
+
+             formaPago.fechaDePago = DateTime.Now;
+             formaPago.estadoDePago = new EstadoDePago();
+             formaPago.estadoDePago.idEstadoDePago = 1;
+             formaPago.Cliente = new Cliente();
+             //int idCliente = gestionOrden.returnIDClienteOrden(idOrden);
+
+             //Cliente clienteLogueado = (Cliente)Session["cliente"];
+             //idCliente = clienteLogueado.id;
+
+
+
+
+             int idFactura = gestionFactura.AgregarFactura(factura, formaPago);
+
+             venta.OrdenesEnvio = new OrdenesEnvio();
+             venta.OrdenesEnvio.idOrdenEnvio = idOrden;
+             venta.Factura = new FacturaPago();
+             venta.Factura.idFactura = idFactura;
+             gestionVenta.AgregarVenta(venta);
+
+             try
+             {
+                 Response.Redirect("MensajePago.aspx");
+             }
+             catch (Exception ex)
+             {
+                 lblError.Text = "Ocurrió un error al completar el pago: " + ex.Message;
+                 System.Diagnostics.Debug.WriteLine("IDCliente recibido: " + formaPago.Cliente.id);
+
+             }
+         }*/
+
         protected void btnCompletarPago_Click(object sender, EventArgs e)
         {
             int orden = idOrden;
             decimal monto = total;
-            //int clienteId = idCliente;
 
             string metodoSeleccionado = Session["MetodoPagoSeleccionado"]?.ToString();
-
             if (string.IsNullOrEmpty(metodoSeleccionado))
             {
                 lblError.Text = "Por favor selecciona un método de pago.";
@@ -147,38 +220,29 @@ namespace TPI_SistemaLogistica_Equipo3B
             factura.Total = monto;
             factura.FechaEmision = DateTime.Now;
             factura.FechaVencimiento = DateTime.Now.AddDays(5);
-            factura.NumeroFactura = gestionFactura.returnIDFactura();
-            factura.NumeroFactura += 1;
+            factura.NumeroFactura = gestionFactura.returnIDFactura() + 1;
 
-            switch (metodoSeleccionado)
+            formaPago.medioDePago = metodoSeleccionado;
+            formaPago.fechaDePago = DateTime.Now;
+            formaPago.estadoDePago = new EstadoDePago { idEstadoDePago = 1 };
+            formaPago.Cliente = new Cliente();
+
+            if (metodoSeleccionado == "Mercado Pago")
             {
-                case "Mercado Pago":
-                    formaPago.medioDePago = "Mercado Pago";
-                    break;
-                case "Transferencia":
-                    formaPago.medioDePago = "Transferencia";
-                    break;
-                default:
-                    formaPago.medioDePago = "NULL";
-                    break;
+                string urlBase = Request.Url.GetLeftPart(UriPartial.Authority) + Request.ApplicationPath;
+                MercadoPagoGestion mp = new MercadoPagoGestion(urlBase);
+                string descripcion = $"Pago de envío ID #{orden}";
+                string linkPago = mp.PagarMercadoPago(descripcion, monto);
+
+                Session["IDFacturaPendiente"] = factura.NumeroFactura;
+                Response.Redirect(linkPago);
+                return;
             }
 
-            formaPago.fechaDePago = DateTime.Now;
-            formaPago.estadoDePago = new EstadoDePago();
-            formaPago.estadoDePago.idEstadoDePago = 1;
-            formaPago.Cliente = new Cliente();
-            //int idCliente = gestionOrden.returnIDClienteOrden(idOrden);
-
-            //Cliente clienteLogueado = (Cliente)Session["cliente"];
-            //idCliente = clienteLogueado.id;
-
-
+            // Solo se ejecuta si eligió Transferencia
             int idFactura = gestionFactura.AgregarFactura(factura, formaPago);
-
-            venta.OrdenesEnvio = new OrdenesEnvio();
-            venta.OrdenesEnvio.idOrdenEnvio = idOrden;
-            venta.Factura = new FacturaPago();
-            venta.Factura.idFactura = idFactura;
+            venta.OrdenesEnvio = new OrdenesEnvio { idOrdenEnvio = orden };
+            venta.Factura = new FacturaPago { idFactura = idFactura };
             gestionVenta.AgregarVenta(venta);
 
             try
@@ -188,10 +252,9 @@ namespace TPI_SistemaLogistica_Equipo3B
             catch (Exception ex)
             {
                 lblError.Text = "Ocurrió un error al completar el pago: " + ex.Message;
-                System.Diagnostics.Debug.WriteLine("IDCliente recibido: " + formaPago.Cliente.id);
-
             }
         }
+
 
     }
 }

@@ -1,0 +1,58 @@
+﻿.purchase-confirmation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background: linear-gradient(to right, #fdfbfb, #ebedee);
+}
+
+.mensaje-pago {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 520px;
+    width: 100%;
+    animation: fadeIn 0.9s ease-in-out;
+    border-top: 6px solid #28a745; /* verde éxito */
+}
+
+    .mensaje-pago h1 {
+        color: #28a745;
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .mensaje-pago p {
+        font-size: 1.2em;
+        color: #444;
+        margin-bottom: 30px;
+    }
+
+.btn-mis-envios {
+    text-decoration: none;
+    background-color: #28a745;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    display: inline-block;
+}
+
+    .btn-mis-envios:hover {
+        background-color: #218838;
+    }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

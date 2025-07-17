@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MercadoPago, Version=2.3.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\mercadopago-sdk.2.3.8\lib\net461\MercadoPago.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -297,6 +300,9 @@
     <Content Include="Content\PasarelaDePago.css" />
     <Content Include="Content\Perfil.css" />
     <Content Include="Content\Ordenes.css" />
+    <Content Include="Content\PurchaseConfirmation.css" />
+    <Content Include="Content\PurchaseFailure.css" />
+    <Content Include="Content\PurchasePending.css" />
     <Content Include="Content\Register.css" />
     <Content Include="Content\RegistroExitoso.css" />
     <Content Include="Content\ResumenFacturas.css" />
@@ -329,6 +335,9 @@
     <Content Include="PasarelaDePago.aspx" />
     <Content Include="Perfil.aspx" />
     <Content Include="Ordenes.aspx" />
+    <Content Include="PurchaseConfirmation.aspx" />
+    <Content Include="PurchaseFailure.aspx" />
+    <Content Include="PurchasePending.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="RegistroExitoso.aspx" />
     <Content Include="ResumenFacturas.aspx" />
@@ -616,6 +625,27 @@
       <DependentUpon>Ordenes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseConfirmation.aspx.cs">
+      <DependentUpon>PurchaseConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PurchaseConfirmation.aspx.designer.cs">
+      <DependentUpon>PurchaseConfirmation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseFailure.aspx.cs">
+      <DependentUpon>PurchaseFailure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PurchaseFailure.aspx.designer.cs">
+      <DependentUpon>PurchaseFailure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PurchasePending.aspx.cs">
+      <DependentUpon>PurchasePending.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PurchasePending.aspx.designer.cs">
+      <DependentUpon>PurchasePending.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
