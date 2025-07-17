@@ -12,7 +12,7 @@
             <h5 class="card-header">Informe Medios de Pago</h5>
             <div class="card-body">
                 <h3>Medios de pagos más utilizados</h3>
-                <div style="max-width: 400px; margin: auto;">
+                <div style="max-width: 500px; margin: auto;">
                     <canvas id="miGrafico" width="400" height="400" style="background-color: white;"></canvas>
                 </div>
             </div>
@@ -22,7 +22,7 @@
             <h5 class="card-header">Informe Provincias más elegidas</h5>
             <div class="card-body">
                 <h3>Top 5 provincias:</h3>
-                <div style="max-width: 400px; margin: auto;">
+                <div style="max-width: 500px; margin: auto;">
                     <canvas id="GraficoProvincias" width="400" height="400" style="background-color: white;"></canvas>
                 </div>
             </div>
@@ -33,8 +33,13 @@
         var etiquetasJson = JSON.parse('<%= etiquetasJson %>');
         var valoresJson = JSON.parse('<%= valoresJson %>');
 
+        var provinciasJson = JSON.parse('<%= provinciasJson %>');
+        var cantidadesJson = JSON.parse('<%= cantidadesJson %>');
+
         console.log("Etiquetas:", etiquetasJson);
         console.log("Valores:", valoresJson);
+        console.log("Provincias:", provinciasJson);
+        console.log("Cantidad:", cantidadesJson);
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

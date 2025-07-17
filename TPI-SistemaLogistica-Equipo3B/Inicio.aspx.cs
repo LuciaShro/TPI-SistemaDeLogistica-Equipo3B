@@ -17,6 +17,8 @@ namespace TPI_SistemaLogistica_Equipo3B
 
         public string etiquetasJson;
         public string valoresJson;
+        public string provinciasJson;
+        public string cantidadesJson;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,6 +47,27 @@ namespace TPI_SistemaLogistica_Equipo3B
 
                     etiquetasJson = JsonConvert.SerializeObject(etiquetas);
                     valoresJson = JsonConvert.SerializeObject(valores);
+
+                    List<string> provincias = new List<string>();
+                    List<int> cantidades = new List<int>();
+
+                    using (SqlConnection con = new SqlConnection(connectionString))
+                    {
+                        string queryProvincias = "SELECT  TOP 5 dire.Provincia, COUNT(*) AS Cantidad FROM Direccion as dire inner join Destinatarios as d ON d.IDDirección = dire.IDDireccion WHERE dire.Provincia <> 'Ciudad Autónoma de Buenos Aires' group by dire.Provincia ORDER BY Cantidad DESC;";
+                        SqlCommand cmd = new SqlCommand(queryProvincias, con);
+                        con.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            provincias.Add(reader["Provincia"].ToString());
+                            cantidades.Add(Convert.ToInt32(reader["Cantidad"]));
+                        }
+                    }
+
+                    provinciasJson = JsonConvert.SerializeObject(provincias);
+                    cantidadesJson = JsonConvert.SerializeObject(cantidades);
+
                 }
                 catch (Exception ex)
                 {

@@ -25,3 +25,34 @@
         }
     });
 };
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    if (typeof provinciasJson === 'undefined' || typeof cantidadesJson === 'undefined') {
+        console.warn("Los datos de provincias no están disponibles");
+        return;
+    }
+
+    const ctx = document.getElementById('GraficoProvincias').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: provinciasJson,
+            datasets: [{
+                label: 'Top 5 provincias',
+                data: cantidadesJson,
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+});
+
+
+
