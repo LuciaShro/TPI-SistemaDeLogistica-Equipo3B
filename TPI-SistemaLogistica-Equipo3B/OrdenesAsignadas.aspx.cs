@@ -67,7 +67,7 @@ namespace TPI_SistemaLogistica_Equipo3B
                     emailService.armarCorreo(orden.destinatario.Email, orden.destinatario.Nombre, orden.idOrdenEnvio.ToString(), 1, provincia);
                     emailService.enviarMail();
 
-                    gestion.ActualizarEstadoYFechaEnvio(orden.idOrdenEnvio, 1);
+                    gestion.ActualizarEstadoYFechaEnvio(orden.idOrdenEnvio, 4);
                 }
 
                 dgvOrdenesAsignadas.DataSource = ListaOrdenes;

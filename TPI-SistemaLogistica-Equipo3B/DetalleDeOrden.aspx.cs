@@ -154,17 +154,17 @@ namespace TPI_SistemaLogistica_Equipo3B
             int idOrden = Convert.ToInt32(txtIdOrden.Text);
             int estadoActual = gestion.ObtenerEstadoOrden(idOrden);
             string provincia = gestion.ObtenerProvinciaOrden(idOrden);
-            if (estadoActual == 3)
+            if (estadoActual == 5)
             {
                 throw new Exception("La orden no puede ser cambiada a 'Entregada' ya que actualmente se encuentra en ese mismo estado.");
             }
-            else if (estadoActual == 1)
+            else if (estadoActual == 3)
             {
                 throw new Exception("La orden no puede ser cambiada a 'Entregada' ya que se encuentra 'Pendiente', primero deber ser cambiada a 'En camino'.");
             }
                 try
                 {
-                    gestion.ActualizarEstadoYFechaLlegada(idOrden, 3);
+                    gestion.ActualizarEstadoYFechaLlegada(idOrden, 5);
                     EmailService emailService = new EmailService();
                     emailService.armarCorreo("migue8935@gmail.com", txtNombreDestino.Text, idOrden.ToString(), 3, provincia);
                     emailService.enviarMail();
@@ -182,13 +182,13 @@ namespace TPI_SistemaLogistica_Equipo3B
             int idOrden = Convert.ToInt32(txtIdOrden.Text);
             int estadoActual = gestion.ObtenerEstadoOrden(idOrden);
             string provincia = gestion.ObtenerProvinciaOrden(idOrden);
-            if (estadoActual == 3)
+            if (estadoActual == 7)
             {
                 throw new Exception("La orden no puede ser cambiada a 'Demorado' ya que se encuentra Entregada.");
             }
             try
             {
-                gestion.ActualizarEstadoYFechaDemora(idOrden, 1);
+                gestion.ActualizarEstadoYFechaDemora(idOrden, 3);
                 EmailService emailService = new EmailService();
                 emailService.armarCorreo("migue8935@gmail.com", txtNombreDestino.Text, idOrden.ToString(), 2, provincia);
                 emailService.enviarMail();

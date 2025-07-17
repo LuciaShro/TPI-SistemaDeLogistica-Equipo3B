@@ -6,3 +6,21 @@ h1 {
     color: #9854CB;
     padding-bottom: 3rem;
 }
+
+.col {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem; 
+    flex-wrap: wrap;
+    /*justify-content: center; *//* Centra las cards horizontalmente */
+    margin-left: -10px;
+    /*border: 1px solid red;*/
+}
+
+.card {
+    flex: 1 1 45%;
+}
+
+#miGrafico{
+    margin-left: -10px;
+}

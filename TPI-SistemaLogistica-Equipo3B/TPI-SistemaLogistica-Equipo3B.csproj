@@ -91,6 +91,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -291,6 +292,7 @@
     <Content Include="Content\GestionTarifas.css" />
     <Content Include="Content\HistorialEnviosCliente.css" />
     <Content Include="Content\Inicio.css" />
+    <Content Include="Content\Inicio.js" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\Envios.css" />
     <Content Include="Content\mapbox.js" />

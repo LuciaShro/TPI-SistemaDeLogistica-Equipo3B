@@ -55,9 +55,9 @@
                         <li>
                             <a href="OrdenesAsignadas.aspx" class="nav-link"><i class="bi bi-cart"></i>Ordenes</a>
                         </li>
-                        <li>
+                        <%--<li>
                             <a href="Envios.aspx" class="nav-link"><i class="bi bi-truck"></i>Envios</a>
-                        </li>
+                        </li>--%>
                         <%}
                             else if (validacionUsuario(Dominio.Usuario.TipoUsuario.cliente))
                             {
