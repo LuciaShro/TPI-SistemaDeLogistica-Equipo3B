@@ -62,9 +62,9 @@ namespace Gestion
                 gestionDatos.setearParametro("@IDEstadoOrdenEnvio", ordenEnvio.estado.idEstado);
                 gestionDatos.setearParametro("@IDDestinatario", idDestinatario);
                 gestionDatos.setearParametro("@FechaCreacion", ordenEnvio.FechaCreacion);
-                gestionDatos.setearParametro("@FechaEnvio", ordenEnvio.FechaEnvio);
-                gestionDatos.setearParametro("@FechaEstimadaLlegada", ordenEnvio.FechaEstimadaLlegada);
-                gestionDatos.setearParametro("@FechaLlegada", ordenEnvio.FechaDeLlegada);
+                gestionDatos.setearParametro("@FechaEnvio", ordenEnvio.FechaEnvio ?? (object)DBNull.Value);
+                gestionDatos.setearParametro("@FechaEstimadaLlegada", ordenEnvio.FechaEstimadaLlegada?? (object)DBNull.Value);
+                gestionDatos.setearParametro("@FechaLlegada", ordenEnvio.FechaDeLlegada ?? (object)DBNull.Value);
                 gestionDatos.setearParametro("@Activo", 1);
 
                 int idOrden = Convert.ToInt32(gestionDatos.obtenerValor());

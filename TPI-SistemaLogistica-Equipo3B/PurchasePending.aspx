@@ -8,6 +8,7 @@
             <h1>Pago pendiente ⏳</h1>
             <p>Estamos esperando la confirmación del pago. Te notificaremos cuando esté procesado.</p>
             <a href="BienvenidoUser.aspx" class="btn-volver">Ir a mis envíos</a>
+            <asp:Label ID="lblMensajeError" runat="server"></asp:Label>
         </div>
     </div>
 </asp:Content>

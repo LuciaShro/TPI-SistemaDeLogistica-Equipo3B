@@ -20,11 +20,11 @@ namespace Dominio
 
         public DateTime FechaCreacion { get; set; }
 
-        public DateTime FechaEnvio {  get; set; } //cuando se asigne a un transportista
+        public DateTime? FechaEnvio {  get; set; } //cuando se asigne a un transportista
 
-        public DateTime FechaEstimadaLlegada {  get; set; } //REPETITIVO v
+        public DateTime? FechaEstimadaLlegada {  get; set; } //REPETITIVO v
 
-        public DateTime FechaDeLlegada { get; set; }
+        public DateTime? FechaDeLlegada { get; set; }
 
         public EstadoOrdenEnvio estado { get; set; }
 

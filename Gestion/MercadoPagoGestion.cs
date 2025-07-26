@@ -45,7 +45,7 @@ namespace Gestion
         
         }
 
-        public string PagarMercadoPago(string descripcion, decimal total)
+        public string PagarMercadoPago(string descripcion, decimal total, int idVenta)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace Gestion
             }
         };
 
-                CrearPreferenceRequest();
+                CrearPreferenceRequest(idVenta); // pasamos el ID de la venta
 
                 client = new PreferenceClient();
                 preference = client.Create(request);
@@ -73,12 +73,9 @@ namespace Gestion
         }
 
 
-        private void CrearPreferenceRequest()
+
+        private void CrearPreferenceRequest(int idVenta)
         {
-            //Armamos la referencia externa que se envía a Mercado Pago. 
-            //Acá lo ideal sería que sea un Id de compra interno de nuestro sistema, ya que en otro escenario 
-            //vamos a querer identificar a qué operación pertenece determinado pago.
-            string externalReference = string.Concat("Compra-", DateTime.Now);
             request = new PreferenceRequest
             {
                 Items = listaPreferenceItemRequest,
@@ -89,11 +86,10 @@ namespace Gestion
                     Pending = pending
                 },
                 AutoReturn = "approved",
-                ExternalReference = externalReference
-
+                ExternalReference = idVenta.ToString() // Enviamos el ID de la venta real
             };
-
         }
+
 
 
 

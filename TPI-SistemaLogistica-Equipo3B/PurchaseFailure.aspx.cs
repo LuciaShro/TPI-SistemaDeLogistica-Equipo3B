@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gestion;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,22 @@ namespace TPI_SistemaLogistica_Equipo3B
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                string externalReference = Request.QueryString["external_reference"];
+                if (int.TryParse(externalReference, out int idVenta))
+                {
+                    try
+                    {
+                        var gestor = new GestionEstadoDePagos();
+                        gestor.ActualizarEstadoPago(idVenta, 3); // 3 = Rechazado
+                    }
+                    catch (Exception ex)
+                    {
+                        lblMensajeError.Text = "Ocurrio un error al actualizar el estado: " + ex.Message;
+                    }
+                }
+            }
         }
     }
 }

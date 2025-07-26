@@ -8,6 +8,7 @@
             <h1>Pago fallido ❌</h1>
             <p>Hubo un problema al procesar tu pago. Por favor, intentá nuevamente.</p>
             <a href="PasarelaDePago.aspx" class="btn-reintentar">Reintentar pago</a>
+            <asp:Label ID="lblMensajeError" runat="server"></asp:Label>
         </div>
     </div>
 </asp:Content>
