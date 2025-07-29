@@ -302,6 +302,7 @@
     <Content Include="Content\Register.css" />
     <Content Include="Content\RegistroExitoso.css" />
     <Content Include="Content\ResumenFacturas.css" />
+    <Content Include="Content\SeguimientoPedido.css" />
     <Content Include="Content\SideBar.css" />
     <Content Include="Content\Transportistas.css" />
     <Content Include="Content\Vehiculos.css" />
@@ -362,6 +363,7 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="SeguimientoPedido.aspx" />
     <Content Include="Vehiculos.aspx" />
     <Content Include="Content - Copy\bootstrap-grid.css.map" />
     <Content Include="Content - Copy\bootstrap-grid.min.css.map" />
@@ -638,6 +640,13 @@
     </Compile>
     <Compile Include="ResumenFacturas.aspx.designer.cs">
       <DependentUpon>ResumenFacturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SeguimientoPedido.aspx.cs">
+      <DependentUpon>SeguimientoPedido.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SeguimientoPedido.aspx.designer.cs">
+      <DependentUpon>SeguimientoPedido.aspx</DependentUpon>
     </Compile>
     <Compile Include="Servicios\GeorefService.cs" />
     <Compile Include="Servicios\MapBoxService.cs" />
