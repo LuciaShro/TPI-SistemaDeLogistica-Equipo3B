@@ -35,17 +35,34 @@ namespace TPI_SistemaLogistica_Equipo3B
                     datos.setearParametro("@IDCliente", idCliente);
                     datos.ejecutarLectura();
 
+                    /* while (datos.Lector.Read())
+                     {
+                         Envio envio = new Envio();
+
+                         envio.Codigo = (int)datos.Lector["IDOrden"];
+                         envio.FechaEnvio = Convert.ToDateTime(datos.Lector["FechaEnvio"]);
+                         envio.NombreEstado = datos.Lector["EstadoEnvio"].ToString();
+                         envio.ColorEstado = GetColorPorEstado(envio.NombreEstado);
+                         envio.DetalleEstado = GetDetallePorEstado(envio.NombreEstado);
+                         lista.Add(envio);
+                     }*/
+
                     while (datos.Lector.Read())
                     {
                         Envio envio = new Envio();
 
                         envio.Codigo = (int)datos.Lector["IDOrden"];
-                        envio.FechaEnvio = Convert.ToDateTime(datos.Lector["FechaEnvio"]);
-                        envio.NombreEstado = datos.Lector["EstadoEnvio"].ToString();
+                        envio.FechaEnvio = datos.Lector["FechaEnvio"] == DBNull.Value
+                            ? (DateTime?)null
+                            : Convert.ToDateTime(datos.Lector["FechaEnvio"]);
+
+                        envio.NombreEstado = datos.Lector["estadoEnvio"].ToString();
                         envio.ColorEstado = GetColorPorEstado(envio.NombreEstado);
                         envio.DetalleEstado = GetDetallePorEstado(envio.NombreEstado);
+
                         lista.Add(envio);
                     }
+
                     //lblDebug.Text = "IDCliente actual: " + idCliente;
                     rptEnvios.DataSource = lista;
                     rptEnvios.DataBind();

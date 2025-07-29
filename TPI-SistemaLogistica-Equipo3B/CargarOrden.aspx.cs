@@ -461,11 +461,11 @@ namespace TPI_SistemaLogistica_Equipo3B
             ordenesEnvio.FechaCreacion = DateTime.Now;
 
             //VER DEPENDE DE ASIGNACIÓN DE ORDEN A TRANSPORTISTA
-            ordenesEnvio.FechaEnvio = new DateTime(2025, 7, 3);
-            ordenesEnvio.FechaEstimadaLlegada = new DateTime(2025, 7, 3);
-            ordenesEnvio.FechaDeLlegada = new DateTime(2025, 7, 3);
-
-            ordenesEnvio.estado.idEstado = 3; //reset en la tabla asi lo paso a 1
+            ordenesEnvio.FechaEnvio = new DateTime();
+            ordenesEnvio.FechaEnvio = DateTime.Now;
+            ordenesEnvio.FechaEstimadaLlegada = null;
+            ordenesEnvio.FechaDeLlegada = null;
+            ordenesEnvio.estado.idEstado = 1; //reset en la tabla asi lo paso a 1
 
             //DETALLE ORDEN
 
